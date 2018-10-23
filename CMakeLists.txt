@@ -1,5 +1,5 @@
 # Basic CMake project
-cmake_minimum_required(VERSION 3.10.2) # latest release as of 10/23/2018
+cmake_minimum_required(VERSION 3.10.2) # version that is currently installed in test env
 
 # Set project name
 project(CADG)

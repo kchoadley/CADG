@@ -13,9 +13,6 @@ WORKDIR "/usr/src/${DIR}"
 # You have to set an explicit error code, otherwise it goes undetected and you have to check the logs to see if there is an issue
 RUN cppcheck --error-exitcode=1 .
 
-# Without this the linker can't find the Google Fruit library, this effectively refreshes the cache for what libraries are installed
-RUN ldconfig
-
 RUN mkdir build
 WORKDIR "/usr/src/${DIR}/build"
 
