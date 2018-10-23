@@ -1,0 +1,6 @@
+# We don't build in Travis, we build in Docker, so no language support is needed 
+language: generic
+
+services: docker
+
+script: docker build --rm -t cadg:test .
