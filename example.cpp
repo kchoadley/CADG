@@ -1,7 +1,9 @@
+// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+//                  Shawn Hulce, Michael McCulley
+
 #include <gtest/gtest.h>
 
-TEST(ExampleTests, IsEqual)
-{
+TEST(ExampleTests, IsEqual) {
     ASSERT_EQ(42, 42);
     EXPECT_EQ("Hello, World!", "Hello, World!");
 }
