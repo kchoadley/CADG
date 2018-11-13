@@ -11,11 +11,13 @@ COPY . .
 RUN cppcheck --error-exitcode=1 .
 
 # Lint the files
-RUN ./cpplint.py --headers=h --extensions=cpp *.cpp
+RUN ./cpplint.py --headers=h --extensions=cpp --linelength=120 \
+    /usr/src/cadg/test/*.cpp
 
 # Create build directory
+WORKDIR "/usr/src/cadg/test"
 RUN mkdir build
-WORKDIR "/usr/src/cadg/build"
+WORKDIR "/usr/src/cadg/test/build"
 
 # Build and run tests
 RUN cmake -G "Unix Makefiles" ..

@@ -3,4 +3,4 @@ language: generic
 
 services: docker
 
-script: docker build --rm -t cadg:test .
+script: docker build --rm -t cadg:test -f ./test/Dockerfile .
