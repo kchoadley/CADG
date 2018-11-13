@@ -7,7 +7,13 @@
 #include <vector>
 #include "network_utils.hpp"
 
+<<<<<<< fd91337dfaecc0701fecb2a15d05a0353768652a
 namespace cadg_rest {
+=======
+namespace aoi_rest {
+Controller::Controller() {}
+Controller::~Controller() {}
+>>>>>>> PR Review modifications. Minor adjustments
 void Controller::endpoint(const std::string& value) {
     uri endpointURI(value);
     uri_builder endpointBuilder;
@@ -30,6 +36,13 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
+<<<<<<< fd91337dfaecc0701fecb2a15d05a0353768652a
+=======
+std::vector<std::string> Controller::RequestPath(const http_request& message) {
+    auto relative_path = uri::decode(message.relative_uri().path());
+    return uri::split_path(relative_path);
+}
+>>>>>>> PR Review modifications. Minor adjustments
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;
     std::string query_delimeter = "&";  // technically, it could be delimited by ';' too
@@ -55,7 +68,14 @@ std::map<std::string, std::string> Controller::Queries(std::string query_string)
 json::value Controller::ResponseNotImpl(const http::method & method) {
     auto response = json::value::object();
     response["http_method"] = json::value::string(method);
+<<<<<<< fd91337dfaecc0701fecb2a15d05a0353768652a
     response["serviceName"] = json::value::string("CADG Service");
     return response;
 }
 }  // namespace cadg_rest
+=======
+    response["serviceName"] = json::value::string("AOI Service");
+    return response;
+}
+}  // namespace aoi_rest
+>>>>>>> PR Review modifications. Minor adjustments
