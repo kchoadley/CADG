@@ -17,7 +17,8 @@ RUN apt-get -qq -y install \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
-    wget
+    wget \
+    libasio-dev
 
 # Make g++ 6 the default g++ executable
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90

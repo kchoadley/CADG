@@ -5,7 +5,7 @@
 #include <string>
 #include <cpprest/json.h>
 
-namespace aoi_rest {
+namespace cadg_rest {
 struct User {
     std::string name;
     int id;

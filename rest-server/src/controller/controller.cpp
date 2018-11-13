@@ -7,7 +7,7 @@
 #include <vector>
 #include "network_utils.hpp"
 
-namespace aoi_rest {
+namespace cadg_rest {
 Controller::Controller() {}
 Controller::~Controller() {}
 void Controller::endpoint(const std::string& value) {

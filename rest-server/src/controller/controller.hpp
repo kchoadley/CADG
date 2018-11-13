@@ -12,7 +12,7 @@ using namespace web;
 using namespace http;
 using namespace http::experimental::listener;
 
-namespace aoi_rest {
+namespace cadg_rest {
 class Controller {
   public: 
     Controller();

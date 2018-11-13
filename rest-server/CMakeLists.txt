@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(aoi-rest-server)
+project(cadg-rest-server)
 
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(Threads REQUIRED)
@@ -16,8 +16,6 @@ add_executable(${PROJECT_NAME}
                                 ./src/services/data_access_object.cpp
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
-                                ./src/controller/another_controller.cpp
-                                ./src/controller/example_controller.cpp
                                 ./src/util/network_utils.cpp)
 
 # header locations

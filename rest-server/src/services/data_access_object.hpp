@@ -7,7 +7,7 @@
 #include "user.hpp"
 #include "data_access_interface.hpp"
 
-namespace aoi_rest {
+namespace cadg_rest {
 class DataAccessObject : public DataAccessInterface {
   public:
     static DataAccessObject& Instance();

@@ -27,7 +27,7 @@
 #include "network_utils.hpp"
 using asio::io_service;
 
-namespace aoi_rest {
+namespace cadg_rest {
 
    HostInetInfo NetworkUtils::queryHostInetInfo() {
        io_service ios;

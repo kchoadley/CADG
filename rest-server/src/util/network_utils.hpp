@@ -32,7 +32,7 @@
 using asio::ip::tcp;
 using asio::ip::host_name;
 
-namespace aoi_rest {
+namespace cadg_rest {
    
    using HostInetInfo = tcp::resolver::iterator;
 
