@@ -3,6 +3,7 @@
 This utilizes version 2.4 of the Apache httpd server. The configuration file is extremely basic at present and will need to be built. As such, this has been tagged as prototype for the time being.
 
 To build locally
+<<<<<<< 53e84dd161e1fdbc5aa5df1124a92f8a0cf2a7d7
 <<<<<<< e3d19c0619dff417359b2a58de99f8f71d06e848
 <<<<<<< fd91337dfaecc0701fecb2a15d05a0353768652a
 <<<<<<< 66012de80710ec1cfde28b119c18d7961a1fdef4
@@ -37,13 +38,21 @@ Note: Replace cadg-apache:tag with your desired nomenclature. Also note that you
 >>>>>>> PR Review modifications. Minor adjustments
 =======
 >>>>>>> Revert "PR Review modifications. Minor adjustments"
+=======
+```
+docker build -t cadg-apache:tag .
+```
+Note: Replace image-name:tag with your desired nomenclature. Also note that you can pull the current prototype image from the docker hub with:
+```
+>>>>>>> PR 4 Review Edits
 docker pull os-wasabi/cadg-apache:prototype
-
+```
 
 Run Directions:
 To run this container you will need to provide it port information as well as a name. As below:
-
+```
 docker run -d --name container-name -p 8080:80 cadg-apache:prototype
+<<<<<<< 53e84dd161e1fdbc5aa5df1124a92f8a0cf2a7d7
 <<<<<<< e3d19c0619dff417359b2a58de99f8f71d06e848
 <<<<<<< fd91337dfaecc0701fecb2a15d05a0353768652a
 
@@ -54,4 +63,7 @@ docker run -d --name container-name -p 8080:80 cadg-apache:prototype
 =======
 
 >>>>>>> Revert "PR Review modifications. Minor adjustments"
+=======
+```
+>>>>>>> PR 4 Review Edits
 Note: If you built the image locally and named it something different substitute that in the previous command.
