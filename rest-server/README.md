@@ -1,19 +1,19 @@
-# Alert Originator Interface REST Server
+# Central Aggregator and Dissemination Gateway REST Server
 
-This is an open source solution that can be run on commodity hardware to allow alert originators to easily interface to FEMA IPAWS.
+This is an open source solution designed to be utilized as a substitute for FEMA's IPAWS system.
 
 ## Using Docker to Build and Test Locally
 To run locally, first build the image.
 ```
-docker build --rm -t aoi-rest-server .
+docker build --rm -t cadg-rest-server .
 ```
 Then run with the following command. The first port number is where your computer will be able to access endpoint.
 ```
-docker run -d -it -p 8080:8080 aoi-rest-server
+docker run -d -it -p 8080:8080 cadg-rest-server
 ```
 In Postman or your browser, navigate to
 ```
-http://localhost:8080/v1/aoi/api/users
+http://localhost:8080/v1/cadg/api/users
 ```
 The response for a GET request will be for the whole collection of users
 ```
