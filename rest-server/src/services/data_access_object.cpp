@@ -4,7 +4,7 @@
 #include <vector>
 #include "data_access_object.hpp"
 
-namespace aoi_rest {
+namespace cadg_rest {
 DataAccessObject& DataAccessObject::Instance() {
     static DataAccessObject instance;
     return instance;

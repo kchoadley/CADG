@@ -1,16 +1,16 @@
 # Get the base test environment image from Docker Hub
-FROM oswasabi/aoi-test-env:latest
+FROM oswasabi/cadg-test-env:latest
 
 # Set the working directory
-WORKDIR "/usr/src/aoi-rest-server"
+WORKDIR "/usr/src/cadg-rest-server"
 
 # Copy the current folder which contains C++ source code to the Docker image under /usr/src
 COPY . .
 
 RUN mkdir build
-WORKDIR "/usr/src/aoi-rest-server/build"
+WORKDIR "/usr/src/cadg-rest-server/build"
 
 RUN cmake -G "Unix Makefiles" ..
 RUN make
 
-CMD ["./aoi-rest-server"]
+CMD ["./cadg-rest-server"]

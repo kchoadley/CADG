@@ -6,7 +6,7 @@
 #include <vector>
 #include "user.hpp"
 
-namespace aoi_rest {
+namespace cadg_rest {
 class DataAccessInterface {
   public:
     virtual std::vector<User> GetUsers() = 0;
