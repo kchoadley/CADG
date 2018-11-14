@@ -45,20 +45,24 @@ std::string Controller::LogString(const http_request& message, int verbosity) {
     log.append(endpoint());
     log.append(message.relative_uri().to_string() + " ");
     if(verbosity > 0) {
-        log.append("\"headers\": [");
+        std::map<std::string, std::string> headers_map;
         for (auto const& header : message.headers())
-            log.append("\"" + header.first + "\": \"" + header.second + "\", ");
-        log = log.substr(0, log.size()-2);
-        log.append("] ");
+            headers_map[header.first] = header.second;
+        log.append(StringifyCollection("headers", headers_map));
     }
     if(verbosity > 1) {
-        log.append("\"queries\": [");
-        for (auto const& query : Queries(message.relative_uri().query()))
-            log.append("\"" + query.first + "\": \"" + query.second + "\", ");
-        log = log.substr(0, log.size()-2);
-        log.append("] ");
+        log.append(StringifyCollection("queries", Queries(message.relative_uri().query())));
     }
     return log;
+}
+std::string Controller::StringifyCollection(std::string name, std::map<std::string, std::string> map) {
+    std::string json_string;
+    json_string.append("\"" + name +"\": [");
+    for (auto const& item : map)
+        json_string.append("\"" + item.first + "\": \"" + item.second + "\", ");
+    json_string = json_string.substr(0, json_string.size()-2);
+    json_string.append("] ");
+    return json_string;
 }
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;
