@@ -61,7 +61,7 @@ std::map<std::string, std::string> Controller::Queries(std::string query_string)
 json::value Controller::ResponseNotImpl(const http::method & method) {
     auto response = json::value::object();
     response["http_method"] = json::value::string(method);
-    response["serviceName"] = json::value::string("AOI Service");
+    response["serviceName"] = json::value::string("CADG Service");
     return response;
 }
 }  // namespace cadg_rest
