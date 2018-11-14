@@ -32,7 +32,7 @@ The response for a GET request will be for the whole collection of users
 ```
 To get a user by id
 ```
-http://localhost:8080/v1/aoi/api/users/12
+http://localhost:8080/v1/cadg/api/users/12
 ```
 The response
 ```
@@ -47,7 +47,7 @@ The response
 ```
 To get a user by partial name match, use a query like
 ```
-http://localhost:8080/v1/aoi/api/users?name=kris
+http://localhost:8080/v1/cadg/api/users?name=kris
 ```
 The response
 ```
