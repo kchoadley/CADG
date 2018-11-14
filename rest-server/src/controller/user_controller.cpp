@@ -93,4 +93,4 @@ std::string UserController::ParseUserID(const std::string& path) {
         id_as_string = path.substr(1, next_forward_slash - 1);
     return id_as_string;
 }
-}  // namespace aoi_rest
+}  // namespace cadg_rest

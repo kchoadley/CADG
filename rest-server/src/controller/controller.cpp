@@ -64,4 +64,4 @@ json::value Controller::ResponseNotImpl(const http::method & method) {
     response["serviceName"] = json::value::string("AOI Service");
     return response;
 }
-}  // namespace aoi_rest
+}  // namespace cadg_rest
