@@ -32,9 +32,33 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
-std::vector<std::string> Controller::RequestPath(const http_request& message) {
-    auto relative_path = uri::decode(message.relative_uri().path());
-    return uri::split_path(relative_path);
+/**
+ * Generate a string that can be used for logging the http request.
+ * 
+ * The verbosity is optional, with lowest verbosity the default.
+ * 0 is low verbosity, 1 is medium verbosity, 2 is high verbosity.
+ * 
+ */
+std::string Controller::LogString(const http_request& message, int verbosity) {
+    std::string log;
+    log.append(message.method() + " ");
+    log.append(endpoint());
+    log.append(message.relative_uri().to_string() + " ");
+    if(verbosity > 0) {
+        log.append("\"headers\": [");
+        for (auto const& header : message.headers())
+            log.append("\"" + header.first + "\": \"" + header.second + "\", ");
+        log = log.substr(0, log.size()-2);
+        log.append("] ");
+    }
+    if(verbosity > 1) {
+        log.append("\"queries\": [");
+        for (auto const& query : Queries(message.relative_uri().query()))
+            log.append("\"" + query.first + "\": \"" + query.second + "\", ");
+        log = log.substr(0, log.size()-2);
+        log.append("] ");
+    }
+    return log;
 }
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;
