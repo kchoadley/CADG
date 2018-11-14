@@ -23,6 +23,7 @@ class Controller {
     pplx::task<void> Accept();
     pplx::task<void> Shutdown();
     std::string LogString(const http_request& message, int verbosity = 0);
+    std::string StringifyCollection(std::string name, std::map<std::string, std::string> map);
     std::map<std::string, std::string> Queries(std::string query_string);
 
     virtual void InitHandlers() = 0;
