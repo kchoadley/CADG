@@ -59,4 +59,4 @@ bool DataAccessObject::RemoveUser(User user) {
 void DataAccessObject::AddUser(User user) {
     users__.push_back(user);
 }
-}  // namespace aoi_rest
+}  // namespace cadg_rest
