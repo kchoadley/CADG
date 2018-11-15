@@ -67,7 +67,24 @@ void UserController::HandlePost(http_request message) {
     }
 }
 void UserController::HandleDelete(http_request message) {
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::DEL));
+    try {
+        auto replyStatus = status_codes::OK;
+        const json::value message_body = message.extract_json().get();
+        if (message_body.has_field("id")) { //Verify message has user id
+            auto userID = std::stoi(message_body.at("id").as_string());
+            auto user = dao__.GetUserByID(userID); //Gets user from DAO
+            if (user.size() > 0) { //Verifies user was found
+                dao__.RemoveUser(user[0]);
+            } else {
+                replyStatus = status_codes::BadRequest;
+            }
+        } else {
+            replyStatus = status_codes::BadRequest;
+        }
+        message.reply(replyStatus);
+    } catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::GetUserByID(json::value& response, const std::string& path) {
     auto id_as_string = ParseUserID(path);
