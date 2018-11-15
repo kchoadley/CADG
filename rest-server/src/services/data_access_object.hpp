@@ -19,6 +19,8 @@ class DataAccessObject : public DataAccessInterface {
     std::vector<User> GetUserByID(int id) override;
     bool RemoveUser(User user) override;
     void AddUser(User user) override;
+    void UpdateUser(int id, web::json::object user_info) override;
+
   private:
     DataAccessObject() { }
     std::vector<User> users__;

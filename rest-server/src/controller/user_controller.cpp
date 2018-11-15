@@ -41,7 +41,22 @@ void UserController::HandleGet(http_request message) {
     }
 }
 void UserController::HandlePut(http_request message) {
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::PUT));
+    try {
+        //	extract submitted user data
+        const json::value body_json = message.extract_json().get();
+
+        //	get user id
+        auto relative_path = message.relative_uri().to_string();
+        if (relative_path.length() > 1 && relative_path.at(1) != '?') {
+            std::cout << "ok" << std::endl;
+            std::string id_as_string = ParseUserID(relative_path);
+            dao__.UpdateUser(std::stoi(id_as_string), body_json.as_object());
+        }
+        message.reply(status_codes::ResetContent);
+    }
+    catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::HandlePost(http_request message) {
     try {
