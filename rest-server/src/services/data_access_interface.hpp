@@ -14,6 +14,7 @@ class DataAccessInterface {
     virtual std::vector<User> GetUserByID(int id) = 0;
     virtual bool RemoveUser(User user) = 0;
     virtual void AddUser(User user) = 0;
+    virtual void UpdateUser(int id, web::json::object user_info) = 0;
 };
 }
 #endif // DATA_ACCESS_INTERFACE_H
