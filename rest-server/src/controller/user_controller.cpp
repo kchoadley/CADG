@@ -69,14 +69,14 @@ void UserController::HandlePost(http_request message) {
 void UserController::HandleDelete(http_request message) {
     try {
         auto replyStatus = status_codes::OK;
-        const json::value message_body = message.extract_json().get();
-        if (message_body.has_field("id")) { //Verify message has user id
-            auto userID = std::stoi(message_body.at("id").as_string());
-            auto user = dao__.GetUserByID(userID); //Gets user from DAO
+        auto path = message.relative_uri().to_string();
+        auto userID = ParseUserID(path);
+        if (userID.length() > 0) { //Verify request has user id
+            auto user = dao__.GetUserByID(std::stoi(userID)); //Gets user from DAO
             if (user.size() > 0) { //Verifies user was found
                 dao__.RemoveUser(user[0]);
             } else {
-                replyStatus = status_codes::BadRequest;
+                replyStatus = status_codes::NotFound;
             }
         } else {
             replyStatus = status_codes::BadRequest;
