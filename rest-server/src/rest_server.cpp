@@ -5,6 +5,8 @@
 #include "user_controller.hpp"
 #include "data_access_interface.hpp"
 #include "data_access_object.hpp"
+#include "logger_interface.h"
+#include "logger.h"
 using cadg_rest::DataAccessInterface;
 using cadg_rest::DataAccessObject;
 using cadg_rest::UserController;
