@@ -42,9 +42,9 @@ void UserController::HandleGet(http_request message) {
 }
 void UserController::HandlePut(http_request message) {
     try {
-        //	extract submitted user info
+        // extract submitted user info
         const json::value body_json = message.extract_json().get();
-        //	get user id from uri
+        // get user id from uri
         auto relative_path = message.relative_uri().to_string();
         if (relative_path.length() > 1 && relative_path.at(1) != '?') {
             std::string id_as_string = ParseUserID(relative_path);
