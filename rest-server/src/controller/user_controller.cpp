@@ -84,9 +84,9 @@ void UserController::HandleDelete(http_request message) {
         auto replyStatus = status_codes::OK;
         auto path = message.relative_uri().to_string();
         auto userID = ParseUserID(path);
-        if (userID.length() > 0) { //Verify request has user id
-            auto user = dao__.GetUserByID(std::stoi(userID)); //Gets user from DAO
-            if (user.size() > 0) { //Verifies user was found
+        if (userID.length() > 0) {  // Verify request has user id
+            auto user = dao__.GetUserByID(std::stoi(userID));  // Gets user from DAO
+            if (user.size() > 0) {  // Verifies user was found
                 dao__.RemoveUser(user[0]);
             } else {
                 replyStatus = status_codes::NotFound;
