@@ -17,13 +17,15 @@ add_executable(${PROJECT_NAME}
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
                                 ./src/util/network_utils.cpp)
+                                ./src/nanodbc/nanodbc.cpp
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
 set(MODEL_INCLUDE_DIR "./src/model")
 set(SERVICES_INCLUDE_DIR "./src/services")
 set(UTILITIES_INCLUDE_DIR "./src/util")
-set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${Boost_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+set(NANODBC_INCLUD_DIR "./src/nanodbc")
+set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${Boost_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${NANODBC_INCLUD_DIR})
 
 # library paths
 set(OPENSSL_LIBS "${OPENSSL_LIBRARIES}")
