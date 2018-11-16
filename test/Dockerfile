@@ -12,6 +12,7 @@ RUN cppcheck --error-exitcode=1 .
 
 # Lint the files
 RUN ./cpplint.py --headers=h --extensions=cpp --linelength=120 \
+    /usr/src/cadg/rest-server/src/services/*.cpp \
     /usr/src/cadg/test/*.cpp
 
 # Create build directory

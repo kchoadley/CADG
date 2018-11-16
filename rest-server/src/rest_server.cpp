@@ -13,8 +13,7 @@ using cadg_rest::UserController;
 
 int main(int argc, const char * argv[]) {
     std::cout << "Starting cadg rest server" << std::endl;
-    DataAccessInterface* user_dao = &DataAccessObject::Instance();
-    UserController user_controller(*user_dao);
+    UserController user_controller(&Logger::Instance(), &DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)
         server_address.append(argv[2]);

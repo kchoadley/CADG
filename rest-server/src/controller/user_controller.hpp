@@ -9,7 +9,7 @@ using cadg_rest::DataAccessInterface;
 namespace cadg_rest {
 class UserController: public Controller {
   public: 
-    UserController(DataAccessInterface& dao__) : dao__(dao__), Controller() {
+    UserController(LoggerInterface& logger__, DataAccessInterface& dao__) : dao__(dao__), Controller(logger__) {
       dao__.AddUser(User {"Kris Hoadley", 17, "TheBestLikeNoOneEverWas"});
       dao__.AddUser(User {"Shawn Hulce", 12, "ecluhwordpass!4"});
     }

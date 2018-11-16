@@ -4,17 +4,14 @@
 #define LOGGER_INTERFACE_H
 #include <string>
 #include <vector>
+#include <cpprest/http_msg.h>
+#include <cpprest/http_listener.h>
+#include "log_level.hpp"
+using namespace web;
+using namespace http;
 
 namespace cadg_rest {
-enum class LogLevel {
-    ALL   = 0,
-    DEBUG = 1,
-    INFO  = 2,
-    WARN  = 3,
-    ERR   = 4,
-    FATAL = 5,
-    OFF   = 6
-};
+
 class LoggerInterface {
   public:
     /**
