@@ -8,7 +8,7 @@
 #include "network_utils.hpp"
 
 namespace cadg_rest {
-Controller::Controller() {}
+Controller::Controller(LoggerInterface& logger__) {}
 Controller::~Controller() {}
 void Controller::endpoint(const std::string& value) {
     uri endpointURI(value);
