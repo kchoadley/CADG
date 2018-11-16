@@ -20,13 +20,15 @@ add_executable(${PROJECT_NAME}
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
                                 ./src/util/network_utils.cpp)
+                                ./src/nanodbc/nanodbc.cpp
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
 set(MODEL_INCLUDE_DIR "./src/model")
 set(SERVICES_INCLUDE_DIR "./src/services")
 set(UTILITIES_INCLUDE_DIR "./src/util")
-set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+set(NANODBC_INCLUDE_DIR "./src/nanodbc")
+set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${NANODBC_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
 
 # library paths
 set(BOOST_LIBRARY "-lboost_system")
