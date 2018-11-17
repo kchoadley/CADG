@@ -7,6 +7,8 @@ WORKDIR "/usr/src/cadg-rest-server"
 # Copy the current folder which contains C++ source code to the Docker image under /usr/src
 COPY . .
 
+RUN apt-get update && apt-get install -y unixodbc-dev
+
 RUN mkdir build
 WORKDIR "/usr/src/cadg-rest-server/build"
 
