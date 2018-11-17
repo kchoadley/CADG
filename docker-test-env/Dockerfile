@@ -14,11 +14,12 @@ RUN apt-get -qq -y install \
     cmake \
     cppcheck \
     g++-6 \
+    libasio-dev \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
-    wget \
-    libasio-dev
+    unixodbc-dev \
+    wget
 
 # Make g++ 6 the default g++ executable
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
