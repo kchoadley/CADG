@@ -15,15 +15,12 @@ void UserController::InitHandlers() {
     listener__.support(methods::DEL, std::bind(&UserController::HandleDelete, this, std::placeholders::_1));
 }
 void UserController::HandleGet(http_request message) {
+    std::cout << LogString(message, 2) << std::endl;
     try {
         auto response = json::value::object();
         response["users"] = json::value::object();
         auto queries = Queries(message.relative_uri().query());
         auto relative_path = message.relative_uri().to_string();
-        // for loop for testing purposes only
-        for (auto const& query : queries)
-            std::cout << "name: " << query.first << " value: " << query.second << std::endl;
-        // end test section
         if (relative_path.length() > 1 && relative_path.at(1) != '?') {
             GetUserByID(response, relative_path);
         } else if (queries.count("name") > 0) {
@@ -41,6 +38,7 @@ void UserController::HandleGet(http_request message) {
     }
 }
 void UserController::HandlePut(http_request message) {
+    std::cout << LogString(message, 1) << std::endl;
     try {
         // extract submitted user info
         const json::value body_json = message.extract_json().get();
@@ -57,6 +55,7 @@ void UserController::HandlePut(http_request message) {
     }
 }
 void UserController::HandlePost(http_request message) {
+    std::cout << LogString(message, 1) << std::endl;
     try {
         // parse body and extract user data
         const json::value body_json = message.extract_json().get();
@@ -80,6 +79,7 @@ void UserController::HandlePost(http_request message) {
     }
 }
 void UserController::HandleDelete(http_request message) {
+    std::cout << LogString(message) << std::endl;
     try {
         auto replyStatus = status_codes::OK;
         auto path = message.relative_uri().to_string();

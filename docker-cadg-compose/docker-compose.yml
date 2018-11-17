@@ -1,0 +1,17 @@
+version: "3"
+services:
+        apache:
+                build: ../docker-cadg-apache
+                ports:
+                        - "8080:80"
+                depends_on:
+                  - "cadg-rest"
+                networks:
+                        - cadgnet
+        cadg-rest:
+                build: ../rest-server/
+                tty: true
+                networks:
+                        - cadgnet
+networks:
+        cadgnet:
