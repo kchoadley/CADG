@@ -12,9 +12,11 @@ apt-get -q -y install \
     cmake \
     cppcheck \
     g++-6 \
+    libasio-dev \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
+    unixodbc-dev \
     wget
 
 # Make g++ 6 the default g++ executable
