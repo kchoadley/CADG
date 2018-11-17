@@ -16,8 +16,8 @@ add_executable(${PROJECT_NAME}
                                 ./src/services/data_access_object.cpp
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
-                                ./src/util/network_utils.cpp)
-                                ./src/nanodbc/nanodbc.cpp
+                                ./src/util/network_utils.cpp
+                                ./src/nanodbc/nanodbc.cpp)
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
@@ -33,4 +33,4 @@ set(CPPRESTSDK_LIBRARY "-lcpprest")
 set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${Boost_LIBRARIES})
 
 include_directories(${HEADER_PATHS} ${ODBC_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS} ${ODBC_INCLUDE_DIR})
