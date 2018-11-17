@@ -17,10 +17,10 @@ add_executable(${PROJECT_NAME}
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
                                 ./src/controller/user_controller.cpp
+                                ./src/nanodbc/nanodbc.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
                                 ./src/util/network_utils.cpp)
-                                ./src/nanodbc/nanodbc.cpp
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
