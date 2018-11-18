@@ -44,13 +44,13 @@ std::string Controller::LogString(const http_request& message, int verbosity) {
     log.append(message.method() + " ");
     log.append(endpoint());
     log.append(message.relative_uri().to_string() + " ");
-    if(verbosity > 0) {
+    if (verbosity > 0) {
         std::map<std::string, std::string> headers_map;
         for (auto const& header : message.headers())
             headers_map[header.first] = header.second;
         log.append(StringifyCollection("headers", headers_map));
     }
-    if(verbosity > 1) {
+    if (verbosity > 1) {
         log.append(StringifyCollection("queries", Queries(message.relative_uri().query())));
     }
     return log;
