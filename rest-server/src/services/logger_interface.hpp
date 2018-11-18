@@ -6,7 +6,6 @@
 #include <vector>
 #include <cpprest/http_msg.h>
 #include <cpprest/http_listener.h>
-#include "log_level.hpp"
 using namespace web;
 using namespace http;
 
@@ -49,6 +48,9 @@ class LoggerInterface {
      * Generic log method for logging network calls.
      * 
      * @param message The http request message to log.
+     * @param endpoint The http request endpoint url to log.
+     * @param verbosity How much detail to log, higher is more. Currently only
+     * verbosity of 0 and 1 are defined.
      * 
      */
     virtual void LogNetworkActivity(http_request message, std::string endpoint, int verbosity = 0) = 0;

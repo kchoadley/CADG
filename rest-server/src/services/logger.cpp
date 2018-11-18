@@ -1,6 +1,7 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
 #include <iostream>
+#include <map>
 #include <string>
 #include <vector>
 #include "logger.hpp"
@@ -19,15 +20,13 @@ std::string Logger::StringifyCollection(std::string name, std::map<std::string, 
     json_string.append("] ");
     return json_string;
 }
-
 void Logger::Log(int log_level, std::string message) {
-    if(log_level__ <= log_level) {
+    if (log_level__ <= log_level)
         std::cout << message << std::endl;
-    }
 }
 void Logger::Log(int log_level, std::string message, std::string calling_class,
             std::string calling_method) {
-    if(log_level__ <= log_level) {
+    if (log_level__ <= log_level) {
         std::string message_constructor("");
         message_constructor.append("Class: " + calling_class);
         message_constructor.append(" Method: " + calling_method);
@@ -37,13 +36,13 @@ void Logger::Log(int log_level, std::string message, std::string calling_class,
 }
 void Logger::Log(int log_level, std::string message, std::string calling_class,
             std::string calling_method, std::vector<std::string> args) {
-    if(log_level__ <= log_level) {
+    if (log_level__ <= log_level) {
         std::string message_constructor("");
         message_constructor.append("Class: " + calling_class);
         message_constructor.append(" Method: " + calling_method);
         message_constructor.append(" Message: " + message);
         message_constructor.append(" Args: ");
-        for(const auto& arg: args) 
+        for (const auto& arg : args)
             message_constructor.append(arg + ", ");
         message_constructor = message_constructor.substr(0, message_constructor.size()-2);
         Log(log_level, message_constructor);
@@ -54,7 +53,7 @@ void Logger::LogNetworkActivity(http_request message, std::string endpoint, int 
     log.append(message.method() + " ");
     log.append(endpoint);
     log.append(message.relative_uri().to_string() + " ");
-    if(verbosity > 0) {
+    if (verbosity > 0) {
         std::map<std::string, std::string> headers_map;
         for (auto const& header : message.headers())
             headers_map[header.first] = header.second;
