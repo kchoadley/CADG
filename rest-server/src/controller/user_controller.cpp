@@ -15,7 +15,7 @@ void UserController::InitHandlers() {
     listener__.support(methods::DEL, std::bind(&UserController::HandleDelete, this, std::placeholders::_1));
 }
 void UserController::HandleGet(http_request message) {
-    std::cout << LogString(message, 2) << std::endl;
+    logger__.LogNetworkActivity(message, endpoint(), 2);
     try {
         auto response = json::value::object();
         response["users"] = json::value::object();
@@ -38,11 +38,11 @@ void UserController::HandleGet(http_request message) {
     }
 }
 void UserController::HandlePut(http_request message) {
-    std::cout << LogString(message, 1) << std::endl;
+    logger__.LogNetworkActivity(message, endpoint(), 1);
     message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::PUT));
 }
 void UserController::HandlePost(http_request message) {
-    std::cout << LogString(message, 1) << std::endl;
+    logger__.LogNetworkActivity(message, endpoint(), 1);
     try {
         // parse body and extract user data
         const json::value body_json = message.extract_json().get();
@@ -66,7 +66,7 @@ void UserController::HandlePost(http_request message) {
     }
 }
 void UserController::HandleDelete(http_request message) {
-    std::cout << LogString(message) << std::endl;
+    logger__.LogNetworkActivity(message, endpoint(), 1);
     message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::DEL));
 }
 void UserController::GetUserByID(json::value& response, const std::string& path) {
@@ -74,23 +74,28 @@ void UserController::GetUserByID(json::value& response, const std::string& path)
     if (id_as_string.find_first_not_of("0123456789") == std::string::npos) {
         int id = std::stoi(id_as_string);
         auto users = dao__.GetUserByID(id);
-        if (users.size() > 0)
+        if (users.size() > 0) {
+            logger__.Log(1, "name of found user: " + users[0].name);
             response["users"][std::to_string(users[0].id)] = users[0].to_json();
+        }
     }
 }
 void UserController::GetUsersByName(json::value& response, const std::string& user_name) {
+    logger__.Log(1, "user name query: " + user_name);
     auto users = dao__.GetUsersByName(user_name);
     for (auto& user : users) {
         response["users"][std::to_string(user.id)] = user.to_json();
     }
 }
 std::string UserController::ParseUserID(const std::string& path) {
+    logger__.Log(1, "path to extract id as string: " + path, "UserController", "ParseUserID");
     auto next_forward_slash = path.find("/", 1);
     std::string id_as_string;
     if (next_forward_slash == std::string::npos)  // no more slashes
         id_as_string = path.substr(1);
     else
         id_as_string = path.substr(1, next_forward_slash - 1);
+    logger__.Log(1, "id_as_string: " + id_as_string, "UserController", "ParseUserID");
     return id_as_string;
 }
 }  // namespace cadg_rest
