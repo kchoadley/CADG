@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 #include "user_controller.hpp"
+#include "log_level.hpp"
+using cadg_rest::LogLevel;
 
 namespace cadg_rest {
 void UserController::InitHandlers() {
@@ -75,27 +77,27 @@ void UserController::GetUserByID(json::value& response, const std::string& path)
         int id = std::stoi(id_as_string);
         auto users = dao__.GetUserByID(id);
         if (users.size() > 0) {
-            logger__.Log(1, "name of found user: " + users[0].name);
+            logger__.Log(LogLevel::DEBUG, "name of found user: " + users[0].name);
             response["users"][std::to_string(users[0].id)] = users[0].to_json();
         }
     }
 }
 void UserController::GetUsersByName(json::value& response, const std::string& user_name) {
-    logger__.Log(1, "user name query: " + user_name);
+    logger__.Log(LogLevel::DEBUG, "user name query: " + user_name);
     auto users = dao__.GetUsersByName(user_name);
     for (auto& user : users) {
         response["users"][std::to_string(user.id)] = user.to_json();
     }
 }
 std::string UserController::ParseUserID(const std::string& path) {
-    logger__.Log(1, "path to extract id as string: " + path, "UserController", "ParseUserID");
+    logger__.Log(LogLevel::DEBUG, "path to extract id as string: " + path, "UserController", "ParseUserID");
     auto next_forward_slash = path.find("/", 1);
     std::string id_as_string;
     if (next_forward_slash == std::string::npos)  // no more slashes
         id_as_string = path.substr(1);
     else
         id_as_string = path.substr(1, next_forward_slash - 1);
-    logger__.Log(1, "id_as_string: " + id_as_string, "UserController", "ParseUserID");
+    logger__.Log(LogLevel::DEBUG, "id_as_string: " + id_as_string, "UserController", "ParseUserID");
     return id_as_string;
 }
 }  // namespace cadg_rest

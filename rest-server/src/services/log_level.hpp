@@ -4,14 +4,14 @@
 #define LOG_LEVEL_H
 
 namespace cadg_rest {
-enum class LogLevel {
-    ALL   = 0,
-    DEBUG = 1,
-    INFO  = 2,
-    WARN  = 3,
-    ERR   = 4,
-    FATAL = 5,
-    OFF   = 6
+struct LogLevel {
+    static const int ALL    = 0;
+    static const int DEBUG  = 1;
+    static const int INFO   = 2;
+    static const int WARN   = 3;
+    static const int ERR    = 4;
+    static const int FATAL  = 5;
+    static const int OFF    = 6;
 };
 }
 #endif // LOG_LEVEL_H

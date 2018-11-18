@@ -5,15 +5,17 @@
 #include "data_access_object.hpp"
 #include "logger.hpp"
 #include "user_controller.hpp"
+#include "log_level.hpp"
 using cadg_rest::DataAccessObject;
 using cadg_rest::Logger;
 using cadg_rest::LoggerInterface;
 using cadg_rest::UserController;
+using cadg_rest::LogLevel;
 
 int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
-    logger.LogLevel(1);  // effectively log level of DEBUG, set to 2 or higher to filter out debug messages
-    logger.Log(2, "Starting cadg rest server");
+    logger.LogLevel(LogLevel::DEBUG);
+    logger.Log(LogLevel::INFO, "Starting cadg rest server");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)
@@ -28,15 +30,15 @@ int main(int argc, const char * argv[]) {
     user_controller.endpoint(server_address + "/users");
     try {
         user_controller.Accept().wait();
-        logger.Log(2, "Listening for requests at: " +  user_controller.endpoint());
-        logger.Log(2, "Press ENTER to exit.");
+        logger.Log(LogLevel::INFO, "Listening for requests at: " +  user_controller.endpoint());
+        logger.Log(LogLevel::INFO, "Press ENTER to exit.");
         std::string line;
         std::getline(std::cin, line);
         user_controller.Shutdown().wait();
     }
     catch(std::exception&  e) {
-        logger.Log(4, "There was an error");
-       logger.Log(4, e.what());
+        logger.Log(LogLevel::ERR, "There was an error");
+       logger.Log(LogLevel::ERR, e.what());
     }
     return 0;
 }
