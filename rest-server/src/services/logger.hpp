@@ -28,6 +28,7 @@ class Logger : public LoggerInterface {
     Logger();
     int log_level__;
     std::unique_ptr<spdlog::logger> p_logger__;
+    std::unique_ptr<spdlog::logger> p_net_logger__;
 };
 }
 #endif // LOGGER_H

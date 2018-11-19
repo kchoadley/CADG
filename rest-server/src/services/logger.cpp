@@ -60,7 +60,7 @@ void Logger::LogNetworkActivity(http_request message, std::string endpoint, int 
             headers_map[header.first] = header.second;
         log.append(StringifyCollection("headers", headers_map));
     }
-    std::cout << log << std::endl;
+    p_net_logger__->log(spdlog::level::info, log);
 }
 void Logger::LogLevel(int log_level) {
     /* to set the internal log level */
@@ -87,14 +87,20 @@ spdlog::level::level_enum Logger::ConvertLogLevel(int log_level) {
 Logger::Logger() {
     auto console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
     console_sink->set_level(spdlog::level::trace);  // trace level will log everything
+    auto net_console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
+    net_console_sink->set_level(spdlog::level::trace);  // trace level will log everything
 
     auto file_sink = std::make_shared<spdlog::sinks::simple_file_sink_mt>("logs/logs.txt", true);
     file_sink->set_level(spdlog::level::trace);  // trace level will log everything
+    auto net_file_sink = std::make_shared<spdlog::sinks::simple_file_sink_mt>("logs/network_traffic.txt", true);
+    net_file_sink->set_level(spdlog::level::trace);  // trace level will log everything
 
     p_logger__.reset(new spdlog::logger("multi_sink", {console_sink, file_sink}));
     p_logger__->set_level(spdlog::level::trace);  // trace level will log everything
     p_logger__->flush_on(spdlog::level::trace);  // trace level will flush to file on every log message
-    p_logger__->warn("this should appear in both console and file");
-    p_logger__->info("this message should not appear in the console, only in the file");
+    
+    p_net_logger__.reset(new spdlog::logger("network_multi_sink", {net_console_sink, net_file_sink}));
+    p_net_logger__->set_level(spdlog::level::trace);  // trace level will log everything
+    p_net_logger__->flush_on(spdlog::level::trace);  // trace level will flush to file on every log message
 }
 }  // namespace cadg_rest
