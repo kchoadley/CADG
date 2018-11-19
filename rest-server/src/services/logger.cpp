@@ -85,20 +85,20 @@ spdlog::level::level_enum Logger::ConvertLogLevel(int log_level) {
     }
 }
 Logger::Logger() {
-    auto console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
-    console_sink->set_level(spdlog::level::trace);  // trace level will log everything
+    auto log_console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
+    log_console_sink->set_level(spdlog::level::trace);  // trace level will log everything
     auto net_console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
     net_console_sink->set_level(spdlog::level::trace);  // trace level will log everything
 
-    auto file_sink = std::make_shared<spdlog::sinks::simple_file_sink_mt>("logs/logs.txt", true);
-    file_sink->set_level(spdlog::level::trace);  // trace level will log everything
-    auto net_file_sink = std::make_shared<spdlog::sinks::simple_file_sink_mt>("logs/network_traffic.txt", true);
+    auto log_file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/logs.txt", 2, 30);
+    log_file_sink->set_level(spdlog::level::trace);  // trace level will log everything
+    auto net_file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/network_traffic.txt", 2, 30);
     net_file_sink->set_level(spdlog::level::trace);  // trace level will log everything
 
-    p_logger__.reset(new spdlog::logger("multi_sink", {console_sink, file_sink}));
+    p_logger__.reset(new spdlog::logger("multi_sink", {log_console_sink, log_file_sink}));
     p_logger__->set_level(spdlog::level::trace);  // trace level will log everything
     p_logger__->flush_on(spdlog::level::trace);  // trace level will flush to file on every log message
-    
+
     p_net_logger__.reset(new spdlog::logger("network_multi_sink", {net_console_sink, net_file_sink}));
     p_net_logger__->set_level(spdlog::level::trace);  // trace level will log everything
     p_net_logger__->flush_on(spdlog::level::trace);  // trace level will flush to file on every log message
