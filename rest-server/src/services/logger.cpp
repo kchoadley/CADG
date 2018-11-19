@@ -2,6 +2,7 @@
 //                  Shawn Hulce, Michael McCulley
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 #include "logger.hpp"
@@ -69,7 +70,7 @@ void Logger::LogLevel(int log_level) {
     // p_logger__->sinks()[0]->set_level(ConvertLogLevel(log_level));
 
     /* alternatively, to set all spdlog logging sinks to the same level below */
-    // for(auto& sink : ) 
+    // for(auto& sink : )
     //     sink->set_level(ConvertLogLevel(log_level));
 }
 spdlog::level::level_enum Logger::ConvertLogLevel(int log_level) {
