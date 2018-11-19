@@ -36,6 +36,7 @@ void UserController::HandleGet(http_request message) {
         message.reply(status_codes::OK, response);
     } catch (std::exception&  e) {
         // return error for testing purposes only
+        logger__.Log(LogLevel::WARN, e.what(), "UserController", "HandleGet");
         message.reply(status_codes::InternalError, json::value::string(e.what()));
     }
 }
@@ -64,6 +65,7 @@ void UserController::HandlePost(http_request message) {
         // respond with successfully created (201)
         message.reply(status_codes::Created);
     } catch (std::exception&  e) {  // for testing purposes
+        logger__.Log(LogLevel::WARN, e.what(), "UserController", "HandlePost");
         message.reply(status_codes::BadRequest, e.what());
     }
 }

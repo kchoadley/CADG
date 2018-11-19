@@ -2,6 +2,7 @@
 //                  Shawn Hulce, Michael McCulley
 #ifndef LOGGER_H
 #define LOGGER_H
+#include <spdlog/spdlog.h>
 #include <string>
 #include <vector>
 #include "logger_interface.hpp"
@@ -21,10 +22,12 @@ class Logger : public LoggerInterface {
                     std::string calling_method, std::vector<std::string> args) override;
     void LogNetworkActivity(http_request message, std::string endpoint, int verbosity = 0) override;
     void LogLevel(int log_level) override;
+  protected:
+    spdlog::level::level_enum ConvertLogLevel(int log_level);
   private:
-    Logger() { }
+    Logger();
     int log_level__;
-    //LogLevel level = LogLevel::WARN;  // default log level
+    std::unique_ptr<spdlog::logger> p_logger__;
 };
 }
 #endif // LOGGER_H
