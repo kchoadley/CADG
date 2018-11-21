@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "data_access_object.hpp"
+#include "nanodbc.h"
 
 namespace cadg_rest {
 DataAccessObject& DataAccessObject::Instance() {
@@ -10,7 +11,19 @@ DataAccessObject& DataAccessObject::Instance() {
     return instance;
 }
 std::vector<User> DataAccessObject::GetUsers() {
-    return users__;
+    //TODO: Run a MySQL database, get MySQL ODBC driver, and update connection string.
+    std::string connStr = "Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;";
+    nanodbc::connection connection(connStr);
+    nanodbc::result results;
+    results = execute(connection, "select * from user;");
+    std::vector<User> ;
+    while(results.next()) {
+        db_users.push_back(User {
+            results.get<std::string>(0, "null_user")
+            , results.get<int>(1,0)
+            , results.get<std::string>(2), "null_pw"});
+    }
+    return db_users;
 }
 /**
  * Gets user by partial string match of name, ignores case.
