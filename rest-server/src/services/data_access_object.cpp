@@ -16,12 +16,12 @@ std::vector<User> DataAccessObject::GetUsers() {
     nanodbc::connection connection(connStr);
     nanodbc::result results;
     results = execute(connection, "select * from user;");
-    std::vector<User> ;
+    std::vector<User> db_users;
     while(results.next()) {
         db_users.push_back(User {
             results.get<std::string>(0, "null_user")
             , results.get<int>(1,0)
-            , results.get<std::string>(2), "null_pw"});
+	      , results.get<std::string>(2, "null_pw")});
     }
     return db_users;
 }
