@@ -81,3 +81,18 @@ Example POST body
 }
 ```
 Run a GET again to see the updated collection of users!
+
+A PUT with a well formed body and attached user id will update the 
+specified user. 
+
+Example PUT URI and body 
+```
+http://localhost:8080/v1/cadg/api/users/12
+```
+```
+{
+    "name": "Shawn Edited",
+    "password": "newPassword!"
+}
+```
+Run a GET on ```http://localhost:8080/v1/cadg/api/users/12 ``` to see the updated user!

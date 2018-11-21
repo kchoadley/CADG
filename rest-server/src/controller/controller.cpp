@@ -32,9 +32,37 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
-std::vector<std::string> Controller::RequestPath(const http_request& message) {
-    auto relative_path = uri::decode(message.relative_uri().path());
-    return uri::split_path(relative_path);
+/**
+ * Generate a string that can be used for logging the http request.
+ * 
+ * The verbosity is optional, with lowest verbosity the default.
+ * 0 is low verbosity, 1 is medium verbosity, 2 is high verbosity.
+ * 
+ */
+std::string Controller::LogString(const http_request& message, int verbosity) {
+    std::string log;
+    log.append(message.method() + " ");
+    log.append(endpoint());
+    log.append(message.relative_uri().to_string() + " ");
+    if (verbosity > 0) {
+        std::map<std::string, std::string> headers_map;
+        for (auto const& header : message.headers())
+            headers_map[header.first] = header.second;
+        log.append(StringifyCollection("headers", headers_map));
+    }
+    if (verbosity > 1) {
+        log.append(StringifyCollection("queries", Queries(message.relative_uri().query())));
+    }
+    return log;
+}
+std::string Controller::StringifyCollection(std::string name, std::map<std::string, std::string> map) {
+    std::string json_string;
+    json_string.append("\"" + name +"\": [");
+    for (auto const& item : map)
+        json_string.append("\"" + item.first + "\": \"" + item.second + "\", ");
+    json_string = json_string.substr(0, json_string.size()-2);
+    json_string.append("] ");
+    return json_string;
 }
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;

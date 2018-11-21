@@ -15,15 +15,12 @@ void UserController::InitHandlers() {
     listener__.support(methods::DEL, std::bind(&UserController::HandleDelete, this, std::placeholders::_1));
 }
 void UserController::HandleGet(http_request message) {
+    std::cout << LogString(message, 2) << std::endl;
     try {
         auto response = json::value::object();
         response["users"] = json::value::object();
         auto queries = Queries(message.relative_uri().query());
         auto relative_path = message.relative_uri().to_string();
-        // for loop for testing purposes only
-        for (auto const& query : queries)
-            std::cout << "name: " << query.first << " value: " << query.second << std::endl;
-        // end test section
         if (relative_path.length() > 1 && relative_path.at(1) != '?') {
             GetUserByID(response, relative_path);
         } else if (queries.count("name") > 0) {
@@ -41,9 +38,24 @@ void UserController::HandleGet(http_request message) {
     }
 }
 void UserController::HandlePut(http_request message) {
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::PUT));
+    std::cout << LogString(message, 1) << std::endl;
+    try {
+        // extract submitted user info
+        const json::value body_json = message.extract_json().get();
+        // get user id from uri
+        auto relative_path = message.relative_uri().to_string();
+        if (relative_path.length() > 1 && relative_path.at(1) != '?') {
+            std::string id_as_string = ParseUserID(relative_path);
+            dao__.UpdateUser(std::stoi(id_as_string), body_json.as_object());
+        }
+        message.reply(status_codes::ResetContent);
+    }
+    catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::HandlePost(http_request message) {
+    std::cout << LogString(message, 1) << std::endl;
     try {
         // parse body and extract user data
         const json::value body_json = message.extract_json().get();
@@ -67,7 +79,25 @@ void UserController::HandlePost(http_request message) {
     }
 }
 void UserController::HandleDelete(http_request message) {
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::DEL));
+    std::cout << LogString(message) << std::endl;
+    try {
+        auto replyStatus = status_codes::OK;
+        auto path = message.relative_uri().to_string();
+        auto userID = ParseUserID(path);
+        if (userID.length() > 0) {  // Verify request has user id
+            auto user = dao__.GetUserByID(std::stoi(userID));  // Gets user from DAO
+            if (user.size() > 0) {  // Verifies user was found
+                dao__.RemoveUser(user[0]);
+            } else {
+                replyStatus = status_codes::NotFound;
+            }
+        } else {
+            replyStatus = status_codes::BadRequest;
+        }
+        message.reply(replyStatus);
+    } catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::GetUserByID(json::value& response, const std::string& path) {
     auto id_as_string = ParseUserID(path);

@@ -59,4 +59,18 @@ bool DataAccessObject::RemoveUser(User user) {
 void DataAccessObject::AddUser(User user) {
     users__.push_back(user);
 }
+
+void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
+    for (auto& user : users__) {
+        if (user.id == id) {
+            for (auto iter = user_info.cbegin(); iter != user_info.cend(); ++iter) {
+                auto &key = iter->first;
+                auto &value = iter->second;
+                if (key.compare("name") == 0) user.name = value.as_string();
+                else if (key.compare("password") == 0) user.password = value.as_string();
+            }
+            break;
+        }
+    }
+}
 }  // namespace cadg_rest
