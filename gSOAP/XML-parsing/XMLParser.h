@@ -1,5 +1,5 @@
 //
-// Created by ross on 11/21/18.
+// Created by Ross on 11/21/18.
 //
 
 #ifndef CADG_XMLPARSER_H
