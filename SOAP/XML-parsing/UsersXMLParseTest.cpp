@@ -1,9 +1,6 @@
-// Created by Ross on 11/21/18.
-// Base solution modified from the following tutorial:
-// https://akrzemi1.wordpress.com/2011/07/13/parsing-xml-with-boost/
-// (NOTE: This file will likely change dramatically over time. This
-// version is intended to develop and display future functionality
-// on test values.)
+//
+// Created by Ross on 11/23/2018.
+//
 
 #include <iostream>
 #include <string>
