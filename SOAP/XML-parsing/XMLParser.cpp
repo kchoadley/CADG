@@ -54,7 +54,7 @@ struct CAPMessage {
     //CAPArea area; Commenting out until further development is complete.
 };
 
-//typedef std::vector<User> Users;
+typedef CAPMessage newMessage;
 
 CAPMessage readXML(std::istream & is) {
     using boost::property_tree::ptree;
@@ -89,26 +89,26 @@ CAPMessage readXML(std::istream & is) {
     return parsedXML;
 }
 
-void writeXML(Users users, std::ostream & os) {
-    using boost::property_tree::ptree;
-    ptree pt;
-
-    pt.add("users.version", 2);
-
-    BOOST_FOREACH(User user, users) {
-        ptree & node = pt.add("users.user", "");
-
-        node.put("name", user.name);
-        node.put("age", user.age);
-    }
-    write_xml(os, pt);
+void writeXML(CAPMessage newMessage, std::ostream & os) {
+//    using boost::property_tree::ptree;
+//    ptree pt;
+//
+//    pt.add("users.version", 2);
+//
+//    BOOST_FOREACH(User user, users) {
+//        ptree & node = pt.add("users.user", "");
+//
+//        node.put("name", user.name);
+//        node.put("age", user.age);
+//    }
+//    write_xml(os, pt);
 }
 
 int main() {
-    std::ifstream input("usersTest.xml");
-    Users users = readXML(input);
+    std::ifstream input("SOAPMessageTest.xml");
+    CAPMessage newMessage = readXML(input);
 
-    std::ofstream output("usersTestOutput.xml");
-    writeXML(users, output);
+//    std::ofstream output("usersTestOutput.xml");
+//    writeXML(users, output);
     return 0;
 }
