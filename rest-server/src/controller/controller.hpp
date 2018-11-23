@@ -8,6 +8,7 @@
 #include <cpprest/http_listener.h>
 #include <cpprest/http_msg.h>
 #include <pplx/pplxtasks.h>
+#include "logger_interface.hpp"
 using namespace web;
 using namespace http;
 using namespace http::experimental::listener;
@@ -15,16 +16,14 @@ using namespace http::experimental::listener;
 namespace cadg_rest {
 class Controller {
   public: 
-    Controller();
-    ~Controller();
+    Controller(LoggerInterface& logger__) : logger__(logger__) { }
+    ~Controller() { }
 
     void endpoint(const std::string& endpoint);
     std::string endpoint() const;
     pplx::task<void> Accept();
     pplx::task<void> Shutdown();
-    std::string LogString(const http_request& message, int verbosity = 0);
-    std::string StringifyCollection(std::string name, std::map<std::string, std::string> map);
-    std::map<std::string, std::string> Queries(std::string query_string);
+    static std::map<std::string, std::string> Queries(std::string query_string);
 
     virtual void InitHandlers() = 0;
     virtual void HandleGet(http_request message) = 0;
@@ -33,6 +32,7 @@ class Controller {
     virtual void HandleDelete(http_request message) = 0;
   protected:
     http_listener listener__;
+    LoggerInterface& logger__;
     static json::value ResponseNotImpl(const http::method& method);
 };
 }
