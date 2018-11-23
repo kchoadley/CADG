@@ -69,4 +69,4 @@ set(CPPRESTSDK_LIBRARY "-lcpprest")
 set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${Boost_LIBRARIES} ${ODBC_LIBRARIES})
 
 include_directories(${HEADER_PATHS})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS} pthread)
