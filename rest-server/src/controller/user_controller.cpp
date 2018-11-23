@@ -42,7 +42,20 @@ void UserController::HandleGet(http_request message) {
 }
 void UserController::HandlePut(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::PUT));
+    try {
+        // extract submitted user info
+        const json::value body_json = message.extract_json().get();
+        // get user id from uri
+        auto relative_path = message.relative_uri().to_string();
+        if (relative_path.length() > 1 && relative_path.at(1) != '?') {
+            std::string id_as_string = ParseUserID(relative_path);
+            dao__.UpdateUser(std::stoi(id_as_string), body_json.as_object());
+        }
+        message.reply(status_codes::ResetContent);
+    }
+    catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::HandlePost(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
@@ -71,7 +84,24 @@ void UserController::HandlePost(http_request message) {
 }
 void UserController::HandleDelete(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
-    message.reply(status_codes::NotImplemented, ResponseNotImpl(methods::DEL));
+    try {
+        auto replyStatus = status_codes::OK;
+        auto path = message.relative_uri().to_string();
+        auto userID = ParseUserID(path);
+        if (userID.length() > 0) {  // Verify request has user id
+            auto user = dao__.GetUserByID(std::stoi(userID));  // Gets user from DAO
+            if (user.size() > 0) {  // Verifies user was found
+                dao__.RemoveUser(user[0]);
+            } else {
+                replyStatus = status_codes::NotFound;
+            }
+        } else {
+            replyStatus = status_codes::BadRequest;
+        }
+        message.reply(replyStatus);
+    } catch (std::exception& e) {
+        message.reply(status_codes::BadRequest, e.what());
+    }
 }
 void UserController::GetUserByID(json::value& response, const std::string& path) {
     auto id_as_string = ParseUserID(path);
