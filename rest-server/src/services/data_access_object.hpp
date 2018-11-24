@@ -20,10 +20,11 @@ class DataAccessObject : public DataAccessInterface {
     bool RemoveUser(User user) override;
     void AddUser(User user) override;
     void UpdateUser(int id, web::json::object user_info) override;
-
+    void SetConnectionString(std::string connStr) override;
   private:
     DataAccessObject() { }
     std::vector<User> users__;
+    std::string connStr_;
 };
 }
 #endif // DATA_ACCESS_OBJECT_H
