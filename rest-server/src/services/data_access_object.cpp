@@ -10,12 +10,15 @@ DataAccessObject& DataAccessObject::Instance() {
     static DataAccessObject instance;
     return instance;
 }
+
+void DataAccessObject::SetConnectionString(std::string connStr) {
+    connStr_ = connStr;
+}
+
 std::vector<User> DataAccessObject::GetUsers() {
-    //TODO: Run a MySQL database, get MySQL ODBC driver, and update connection string.
-    std::string connStr = "Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;";
-    nanodbc::connection connection(connStr);
+    nanodbc::connection connection(connStr_);
     nanodbc::result results;
-    results = execute(connection, "select * from user;");
+    results = execute(connection, "select first_name || ' ' || last_name as name, id, password from user;");
     std::vector<User> db_users;
     while(results.next()) {
         db_users.push_back(User {
