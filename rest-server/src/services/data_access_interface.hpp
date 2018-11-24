@@ -14,6 +14,7 @@ class DataAccessInterface {
     virtual std::vector<User> GetUserByID(int id) = 0;
     virtual bool RemoveUser(User user) = 0;
     virtual void AddUser(User user) = 0;
+    virtual void SetConnectionString(std::string connStr) = 0;
 };
 }
 #endif // DATA_ACCESS_INTERFACE_H

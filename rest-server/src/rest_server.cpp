@@ -12,6 +12,8 @@ using cadg_rest::UserController;
 int main(int argc, const char * argv[]) {
     std::cout << "Starting cadg rest server" << std::endl;
     DataAccessInterface* user_dao = &DataAccessObject::Instance();
+    // TODO: Create database and update connection string.
+    user_dao->SetConnectionString("Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;");
     UserController user_controller(*user_dao);
     std::string server_address;
     if (argc > 2)
