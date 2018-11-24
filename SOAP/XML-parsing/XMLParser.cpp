@@ -88,7 +88,7 @@ CAPMessage readXML(std::istream & is) {
 
     //This method is modified from the first response of the following StackOverflow post:
     //https://stackoverflow.com/questions/40393765/accessing-multi-valued-keys-in-property-tree
-    auto &infoRoot = pt.get_Child("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info");
+    auto &infoRoot = pt.get_child("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info");
     for (auto &areaChild : infoRoot.get_child("area")) {
         if (areaChild.first == "geocode") {
             CAPCode newGeoCode;
@@ -125,7 +125,7 @@ void writeXML(CAPMessage newMessage, std::ostream & os) {
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_expires_date_time", newMessage.expires);
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_sender_name", newMessage.senderName);
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_text_language", "English");
-    pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_text_alert_message_length", newMessage.description.length);
+    pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_text_alert_message_length", newMessage.description.length());
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_text_alert_message", newMessage.description);
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_Alert_Area.CMAC_area_description", "United States");
     pt.add("CMAC_Alert_Attributes.CMAC_alert_info.CMAC_Alert_Area.CMAC_cmas_geocode", newMessage.eventCode.value);
