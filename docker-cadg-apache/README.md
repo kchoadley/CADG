@@ -10,7 +10,7 @@ To build locally
 ```
 docker build -t cadg-apache:tag .
 ```
-Note: Replace image-name:tag with your desired nomenclature. Also note that you can pull the current prototype image from the docker hub with:
+Note: Replace tag with your desired nomenclature. Also note that you can pull the current prototype image from the docker hub with:
 ```
 docker pull os-wasabi/cadg-apache:prototype
 ```
