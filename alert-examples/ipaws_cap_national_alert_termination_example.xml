@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+    <identifier>CAPNET-70-20090316160000</identifier>
+    <sender>natexample@example.com</sender>
+    <sent>2009-03-16T16:00:00-6:00</sent>
+    <status>Actual</status>
+    <msgType>Alert</msgType>
+    <source>DEMO</source>
+    <scope>Public</scope>
+    <code>IPAWSv1.0</code>
+    <info>
+        <event>NATIONAL EMERGENCY ACTION TERMINATION</event>
+        <category>Safety</category>
+        <urgency>Immediate</urgency>
+        <severity>Extreme</severity>
+        <certainty>Unknown</certainty>
+        <audience>All</audience>
+        <senderName>DEMO</senderName>
+        <expires>2009-03-16T16:26:00-6:00</expires>
+        <parameter>
+            <valueName>EAS-ORG</valueName>
+            <value>PEP</value>
+        </parameter>
+        <eventCode>
+            <valueName>SAME</valueName>
+            <value>EAT</value>
+        </eventCode>
+        <area>
+            <areaDesc>United States</areaDesc>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>000000</value>
+            </geocode>
+        </area>
+        <headline>National Emergency Action Termination Announcement</headline>
+        <description>The national state of emergency has ended. Here is an important live announcement.</description>
+        <instruction>Stay tuned for further instructions.</instruction>
+        <resource>
+            <resourceDesc>EAS Broadcast Content</resourceDesc>
+            <mimeType>audio/x-ipaws-streaming-audio</mimeType>
+            <uri>http://100.0.0.111:8000/liveeas.mp3</uri>
+        </resource>
+    </info>
+</alert>
+
+<!-- This CAP message translates into the following EAS header string :
+ZCZC-PEP-EAT-000000+0030-0752200-LLLLLLLL- -->
