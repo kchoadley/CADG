@@ -13,5 +13,12 @@ services:
                 tty: true
                 networks:
                         - cadgnet
+        cadg-db:
+                build: ../cadg-db
+                networks:
+                        -cadgnet
+                command: --default-authentication-plugin=mysql_native_password && mysql -p=$MYSQL_ROOT_PASSWORD < create_cadg_db.sql
+                environment:
+                        MYSQL_ROOT_PASSWORD: example
 networks:
         cadgnet:
