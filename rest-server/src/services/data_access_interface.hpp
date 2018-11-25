@@ -15,6 +15,7 @@ class DataAccessInterface {
     virtual bool RemoveUser(User user) = 0;
     virtual void AddUser(User user) = 0;
     virtual void UpdateUser(int id, web::json::object user_info) = 0;
+    virtual void SetConnectionString(std::string connStr) = 0;
 };
 }
 #endif // DATA_ACCESS_INTERFACE_H
