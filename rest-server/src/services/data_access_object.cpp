@@ -18,7 +18,7 @@ void DataAccessObject::SetConnectionString(std::string connStr) {
 std::vector<User> DataAccessObject::GetUsers() {
     nanodbc::connection connection(connStr_);
     nanodbc::result results;
-    results = execute(connection, "select first_name || ' ' || last_name as name, id, password from user;");
+    results = execute(connection, NANODBC_TEXT("select username, userId, password from user;"));
     std::vector<User> db_users;
     while(results.next()) {
         db_users.push_back(User {
@@ -64,15 +64,41 @@ std::vector<User> DataAccessObject::GetUserByID(int id) {
     return matching_users;
 }
 bool DataAccessObject::RemoveUser(User user) {
-    for (auto itr = users__.begin(); itr != users__.end(); itr++) {
-        if (user == *itr) {
-            users__.erase(itr);
-            return true;
-        }
-    }
-    return false;
+    nanodbc::connection connection(connStr_);
+    nanodbc::statement statement(connection);
+    prepare(statement, NANODBC_TEXT("delete from user where userId =?;"));
+    statement.bind(0, &user.id);
+    execute(statement);
+    return true;
 }
 void DataAccessObject::AddUser(User user) {
-    users__.push_back(user);
+    nanodbc::connection connection(connStr_);
+    nanodbc::statement statement(connection);
+    prepare(statement, NANODBC_TEXT("insert into user (username, password) values(?,?);"));
+    nanodbc::string const username = NANODBC_TEXT(user.username);
+    statement.bind(0, username.c_str());
+    nanodbc::string const password = NANODBC_TEXT(user.password);
+    statement.bind(1, password.c_str());
+    execute(statement);
+    // Get the ID of the newly created user record.
+    // Note: LAST_INSERT_ID() is per connection.
+    nanodbc::result results;
+    results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
+    int newId = results.get<int>(0,0);
+    // Update the user.id if successful.
+    if (results.next() && newId > 0) {
+      user.id = newId;
+    }
+}    
+void DataAccessObject::UpdateUser(User user) {
+    nanodbc::connection connection(connStr_);
+    nanodbc::statement statement(connection);
+    prepare(statement, NANODBC_TEXT("update user set username = ?, password = ? where userId = ?;");
+    nanodbc::string const username = NANODBC_TEXT(user.username);
+    statement.bind(0, username.c_str());
+    nanodbc::string const password = NANODBC_TEXT(user.password);
+    statement.bind(1, password.c_str());
+    statement.bind(2, &user.id);
+    execute(statement);
 }
 }  // namespace cadg_rest
