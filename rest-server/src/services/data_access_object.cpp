@@ -98,7 +98,7 @@ void DataAccessObject::AddUser(User user) {
             user.id = newId;
         }
     } catch (...) {
-        // TODO: Something?
+        // TODO(All): Something?
     }
 }
 void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
@@ -120,7 +120,7 @@ void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
         statement.bind(2, &id);
         execute(statement);
     } catch (...) {
-        // TODO: Something?
+        // TODO(All): Something?
     }
 }
 }  // namespace cadg_rest
