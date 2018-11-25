@@ -7,6 +7,8 @@ WORKDIR "/usr/src/cadg"
 # Copy the current folder which contains C++ source code to the Docker image under /usr/src
 COPY . .
 
+RUN apt-get update && apt-get install -y unixodbc-dev
+
 # You have to set an explicit error code, otherwise it goes undetected and you have to check the logs to see if there is an issue
 RUN cppcheck --error-exitcode=1 .
 
