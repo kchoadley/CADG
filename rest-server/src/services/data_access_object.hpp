@@ -19,6 +19,7 @@ class DataAccessObject : public DataAccessInterface {
     std::vector<User> GetUserByID(int id) override;
     bool RemoveUser(User user) override;
     void AddUser(User user) override;
+    void UpdateUser(User user) override;
     void SetConnectionString(std::string connStr) override;
   private:
     DataAccessObject() { }

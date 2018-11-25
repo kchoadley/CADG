@@ -75,7 +75,7 @@ void DataAccessObject::AddUser(User user) {
     nanodbc::connection connection(connStr_);
     nanodbc::statement statement(connection);
     prepare(statement, NANODBC_TEXT("insert into user (username, password) values(?,?);"));
-    nanodbc::string const username = NANODBC_TEXT(user.username);
+    nanodbc::string const username = NANODBC_TEXT(user.name);
     statement.bind(0, username.c_str());
     nanodbc::string const password = NANODBC_TEXT(user.password);
     statement.bind(1, password.c_str());
@@ -93,8 +93,8 @@ void DataAccessObject::AddUser(User user) {
 void DataAccessObject::UpdateUser(User user) {
     nanodbc::connection connection(connStr_);
     nanodbc::statement statement(connection);
-    prepare(statement, NANODBC_TEXT("update user set username = ?, password = ? where userId = ?;");
-    nanodbc::string const username = NANODBC_TEXT(user.username);
+    prepare(statement, NANODBC_TEXT("update user set username = ?, password = ? where userId = ?;"));
+    nanodbc::string const username = NANODBC_TEXT(user.name);
     statement.bind(0, username.c_str());
     nanodbc::string const password = NANODBC_TEXT(user.password);
     statement.bind(1, password.c_str());
