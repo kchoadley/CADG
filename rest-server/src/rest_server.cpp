@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
     logger.LogLevel(LogLevel::DEBUG);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
-    DataAccessObject::Instance()->SetConnectionString(
+    DataAccessObject::Instance().SetConnectionString(
         "Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
