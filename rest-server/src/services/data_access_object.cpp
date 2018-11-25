@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "data_access_object.hpp"
-#include "nanodbc.h"
+#include "nanodbc/nanodbc.h"
 
 namespace cadg_rest {
 DataAccessObject& DataAccessObject::Instance() {
@@ -19,11 +19,11 @@ std::vector<User> DataAccessObject::GetUsers() {
         nanodbc::result results;
         results = execute(connection, NANODBC_TEXT("select username, userId, password from user;"));
         std::vector<User> db_users;
-        while(results.next()) {
+        while (results.next()) {
             db_users.push_back(User {
                 results.get<std::string>(0, "null_user")
-                , results.get<int>(1,0)
-              , results.get<std::string>(2, "null_pw")});
+                , results.get<int>(1, 0)
+                , results.get<std::string>(2, "null_pw")});
         }
         return db_users;
     } catch (...) {
@@ -74,7 +74,7 @@ bool DataAccessObject::RemoveUser(User user) {
         statement.bind(0, &user.id);
         execute(statement);
         return true;
-    } catch (...){
+    } catch (...) {
         return false;
     }
 }
@@ -98,7 +98,7 @@ void DataAccessObject::AddUser(User user) {
             user.id = newId;
         }
     } catch (...) {
-
+        // TODO: Something?
     }
 }
 void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
@@ -120,7 +120,7 @@ void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
         statement.bind(2, &id);
         execute(statement);
     } catch (...) {
-
+        // TODO: Something?
     }
 }
 }  // namespace cadg_rest
