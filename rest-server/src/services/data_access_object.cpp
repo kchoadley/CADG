@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "data_access_object.hpp"
-#include "nanodbc.h"
+#include "nanodbc.hpp"
 
 namespace cadg_rest {
 DataAccessObject& DataAccessObject::Instance() {
@@ -20,11 +20,11 @@ std::vector<User> DataAccessObject::GetUsers() {
     nanodbc::result results;
     results = execute(connection, NANODBC_TEXT("select username, userId, password from user;"));
     std::vector<User> db_users;
-    while(results.next()) {
+    while (results.next()) {
         db_users.push_back(User {
             results.get<std::string>(0, "null_user")
-            , results.get<int>(1,0)
-	      , results.get<std::string>(2, "null_pw")});
+            , results.get<int>(1, 0)
+            , results.get<std::string>(2, "null_pw")});
     }
     return db_users;
 }
@@ -84,24 +84,12 @@ void DataAccessObject::AddUser(User user) {
     // Note: LAST_INSERT_ID() is per connection.
     nanodbc::result results;
     results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
-    int newId = results.get<int>(0,0);
+    int newId = results.get<int>(0, 0);
     // Update the user.id if successful.
     if (results.next() && newId > 0) {
       user.id = newId;
     }
-}    
-void DataAccessObject::UpdateUser(User user) {
-    nanodbc::connection connection(connStr_);
-    nanodbc::statement statement(connection);
-    prepare(statement, NANODBC_TEXT("update user set username = ?, password = ? where userId = ?;"));
-    nanodbc::string const username = NANODBC_TEXT(user.name);
-    statement.bind(0, username.c_str());
-    nanodbc::string const password = NANODBC_TEXT(user.password);
-    statement.bind(1, password.c_str());
-    statement.bind(2, &user.id);
-    execute(statement);
 }
-
 void DataAccessObject::UpdateUser(int id, web::json::object user_info) {
     for (auto& user : users__) {
         if (user.id == id) {
