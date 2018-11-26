@@ -1,4 +1,4 @@
-/// \file nanodbc.h The entirety of nanodbc can be found within this file and nanodbc.cpp.
+/// \file nanodbc.hpp The entirety of nanodbc can be found within this file and nanodbc.cpp.
 
 /// \mainpage
 ///
@@ -130,7 +130,7 @@ namespace nanodbc
 ///
 /// By default, nanodbc uses C \c assert() for internal assertions.
 /// User can override it by defining \c NANODBC_ASSERT(expr) macro
-/// in the nanodbc.h file and customizing it as desired,
+/// in the nanodbc.hpp file and customizing it as desired,
 /// before building the library.
 ///
 /// \code{.cpp}
