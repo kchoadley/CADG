@@ -17,9 +17,11 @@ add_executable(${PROJECT_NAME}
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
                                 ./src/controller/user_controller.cpp
+                                ./src/gSoapFiles/CAP/cadg_soapH.hpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
-                                ./src/util/network_utils.cpp src/soap/controller/soap_controller.hpp)
+                                ./src/soap/controller/soap_controller.hpp
+                                ./src/util/network_utils.cpp src/soap/controller/soap_controller.hpp src/soap/controller/soap_controller.cpp)
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")

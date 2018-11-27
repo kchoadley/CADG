@@ -5,16 +5,27 @@
 
 #ifndef SOAP_CONTROLLER_HPP
 #define SOAP_CONTROLLER_HPP
-#include <cadg_rest::controller.hpp>
-
+#include <controller.hpp>
+#include <data_access_interface.hpp>
+#include "../../gSoapFiles/CAP/cadg_soapH.hpp"
+using cadg_rest::DataAccessInterface;
 
 namespace cadg_soap {
 class SoapController: public cadg_rest::Controller {
 
     public:
+        SoapController(cadg_rest::LoggerInterface& logger__, cadg_rest::DataAccessInterface& dao__) : dao__(dao__), Controller(logger__) {
 
+        }
+        ~SoapController() {}
+
+    void InitHandlers() override;
+    void HandleGet(http_request message) override;
+    void HandlePut(http_request message) override;
+    void HandlePost(http_request message) override;
+    void HandleDelete(http_request message) override;
     private:
-
+    DataAccessInterface& dao__;
 };
 
 } //end cadg_soap

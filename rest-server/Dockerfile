@@ -1,5 +1,5 @@
 # Get the base test environment image from Docker Hub
-FROM oswasabi/cadg-test-env:latest
+FROM oswasabi/cadg-test-env:localtest
 
 # Set the working directory
 WORKDIR "/usr/src/cadg-rest-server"

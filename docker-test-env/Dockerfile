@@ -14,6 +14,7 @@ RUN apt-get -qq -y install \
     cmake \
     cppcheck \
     g++-6 \
+    gsoap \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
