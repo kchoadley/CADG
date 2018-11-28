@@ -1,10 +1,16 @@
-// Created by Ross on 11/21/18.
-// Base solution modified from the following tutorial:
-// https://akrzemi1.wordpress.com/2011/07/13/parsing-xml-with-boost/
-// (NOTE: This file will likely change dramatically over time. This
-// version is intended to develop and display future functionality
-// on test values.)
-
+///Parses existing SOAP XML documents and generates new CMAC XML documents.
+/**
+ * This class has two primary functions: Reading and writing XML documents.
+ * The read functionality parses an existing SOAP XML document and stores
+ * it in memory for future use via a CAPMessage struct. The write functionality
+ * uses this struct to build a new CMAC XML document.
+ * Base solution modified from the following tutorial:
+ * https://akrzemi1.wordpress.com/2011/07/13/parsing-xml-with-boost/
+ *
+ * @file        XMLParser.cpp
+ * @authors     Ross Arcemont
+ * @date        November, 2018
+ */
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -15,23 +21,28 @@
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 
+///Represents a single coordinate pair used in CAPArea polygons.
 struct coordinate {
     double x;
     double y;
 };
 
+///Represents either an event code or geo code in SOAP and CMAC messages.
 struct CAPCode {
     std::string valueName;
     std::string value;
 };
 
+///Represents the specified area in SOAP and CMAC messages.
 struct CAPArea {
     std::string areaDesc;
+    //TODO: Implement polygon as a vector of coordinates instead of a string.
     //std::vector<coordinate> polygon; Temporarily stored as a string due to time constraints. Will update in next iteration.
     std::string polygon;
     std::vector<CAPCode> geoCode;
 };
 
+///Represents the CAP message content held within the SOAP message body. Also used to create the corresponding CMAC message.
 struct CAPMessage {
     std::string identifier;
     std::string sender;
@@ -56,8 +67,24 @@ struct CAPMessage {
     CAPArea area;
 };
 
+/**
+ * newMessage is used to store the incoming CAP message
+ * held within the SOAP message body into memory. Once
+ * all attributes in newMessage are defined, it is used
+ * to build a new CMAC message compatible for CMSP use.
+ */
 typedef CAPMessage newMessage;
 
+///Reads an existing SOAP message and makes its CAP content available for use by the system.
+/**
+ * Uses an istream to read in an existing XML file structured
+ * in the SOAP schema. Once the XML file is fully read into
+ * memory, the SOAP body, AKA the CAP message, is parsed into
+ * a new CAPMessage struct for future use by the writeXML method.
+ *
+ * @param is    Input stream of the incoming SOAP XML file.
+ * @return      New CAPMessage with fully defined attributes.
+ */
 CAPMessage readXML(std::istream & is) {
     using boost::property_tree::ptree;
     ptree pt;
@@ -100,10 +127,20 @@ CAPMessage readXML(std::istream & is) {
     return parsedXML;
 }
 
+///Takes in a fully defined CAPMessage struct, creates a new CMAC message from it, and writes it to the file system as an XML file.
+/**
+ * Uses a fully defined CAPMessage struct to define the content of a new CMAC message.
+ * Once all key fields are defined in the CMAC message, the function uses an ostream
+ * to write the CMAC message to the file system as an XML file.
+ *
+ * @param newMessage    Fully defined CAPMessage struct used to create the CMAC message.
+ * @param os            Output stream for the CMAC XML file creation process.
+ */
 void writeXML(CAPMessage newMessage, std::ostream & os) {
     using boost::property_tree::ptree;
     ptree pt;
 
+    //TODO: Replace all hard-coded values with system-generated values.
     pt.add("CMAC_Alert_Attributes.CMAC_protocol_version", 1.0);
     pt.add("CMAC_Alert_Attributes.CMAC_sending_gateway_id", "localhost");
     pt.add("CMAC_Alert_Attributes.CMAC_message_number", "mvjfo92513");
