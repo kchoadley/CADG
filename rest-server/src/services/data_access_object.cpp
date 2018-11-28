@@ -17,7 +17,8 @@ std::vector<User> DataAccessObject::GetUsers() {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::result results;
-        results = execute(connection, NANODBC_TEXT("select username, userId, password from user;"));
+        results = execute(connection, NANODBC_TEXT("select username, user_id, password from cadg.user;"));
+        std::cout<<"running query";
         std::vector<User> db_users;
         while (results.next()) {
             db_users.push_back(User {

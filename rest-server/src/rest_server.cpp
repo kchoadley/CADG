@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
     // TODO(Mike): Create database and update connection string.
     DataAccessObject::Instance().SetConnectionString(
-        "Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;");
+        "Driver={MySQL8};Server=localhost;Port=3306;Database=cadg;Uid=rest-server;Pwd=Password1;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)
