@@ -16,7 +16,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
-#include "XMLParser.h"
+#include "XMLParser.hpp"
 #include <boost/foreach.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -179,12 +179,12 @@ void writeXML(CAPMessage newMessage, std::ostream & os) {
 
     write_xml(os, pt);
 }
-
-int main() {
-    std::ifstream input("SOAPMessageTest.xml");
-    CAPMessage newMessage = readXML(input);
-
-    std::ofstream output("testCMACMessage.xml");
-    writeXML(newMessage, output);
-    return 0;
-}
+//
+//int main() {
+//    std::ifstream input("SOAPMessageTest.xml");
+//    CAPMessage newMessage = readXML(input);
+//
+//    std::ofstream output("testCMACMessage.xml");
+//    writeXML(newMessage, output);
+//    return 0;
+//}
