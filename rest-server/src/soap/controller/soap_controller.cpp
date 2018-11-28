@@ -8,6 +8,8 @@
 #include <string>
 #include "soap_controller.hpp"
 #include "log_level.hpp"
+#include "../../gSoapFiles/CAP/cadg_soapH.hpp"
+#include "../../gSoapFiles/CAP/cadg_soapStub.hpp"
 #include "../../gSoapFiles/CAP/ns1.nsmap"
 
 namespace cadg_soap {
@@ -21,10 +23,11 @@ namespace cadg_soap {
     void SoapController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
-            auto body = (soap) message.body();
-            soap* soapmessage = &body;
-            _ns1__alert alert;
-            soap_read__ns1__alert(soapmessage, &alert);
+            struct soap *soap = soap_new1(SOAP_C_UTFSTRING | SOAP_XML_INDENT | SOAP_DOM_TREE);
+            auto body = message.body();
+            _ns1__alert *alert = new _ns1__alert();
+            soap_read__ns1__alert(soap, alert);
+
             auto response = json::value::object();
             response["alert"] = json::value::object();
             if (&alert == NULL) {
