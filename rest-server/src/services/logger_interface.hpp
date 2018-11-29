@@ -1,5 +1,14 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/// An interface logging.
+/**
+ * This defines the interface for a logger. A logger handles general application
+ * logging as well as network logging.
+ *
+ * @file        logger_interface.hpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #ifndef LOGGER_INTERFACE_H
 #define LOGGER_INTERFACE_H
 #include <string>
@@ -10,7 +19,10 @@ using namespace web;
 using namespace http;
 
 namespace cadg_rest {
-
+/**
+ * LoggerInterface defines several ways to log information, as well as netowrk activity.
+ * This interface must be defines in an inheriting class.
+ */
 class LoggerInterface {
   public:
     /**

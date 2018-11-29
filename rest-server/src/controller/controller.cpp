@@ -1,7 +1,7 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
 /**
- * Implementation of the Controller class.
+ * Implementation of Controller.
  *
  * @file        controller.cpp
  * @authors     Kristofer Hoadley

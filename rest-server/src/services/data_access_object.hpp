@@ -2,7 +2,7 @@
 //                  Shawn Hulce, Michael McCulley
 /// A DAO for users.
 /**
- * This data access object adhers to the DataAccessInterface. It is a singleton,
+ * This data access object adheres to the DataAccessInterface. It is a singleton,
  * accessed through the static method Instance().
  *
  * @file        data_access_object.hpp
@@ -23,10 +23,10 @@ namespace cadg_rest {
  */
 class DataAccessObject : public DataAccessInterface {
   public:
-  /// Instance returns a reference to the DataAccessObject.
-  /**
-   * Instance implements the Singleton design pattern.
-   */
+    /// Instance returns a reference to the DataAccessObject.
+    /**
+     * Instance implements the Singleton design pattern.
+     */
     static DataAccessObject& Instance();
     /// Deletes the copy constructor to enforce singleton.
     DataAccessObject(DataAccessObject const&) = delete;
