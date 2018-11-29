@@ -1,5 +1,18 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/// Implementation of DataAccessObject.
+/**
+ * Controller is a base class for REST controller classes, 
+ * it has some common methods defined and leaves methods that
+ * need to be defined by parent classes undefined. A controller
+ * has an endpoint, can be started with Accept and ended with 
+ * Shutdown. The default supported http verbs are GET, PUT, POST,
+ * and DELETE.
+ *
+ * @file        data_access_object.cpp
+ * @authors     Kristofer Hoadley, Micheal McCulley
+ * @date        November, 2018
+ */
 #include <string>
 #include <vector>
 #include "data_access_object.hpp"

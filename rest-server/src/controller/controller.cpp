@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of the Controller class.
+ *
+ * @file        controller.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <pplx/pplxtasks.h>
 #include <controller.hpp>
 #include <map>

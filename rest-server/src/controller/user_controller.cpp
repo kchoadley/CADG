@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of the UserController class.
+ *
+ * @file        user_controller.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <cpprest/uri_builder.h>
 #include <cpprest/base_uri.h>
 #include <algorithm>
