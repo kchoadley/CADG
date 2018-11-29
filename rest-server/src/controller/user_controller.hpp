@@ -6,7 +6,7 @@
  * This provides an example of how to use and inject a Data Access Object
  * as well as passing a logger to the base Controller.
  *
- * @file        user_controller.cpp
+ * @file        user_controller.hpp
  * @authors     Kristofer Hoadley
  * @date        November, 2018
  */
