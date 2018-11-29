@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of Logger.
+ *
+ * @file        logger.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <iostream>
 #include <map>
 #include <memory>
@@ -84,6 +91,10 @@ spdlog::level::level_enum Logger::ConvertLogLevel(int log_level) {
         default: return spdlog::level::off;
     }
 }
+/**
+ * Private constructor for logger. Configuration and setup of the spdlog
+ * loggers is handled here. Logging output goes to files and console.
+ */
 Logger::Logger() {
     auto log_console_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
     log_console_sink->set_level(spdlog::level::trace);  // trace level will log everything

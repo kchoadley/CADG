@@ -1,7 +1,7 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
 /**
- * Implementation of the UserController class.
+ * Implementation of UserController.
  *
  * @file        user_controller.cpp
  * @authors     Kristofer Hoadley
