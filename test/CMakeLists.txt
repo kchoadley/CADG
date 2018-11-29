@@ -48,8 +48,11 @@ SET( ODBC_LIBRARIES ${ODBC_LIBRARY} )
 set(CMAKE_CXX_STANDARD 17)
 
 # Set source files
+set(TEST_SOURCES
+        test_suite.cpp
+        controller/controller_test.cpp)
+
 set(CADG_SOURCES
-        example.cpp
         ../rest-server/src/controller/controller.cpp
         ../rest-server/src/controller/user_controller.cpp
         ../rest-server/src/nanodbc/nanodbc.cpp
@@ -87,6 +90,6 @@ set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRAR
 
 include_directories(${HEADER_PATHS} ${GTEST_INCLUDE_DIRS})
 
-add_executable(runTests ${CADG_SOURCES} ${SOAP_SOURCES})
+add_executable(runTests ${TEST_SOURCES} ${CADG_SOURCES} ${SOAP_SOURCES})
 
 target_link_libraries(runTests ${LIBRARIES_SEARCH_PATHS} ${GTEST_LIBRARIES} pthread fruit)
