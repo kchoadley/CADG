@@ -9,7 +9,6 @@
 #include "soap_controller.hpp"
 #include "log_level.hpp"
 #include "../../gSoapFiles/CAP/cadg_soapH.hpp"
-#include "../../gSoapFiles/CAP/cadg_soapStub.hpp"
 #include "../../gSoapFiles/CAP/ns1.nsmap"
 
 namespace cadg_soap {
@@ -23,19 +22,21 @@ namespace cadg_soap {
     void SoapController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
-            struct soap *soap = soap_new1(SOAP_C_UTFSTRING | SOAP_XML_INDENT | SOAP_DOM_TREE);
-            auto body = message.body();
-            _ns1__alert *alert = new _ns1__alert();
-            soap_read__ns1__alert(soap, alert);
+            struct _ns1__alert alertMessage;
+            std::string bodyContent = "";
+            //Should generate soap context that can read input and create alert. Not sure how
+            soap* ctx = soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
+            auto body = message.extract_string().get();
+            std::istringstream strStream;
 
-            auto response = json::value::object();
-            response["alert"] = json::value::object();
-            if (&alert == NULL) {
-                response["alert"][0] = 0;
-            } else {
-                response["alert"][0] = 1;
-            }
-            message.reply(status_codes::OK, response);
+            strStream.str(body);
+
+            ctx->is = &strStream;
+
+            soap_read__ns1__alert(ctx, &alertMessage);
+
+            std::cout << alertMessage.identifier << std::endl;
+            message.reply(status_codes::OK);
 
         } catch (std::exception& e) {
             message.reply(SOAP_FAULT);

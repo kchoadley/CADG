@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.1)
 project(cadg-rest-server)
 
 find_package(Boost REQUIRED COMPONENTS system thread)
-find_package(gSOAP REQUIRED)
 find_package(OpenSSL 1.0.1 REQUIRED)
+find_package(gSOAP REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(Threads REQUIRED)
 
@@ -16,9 +16,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -DBOOST_LOG_DYN_LINK")
 # source files
 add_executable(${PROJECT_NAME}  
                                 ./src/rest_server.cpp
+                                ./src/gSoapFiles/CAP/cadg_soapH.cpp
+                                ./src/gSoapFiles/CAP/ns1.nsmap
                                 ./src/controller/controller.cpp
                                 ./src/controller/user_controller.cpp
-                                ./src/gSoapFiles/CAP/cadg_soapC.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
                                 ./src/soap/controller/soap_controller.cpp
@@ -38,10 +39,11 @@ set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${SERVICES_INCLU
 # library paths
 set(BOOST_LIBRARY "-lboost_system")
 set(CPPRESTSDK_LIBRARY "-lcpprest")
+set(GSOAP_LIBRARY "-libgsoap++")
 set(OPENSSL_LIBS "${OPENSSL_LIBRARIES}")
 set(SPDLOG_LIBRARY spdlog::spdlog)
 set(THREADS Threads::Threads)
-set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY})
+set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY} ${GSOAP_LIBRARY})
 
 include_directories(${HEADER_PATHS})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
