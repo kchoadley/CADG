@@ -72,7 +72,7 @@ set(MODEL_INCLUDE_DIR "../rest-server/src/model")
 set(SERVICES_INCLUDE_DIR "../rest-server/src/services")
 set(UTILITIES_INCLUDE_DIR "../rest-server/src/util")
 set(NANODBC_INCLUDE_DIR "../rest-server/src/nanodbc")
-set(SOAP_INCLUDE_DIR "../SOAP/XML-parsing")
+set(SOAP_INCLUDE_DIR "../soap/xml-parsing")
 set(HEADER_PATHS
         ${CONTROLLER_INCLUDE_DIR}
         ${MODEL_INCLUDE_DIR}

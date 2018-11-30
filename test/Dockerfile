@@ -13,6 +13,7 @@ RUN cppcheck --error-exitcode=1 .
 # Lint the files
 RUN ./cpplint.py --headers=h --extensions=cpp --linelength=120 \
     /usr/src/cadg/test/*.cpp \
+    /usr/src/cadg/test/*/*.cpp \
     /usr/src/cadg/rest-server/src/*.cpp \
     /usr/src/cadg/rest-server/src/controller/*.cpp \
     /usr/src/cadg/rest-server/src/services/*.cpp
