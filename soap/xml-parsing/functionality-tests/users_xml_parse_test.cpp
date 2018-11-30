@@ -14,7 +14,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "../XMLParser.hpp"
+#include "xml_parser.hpp"
 #include <boost/foreach.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -83,10 +83,10 @@ void writeXML(Users users, std::ostream & os) {
 }
 
 int main() {
-    std::ifstream input("usersTest.xml");
+    std::ifstream input("users_test.xml");
     Users users = readXML(input);
 
-    std::ofstream output("usersTestOutput.xml");
+    std::ofstream output("users_test_output.xml");
     writeXML(users, output);
     return 0;
 }
