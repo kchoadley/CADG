@@ -50,7 +50,9 @@ set(CMAKE_CXX_STANDARD 17)
 # Set source files
 set(TEST_SOURCES
         test_suite.cpp
-        controller/controller_test.cpp)
+        controller/controller_test.cpp
+        soap/xml-parsing/xml_parser_test.cpp
+        soap/xml-parsing/soap_message_test.xml)
 
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
@@ -61,7 +63,8 @@ set(CADG_SOURCES
         ../rest-server/src/util/network_utils.cpp)
 
 set(SOAP_SOURCES
-        ../SOAP/XML-parsing/XMLParser.cpp)
+        ../soap/xml-parsing/xml_parser.cpp
+        ../soap/xml-parsing/soap_message_test.xml)
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "../rest-server/src/controller")
