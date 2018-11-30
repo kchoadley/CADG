@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of Controller.
+ *
+ * @file        controller.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <pplx/pplxtasks.h>
 #include <controller.hpp>
 #include <map>
@@ -30,6 +37,13 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
+/**
+ * Some limitations of this implementation:
+ * Does not handle converting spaces (%20) or other special characters.
+ * Does not handle delimiting queries by ';'
+ * Does not handle multiple values for a key (keeps the last one).
+ * 
+ */
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;
     std::string query_delimeter = "&";  // technically, it could be delimited by ';' too
