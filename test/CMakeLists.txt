@@ -50,7 +50,10 @@ set(CMAKE_CXX_STANDARD 17)
 # Set source files
 set(TEST_SOURCES
         test_suite.cpp
-        controller/controller_test.cpp)
+        controller/controller_test.cpp
+        controller/user_controller_test.cpp
+        controller/mock_logger.hpp
+        controller/mock_data_access.hpp)
 
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
