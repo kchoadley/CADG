@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV = "http://www.w3.org/2001/12/soap-envelope"
+                   SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
+    <SOAP-ENV:Body>
+        <alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+            <identifier>CADG4827189</identifier>
+            <sender>CADG@CADG.EXAMPLE.NET</sender>
+            <sent>2003-06-17T14:57:00-07:00</sent>
+            <status>Actual</status>
+            <msgType>Ack</msgType>
+            <scope>Public</scope>
+			<references>
+				<identifier>KSTO1055887203</identifier>
+				<sender>KSTO@NWS.NOAA.GOV</sender>
+				<sent>2003-06-17T14:57:00-07:00</sent>
+			</references>
+        </alert>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

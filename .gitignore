@@ -468,3 +468,6 @@ ASALocalRun/
 
 
 # End of https://www.gitignore.io/api/c++,clion,cmake,visualstudio,visualstudiocode
+
+# Custom ignores
+*/build/

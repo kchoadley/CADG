@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+    <identifier>CAPNET-100-20100125130000</identifier>
+    <sender>laciv.com@192.168.0.210</sender>
+    <sent>2010-01-25T13:00:00-6:00</sent>
+    <status>Actual</status>
+    <msgType>Alert</msgType>
+    <source>HSTEC</source>
+    <scope>Public</scope>
+    <code>IPAWSv1.0</code>
+    <info>
+        <event>EAS Monthly Test </event>
+        <category>Safety</category>
+        <urgency>Unknown</urgency>
+        <severity>Minor</severity>
+        <certainty>Unknown</certainty>
+        <audience>All</audience>
+        <senderName>Hypothetical Seattle Test Emergency Center</senderName>
+        <expires>2010-01-25T14:00:00-6:00</expires>
+        <parameter>
+            <valueName>EAS-ORG</valueName>
+            <value>CIV</value>
+        </parameter>
+        <eventCode>
+            <valueName>SAME</valueName>
+            <value>RMT</value>
+        </eventCode>
+        <area>
+            <areaDesc> All of Island, Jefferson, Kitsap, King, Pierce, and Snohomish Counties, Washington</areaDesc>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053029</value>
+            </geocode>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053031</value>
+            </geocode>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053035</value>
+            </geocode>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053033</value>
+            </geocode>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053061</value>
+            </geocode>
+        </area>
+        <headline>Required Monthly Test</headline>
+        <description>
+            This is a coordinated Monthly Test of the integrated CAP/EAS Alert system.
+            This is only a test. Had this been a real alert, important information would have followed.
+            This is only a test.
+        </description>
+        <resource>
+            <resourceDesc>EAS Broadcast Content</resourceDesc>
+            <mimeType>audio/x-ipaws-audio </mimeType>
+            <uri>http://100.0.0.111/EAS/EASaudios.wav</uri>
+        </resource>
+    </info>
+</alert>
+<!-- This demonstrates an actual Monthly Test of the Emergency Alert System injected via the CAP network. It
+is important to note that this is an actual test alert that is meant to be broadcast by EAS participants. It is not
+just an internal, hidden test of the CAP / EAS infrastructure. This explains why the value of the CAP
+<status> element is Actual rather than Test.
+
+This CAP message translates into the following EAS header string :
+ZCZC-CIV-RMT-053029-053031-053035-053033-053061+0100-0252000-LLLLLLLL- -->

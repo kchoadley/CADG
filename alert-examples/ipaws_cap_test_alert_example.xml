@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+    <identifier>CAPNET-101-20100126130000</identifier>
+    <sender>laciv.com@192.168.0.210</sender>
+    <sent>2010-01-26T13:00:00-6:00</sent>
+    <status>Test</status>
+    <msgType>Alert</msgType>
+    <source>HSTEC</source>
+    <scope>Public</scope>
+    <code>IPAWSv1.0</code>
+    <info>
+        <event>CAP System Test </event>
+        <category>Safety</category>
+        <urgency>Unknown</urgency>
+        <severity>Minor</severity>
+        <certainty>Unknown</certainty>
+        <audience>All</audience>
+        <senderName>Hypothetical Seattle Test Emergency Center</senderName>
+        <expires>2010-01-26T14:00:00-6:00</expires>
+        <eventCode>
+            <valueName>SAME</valueName>
+            <value>ADR</value>
+        </eventCode>
+        <parameter>
+            <valueName>EAS-ORG</valueName>
+            <value>CIV</value>
+        </parameter>
+        <area>
+            <areaDesc> Island County, Washington</areaDesc>
+            <geocode>
+                <valueName>SAME</valueName>
+                <value>053029</value>
+            </geocode>
+        </area>
+        <headline>CAP/EAS Internal System Test</headline>
+        <description>
+            This is an internal system test of the integrated CAP/EAS Alert system.
+            This test message is not meant to be broadcast. This is only a system test.
+        </description>
+    </info>
+</alert>
+
+<!-- This demonstrates an internal system Test of the CAP/Emergency Alert System network. The value of the
+CAP <status> element determines if the message is Actual or a Test A test message is never meant to be
+broadcast into the EAS system and does not need to generate an EAS header string. Instead, it is intended to
+test the reception, parsing, validation, and translation of IPAWS CAP messages in the CAP/EAS reception
+nodes. The <eventCode> field can be anything since by definition a Test <status> message MUST NOT be
+broadcast. This example includes a SAME eventCode of ADR, the Administrative Message. Missing or
+non-conforming elements can be used to test CAP/EAS translator nodes. Translator nodes will log Test alerts
+and include information on the validation of the CAP/EAS message. -->
