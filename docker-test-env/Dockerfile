@@ -15,6 +15,12 @@ RUN apt-get -qq -y install \
     cppcheck \
     g++-6 \
     libgsoap-dev \
+    libssl-dev \
+    zlib1g-dev \
+    graphviz \
+    bison \
+    flex \
+    dh-autoreconf \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
