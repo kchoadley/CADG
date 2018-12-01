@@ -12,14 +12,9 @@ using cadg_rest::MockDataAccess;
 using cadg_rest::MockLogger;
 
 
-
 class UserControllerTest : public ::testing::Test {
 protected:
-    MockLogger logger;
-    MockDataAccess dao;
-    void SetUp() override {
-        UserController user_controller(logger, dao);
-    }
+    UserController user_controller(MockLogger logger, MockDataAccess dao);
 };
 
 TEST_F(UserControllerTest, InitializesHandlers) {
