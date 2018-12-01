@@ -1,8 +1,9 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+#include "controller.hpp"
 #include <iostream>
 #include <gtest/gtest.h>
-#include "controller.hpp"
+
 using cadg_rest::Controller;
 
 TEST(ControllerTest, ExtractsQueries) {
