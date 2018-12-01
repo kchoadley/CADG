@@ -2,18 +2,23 @@
 //                  Shawn Hulce, Michael McCulley
 
 #include <gtest/gtest.h>
-#include "data_access_object.hpp"
-#include "logger.hpp"
 #include "user_controller.hpp"
-using cadg_rest::DataAccessObject;
-using cadg_rest::Logger;
+#include "mock_logger.hpp"
+#include "mock_data_access.hpp"
+
+using namespace std;
 using cadg_rest::UserController;
+using cadg_rest::MockDataAccess;
+using cadg_rest::MockLogger;
+
 
 
 class UserControllerTest : public ::testing::Test {
 protected:
+    MockLogger logger;
+    MockDataAccess dao;
     void SetUp() override {
-//        UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
+        UserController user_controller(logger, dao);
     }
 };
 

@@ -53,6 +53,9 @@ set(TEST_SOURCES
         controller/controller_test.cpp
         soap/xml-parsing/xml_parser_test.cpp
         soap/xml-parsing/soap_message_test.xml)
+        controller/user_controller_test.cpp
+        controller/mock_logger.hpp
+        controller/mock_data_access.hpp)
 
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
