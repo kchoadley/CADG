@@ -55,6 +55,7 @@ CAPMessage ReadXML(std::istream & is) {
     parsed_xml.event = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.event");
     parsed_xml.response_type = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.responseType");
     parsed_xml.urgency = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.urgency");
+    parsed_xml.severity = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.severity");
     parsed_xml.certainty = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.certainty");
     parsed_xml.event_code.valueName = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.eventCode.valueName");
     parsed_xml.event_code.value = pt.get<std::string>("SOAP-ENV:Envelope.SOAP-ENV:Body.alert.info.eventCode.value");
