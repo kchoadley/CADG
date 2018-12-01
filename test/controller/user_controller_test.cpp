@@ -5,10 +5,9 @@
 #include "controller.hpp"
 
 class ControllerTest : public ::testing::Test {
-protected:
+ protected:
     void SetUp() override {
     }
-
 };
 
 TEST(ControllerTest, ReturnsEndpoint) {
