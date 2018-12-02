@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     logger.LogLevel(LogLevel::DEBUG);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
     DataAccessObject::Instance().SetConnectionString(
-        "Driver={MySQL8};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
+        "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)
