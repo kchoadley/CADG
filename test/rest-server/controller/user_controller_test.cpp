@@ -13,46 +13,24 @@ using cadg_rest::MockLogger;
 
 
 class UserControllerTest : public ::testing::Test {
-protected:
     UserController user_controller(MockLogger logger, MockDataAccess dao);
 };
 
-TEST_F(UserControllerTest, InitializesHandlers) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, InitializesHandlers) { }
 
-TEST_F(UserControllerTest, HandlesGet) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, HandlesGet) { }
 
-TEST_F(UserControllerTest, HandlesPost) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, HandlesPost) { }
 
-TEST_F(UserControllerTest, HandlesPut) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, HandlesPut) { }
 
-TEST_F(UserControllerTest, HandlesDelete) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, HandlesDelete) { }
 
-TEST_F(UserControllerTest, ReturnsUserById) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, ReturnsUserById) { }
 
-TEST_F(UserControllerTest, ReturnsUserByName) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
-}
+TEST_F(UserControllerTest, ReturnsUserByName) { }
 
 TEST_F(UserControllerTest, ParsesUserId) {
-    ASSERT_EQ(42, 42);
-    EXPECT_EQ("Hello, World!", "Hello, World!");
+//  std::string path = "http://localhost:8080/users/1";
+//  ASSERT_EQ(user_controller.ParseUserId(path), "1");
 }
