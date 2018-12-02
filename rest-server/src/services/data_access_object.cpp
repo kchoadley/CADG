@@ -17,7 +17,7 @@ std::vector<User> DataAccessObject::GetUsers() {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::result results;
-        results = execute(connection, NANODBC_TEXT("select username, user_id, password from cadg.user;"));
+        results = execute(connection, NANODBC_TEXT("select username, user_id, password from admin_db.admin;"));
         std::vector<User> db_users;
         while (results.next()) {
             db_users.push_back(User {
@@ -70,7 +70,7 @@ bool DataAccessObject::RemoveUser(User user) {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("delete from user where userId =?;"));
+        prepare(statement, NANODBC_TEXT("delete from admin_db.admin where user_id =?;"));
         statement.bind(0, &user.id);
         execute(statement);
         return true;
@@ -82,7 +82,7 @@ void DataAccessObject::AddUser(User user) {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("insert into user (username, password) values(?,?);"));
+        prepare(statement, NANODBC_TEXT("insert into admin_db.admin (username, password) values(?,?);"));
         nanodbc::string const username = NANODBC_TEXT(user.name);
         statement.bind(0, username.c_str());
         nanodbc::string const password = NANODBC_TEXT(user.password);
