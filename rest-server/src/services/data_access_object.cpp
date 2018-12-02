@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of DataAccessObject.
+ *
+ * @file        data_access_object.cpp
+ * @authors     Kristofer Hoadley, Micheal McCulley
+ * @date        November, 2018
+ */
 #include <string>
 #include <vector>
 #include "data_access_object.hpp"

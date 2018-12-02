@@ -50,9 +50,11 @@ set(CMAKE_CXX_STANDARD 17)
 # Set source files
 set(TEST_SOURCES
         test_suite.cpp
-        controller/controller_test.cpp
+        rest-server/controller/controller_test.cpp
         soap/xml-parsing/xml_parser_test.cpp
-        soap/xml-parsing/soap_message_test.xml)
+        soap/xml-parsing/soap_message_test.xml
+        rest-server/controller/user_controller_test.cpp
+        )
 
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
@@ -73,6 +75,7 @@ set(SERVICES_INCLUDE_DIR "../rest-server/src/services")
 set(UTILITIES_INCLUDE_DIR "../rest-server/src/util")
 set(NANODBC_INCLUDE_DIR "../rest-server/src/nanodbc")
 set(SOAP_INCLUDE_DIR "../soap/xml-parsing")
+set(TEST_INCLUDE_DIR "./rest-server/controller")
 set(HEADER_PATHS
         ${CONTROLLER_INCLUDE_DIR}
         ${MODEL_INCLUDE_DIR}
@@ -81,7 +84,8 @@ set(HEADER_PATHS
         ${UTILITIES_INCLUDE_DIR}
         ${OPENSSL_INCLUDE_DIR}
         ${ODBC_INCLUDE_DIR}
-        ${SOAP_INCLUDE_DIR})
+        ${SOAP_INCLUDE_DIR}
+        ${TEST_INCLUDE_DIR})
 
 # library paths
 set(BOOST_LIBRARY "-lboost_system")

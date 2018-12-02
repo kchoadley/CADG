@@ -1,5 +1,12 @@
 // Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
 //                  Shawn Hulce, Michael McCulley
+/**
+ * Implementation of UserController.
+ *
+ * @file        user_controller.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <cpprest/uri_builder.h>
 #include <cpprest/base_uri.h>
 #include <algorithm>
@@ -121,6 +128,8 @@ void UserController::GetUsersByName(json::value& response, const std::string& us
         response["users"][std::to_string(user.id)] = user.to_json();
     }
 }
+/// Currently assumes the path only contains a slash and numbers.
+// TO-DO(Kris): Return valid ID or code for invalid ID (empty string)
 std::string UserController::ParseUserID(const std::string& path) {
     logger__.Log(LogLevel::DEBUG, "path to extract id as string: " + path, "UserController", "ParseUserID");
     auto next_forward_slash = path.find("/", 1);
