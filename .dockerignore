@@ -1,4 +1,5 @@
 /docker-test-env/*
+/test/build/
 .gitignore
 .travis.yml
 LICENSE
