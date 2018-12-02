@@ -42,6 +42,19 @@ RUN apt-get install libgtest-dev -y -qq &&\
     cp *.a /usr/lib &&\
     cd .. &&\
     rm -R gtest
+    
+WORKDIR ~
+
+RUN wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.13-linux-ubuntu18.04-x86-64bit.tar.gz
+
+RUN gunzip mysql-connector-odbc-8.0.13-linux-ubuntu18.04-x86-64bit.tar.gz && \
+tar xvf mysql-connector-odbc-8.0.13-linux-ubuntu18.04-x86-64bit.tar
+
+RUN cp mysql-connector-odbc-8.0.13-linux-ubuntu18.04-x86-64bit/bin/* /usr/local/bin
+
+RUN cp mysql-connector-odbc-8.0.13-linux-ubuntu18.04-x86-64bit/lib/* /usr/local/lib
+
+RUN myodbc-installer -a -d -n "MySQL8Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so" && myodbc-installer -a -d -n "MySQL8" -t "Driver=/usr/local/lib/libmyodbc8a.so"
 
 WORKDIR /usr/src/cadg
 
