@@ -1,0 +1,26 @@
+.sideBar {
+    height: 100%;
+    width: 7%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    background-color: #282c34;
+    overflow-x: hidden;
+    padding-top: 25px;
+}
+
+.sideBar a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+}
+
+.sideBar a:hover {
+    color: yellow;
+}
+
+.sideBar a:target {
+    color: red;
+}
