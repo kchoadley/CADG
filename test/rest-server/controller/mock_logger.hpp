@@ -1,6 +1,10 @@
-//
-// Created by Vaniya on 12/1/2018.
-//
+///Mocks the CADG Logger for testing purposes
+/**
+ * (License)
+ * @file    mock_logger.hpp
+ * @authors { Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley }
+ * @date    1/9/2019
+ */
 
 #ifndef CADG_MOCK_LOGGER_HPP
 #define CADG_MOCK_LOGGER_HPP

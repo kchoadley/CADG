@@ -1,6 +1,10 @@
-//
-// Created by Vaniya on 11/30/2018.
-//
+///Mocks the CADG Data Access Object (Users) for testing purposes
+/**
+ * (License)
+ * @file    mock_data_access.hpp
+ * @authors { Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley }
+ * @date    1/9/2019
+ */
 #include "user.hpp"
 #include "data_access_interface.hpp"
 #include <string>
