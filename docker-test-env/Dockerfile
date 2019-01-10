@@ -16,6 +16,7 @@ RUN apt-get -qq -y install \
     g++-6 \
     libasio-dev \
     libcpprest-dev \
+	libgsoap-dev \
     libspdlog-dev \
     software-properties-common \
     unixodbc-dev \

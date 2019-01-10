@@ -6,6 +6,7 @@
 #include "logger.hpp"
 #include "user_controller.hpp"
 #include "log_level.hpp"
+#include "./soap/controller/soap_controller.hpp"
 using cadg_rest::DataAccessObject;
 using cadg_rest::Logger;
 using cadg_rest::LoggerInterface;
@@ -19,6 +20,7 @@ int main(int argc, const char * argv[]) {
     DataAccessObject::Instance().SetConnectionString(
         "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
+    cadg_soap::SoapController soap_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)
         server_address.append(argv[2]);
@@ -30,9 +32,12 @@ int main(int argc, const char * argv[]) {
         server_address.append(":8080");
     server_address.append("/v1/cadg/api");
     user_controller.endpoint(server_address + "/users");
+    soap_controller.endpoint("http://host_auto_ip4:8080/cadg/soap/alerts");
     try {
         user_controller.Accept().wait();
+        soap_controller.Accept().wait();
         logger.Log(LogLevel::INFO, "Listening for requests at: " +  user_controller.endpoint());
+        logger.Log(LogLevel::INFO, "Listening for requests at: " + soap_controller.endpoint());
         logger.Log(LogLevel::INFO, "Press ENTER to exit.");
         std::string line;
         std::getline(std::cin, line);

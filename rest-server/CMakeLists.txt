@@ -56,23 +56,28 @@ add_executable(${PROJECT_NAME}
                                 ./src/nanodbc/nanodbc.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
+                                ./src/soap/controller/soap_controller.cpp
                                 ./src/util/network_utils.cpp)
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
 set(MODEL_INCLUDE_DIR "./src/model")
 set(SERVICES_INCLUDE_DIR "./src/services")
+set(SOAP_INCLUDE_DIR "./src/gSoapFiles/CAP")
+set(SOAP_CONTROLLER_DIR "./src/soap")
 set(UTILITIES_INCLUDE_DIR "./src/util")
 set(NANODBC_INCLUDE_DIR "./src/nanodbc")
-set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${NANODBC_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${ODBC_INCLUDE_DIR})
+set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${NANODBC_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR}
+        ${OPENSSL_INCLUDE_DIR} ${ODBC_INCLUDE_DIR} ${SOAP_INCLUDE_DIR} ${SOAP_CONTROLLER_DIR})
 
 # library paths
 set(BOOST_LIBRARY "-lboost_system")
 set(CPPRESTSDK_LIBRARY "-lcpprest")
+set(GSOAP_LIBRARY "-lgsoap++")
 set(OPENSSL_LIBS "${OPENSSL_LIBRARIES}")
 set(SPDLOG_LIBRARY spdlog::spdlog)
 set(THREADS Threads::Threads)
-set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY} ${ODBC_LIBRARIES})
+set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY} ${ODBC_LIBRARIES} ${GSOAP_LIBRARY})
 
 include_directories(${HEADER_PATHS})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
