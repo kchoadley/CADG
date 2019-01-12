@@ -1,9 +1,9 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
 /// A struct for log level.
 /**
  * Contains LogLevel which is a struct for setting the level of logging.
  * It is effectively an enum.
+ *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
  *
  * @file        log_level.hpp
  * @authors     Kristofer Hoadley
