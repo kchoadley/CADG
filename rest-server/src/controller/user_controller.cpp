@@ -1,4 +1,4 @@
-///Implementation of UserController.
+/// Implementation of UserController.
  /**
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
  *

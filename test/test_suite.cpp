@@ -1,4 +1,4 @@
-///Main test suite runs all tests in project.
+/// Main test suite runs all tests in project.
 /**
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
