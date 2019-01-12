@@ -7,7 +7,7 @@
  * https://akrzemi1.wordpress.com/2011/07/13/parsing-xml-with-boost/
  *
  * @file        UsersXMLParseTest.cpp
- * @authors     Ross Arcemont
+ * @authors     { Ross Arcemont }
  * @date        November, 2018
  */
 #include <iostream>

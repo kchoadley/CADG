@@ -68,6 +68,27 @@ struct CAPMessage {
     CAPArea area;
 };
 
+///Reads an existing SOAP message and makes its CAP content available for use by the system.
+/**
+ * Uses an istream to read in an existing XML file structured
+ * in the SOAP schema. Once the XML file is fully read into
+ * memory, the SOAP body, AKA the CAP message, is parsed into
+ * a new cap_message struct for future use by the writeXML method.
+ *
+ * @param is    Input stream of the incoming SOAP XML file.
+ * @return      New cap_message with fully defined attributes.
+ */
 CAPMessage ReadXML(std::istream & is);
+
+
+///Takes in a fully defined cap_message struct, creates a new CMAC message from it, and writes it to the file system as an XML file.
+/**
+ * Uses a fully defined cap_message struct to define the content of a new CMAC message.
+ * Once all key fields are defined in the CMAC message, the function uses an ostream
+ * to write the CMAC message to the file system as an XML file.
+ *
+ * @param new_message    Fully defined cap_message struct used to create the CMAC message.
+ * @param os            Output stream for the CMAC XML file creation process.
+ */
 void WriteXML(CAPMessage new_message, std::ostream & os);
 #endif //CADG_XMLPARSER_H

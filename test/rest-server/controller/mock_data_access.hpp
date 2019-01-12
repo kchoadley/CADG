@@ -1,9 +1,11 @@
 ///Mocks the CADG Data Access Object (Users) for testing purposes
 /**
- * (License)
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
  * @file    mock_data_access.hpp
- * @authors { Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley }
- * @date    1/9/2019
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
  */
 #include "user.hpp"
 #include "data_access_interface.hpp"

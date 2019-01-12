@@ -1,9 +1,11 @@
 ///Mocks the CADG Logger for testing purposes
 /**
- * (License)
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
  * @file    mock_logger.hpp
- * @authors { Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley }
- * @date    1/9/2019
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
  */
 
 #ifndef CADG_MOCK_LOGGER_HPP
