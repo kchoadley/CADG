@@ -3,10 +3,10 @@ import './sidebar.css';
 
 const sidebar = () => {
     return (<div className="sideBar">
-        <a href="#">Button 1</a>
-        <a href="#">Button 2</a>
-        <a href="#">Button 3</a>
-        <a href="#">Button 4</a>
+        <a href="#">Send Alert</a>
+        <a href="#">Edit Alert</a>
+        <a href="#">Cancel Alert</a>
+        <a href="#">View Alerts</a>
     </div>);
 };
 

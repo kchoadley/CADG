@@ -1,6 +1,6 @@
 .sideBar {
     height: 100%;
-    width: 7%;
+    width: 10%;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -10,17 +10,21 @@
 }
 
 .sideBar a {
-    padding: 8px 8px 8px 8px;
+    padding: 5%;
+    margin: 10%;
+    background-color: gray;
     text-decoration: none;
-    font-size: 25px;
+    font-size: calc(10px + 1vmin);
     color: white;
     display: block;
 }
 
 .sideBar a:hover {
+    background-color: darkgray;
     color: yellow;
 }
 
 .sideBar a:target {
+    background-color: darkgray;
     color: red;
 }
