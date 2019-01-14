@@ -1,0 +1,12 @@
+digraph "nanodbc::result::get"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node108 [label="nanodbc::result::get",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets data from the given column of the current rowset."];
+  Node108 -> Node109 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node109 [label="cadg_rest::DataAccessObject\l::GetUsers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a52d1c1333fc65e6a3a6276d044296ca0",tooltip="Returns all users."];
+  Node108 -> Node110 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node110 [label="cadg_rest::DataAccessObject\l::AddUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a6d80c563e1cd526791fa69f32cd1d896",tooltip="Adds a new user."];
+}

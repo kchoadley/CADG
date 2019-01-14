@@ -1,0 +1,10 @@
+digraph "nanodbc::connection::allocate"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node15 [label="nanodbc::connection\l::allocate",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Allocate environment and connection handles."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="nanodbc::list_drivers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga6f80fb8f7af3bb099e04bf8d603a210a",tooltip="Returns a list of ODBC drivers on your system."];
+}

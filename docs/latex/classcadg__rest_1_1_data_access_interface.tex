@@ -1,0 +1,192 @@
+\hypertarget{classcadg__rest_1_1_data_access_interface}{}\section{cadg\+\_\+rest\+::Data\+Access\+Interface Class Reference}
+\label{classcadg__rest_1_1_data_access_interface}\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+
+
+{\ttfamily \#include $<$data\+\_\+access\+\_\+interface.\+hpp$>$}
+
+Inheritance diagram for cadg\+\_\+rest\+::Data\+Access\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcadg__rest_1_1_data_access_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a657bd814589e6c5553a0303115350783}{Get\+Users}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns all users. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_ae6cf7e7fad98f27ffc797a9bf5a6b7df}{Get\+Users\+By\+Name}} (const std\+::string \&name)=0
+\begin{DoxyCompactList}\small\item\em Returns all users that contain the provided name. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a9df9cb8876073f42e7e54ada41eec3b3}{Get\+User\+By\+ID}} (int id)=0
+\begin{DoxyCompactList}\small\item\em Returns all users with the provided id. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a1f3c5c41611ae04a32935df01505c98d}{Remove\+User}} (\mbox{\hyperlink{structcadg__rest_1_1_user}{User}} user)=0
+\begin{DoxyCompactList}\small\item\em Removes a user by the provided id. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a625cb7ba6f4637e3157acda84f81eae9}{Add\+User}} (\mbox{\hyperlink{structcadg__rest_1_1_user}{User}} user)=0
+\begin{DoxyCompactList}\small\item\em Adds a new user. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_ae44f7d277f8b8982869109e66333949a}{Update\+User}} (int id, web\+::json\+::object user\+\_\+info)=0
+\begin{DoxyCompactList}\small\item\em Updates a user. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a919c1024501d1ba5eec4ff6dfce7c742}{Set\+Connection\+String}} (std\+::string conn\+Str)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classcadg__rest_1_1_data_access_interface}{Data\+Access\+Interface}} defines several C\+R\+UD operations for a user data store. This interface must be defines in an inheriting class. 
+
+Definition at line 24 of file data\+\_\+access\+\_\+interface.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_a625cb7ba6f4637e3157acda84f81eae9}\label{classcadg__rest_1_1_data_access_interface_a625cb7ba6f4637e3157acda84f81eae9}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily virtual void cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Add\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Adds a new user. 
+
+Add\+User adds the user to the data store.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to add to the data store. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a6d80c563e1cd526791fa69f32cd1d896}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_a9df9cb8876073f42e7e54ada41eec3b3}\label{classcadg__rest_1_1_data_access_interface_a9df9cb8876073f42e7e54ada41eec3b3}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!GetUserByID@{GetUserByID}}
+\index{GetUserByID@{GetUserByID}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{GetUserByID()}{GetUserByID()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}$>$ cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Get\+User\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns all users with the provided id. 
+
+Get\+User\+By\+ID gets the user in the data store by id.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing the found user, or empty if there is no matching user. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a54d23c50e3be7d80503f43e7ff82752e}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_a657bd814589e6c5553a0303115350783}\label{classcadg__rest_1_1_data_access_interface_a657bd814589e6c5553a0303115350783}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{GetUsers()}{GetUsers()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}$>$ cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Get\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns all users. 
+
+Get\+Users gets all users in the data store. \begin{DoxyReturn}{Returns}
+Vector of all users. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a52d1c1333fc65e6a3a6276d044296ca0}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_ae6cf7e7fad98f27ffc797a9bf5a6b7df}\label{classcadg__rest_1_1_data_access_interface_ae6cf7e7fad98f27ffc797a9bf5a6b7df}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!GetUsersByName@{GetUsersByName}}
+\index{GetUsersByName@{GetUsersByName}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{GetUsersByName()}{GetUsersByName()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}$>$ cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Get\+Users\+By\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns all users that contain the provided name. 
+
+Get\+Users\+By\+Name gets all users in the data store which have a name that partially or fully matches the name argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the user(s) to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of all users that match the name. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_af08156c296e0ec18d9885292a549eef8}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_a1f3c5c41611ae04a32935df01505c98d}\label{classcadg__rest_1_1_data_access_interface_a1f3c5c41611ae04a32935df01505c98d}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!RemoveUser@{RemoveUser}}
+\index{RemoveUser@{RemoveUser}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{RemoveUser()}{RemoveUser()}}
+{\footnotesize\ttfamily virtual bool cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Remove\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Removes a user by the provided id. 
+
+Remove\+User removes the user in the data store by id.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bool indicating successful removal. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a049df84fde79be3547fe363be40850e4}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_a919c1024501d1ba5eec4ff6dfce7c742}\label{classcadg__rest_1_1_data_access_interface_a919c1024501d1ba5eec4ff6dfce7c742}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!SetConnectionString@{SetConnectionString}}
+\index{SetConnectionString@{SetConnectionString}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{SetConnectionString()}{SetConnectionString()}}
+{\footnotesize\ttfamily virtual void cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Set\+Connection\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{conn\+Str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Set\+Connection\+String sets the string used for connecting with the database. 
+\begin{DoxyParams}{Parameters}
+{\em conn\+Str} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a9f5981fb13220932808b46fee7b55398}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_interface_ae44f7d277f8b8982869109e66333949a}\label{classcadg__rest_1_1_data_access_interface_ae44f7d277f8b8982869109e66333949a}} 
+\index{cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}!UpdateUser@{UpdateUser}}
+\index{UpdateUser@{UpdateUser}!cadg\_rest::DataAccessInterface@{cadg\_rest::DataAccessInterface}}
+\subsubsection{\texorpdfstring{UpdateUser()}{UpdateUser()}}
+{\footnotesize\ttfamily virtual void cadg\+\_\+rest\+::\+Data\+Access\+Interface\+::\+Update\+User (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{web\+::json\+::object}]{user\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Updates a user. 
+
+Update\+User updates a user in the data store.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to update. \\
+\hline
+{\em user\+\_\+info} & The updated information for the user. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_af9a88b06de9cd2c7042c91be83e00872}{cadg\+\_\+rest\+::\+Data\+Access\+Object}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/services/\mbox{\hyperlink{data__access__interface_8hpp}{data\+\_\+access\+\_\+interface.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,10 @@
+digraph "nanodbc::result_iterator::operator *"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node5 [label="nanodbc::result_iterator\l::operator *",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Dereference."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="nanodbc::result_iterator\l::operator-\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result__iterator.html#a4f6eafe2226e141383d4461fa5de2746",tooltip="Access through dereference."];
+}

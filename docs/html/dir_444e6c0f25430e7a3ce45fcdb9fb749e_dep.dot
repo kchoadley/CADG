@@ -1,0 +1,13 @@
+digraph "rest-server/src/controller" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_33f089569be8def10cd5f057d74ff592 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_33f089569be8def10cd5f057d74ff592.html"]
+  dir_444e6c0f25430e7a3ce45fcdb9fb749e [shape=box, label="controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_444e6c0f25430e7a3ce45fcdb9fb749e.html"];
+  }
+  dir_437cb73d22b85714158363a731fa7dd5 [shape=box label="services" URL="dir_437cb73d22b85714158363a731fa7dd5.html"];
+  dir_0e47ea8993126b27d06368614464a189 [shape=box label="util" URL="dir_0e47ea8993126b27d06368614464a189.html"];
+  dir_444e6c0f25430e7a3ce45fcdb9fb749e->dir_437cb73d22b85714158363a731fa7dd5 [headlabel="3", labeldistance=1.5 headhref="dir_000002_000005.html"];
+  dir_444e6c0f25430e7a3ce45fcdb9fb749e->dir_0e47ea8993126b27d06368614464a189 [headlabel="1", labeldistance=1.5 headhref="dir_000002_000006.html"];
+}

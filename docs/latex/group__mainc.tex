@@ -1,0 +1,65 @@
+\hypertarget{group__mainc}{}\section{Main classes}
+\label{group__mainc}\index{Main classes@{Main classes}}
+
+
+Main nanodbc classes.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1transaction}{nanodbc\+::transaction}}
+\begin{DoxyCompactList}\small\item\em A resource for managing transaction commits and rollbacks. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1statement}{nanodbc\+::statement}}
+\begin{DoxyCompactList}\small\item\em Represents a statement on the database. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1connection}{nanodbc\+::connection}}
+\begin{DoxyCompactList}\small\item\em Manages and encapsulates O\+D\+BC resources such as the connection and environment handles. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result}{nanodbc\+::result}}
+\begin{DoxyCompactList}\small\item\em A resource for managing result sets from statement execution. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result__iterator}{nanodbc\+::result\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em Single pass input iterator that accesses successive rows in the attached result set. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog}{nanodbc\+::catalog}}
+\begin{DoxyCompactList}\small\item\em A resource for get catalog information from connected data source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1result__iterator}{result\+\_\+iterator}} \mbox{\hyperlink{group__mainc_gac6e8e0e4c603c1bbfc0c7db3a58919f0}{nanodbc\+::begin}} (\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&r)
+\begin{DoxyCompactList}\small\item\em Returns an iterator to the beginning of the given result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result__iterator}{result\+\_\+iterator}} \mbox{\hyperlink{group__mainc_ga91df79a3401b5afd4ec109101737b05b}{nanodbc\+::end}} (\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&)
+\begin{DoxyCompactList}\small\item\em Returns an iterator to the end of a result set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main nanodbc classes. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__mainc_gac6e8e0e4c603c1bbfc0c7db3a58919f0}\label{group__mainc_gac6e8e0e4c603c1bbfc0c7db3a58919f0}} 
+\index{Main classes@{Main classes}!begin@{begin}}
+\index{begin@{begin}!Main classes@{Main classes}}
+\subsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result__iterator}{result\+\_\+iterator}} nanodbc\+::begin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns an iterator to the beginning of the given result set. 
+
+
+
+Definition at line 1556 of file nanodbc.\+hpp.
+
+\mbox{\Hypertarget{group__mainc_ga91df79a3401b5afd4ec109101737b05b}\label{group__mainc_ga91df79a3401b5afd4ec109101737b05b}} 
+\index{Main classes@{Main classes}!end@{end}}
+\index{end@{end}!Main classes@{Main classes}}
+\subsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result__iterator}{result\+\_\+iterator}} nanodbc\+::end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns an iterator to the end of a result set. 
+
+The default-\/constructed {\ttfamily \mbox{\hyperlink{classnanodbc_1_1result__iterator}{nanodbc\+::result\+\_\+iterator}}} is known as the end-\/of-\/result iterator. When a valid {\ttfamily \mbox{\hyperlink{classnanodbc_1_1result__iterator}{nanodbc\+::result\+\_\+iterator}}} reaches the end of the underlying result set, it becomes equal to the end-\/of-\/result iterator. Dereferencing or incrementing it further is undefined. 
+
+Definition at line 1567 of file nanodbc.\+hpp.
+

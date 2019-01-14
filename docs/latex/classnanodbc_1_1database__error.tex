@@ -1,0 +1,105 @@
+\hypertarget{classnanodbc_1_1database__error}{}\section{nanodbc\+::database\+\_\+error Class Reference}
+\label{classnanodbc_1_1database__error}\index{nanodbc::database\_error@{nanodbc::database\_error}}
+
+
+General database error.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+Inheritance diagram for nanodbc\+::database\+\_\+error\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classnanodbc_1_1database__error}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1database__error_a5896a7b81053281d045eb9a0e127ef76}{database\+\_\+error}} (void $\ast$handle, short handle\+\_\+type, const std\+::string \&info=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates runtime\+\_\+error with message about last O\+D\+BC error. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classnanodbc_1_1database__error_a270ae2547cf357ccd95225d957638ae9}{what}} () const noexcept
+\item 
+const long \mbox{\hyperlink{classnanodbc_1_1database__error_acfa6f22b6405fdab32a5284a696822a2}{native}} () const noexcept
+\item 
+const std\+::string \mbox{\hyperlink{classnanodbc_1_1database__error_a49ebd24a0598597e12a380e22fec357e}{state}} () const noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+General database error. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__exceptions}{Exception types}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 286 of file nanodbc.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1database__error_a5896a7b81053281d045eb9a0e127ef76}\label{classnanodbc_1_1database__error_a5896a7b81053281d045eb9a0e127ef76}} 
+\index{nanodbc::database\_error@{nanodbc::database\_error}!database\_error@{database\_error}}
+\index{database\_error@{database\_error}!nanodbc::database\_error@{nanodbc::database\_error}}
+\subsubsection{\texorpdfstring{database\_error()}{database\_error()}}
+{\footnotesize\ttfamily nanodbc\+::database\+\_\+error\+::database\+\_\+error (\begin{DoxyParamCaption}\item[{void $\ast$}]{handle,  }\item[{short}]{handle\+\_\+type,  }\item[{const std\+::string \&}]{info = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Creates runtime\+\_\+error with message about last O\+D\+BC error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & The native O\+D\+BC statement or connection handle. \\
+\hline
+{\em handle\+\_\+type} & The native O\+D\+BC handle type code for the given handle. \\
+\hline
+{\em info} & Additional info that will be appended to the beginning of the error message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 481 of file nanodbc.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1database__error_acfa6f22b6405fdab32a5284a696822a2}\label{classnanodbc_1_1database__error_acfa6f22b6405fdab32a5284a696822a2}} 
+\index{nanodbc::database\_error@{nanodbc::database\_error}!native@{native}}
+\index{native@{native}!nanodbc::database\_error@{nanodbc::database\_error}}
+\subsubsection{\texorpdfstring{native()}{native()}}
+{\footnotesize\ttfamily const long nanodbc\+::database\+\_\+error\+::native (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 495 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1database__error_a49ebd24a0598597e12a380e22fec357e}\label{classnanodbc_1_1database__error_a49ebd24a0598597e12a380e22fec357e}} 
+\index{nanodbc::database\_error@{nanodbc::database\_error}!state@{state}}
+\index{state@{state}!nanodbc::database\_error@{nanodbc::database\_error}}
+\subsubsection{\texorpdfstring{state()}{state()}}
+{\footnotesize\ttfamily const std\+::string nanodbc\+::database\+\_\+error\+::state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 500 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1database__error_a270ae2547cf357ccd95225d957638ae9}\label{classnanodbc_1_1database__error_a270ae2547cf357ccd95225d957638ae9}} 
+\index{nanodbc::database\_error@{nanodbc::database\_error}!what@{what}}
+\index{what@{what}!nanodbc::database\_error@{nanodbc::database\_error}}
+\subsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily const char $\ast$ nanodbc\+::database\+\_\+error\+::what (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 490 of file nanodbc.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

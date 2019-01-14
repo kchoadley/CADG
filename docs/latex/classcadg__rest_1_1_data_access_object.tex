@@ -1,0 +1,274 @@
+\hypertarget{classcadg__rest_1_1_data_access_object}{}\section{cadg\+\_\+rest\+::Data\+Access\+Object Class Reference}
+\label{classcadg__rest_1_1_data_access_object}\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+
+
+A D\+AO for users.  
+
+
+
+
+{\ttfamily \#include $<$data\+\_\+access\+\_\+object.\+hpp$>$}
+
+Inheritance diagram for cadg\+\_\+rest\+::Data\+Access\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcadg__rest_1_1_data_access_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a406ab0c0f47900529133afc7db6c3bca}{Data\+Access\+Object}} (\mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em Deletes the copy constructor to enforce singleton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_ac17c7c54dd84c1d512c83cb6a15bb894}{operator=}} (\mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em Deletes the assignment constructor to enforce singleton. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a52d1c1333fc65e6a3a6276d044296ca0}{Get\+Users}} () override
+\begin{DoxyCompactList}\small\item\em Returns all users. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_af08156c296e0ec18d9885292a549eef8}{Get\+Users\+By\+Name}} (const std\+::string \&name) override
+\begin{DoxyCompactList}\small\item\em Returns all users that contain the provided name. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a54d23c50e3be7d80503f43e7ff82752e}{Get\+User\+By\+ID}} (int id) override
+\begin{DoxyCompactList}\small\item\em Returns all users with the provided id. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a049df84fde79be3547fe363be40850e4}{Remove\+User}} (\mbox{\hyperlink{structcadg__rest_1_1_user}{User}} user) override
+\begin{DoxyCompactList}\small\item\em Removes a user by the provided id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a6d80c563e1cd526791fa69f32cd1d896}{Add\+User}} (\mbox{\hyperlink{structcadg__rest_1_1_user}{User}} user) override
+\begin{DoxyCompactList}\small\item\em Adds a new user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_af9a88b06de9cd2c7042c91be83e00872}{Update\+User}} (int id, web\+::json\+::object user\+\_\+info) override
+\begin{DoxyCompactList}\small\item\em Updates a user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a9f5981fb13220932808b46fee7b55398}{Set\+Connection\+String}} (std\+::string conn\+Str) override
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} \& \mbox{\hyperlink{classcadg__rest_1_1_data_access_object_a7daee562f5c70bfe2ad1989115f8f97e}{Instance}} ()
+\begin{DoxyCompactList}\small\item\em Instance returns a reference to the \mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A D\+AO for users. 
+
+\mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} implements C\+R\+UD operations on the user data store. 
+
+Definition at line 25 of file data\+\_\+access\+\_\+object.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a406ab0c0f47900529133afc7db6c3bca}\label{classcadg__rest_1_1_data_access_object_a406ab0c0f47900529133afc7db6c3bca}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!DataAccessObject@{DataAccessObject}}
+\index{DataAccessObject@{DataAccessObject}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{DataAccessObject()}{DataAccessObject()}}
+{\footnotesize\ttfamily cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Data\+Access\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} const \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deletes the copy constructor to enforce singleton. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a6d80c563e1cd526791fa69f32cd1d896}\label{classcadg__rest_1_1_data_access_object_a6d80c563e1cd526791fa69f32cd1d896}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Add\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Adds a new user. 
+
+Add\+User adds the user to the data store.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to add to the data store. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a625cb7ba6f4637e3157acda84f81eae9}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 84 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a54d23c50e3be7d80503f43e7ff82752e}\label{classcadg__rest_1_1_data_access_object_a54d23c50e3be7d80503f43e7ff82752e}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!GetUserByID@{GetUserByID}}
+\index{GetUserByID@{GetUserByID}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{GetUserByID()}{GetUserByID()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Get\+User\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns all users with the provided id. 
+
+Get\+User\+By\+ID gets the user in the data store by id.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing the found user, or empty if there is no matching user.
+\end{DoxyReturn}
+ID is the primary key of data type \mbox{\hyperlink{structcadg__rest_1_1_user}{User}}. This method will always return either and empty vector or a vector with 1 \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} in it. Check returned vector size to determine if there was a \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} with the associated ID. 
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a9df9cb8876073f42e7e54ada41eec3b3}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 62 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a52d1c1333fc65e6a3a6276d044296ca0}\label{classcadg__rest_1_1_data_access_object_a52d1c1333fc65e6a3a6276d044296ca0}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{GetUsers()}{GetUsers()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Get\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns all users. 
+
+Get\+Users gets all users in the data store. \begin{DoxyReturn}{Returns}
+Vector of all users. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a657bd814589e6c5553a0303115350783}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 22 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_af08156c296e0ec18d9885292a549eef8}\label{classcadg__rest_1_1_data_access_object_af08156c296e0ec18d9885292a549eef8}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!GetUsersByName@{GetUsersByName}}
+\index{GetUsersByName@{GetUsersByName}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{GetUsersByName()}{GetUsersByName()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} $>$ cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Get\+Users\+By\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns all users that contain the provided name. 
+
+Get\+Users\+By\+Name gets all users in the data store which have a name that partially or fully matches the name argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the user(s) to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of all users that match the name.
+\end{DoxyReturn}
+T\+O\+DO\+: Does not handle a space \textquotesingle{} \textquotesingle{} in the url correctly. Will need to convert \textquotesingle{}\%20\textquotesingle{} to space \textquotesingle{} \textquotesingle{}. 
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_ae6cf7e7fad98f27ffc797a9bf5a6b7df}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 44 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a7daee562f5c70bfe2ad1989115f8f97e}\label{classcadg__rest_1_1_data_access_object_a7daee562f5c70bfe2ad1989115f8f97e}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!Instance@{Instance}}
+\index{Instance@{Instance}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{Instance()}{Instance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} \& cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Instance returns a reference to the \mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}}. 
+
+Instance implements the Singleton design pattern. 
+
+Definition at line 15 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_ac17c7c54dd84c1d512c83cb6a15bb894}\label{classcadg__rest_1_1_data_access_object_ac17c7c54dd84c1d512c83cb6a15bb894}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!operator=@{operator=}}
+\index{operator=@{operator=}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+Data\+Access\+Object\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcadg__rest_1_1_data_access_object}{Data\+Access\+Object}} const \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deletes the assignment constructor to enforce singleton. 
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a049df84fde79be3547fe363be40850e4}\label{classcadg__rest_1_1_data_access_object_a049df84fde79be3547fe363be40850e4}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!RemoveUser@{RemoveUser}}
+\index{RemoveUser@{RemoveUser}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{RemoveUser()}{RemoveUser()}}
+{\footnotesize\ttfamily bool cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Remove\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcadg__rest_1_1_user}{User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Removes a user by the provided id. 
+
+Remove\+User removes the user in the data store by id.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bool indicating successful removal. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a1f3c5c41611ae04a32935df01505c98d}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 72 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_a9f5981fb13220932808b46fee7b55398}\label{classcadg__rest_1_1_data_access_object_a9f5981fb13220932808b46fee7b55398}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!SetConnectionString@{SetConnectionString}}
+\index{SetConnectionString@{SetConnectionString}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{SetConnectionString()}{SetConnectionString()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Set\+Connection\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{conn\+Str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Set\+Connection\+String sets the string used for connecting with the database. 
+\begin{DoxyParams}{Parameters}
+{\em conn\+Str} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_a919c1024501d1ba5eec4ff6dfce7c742}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 19 of file data\+\_\+access\+\_\+object.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_data_access_object_af9a88b06de9cd2c7042c91be83e00872}\label{classcadg__rest_1_1_data_access_object_af9a88b06de9cd2c7042c91be83e00872}} 
+\index{cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}!UpdateUser@{UpdateUser}}
+\index{UpdateUser@{UpdateUser}!cadg\_rest::DataAccessObject@{cadg\_rest::DataAccessObject}}
+\subsubsection{\texorpdfstring{UpdateUser()}{UpdateUser()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+Data\+Access\+Object\+::\+Update\+User (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{web\+::json\+::object}]{user\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates a user. 
+
+Update\+User updates a user in the data store.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the user to update. \\
+\hline
+{\em user\+\_\+info} & The updated information for the user. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface_ae44f7d277f8b8982869109e66333949a}{cadg\+\_\+rest\+::\+Data\+Access\+Interface}}.
+
+
+
+Definition at line 107 of file data\+\_\+access\+\_\+object.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/services/\mbox{\hyperlink{data__access__object_8hpp}{data\+\_\+access\+\_\+object.\+hpp}}\item 
+rest-\/server/src/services/\mbox{\hyperlink{data__access__object_8cpp}{data\+\_\+access\+\_\+object.\+cpp}}\end{DoxyCompactItemize}

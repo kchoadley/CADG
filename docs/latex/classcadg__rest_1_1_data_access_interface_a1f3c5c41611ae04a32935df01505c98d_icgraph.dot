@@ -1,0 +1,12 @@
+digraph "cadg_rest::DataAccessInterface::RemoveUser"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node20 [label="cadg_rest::DataAccessInterface\l::RemoveUser",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Removes a user by the provided id."];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="cadg_rest::UserController\l::HandleDelete",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a99ed4e9459766b3e000814b503378a2d",tooltip="Removes an existing user."];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="cadg_rest::UserController\l::InitHandlers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a213210b1e1f8f7417133f3290fbb9b67",tooltip="Initializes listeners and binds methods to proper handlers."];
+}

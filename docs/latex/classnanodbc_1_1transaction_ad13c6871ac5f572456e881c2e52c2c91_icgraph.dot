@@ -1,0 +1,12 @@
+digraph "nanodbc::transaction::commit"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node9 [label="nanodbc::transaction\l::commit",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Commits transaction immediately."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="nanodbc::transact",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga3f5b3e15f31690ef54ca20058ea89074",tooltip="Execute the previously prepared query now."];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="nanodbc::just_transact",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga343e69acce5e8122723ca8d38b0a7f92",tooltip="Execute the previously prepared query now and without creating result object."];
+}

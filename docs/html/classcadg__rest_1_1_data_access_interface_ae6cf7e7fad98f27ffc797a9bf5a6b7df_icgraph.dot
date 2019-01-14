@@ -1,0 +1,14 @@
+digraph "cadg_rest::DataAccessInterface::GetUsersByName"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node15 [label="cadg_rest::DataAccessInterface\l::GetUsersByName",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns all users that contain the provided name."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="cadg_rest::UserController\l::GetUsersByName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#aa98afe262762a47ff443a36eb4a97b8d",tooltip=" "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="cadg_rest::UserController\l::HandleGet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#ae31aee8fecf0d1f7d0ba70c0e62da54d",tooltip="Returns the requested user(s)."];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="cadg_rest::UserController\l::InitHandlers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a213210b1e1f8f7417133f3290fbb9b67",tooltip="Initializes listeners and binds methods to proper handlers."];
+}

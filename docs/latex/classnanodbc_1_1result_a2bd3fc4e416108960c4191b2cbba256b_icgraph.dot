@@ -1,0 +1,47 @@
+digraph "nanodbc::result::column_name"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node71 [label="nanodbc::result::column_name",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the name of the specified column."];
+  Node71 -> Node72 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node72 [label="nanodbc::result::is_null",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a9201ef6814bf934ffb9caa7b62f3bad9",tooltip="Returns true if and only if the given column by name of the current rowset is null."];
+  Node71 -> Node73 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node73 [label="nanodbc::result::column",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#ae4e254b2db63c65473cc058de3d5a844",tooltip="Returns the column number of the specified column name."];
+  Node73 -> Node74 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node74 [label="nanodbc::result::is_null",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a85462f6eaed91a5b03739319bd2712e7",tooltip="Returns true if and only if the given column of the current rowset is null."];
+  Node73 -> Node71 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node73 -> Node75 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node75 [label="nanodbc::result::column_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#ae6c9d812e8be9ea46a5cd346e83a6cba",tooltip="Returns the size of the specified column."];
+  Node73 -> Node76 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node76 [label="nanodbc::result::column\l_decimal_digits",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#aa2568f3d624d65a9f850880e1d2747f8",tooltip="Returns the number of decimal digits of the specified column."];
+  Node73 -> Node77 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node77 [label="nanodbc::result::column\l_datatype",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a8adc601a07a055f15908724e285133bb",tooltip="Returns a identifying integer value representing the SQL type of this column."];
+  Node73 -> Node78 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node78 [label="nanodbc::result::column\l_datatype_name",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a72775ba759833560efebba44892576b3",tooltip="Returns data source dependent data type name of this column."];
+  Node73 -> Node79 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node79 [label="nanodbc::result::column\l_c_datatype",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a094ee5a13d83c0aeabd8ccab4c4e130c",tooltip="Returns a identifying integer value representing the C type of this column."];
+  Node73 -> Node80 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node80 [label="nanodbc::result::get_ref",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#ad606b9ccfa02d6dbdae7a28c7a92bb14",tooltip="Gets data from the given column of the current rowset."];
+  Node73 -> Node81 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node81 [label="nanodbc::result::get",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#affa949e32147a8f262d066a790651ad7",tooltip="Gets data from the given column of the current rowset."];
+  Node81 -> Node82 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node82 [label="cadg_rest::DataAccessObject\l::GetUsers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a52d1c1333fc65e6a3a6276d044296ca0",tooltip="Returns all users."];
+  Node81 -> Node83 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node83 [label="cadg_rest::DataAccessObject\l::AddUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a6d80c563e1cd526791fa69f32cd1d896",tooltip="Adds a new user."];
+  Node71 -> Node84 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node84 [label="nanodbc::result::column_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a43c42071bf86c4532039b61ad3f3c6c6",tooltip="Returns the size of the specified column by name."];
+  Node71 -> Node85 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node85 [label="nanodbc::result::column\l_decimal_digits",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#aabbb9fb0a14a5b0fbb33fda4a1143b78",tooltip="Returns the number of decimal digits of the specified column by name."];
+  Node71 -> Node86 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node86 [label="nanodbc::result::column\l_datatype",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#af698d05f12656b6ab0809b0a60ea9a60",tooltip="Returns a identifying integer value representing the SQL type of this column by name."];
+  Node71 -> Node87 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node87 [label="nanodbc::result::column\l_datatype_name",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a391d792c4a37be4037274b681c96da59",tooltip="Returns data source dependent data type name of this column by name."];
+  Node71 -> Node88 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node88 [label="nanodbc::result::column\l_c_datatype",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a3f505031acffabc538b2d840416074fa",tooltip="Returns a identifying integer value representing the C type of this column by name."];
+  Node71 -> Node89 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node89 [label="nanodbc::result::get_ref",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a09a12956778629533cbb619a4fd9216d",tooltip="Gets data from the given column by name of the current rowset."];
+  Node71 -> Node90 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node90 [label="nanodbc::result::get",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a3be6ab61aea0902cb05f55ad814e85c1",tooltip="Gets data from the given column by name of the current rowset."];
+}

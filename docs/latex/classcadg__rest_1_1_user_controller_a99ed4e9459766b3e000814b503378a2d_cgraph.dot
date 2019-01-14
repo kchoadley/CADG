@@ -1,0 +1,20 @@
+digraph "cadg_rest::UserController::HandleDelete"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="cadg_rest::UserController\l::HandleDelete",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Removes an existing user."];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="cadg_rest::LoggerInterface\l::LogNetworkActivity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a9f3648fc2c6d697e80961041a40d2e24",tooltip="Generic log method for logging method calls."];
+  Node17 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="cadg_rest::Controller\l::endpoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#addeea914faab4557cc7caa493fce1d2d",tooltip=" "];
+  Node17 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="cadg_rest::UserController\l::ParseUserID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a3523d014f2ada4364034e175f6d645f8",tooltip="Returns an ID specified in a URL path."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="cadg_rest::LoggerInterface::Log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a56f53c1fb9687825ade3acced5e3a10a",tooltip="Generic log method."];
+  Node17 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="cadg_rest::DataAccessInterface\l::GetUserByID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#a9df9cb8876073f42e7e54ada41eec3b3",tooltip="Returns all users with the provided id."];
+  Node17 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="cadg_rest::DataAccessInterface\l::RemoveUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#a1f3c5c41611ae04a32935df01505c98d",tooltip="Removes a user by the provided id."];
+}

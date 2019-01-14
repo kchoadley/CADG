@@ -1,0 +1,10 @@
+digraph "nanodbc::catalog::tables::next"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="nanodbc::catalog::tables\l::next",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Move to the next result in the result set."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="nanodbc::result::next",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result.html#a31470b51f194181373e4c2c4292d11c4",tooltip="Fetches the next row in the current result set."];
+}

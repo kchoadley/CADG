@@ -1,0 +1,172 @@
+\hypertarget{classnanodbc_1_1catalog_1_1table__privileges}{}\section{nanodbc\+::catalog\+::table\+\_\+privileges Class Reference}
+\label{classnanodbc_1_1catalog_1_1table__privileges}\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+
+
+Result set for a list of tables and the privileges associated with each table.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_a4960cb6d0edfa988ad3dbdf2940e0c93}{next}} ()
+\begin{DoxyCompactList}\small\item\em Move to the next result in the result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_aa1212da091b4c95b680a4de4c4906927}{table\+\_\+catalog}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table catalog. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_a75049bbc32d7a4e4c53a3723f3859da3}{table\+\_\+schema}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table schema. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_aac883f1373e4e6d9965f93cdff781a79}{table\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_a2b49c7a12f7e7ce3ea2c4f7106635245}{grantor}} () const
+\begin{DoxyCompactList}\small\item\em Fetch name of user who granted the privilege. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_ab14ef42b52e2694e836d01105224d815}{grantee}} () const
+\begin{DoxyCompactList}\small\item\em Fetch name of user whom the privilege was granted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_a0a6b85672d5d8be8766a78c087f32d47}{privilege}} () const
+\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_ae281289d9513f9af912d3de4a7e1f113}{is\+\_\+grantable}} () const
+\begin{DoxyCompactList}\small\item\em Fetch indicator whether the grantee is permitted to grant the privilege to other users. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges_af0f3134c7f6f1f36bfe1e247318dfe43}{nanodbc\+::catalog}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Result set for a list of tables and the privileges associated with each table. 
+
+Definition at line 1679 of file nanodbc.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_ab14ef42b52e2694e836d01105224d815}\label{classnanodbc_1_1catalog_1_1table__privileges_ab14ef42b52e2694e836d01105224d815}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!grantee@{grantee}}
+\index{grantee@{grantee}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{grantee()}{grantee()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::grantee (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch name of user whom the privilege was granted. 
+
+
+
+Definition at line 4251 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_a2b49c7a12f7e7ce3ea2c4f7106635245}\label{classnanodbc_1_1catalog_1_1table__privileges_a2b49c7a12f7e7ce3ea2c4f7106635245}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!grantor@{grantor}}
+\index{grantor@{grantor}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{grantor()}{grantor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::grantor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch name of user who granted the privilege. 
+
+
+
+Definition at line 4245 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_ae281289d9513f9af912d3de4a7e1f113}\label{classnanodbc_1_1catalog_1_1table__privileges_ae281289d9513f9af912d3de4a7e1f113}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!is\_grantable@{is\_grantable}}
+\index{is\_grantable@{is\_grantable}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{is\_grantable()}{is\_grantable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::is\+\_\+grantable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch indicator whether the grantee is permitted to grant the privilege to other users. 
+
+
+
+Definition at line 4263 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_a4960cb6d0edfa988ad3dbdf2940e0c93}\label{classnanodbc_1_1catalog_1_1table__privileges_a4960cb6d0edfa988ad3dbdf2940e0c93}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!next@{next}}
+\index{next@{next}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily bool nanodbc\+::catalog\+::table\+\_\+privileges\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move to the next result in the result set. 
+
+
+
+Definition at line 4222 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_a0a6b85672d5d8be8766a78c087f32d47}\label{classnanodbc_1_1catalog_1_1table__privileges_a0a6b85672d5d8be8766a78c087f32d47}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!privilege@{privilege}}
+\index{privilege@{privilege}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{privilege()}{privilege()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::privilege (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Fetch the table privilege. 
+
+Definition at line 4257 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_aa1212da091b4c95b680a4de4c4906927}\label{classnanodbc_1_1catalog_1_1table__privileges_aa1212da091b4c95b680a4de4c4906927}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!table\_catalog@{table\_catalog}}
+\index{table\_catalog@{table\_catalog}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{table\_catalog()}{table\_catalog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::table\+\_\+catalog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table catalog. 
+
+
+
+Definition at line 4227 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_aac883f1373e4e6d9965f93cdff781a79}\label{classnanodbc_1_1catalog_1_1table__privileges_aac883f1373e4e6d9965f93cdff781a79}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!table\_name@{table\_name}}
+\index{table\_name@{table\_name}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{table\_name()}{table\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::table\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table name. 
+
+
+
+Definition at line 4239 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_a75049bbc32d7a4e4c53a3723f3859da3}\label{classnanodbc_1_1catalog_1_1table__privileges_a75049bbc32d7a4e4c53a3723f3859da3}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!table\_schema@{table\_schema}}
+\index{table\_schema@{table\_schema}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{table\_schema()}{table\_schema()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::table\+\_\+privileges\+::table\+\_\+schema (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table schema. 
+
+
+
+Definition at line 4233 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1table__privileges_af0f3134c7f6f1f36bfe1e247318dfe43}\label{classnanodbc_1_1catalog_1_1table__privileges_af0f3134c7f6f1f36bfe1e247318dfe43}} 
+\index{nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}!nanodbc::catalog@{nanodbc::catalog}}
+\index{nanodbc::catalog@{nanodbc::catalog}!nanodbc::catalog::table\_privileges@{nanodbc::catalog::table\_privileges}}
+\subsubsection{\texorpdfstring{nanodbc::catalog}{nanodbc::catalog}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1catalog}{nanodbc\+::catalog}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1693 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

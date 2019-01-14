@@ -1,0 +1,176 @@
+\hypertarget{classnanodbc_1_1catalog}{}\section{nanodbc\+::catalog Class Reference}
+\label{classnanodbc_1_1catalog}\index{nanodbc::catalog@{nanodbc::catalog}}
+
+
+A resource for get catalog information from connected data source.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns}{columns}}
+\begin{DoxyCompactList}\small\item\em Result set for a list of columns in one or more tables. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys}{primary\+\_\+keys}}
+\begin{DoxyCompactList}\small\item\em Result set for a list of columns that compose the primary key of a single table. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges}{table\+\_\+privileges}}
+\begin{DoxyCompactList}\small\item\em Result set for a list of tables and the privileges associated with each table. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1tables}{tables}}
+\begin{DoxyCompactList}\small\item\em Result set for a list of tables in the data source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1catalog_ad18e6a0858639c14eb33b90736ab6d0e}{catalog}} (\mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn)
+\begin{DoxyCompactList}\small\item\em Creates catalog operating on database accessible through the specified connection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1catalog_1_1tables}{catalog\+::tables}} \mbox{\hyperlink{classnanodbc_1_1catalog_a8271eae78585043dfb59c85cc2e361f5}{find\+\_\+tables}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&table=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&type=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&schema=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1catalog}{catalog}}=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}())
+\begin{DoxyCompactList}\small\item\em Creates result set with catalogs, schemas, tables, or table types. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges}{catalog\+::table\+\_\+privileges}} \mbox{\hyperlink{classnanodbc_1_1catalog_a4fdba40e8bf0101d68484dd12ac520db}{find\+\_\+table\+\_\+privileges}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1catalog}{catalog}}, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&table=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&schema=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}())
+\begin{DoxyCompactList}\small\item\em Creates result set with tables and the privileges associated with each table. Tables information is obtained by executing {\ttfamily S\+Q\+L\+Table\+Privileges} function within scope of the connected database accessible with the specified connection. Since this function is implemented in terms of the {\ttfamily S\+Q\+L\+Table\+Privileges}s, it returns result set ordered by T\+A\+B\+L\+E\+\_\+\+C\+AT, T\+A\+B\+L\+E\+\_\+\+S\+C\+H\+EM, T\+A\+B\+L\+E\+\_\+\+N\+A\+ME, P\+R\+I\+V\+I\+L\+E\+GE, and G\+R\+A\+N\+T\+EE. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns}{catalog\+::columns}} \mbox{\hyperlink{classnanodbc_1_1catalog_ae095ba2ea1953355c7bdfba3b9e99cfa}{find\+\_\+columns}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&column=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&table=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&schema=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1catalog}{catalog}}=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}())
+\begin{DoxyCompactList}\small\item\em Creates result set with columns in one or more tables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys}{catalog\+::primary\+\_\+keys}} \mbox{\hyperlink{classnanodbc_1_1catalog_a611a69c39c361e1902df3bf9a793a638}{find\+\_\+primary\+\_\+keys}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&table, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&schema=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}(), const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1catalog}{catalog}}=\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}())
+\begin{DoxyCompactList}\small\item\em Creates result set with columns that compose the primary key of a single table. \end{DoxyCompactList}\item 
+std\+::list$<$ \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} $>$ \mbox{\hyperlink{classnanodbc_1_1catalog_a47339f7d553a97b737f6529b53ee2b3d}{list\+\_\+catalogs}} ()
+\begin{DoxyCompactList}\small\item\em Returns names of all catalogs (or databases) available in connected data source. \end{DoxyCompactList}\item 
+std\+::list$<$ \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} $>$ \mbox{\hyperlink{classnanodbc_1_1catalog_a00ec6b6cab5f6dab26dcd3b9d3435351}{list\+\_\+schemas}} ()
+\begin{DoxyCompactList}\small\item\em Returns names of all schemas available in connected data source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A resource for get catalog information from connected data source. 
+
+Queries are performed using the Catalog Functions in O\+D\+BC. All provided operations are convenient wrappers around the O\+D\+BC A\+PI The original O\+D\+BC behaviour should not be affected by any added processing. 
+
+Definition at line 1593 of file nanodbc.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_ad18e6a0858639c14eb33b90736ab6d0e}\label{classnanodbc_1_1catalog_ad18e6a0858639c14eb33b90736ab6d0e}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!catalog@{catalog}}
+\index{catalog@{catalog}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{catalog()}{catalog()}}
+{\footnotesize\ttfamily nanodbc\+::catalog\+::catalog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Creates catalog operating on database accessible through the specified connection. 
+
+
+
+Definition at line 4433 of file nanodbc.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_ae095ba2ea1953355c7bdfba3b9e99cfa}\label{classnanodbc_1_1catalog_ae095ba2ea1953355c7bdfba3b9e99cfa}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!find\_columns@{find\_columns}}
+\index{find\_columns@{find\_columns}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{find\_columns()}{find\_columns()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns}{catalog\+::columns}} nanodbc\+::catalog\+::find\+\_\+columns (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{table = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{schema = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{catalog = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()} }\end{DoxyParamCaption})}
+
+
+
+Creates result set with columns in one or more tables. 
+
+Columns information is obtained by executing {\ttfamily S\+Q\+L\+Columns} function within scope of the connected database accessible with the specified connection. Since this function is implemented in terms of the {\ttfamily S\+Q\+L\+Columns}, it returns result set ordered by T\+A\+B\+L\+E\+\_\+\+C\+AT, T\+A\+B\+L\+E\+\_\+\+S\+C\+H\+EM, T\+A\+B\+L\+E\+\_\+\+N\+A\+ME, and O\+R\+D\+I\+N\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON.
+
+All arguments are treated as the Pattern Value Arguments. Empty string argument is equivalent to passing the search pattern \textquotesingle{}\textquotesingle{}. 
+
+Definition at line 4501 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_a611a69c39c361e1902df3bf9a793a638}\label{classnanodbc_1_1catalog_a611a69c39c361e1902df3bf9a793a638}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!find\_primary\_keys@{find\_primary\_keys}}
+\index{find\_primary\_keys@{find\_primary\_keys}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{find\_primary\_keys()}{find\_primary\_keys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys}{catalog\+::primary\+\_\+keys}} nanodbc\+::catalog\+::find\+\_\+primary\+\_\+keys (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{table,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{schema = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{catalog = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()} }\end{DoxyParamCaption})}
+
+
+
+Creates result set with columns that compose the primary key of a single table. 
+
+Returns result set with column names that make up the primary key for a table. The primary key information is obtained by executing {\ttfamily S\+Q\+L\+Primary\+Key} function within scope of the connected database accessible with the specified connection.
+
+All arguments are treated as the Pattern Value Arguments. Empty string argument is equivalent to passing the search pattern \textquotesingle{}\textquotesingle{}. 
+
+Definition at line 4529 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_a4fdba40e8bf0101d68484dd12ac520db}\label{classnanodbc_1_1catalog_a4fdba40e8bf0101d68484dd12ac520db}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!find\_table\_privileges@{find\_table\_privileges}}
+\index{find\_table\_privileges@{find\_table\_privileges}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{find\_table\_privileges()}{find\_table\_privileges()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1catalog_1_1table__privileges}{catalog\+::table\+\_\+privileges}} nanodbc\+::catalog\+::find\+\_\+table\+\_\+privileges (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{catalog,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{table = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{schema = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()} }\end{DoxyParamCaption})}
+
+
+
+Creates result set with tables and the privileges associated with each table. Tables information is obtained by executing {\ttfamily S\+Q\+L\+Table\+Privileges} function within scope of the connected database accessible with the specified connection. Since this function is implemented in terms of the {\ttfamily S\+Q\+L\+Table\+Privileges}s, it returns result set ordered by T\+A\+B\+L\+E\+\_\+\+C\+AT, T\+A\+B\+L\+E\+\_\+\+S\+C\+H\+EM, T\+A\+B\+L\+E\+\_\+\+N\+A\+ME, P\+R\+I\+V\+I\+L\+E\+GE, and G\+R\+A\+N\+T\+EE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em catalog} & The table catalog. It cannot contain a string search pattern. \\
+\hline
+{\em schema} & String search pattern for schema names, treated as the Pattern Value Arguments. \\
+\hline
+{\em table} & String search pattern for table names, treated as the Pattern Value Arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Due to the fact catalog cannot is not the Pattern Value Argument, order of parameters is different than in the other catalog look-\/up functions. 
+\end{DoxyNote}
+
+
+Definition at line 4473 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_a8271eae78585043dfb59c85cc2e361f5}\label{classnanodbc_1_1catalog_a8271eae78585043dfb59c85cc2e361f5}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!find\_tables@{find\_tables}}
+\index{find\_tables@{find\_tables}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{find\_tables()}{find\_tables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1catalog_1_1tables}{catalog\+::tables}} nanodbc\+::catalog\+::find\+\_\+tables (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{table = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{type = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{schema = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()},  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{catalog = {\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}}()} }\end{DoxyParamCaption})}
+
+
+
+Creates result set with catalogs, schemas, tables, or table types. 
+
+Tables information is obtained by executing {\ttfamily S\+Q\+L\+Table} function within scope of the connected database accessible with the specified connection. Since this function is implemented in terms of the {\ttfamily S\+Q\+L\+Table}s, it returns result set ordered by T\+A\+B\+L\+E\+\_\+\+T\+Y\+PE, T\+A\+B\+L\+E\+\_\+\+C\+AT, T\+A\+B\+L\+E\+\_\+\+S\+C\+H\+EM, and T\+A\+B\+L\+E\+\_\+\+N\+A\+ME.
+
+All arguments are treated as the Pattern Value Arguments. Empty string argument is equivalent to passing the search pattern \textquotesingle{}\textquotesingle{}. 
+
+Definition at line 4438 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_a47339f7d553a97b737f6529b53ee2b3d}\label{classnanodbc_1_1catalog_a47339f7d553a97b737f6529b53ee2b3d}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!list\_catalogs@{list\_catalogs}}
+\index{list\_catalogs@{list\_catalogs}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{list\_catalogs()}{list\_catalogs()}}
+{\footnotesize\ttfamily std\+::list$<$ \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} $>$ nanodbc\+::catalog\+::list\+\_\+catalogs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns names of all catalogs (or databases) available in connected data source. 
+
+Executes {\ttfamily S\+Q\+L\+Table} function with {\ttfamily S\+Q\+L\+\_\+\+A\+L\+L\+\_\+\+C\+A\+T\+A\+L\+OG} as catalog search pattern. 
+
+Definition at line 4550 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_a00ec6b6cab5f6dab26dcd3b9d3435351}\label{classnanodbc_1_1catalog_a00ec6b6cab5f6dab26dcd3b9d3435351}} 
+\index{nanodbc::catalog@{nanodbc::catalog}!list\_schemas@{list\_schemas}}
+\index{list\_schemas@{list\_schemas}!nanodbc::catalog@{nanodbc::catalog}}
+\subsubsection{\texorpdfstring{list\_schemas()}{list\_schemas()}}
+{\footnotesize\ttfamily std\+::list$<$ \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} $>$ nanodbc\+::catalog\+::list\+\_\+schemas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns names of all schemas available in connected data source. 
+
+Executes {\ttfamily S\+Q\+L\+Table} function with {\ttfamily S\+Q\+L\+\_\+\+A\+L\+L\+\_\+\+S\+C\+H\+E\+M\+AS} as schema search pattern. 
+
+Definition at line 4582 of file nanodbc.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

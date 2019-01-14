@@ -1,0 +1,355 @@
+\hypertarget{classnanodbc_1_1catalog_1_1columns}{}\section{nanodbc\+::catalog\+::columns Class Reference}
+\label{classnanodbc_1_1catalog_1_1columns}\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+
+
+Result set for a list of columns in one or more tables.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a81a4fc993319b106131a8f2c23874042}{next}} ()
+\begin{DoxyCompactList}\small\item\em Move to the next result in the result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a21b22abe9b7ac3cec9d6ddbd25b56a3f}{table\+\_\+catalog}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table catalog. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a5996e5ea342e758f14481776e75e74bd}{table\+\_\+schema}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table schema. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_ab817aa0f9b4114a6d1ca7dc0449367ca}{table\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a9cdc2dbee8dd4887a185649596fcce0a}{column\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column name. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_afc61c619375282c2777ecc79f6a47cd0}{data\+\_\+type}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column data type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a5e01f34b60ef7d038f11eb6d1d114683}{type\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column type name. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_abf0f652057e62610bce32fedd4039831}{column\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column size. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_af1616d5e1f9616bf72e3881e068fd435}{buffer\+\_\+length}} () const
+\begin{DoxyCompactList}\small\item\em Fetch buffer length. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_ad22f3bf4453bc59bba45b7abbde93851}{decimal\+\_\+digits}} () const
+\begin{DoxyCompactList}\small\item\em Fetch decimal digits. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a3025408df3ed506759739ee6a415e70a}{numeric\+\_\+precision\+\_\+radix}} () const
+\begin{DoxyCompactList}\small\item\em Fetch numeric precission. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a89adcbcb8698c4365066a14438bd7dba}{nullable}} () const
+\begin{DoxyCompactList}\small\item\em True iff column is nullable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a10f43e080211af896295f5d4e90f74ee}{remarks}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column remarks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a4b81f871ec4f0bdefe9ee0be831c94dc}{column\+\_\+default}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column\textquotesingle{}s default. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a1a9224a4cae53eb55ea436978997f45b}{sql\+\_\+data\+\_\+type}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column\textquotesingle{}s S\+QL data type. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_a80c8ad5ce70a610f31e93dbfdbdda962}{sql\+\_\+datetime\+\_\+subtype}} () const
+\begin{DoxyCompactList}\small\item\em Fetch datetime subtype of column. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_ae68cdaf1be0289e1be1fcada433f0aaa}{char\+\_\+octet\+\_\+length}} () const
+\begin{DoxyCompactList}\small\item\em Fetch char octet length. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_aeb0328b77da7de19c81b392dfebf6eed}{ordinal\+\_\+position}} () const
+\begin{DoxyCompactList}\small\item\em Ordinal position of the column in the table. The first column in the table is number 1. Returns O\+R\+D\+I\+N\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON column value in result set returned by S\+Q\+L\+Columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_aec69eacef15e7eae155f3267ebad1a78}{is\+\_\+nullable}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column is-\/nullable information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1columns_af0f3134c7f6f1f36bfe1e247318dfe43}{nanodbc\+::catalog}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Result set for a list of columns in one or more tables. 
+
+Definition at line 1614 of file nanodbc.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_af1616d5e1f9616bf72e3881e068fd435}\label{classnanodbc_1_1catalog_1_1columns_af1616d5e1f9616bf72e3881e068fd435}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!buffer\_length@{buffer\_length}}
+\index{buffer\_length@{buffer\_length}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{buffer\_length()}{buffer\_length()}}
+{\footnotesize\ttfamily long nanodbc\+::catalog\+::columns\+::buffer\+\_\+length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch buffer length. 
+
+
+
+Definition at line 4367 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_ae68cdaf1be0289e1be1fcada433f0aaa}\label{classnanodbc_1_1catalog_1_1columns_ae68cdaf1be0289e1be1fcada433f0aaa}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!char\_octet\_length@{char\_octet\_length}}
+\index{char\_octet\_length@{char\_octet\_length}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{char\_octet\_length()}{char\_octet\_length()}}
+{\footnotesize\ttfamily long nanodbc\+::catalog\+::columns\+::char\+\_\+octet\+\_\+length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch char octet length. 
+
+
+
+Definition at line 4415 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a4b81f871ec4f0bdefe9ee0be831c94dc}\label{classnanodbc_1_1catalog_1_1columns_a4b81f871ec4f0bdefe9ee0be831c94dc}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!column\_default@{column\_default}}
+\index{column\_default@{column\_default}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{column\_default()}{column\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::column\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column\textquotesingle{}s default. 
+
+
+
+Definition at line 4397 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a9cdc2dbee8dd4887a185649596fcce0a}\label{classnanodbc_1_1catalog_1_1columns_a9cdc2dbee8dd4887a185649596fcce0a}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!column\_name@{column\_name}}
+\index{column\_name@{column\_name}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{column\_name()}{column\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::column\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column name. 
+
+
+
+Definition at line 4343 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_abf0f652057e62610bce32fedd4039831}\label{classnanodbc_1_1catalog_1_1columns_abf0f652057e62610bce32fedd4039831}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!column\_size@{column\_size}}
+\index{column\_size@{column\_size}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{column\_size()}{column\_size()}}
+{\footnotesize\ttfamily long nanodbc\+::catalog\+::columns\+::column\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column size. 
+
+
+
+Definition at line 4361 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_afc61c619375282c2777ecc79f6a47cd0}\label{classnanodbc_1_1catalog_1_1columns_afc61c619375282c2777ecc79f6a47cd0}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!data\_type@{data\_type}}
+\index{data\_type@{data\_type}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{data\_type()}{data\_type()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::data\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column data type. 
+
+
+
+Definition at line 4349 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_ad22f3bf4453bc59bba45b7abbde93851}\label{classnanodbc_1_1catalog_1_1columns_ad22f3bf4453bc59bba45b7abbde93851}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!decimal\_digits@{decimal\_digits}}
+\index{decimal\_digits@{decimal\_digits}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{decimal\_digits()}{decimal\_digits()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::decimal\+\_\+digits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch decimal digits. 
+
+
+
+Definition at line 4373 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_aec69eacef15e7eae155f3267ebad1a78}\label{classnanodbc_1_1catalog_1_1columns_aec69eacef15e7eae155f3267ebad1a78}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!is\_nullable@{is\_nullable}}
+\index{is\_nullable@{is\_nullable}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{is\_nullable()}{is\_nullable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::is\+\_\+nullable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column is-\/nullable information. 
+
+\begin{DoxyNote}{Note}
+M\+S\+DN\+: This column returns a zero-\/length string if nullability is unknown. I\+SO rules are followed to determine nullability. An I\+SO S\+Q\+L-\/compliant D\+B\+MS cannot return an empty string. 
+\end{DoxyNote}
+
+
+Definition at line 4427 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a81a4fc993319b106131a8f2c23874042}\label{classnanodbc_1_1catalog_1_1columns_a81a4fc993319b106131a8f2c23874042}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!next@{next}}
+\index{next@{next}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily bool nanodbc\+::catalog\+::columns\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move to the next result in the result set. 
+
+
+
+Definition at line 4320 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a89adcbcb8698c4365066a14438bd7dba}\label{classnanodbc_1_1catalog_1_1columns_a89adcbcb8698c4365066a14438bd7dba}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!nullable@{nullable}}
+\index{nullable@{nullable}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{nullable()}{nullable()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::nullable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+True iff column is nullable. 
+
+
+
+Definition at line 4385 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a3025408df3ed506759739ee6a415e70a}\label{classnanodbc_1_1catalog_1_1columns_a3025408df3ed506759739ee6a415e70a}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!numeric\_precision\_radix@{numeric\_precision\_radix}}
+\index{numeric\_precision\_radix@{numeric\_precision\_radix}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{numeric\_precision\_radix()}{numeric\_precision\_radix()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::numeric\+\_\+precision\+\_\+radix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch numeric precission. 
+
+
+
+Definition at line 4379 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_aeb0328b77da7de19c81b392dfebf6eed}\label{classnanodbc_1_1catalog_1_1columns_aeb0328b77da7de19c81b392dfebf6eed}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!ordinal\_position@{ordinal\_position}}
+\index{ordinal\_position@{ordinal\_position}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{ordinal\_position()}{ordinal\_position()}}
+{\footnotesize\ttfamily long nanodbc\+::catalog\+::columns\+::ordinal\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Ordinal position of the column in the table. The first column in the table is number 1. Returns O\+R\+D\+I\+N\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON column value in result set returned by S\+Q\+L\+Columns. 
+
+
+
+Definition at line 4421 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a10f43e080211af896295f5d4e90f74ee}\label{classnanodbc_1_1catalog_1_1columns_a10f43e080211af896295f5d4e90f74ee}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!remarks@{remarks}}
+\index{remarks@{remarks}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{remarks()}{remarks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::remarks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column remarks. 
+
+
+
+Definition at line 4391 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a1a9224a4cae53eb55ea436978997f45b}\label{classnanodbc_1_1catalog_1_1columns_a1a9224a4cae53eb55ea436978997f45b}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!sql\_data\_type@{sql\_data\_type}}
+\index{sql\_data\_type@{sql\_data\_type}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{sql\_data\_type()}{sql\_data\_type()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::sql\+\_\+data\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column\textquotesingle{}s S\+QL data type. 
+
+
+
+Definition at line 4403 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a80c8ad5ce70a610f31e93dbfdbdda962}\label{classnanodbc_1_1catalog_1_1columns_a80c8ad5ce70a610f31e93dbfdbdda962}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!sql\_datetime\_subtype@{sql\_datetime\_subtype}}
+\index{sql\_datetime\_subtype@{sql\_datetime\_subtype}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{sql\_datetime\_subtype()}{sql\_datetime\_subtype()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::columns\+::sql\+\_\+datetime\+\_\+subtype (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch datetime subtype of column. 
+
+
+
+Definition at line 4409 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a21b22abe9b7ac3cec9d6ddbd25b56a3f}\label{classnanodbc_1_1catalog_1_1columns_a21b22abe9b7ac3cec9d6ddbd25b56a3f}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!table\_catalog@{table\_catalog}}
+\index{table\_catalog@{table\_catalog}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{table\_catalog()}{table\_catalog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::table\+\_\+catalog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table catalog. 
+
+
+
+Definition at line 4325 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_ab817aa0f9b4114a6d1ca7dc0449367ca}\label{classnanodbc_1_1catalog_1_1columns_ab817aa0f9b4114a6d1ca7dc0449367ca}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!table\_name@{table\_name}}
+\index{table\_name@{table\_name}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{table\_name()}{table\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::table\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table name. 
+
+
+
+Definition at line 4337 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a5996e5ea342e758f14481776e75e74bd}\label{classnanodbc_1_1catalog_1_1columns_a5996e5ea342e758f14481776e75e74bd}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!table\_schema@{table\_schema}}
+\index{table\_schema@{table\_schema}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{table\_schema()}{table\_schema()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::table\+\_\+schema (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table schema. 
+
+
+
+Definition at line 4331 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_a5e01f34b60ef7d038f11eb6d1d114683}\label{classnanodbc_1_1catalog_1_1columns_a5e01f34b60ef7d038f11eb6d1d114683}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!type\_name@{type\_name}}
+\index{type\_name@{type\_name}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{type\_name()}{type\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::columns\+::type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column type name. 
+
+
+
+Definition at line 4355 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1columns_af0f3134c7f6f1f36bfe1e247318dfe43}\label{classnanodbc_1_1catalog_1_1columns_af0f3134c7f6f1f36bfe1e247318dfe43}} 
+\index{nanodbc::catalog::columns@{nanodbc::catalog::columns}!nanodbc::catalog@{nanodbc::catalog}}
+\index{nanodbc::catalog@{nanodbc::catalog}!nanodbc::catalog::columns@{nanodbc::catalog::columns}}
+\subsubsection{\texorpdfstring{nanodbc::catalog}{nanodbc::catalog}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1catalog}{nanodbc\+::catalog}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1648 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

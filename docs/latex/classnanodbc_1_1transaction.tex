@@ -1,0 +1,266 @@
+\hypertarget{classnanodbc_1_1transaction}{}\section{nanodbc\+::transaction Class Reference}
+\label{classnanodbc_1_1transaction}\index{nanodbc::transaction@{nanodbc::transaction}}
+
+
+A resource for managing transaction commits and rollbacks.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1transaction_1_1transaction__impl}{transaction\+\_\+impl}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_a2327256b4198143da5f7c84d64834f5b}{transaction}} (const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn)
+\begin{DoxyCompactList}\small\item\em Begin a transaction on the given connection object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_ad6550e2168b6914cf5b7409fb07592d7}{transaction}} (const \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_a256ea56280c04b0f250749dbdb601eda}{transaction}} (\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \& \mbox{\hyperlink{classnanodbc_1_1transaction_a584efaaafeb6e5246db46a45f9ce2e31}{operator=}} (\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} rhs)
+\begin{DoxyCompactList}\small\item\em Assignment. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1transaction_ada0f4ab08a0fb530e904306f3eceb32c}{swap}} (\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Member swap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_a0da67846a9ff51f1fa5d1f81d4fde0ea}{$\sim$transaction}} () noexcept
+\begin{DoxyCompactList}\small\item\em If this transaction has not been committed, will will rollback any modifying ops. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1transaction_ad13c6871ac5f572456e881c2e52c2c91}{commit}} ()
+\begin{DoxyCompactList}\small\item\em Commits transaction immediately. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1transaction_a078907315633af2569fc3bbcc70461e8}{rollback}} () noexcept
+\begin{DoxyCompactList}\small\item\em Marks this transaction for rollback. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& \mbox{\hyperlink{classnanodbc_1_1transaction_a6192b685fe9f0046b706b3feb874a957}{connection}} ()
+\begin{DoxyCompactList}\small\item\em Returns the connection object. \end{DoxyCompactList}\item 
+const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& \mbox{\hyperlink{classnanodbc_1_1transaction_aa6233170b92702e6d86cec9aed557a25}{connection}} () const
+\begin{DoxyCompactList}\small\item\em Returns the connection object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_a8492d86e1c09aac1c76c12a0621e8b5a}{operator class connection \&}} ()
+\begin{DoxyCompactList}\small\item\em Returns the connection object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1transaction_ae2f6e59ea672314d66b5107f55b91e24}{operator const class connection \&}} () const
+\begin{DoxyCompactList}\small\item\em Returns the connection object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1transaction_a0b889d1aff4853b8d941bad4f0e1e9fc}{nanodbc\+::connection}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A resource for managing transaction commits and rollbacks. 
+
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits from occurring after each individual operation is executed. 
+\end{DoxyAttention}
+
+
+Definition at line 395 of file nanodbc.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a2327256b4198143da5f7c84d64834f5b}\label{classnanodbc_1_1transaction_a2327256b4198143da5f7c84d64834f5b}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!transaction@{transaction}}
+\index{transaction@{transaction}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{transaction()}{transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::transaction (\begin{DoxyParamCaption}\item[{const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Begin a transaction on the given connection object. 
+
+\begin{DoxyPostcond}{Postcondition}
+Operations that modify the database must now be committed before taking effect. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3710 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_ad6550e2168b6914cf5b7409fb07592d7}\label{classnanodbc_1_1transaction_ad6550e2168b6914cf5b7409fb07592d7}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!transaction@{transaction}}
+\index{transaction@{transaction}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{transaction()}{transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::transaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+
+Definition at line 3715 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a256ea56280c04b0f250749dbdb601eda}\label{classnanodbc_1_1transaction_a256ea56280c04b0f250749dbdb601eda}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!transaction@{transaction}}
+\index{transaction@{transaction}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{transaction()}{transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::transaction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. 
+
+
+
+Definition at line 3720 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a0da67846a9ff51f1fa5d1f81d4fde0ea}\label{classnanodbc_1_1transaction_a0da67846a9ff51f1fa5d1f81d4fde0ea}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!````~transaction@{$\sim$transaction}}
+\index{````~transaction@{$\sim$transaction}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{$\sim$transaction()}{~transaction()}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::$\sim$transaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+If this transaction has not been committed, will will rollback any modifying ops. 
+
+
+
+Definition at line 3737 of file nanodbc.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1transaction_ad13c6871ac5f572456e881c2e52c2c91}\label{classnanodbc_1_1transaction_ad13c6871ac5f572456e881c2e52c2c91}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!commit@{commit}}
+\index{commit@{commit}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily void nanodbc\+::transaction\+::commit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Commits transaction immediately. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3739 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a6192b685fe9f0046b706b3feb874a957}\label{classnanodbc_1_1transaction_a6192b685fe9f0046b706b3feb874a957}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!connection@{connection}}
+\index{connection@{connection}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{connection()}{connection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& nanodbc\+::transaction\+::connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the connection object. 
+
+
+
+Definition at line 3749 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_aa6233170b92702e6d86cec9aed557a25}\label{classnanodbc_1_1transaction_aa6233170b92702e6d86cec9aed557a25}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!connection@{connection}}
+\index{connection@{connection}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{connection()}{connection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& nanodbc\+::transaction\+::connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the connection object. 
+
+
+
+Definition at line 3754 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a8492d86e1c09aac1c76c12a0621e8b5a}\label{classnanodbc_1_1transaction_a8492d86e1c09aac1c76c12a0621e8b5a}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!operator class connection \&@{operator class connection \&}}
+\index{operator class connection \&@{operator class connection \&}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{operator class connection \&()}{operator class connection \&()}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::operator class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the connection object. 
+
+
+
+Definition at line 3759 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_ae2f6e59ea672314d66b5107f55b91e24}\label{classnanodbc_1_1transaction_ae2f6e59ea672314d66b5107f55b91e24}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!operator const class connection \&@{operator const class connection \&}}
+\index{operator const class connection \&@{operator const class connection \&}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{operator const class connection \&()}{operator const class connection \&()}}
+{\footnotesize\ttfamily nanodbc\+::transaction\+::operator const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the connection object. 
+
+
+
+Definition at line 3764 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a584efaaafeb6e5246db46a45f9ce2e31}\label{classnanodbc_1_1transaction_a584efaaafeb6e5246db46a45f9ce2e31}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!operator=@{operator=}}
+\index{operator=@{operator=}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \& nanodbc\+::transaction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}}}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Assignment. 
+
+
+
+Definition at line 3725 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a078907315633af2569fc3bbcc70461e8}\label{classnanodbc_1_1transaction_a078907315633af2569fc3bbcc70461e8}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!rollback@{rollback}}
+\index{rollback@{rollback}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily void nanodbc\+::transaction\+::rollback (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Marks this transaction for rollback. 
+
+
+
+Definition at line 3744 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1transaction_ada0f4ab08a0fb530e904306f3eceb32c}\label{classnanodbc_1_1transaction_ada0f4ab08a0fb530e904306f3eceb32c}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!swap@{swap}}
+\index{swap@{swap}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void nanodbc\+::transaction\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Member swap. 
+
+
+
+Definition at line 3731 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1transaction_a0b889d1aff4853b8d941bad4f0e1e9fc}\label{classnanodbc_1_1transaction_a0b889d1aff4853b8d941bad4f0e1e9fc}} 
+\index{nanodbc::transaction@{nanodbc::transaction}!nanodbc::connection@{nanodbc::connection}}
+\index{nanodbc::connection@{nanodbc::connection}!nanodbc::transaction@{nanodbc::transaction}}
+\subsubsection{\texorpdfstring{nanodbc::connection}{nanodbc::connection}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1connection}{nanodbc\+::connection}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 438 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

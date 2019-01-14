@@ -1,0 +1,24 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="cadg_rest::LoggerInterface\l::LogLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a9b1afaa12201781dc8c8cb782994db29",tooltip=" "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="cadg_rest::LoggerInterface::Log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a56f53c1fb9687825ade3acced5e3a10a",tooltip="Generic log method."];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="cadg_rest::Controller\l::endpoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#ac467633f4d51e3187bd90380a67cb0d9",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="cadg_rest::NetworkUtils\l::hostIP4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_network_utils.html#ac8093c0b7c4ce8a9deab5febb872b894",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="cadg_rest::NetworkUtils\l::hostIP6",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_network_utils.html#ab398011818d40b7f7fb040e755decc86",tooltip=" "];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="cadg_rest::Controller\l::Accept",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#a00ddfc462ff7357cecc6a209f8f9d527",tooltip="Starts the controller."];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="cadg_rest::Controller\l::InitHandlers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#a47b2c049207e02f407a55a64e2a2ce80",tooltip="Initializes listeners and binds methods to proper handlers."];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="cadg_rest::Controller\l::Shutdown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#a0a3930fbecd66d40b2455557c1c46e47",tooltip="Stops the controller from listening at it's endoint."];
+}

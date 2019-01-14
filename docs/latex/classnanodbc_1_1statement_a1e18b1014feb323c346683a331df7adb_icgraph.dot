@@ -1,0 +1,12 @@
+digraph "nanodbc::statement::just_execute_direct"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node66 [label="nanodbc::statement\l::just_execute_direct",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Execute the previously prepared query now without constructing result object."];
+  Node66 -> Node67 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node67 [label="nanodbc::just_execute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#gaee1775943fa1c5906cda9341851633c1",tooltip="Opens, prepares, and executes query directly without creating result object."];
+  Node67 -> Node68 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node68 [label="nanodbc::statement\l::statement_impl::execute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement_1_1statement__impl.html#ac0a71bdfc730c230ed63844063617297",tooltip=" "];
+}

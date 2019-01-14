@@ -1,0 +1,261 @@
+\hypertarget{classcadg__rest_1_1_user_controller}{}\section{cadg\+\_\+rest\+::User\+Controller Class Reference}
+\label{classcadg__rest_1_1_user_controller}\index{cadg\_rest::UserController@{cadg\_rest::UserController}}
+
+
+{\ttfamily \#include $<$user\+\_\+controller.\+hpp$>$}
+
+Inheritance diagram for cadg\+\_\+rest\+::User\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcadg__rest_1_1_user_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcadg__rest_1_1_user_controller_a0163192955de3f5484fceaf7796fd881}{User\+Controller}} (\mbox{\hyperlink{classcadg__rest_1_1_logger_interface}{Logger\+Interface}} \&\mbox{\hyperlink{classcadg__rest_1_1_controller_a5eebad0222becb1157f8dd7b9e978c37}{logger\+\_\+\+\_\+}}, \mbox{\hyperlink{classcadg__rest_1_1_data_access_interface}{Data\+Access\+Interface}} \&dao\+\_\+\+\_\+)
+\item 
+\mbox{\hyperlink{classcadg__rest_1_1_user_controller_a50fe3192b76a765abdcda0f4a9cbc20b}{$\sim$\+User\+Controller}} ()
+\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a213210b1e1f8f7417133f3290fbb9b67}{Init\+Handlers}} () override
+\begin{DoxyCompactList}\small\item\em Initializes listeners and binds methods to proper handlers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_ae31aee8fecf0d1f7d0ba70c0e62da54d}{Handle\+Get}} (http\+\_\+request message) override
+\begin{DoxyCompactList}\small\item\em Returns the requested user(s). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a5da4d0addb0504184929a57d7f196c79}{Handle\+Put}} (http\+\_\+request message) override
+\begin{DoxyCompactList}\small\item\em Updates a current user\textquotesingle{}s data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a6c3307f7b6fd4dc0b697bc956503e478}{Handle\+Post}} (http\+\_\+request message) override
+\begin{DoxyCompactList}\small\item\em Creates a new user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a99ed4e9459766b3e000814b503378a2d}{Handle\+Delete}} (http\+\_\+request message) override
+\begin{DoxyCompactList}\small\item\em Removes an existing user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a1d3d450422fabffd4ff66a9267834ea6}{Get\+User\+By\+ID}} (json\+::value \&response, const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Returns an existing user with the specified ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcadg__rest_1_1_user_controller_aa98afe262762a47ff443a36eb4a97b8d}{Get\+Users\+By\+Name}} (json\+::value \&response, const std\+::string \&user\+\_\+name)
+\item 
+std\+::string \mbox{\hyperlink{classcadg__rest_1_1_user_controller_a3523d014f2ada4364034e175f6d645f8}{Parse\+User\+ID}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Returns an ID specified in a U\+RL path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 21 of file user\+\_\+controller.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a0163192955de3f5484fceaf7796fd881}\label{classcadg__rest_1_1_user_controller_a0163192955de3f5484fceaf7796fd881}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!UserController@{UserController}}
+\index{UserController@{UserController}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{UserController()}{UserController()}}
+{\footnotesize\ttfamily cadg\+\_\+rest\+::\+User\+Controller\+::\+User\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcadg__rest_1_1_logger_interface}{Logger\+Interface}} \&}]{logger\+\_\+\+\_\+,  }\item[{\mbox{\hyperlink{classcadg__rest_1_1_data_access_interface}{Data\+Access\+Interface}} \&}]{dao\+\_\+\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 23 of file user\+\_\+controller.\+hpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a50fe3192b76a765abdcda0f4a9cbc20b}\label{classcadg__rest_1_1_user_controller_a50fe3192b76a765abdcda0f4a9cbc20b}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!````~UserController@{$\sim$UserController}}
+\index{````~UserController@{$\sim$UserController}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{$\sim$UserController()}{~UserController()}}
+{\footnotesize\ttfamily cadg\+\_\+rest\+::\+User\+Controller\+::$\sim$\+User\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file user\+\_\+controller.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a1d3d450422fabffd4ff66a9267834ea6}\label{classcadg__rest_1_1_user_controller_a1d3d450422fabffd4ff66a9267834ea6}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!GetUserByID@{GetUserByID}}
+\index{GetUserByID@{GetUserByID}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{GetUserByID()}{GetUserByID()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Get\+User\+By\+ID (\begin{DoxyParamCaption}\item[{json\+::value \&}]{response,  }\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Returns an existing user with the specified ID. 
+
+Get\+User\+By\+ID wraps the logic for when a G\+ET request specifies a \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} ID. The response json is passed by reference so it can be updated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em resonse} & The reference to the current response json. \\
+\hline
+{\em path} & The path with the user id in it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 112 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_aa98afe262762a47ff443a36eb4a97b8d}\label{classcadg__rest_1_1_user_controller_aa98afe262762a47ff443a36eb4a97b8d}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!GetUsersByName@{GetUsersByName}}
+\index{GetUsersByName@{GetUsersByName}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{GetUsersByName()}{GetUsersByName()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Get\+Users\+By\+Name (\begin{DoxyParamCaption}\item[{json\+::value \&}]{response,  }\item[{const std\+::string \&}]{user\+\_\+name }\end{DoxyParamCaption})}
+
+Get\+Users\+By\+Name wraps the logic for when a G\+ET request specifies a \mbox{\hyperlink{structcadg__rest_1_1_user}{User}} Name. The response json is passed by reference so it can be updated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em resonse} & The reference to the current response json. \\
+\hline
+{\em user\+\_\+name} & The name, or partial name, of the user \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 123 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a99ed4e9459766b3e000814b503378a2d}\label{classcadg__rest_1_1_user_controller_a99ed4e9459766b3e000814b503378a2d}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!HandleDelete@{HandleDelete}}
+\index{HandleDelete@{HandleDelete}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{HandleDelete()}{HandleDelete()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Handle\+Delete (\begin{DoxyParamCaption}\item[{http\+\_\+request}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Removes an existing user. 
+
+Handle\+Delete will delete a user\textquotesingle{}s data if one exists. The user id should be at the end of the url path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The http request message to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_controller_a2aa889f1ffb53c6118667f1acf45d611}{cadg\+\_\+rest\+::\+Controller}}.
+
+
+
+Definition at line 91 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_ae31aee8fecf0d1f7d0ba70c0e62da54d}\label{classcadg__rest_1_1_user_controller_ae31aee8fecf0d1f7d0ba70c0e62da54d}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!HandleGet@{HandleGet}}
+\index{HandleGet@{HandleGet}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{HandleGet()}{HandleGet()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Handle\+Get (\begin{DoxyParamCaption}\item[{http\+\_\+request}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the requested user(s). 
+
+Handle\+Get will return a user or collection of users determined by the parameters in the url path. If there is not url path, it returns all users. IF there is a user id (a number) next in the path, it returns a user with that id, or no user if there isn\textquotesingle{}t one. If a query for name is in the path, it returns all users with the name as a part of their name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The http request to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_controller_a7166c6b459b4886ec477abd9dee06159}{cadg\+\_\+rest\+::\+Controller}}.
+
+
+
+Definition at line 25 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a6c3307f7b6fd4dc0b697bc956503e478}\label{classcadg__rest_1_1_user_controller_a6c3307f7b6fd4dc0b697bc956503e478}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!HandlePost@{HandlePost}}
+\index{HandlePost@{HandlePost}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{HandlePost()}{HandlePost()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Handle\+Post (\begin{DoxyParamCaption}\item[{http\+\_\+request}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new user. 
+
+Handle\+Post will add a new user or collection of users to this endpoint. The body should include json of the users to be posted.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The http request message to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_controller_ae30a2dd46e5054409b98df686327a9c4}{cadg\+\_\+rest\+::\+Controller}}.
+
+
+
+Definition at line 66 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a5da4d0addb0504184929a57d7f196c79}\label{classcadg__rest_1_1_user_controller_a5da4d0addb0504184929a57d7f196c79}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!HandlePut@{HandlePut}}
+\index{HandlePut@{HandlePut}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{HandlePut()}{HandlePut()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Handle\+Put (\begin{DoxyParamCaption}\item[{http\+\_\+request}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates a current user\textquotesingle{}s data. 
+
+Handle\+Put will update a user\textquotesingle{}s data if one exists. The user id should be at the end of the url path. The user\textquotesingle{}s new data should be in the body as json.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The http request message to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_controller_a8edfa04d68e8b78759940cd29ff09781}{cadg\+\_\+rest\+::\+Controller}}.
+
+
+
+Definition at line 49 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a213210b1e1f8f7417133f3290fbb9b67}\label{classcadg__rest_1_1_user_controller_a213210b1e1f8f7417133f3290fbb9b67}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!InitHandlers@{InitHandlers}}
+\index{InitHandlers@{InitHandlers}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{InitHandlers()}{InitHandlers()}}
+{\footnotesize\ttfamily void cadg\+\_\+rest\+::\+User\+Controller\+::\+Init\+Handlers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Initializes listeners and binds methods to proper handlers. 
+
+Binds supported methods to the functions that handle them. 
+
+Implements \mbox{\hyperlink{classcadg__rest_1_1_controller_a47b2c049207e02f407a55a64e2a2ce80}{cadg\+\_\+rest\+::\+Controller}}.
+
+
+
+Definition at line 19 of file user\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classcadg__rest_1_1_user_controller_a3523d014f2ada4364034e175f6d645f8}\label{classcadg__rest_1_1_user_controller_a3523d014f2ada4364034e175f6d645f8}} 
+\index{cadg\_rest::UserController@{cadg\_rest::UserController}!ParseUserID@{ParseUserID}}
+\index{ParseUserID@{ParseUserID}!cadg\_rest::UserController@{cadg\_rest::UserController}}
+\subsubsection{\texorpdfstring{ParseUserID()}{ParseUserID()}}
+{\footnotesize\ttfamily std\+::string cadg\+\_\+rest\+::\+User\+Controller\+::\+Parse\+User\+ID (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Returns an ID specified in a U\+RL path. 
+
+Currently assumes the path only contains a slash and numbers.
+
+Parse\+User\+ID will extract the ID of a user as a string from the url path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to extract the user id from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the string with only the user ID in it. 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file user\+\_\+controller.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/controller/\mbox{\hyperlink{user__controller_8hpp}{user\+\_\+controller.\+hpp}}\item 
+rest-\/server/src/controller/\mbox{\hyperlink{user__controller_8cpp}{user\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}

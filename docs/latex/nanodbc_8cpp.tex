@@ -1,0 +1,406 @@
+\hypertarget{nanodbc_8cpp}{}\section{rest-\/server/src/nanodbc/nanodbc.cpp File Reference}
+\label{nanodbc_8cpp}\index{rest-\/server/src/nanodbc/nanodbc.cpp@{rest-\/server/src/nanodbc/nanodbc.cpp}}
+
+
+Implementation details.  
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$clocale$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$codecvt$>$}\newline
+{\ttfamily \#include $<$sql.\+h$>$}\newline
+{\ttfamily \#include $<$sqlext.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1connection_1_1connection__impl}{nanodbc\+::connection\+::connection\+\_\+impl}}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1transaction_1_1transaction__impl}{nanodbc\+::transaction\+::transaction\+\_\+impl}}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1statement_1_1statement__impl}{nanodbc\+::statement\+::statement\+\_\+impl}}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1result_1_1result__impl}{nanodbc\+::result\+::result\+\_\+impl}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacenanodbc}{nanodbc}}
+\begin{DoxyCompactList}\small\item\em The entirety of nanodbc can be found within this one namespace. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacenanodbc_1_1detail}{nanodbc\+::detail}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a937c378d1cccc7e1d88e707526d82b1b}{N\+A\+N\+O\+D\+B\+C\+\_\+\+A\+S\+S\+E\+RT}}(expr)~assert(expr)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a374d4285c9d485c308f5458e9bfe81eb}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+V\+A\+R\+I\+A\+NT}}~(-\/150)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a5f7a971d9812666419f685a98f37a2e7}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+X\+ML}}~(-\/152)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a144c35af1d60c02f23a6bb7249c6fed5}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+A\+B\+LE}}~(-\/153)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a0383bc9a0f3bd1f6490780d6e38f8ede}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+I\+M\+E2}}~(-\/154)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a1c41b39dbd834c87ed9a88226bcff9e7}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+O\+F\+F\+S\+ET}}~(-\/155)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a5358a4636ed5a40dcc692bd6ff5d4830}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+U\+DT}}~(-\/151)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a897ae76e9ab2dadd48d1ba800f20bae1}{S\+Q\+L\+\_\+\+N\+V\+A\+R\+C\+H\+AR}}~(-\/10)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a4af01fc849bb827cd135880a2ec90017}{S\+Q\+L\+\_\+\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+U\+N\+L\+I\+M\+I\+T\+ED}}~(0)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a6b04ad0c5479668bc57ca7bbedfb0b08}{S\+Q\+L\+S\+E\+R\+V\+E\+R\+\_\+\+D\+B\+M\+A\+X\+C\+H\+AR}}~(8000 + 1)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_af9d42bdca01c9288d2009f023b7bef98}{N\+A\+N\+O\+D\+B\+C\+\_\+\+O\+D\+B\+C\+\_\+\+V\+E\+R\+S\+I\+ON}}~S\+Q\+L\+\_\+\+O\+V\+\_\+\+O\+D\+B\+C3
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a11af5bc7ee7a40cd0ee6d3ba550a0f84}{N\+A\+N\+O\+D\+B\+C\+\_\+\+F\+U\+NC}}(f)~f
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_afc736fbf86bfe6519d315df7a814070d}{N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+Q\+L\+C\+H\+AR}}~S\+Q\+L\+C\+H\+AR
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_ac6b0a6745f146cbf8c8109fac0be2dd3}{N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+O\+D\+E\+C\+V\+T\+\_\+\+T\+Y\+PE}}~std\+::codecvt\+\_\+utf8\+\_\+utf16
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_ab21d4c08490fa7910f5b385666dfe635}{N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+Z\+E\+\_\+I}}(text)~\#text
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_af70bd9057bf0a7ff78fddbd749322e32}{N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+ZE}}(text)~\mbox{\hyperlink{nanodbc_8cpp_ab21d4c08490fa7910f5b385666dfe635}{N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+Z\+E\+\_\+I}}(text)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a7b5117a70b1e06d2c6ae2cdefe573cd7}{N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+A\+L\+L\+\_\+\+RC}}(F\+U\+NC,  RC, ...)~RC = F\+U\+NC(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a987f15e019bc37bcc79db1f29cdf11f0}{N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+A\+LL}}(F\+U\+NC, ...)~F\+U\+NC(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a2e5286c1b2e0a37b2ad6d8c193eda5d3}{N\+A\+N\+O\+D\+B\+C\+\_\+\+T\+H\+R\+O\+W\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+E\+R\+R\+OR}}(handle,  handle\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_accfc5974247800f786dee2b40c8135f1}{N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}}(type)
+\item 
+\#define \mbox{\hyperlink{nanodbc_8cpp_a65ec9e62c5ebc5c07787d2da2386cb6d}{N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+D\+\_\+\+S\+T\+R\+I\+N\+GS}}(type)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$$>$ }\\void \mbox{\hyperlink{namespacenanodbc_ae78e7fd9559120b2a9f51ad76668e5c2}{nanodbc\+::result\+::result\+\_\+impl\+::get\+\_\+ref\+\_\+impl$<$ std\+::vector$<$ std\+::uint8\+\_\+t $>$ $>$}} (short column, std\+::vector$<$ std\+::uint8\+\_\+t $>$ \&result) const
+\item 
+auto \mbox{\hyperlink{namespacenanodbc_1_1detail_a1b82cd6e39ee7cd939739f4a0550a42c}{nanodbc\+::detail\+::from\+\_\+string}} (std\+::string const \&s, float)
+\item 
+auto \mbox{\hyperlink{namespacenanodbc_1_1detail_ae0551ce1848bfb286f2e452094bcaeb1}{nanodbc\+::detail\+::from\+\_\+string}} (std\+::string const \&s, double)
+\item 
+auto \mbox{\hyperlink{namespacenanodbc_1_1detail_a720867751548d82577c1e401be4df253}{nanodbc\+::detail\+::from\+\_\+string}} (std\+::string const \&s, long long)
+\item 
+auto \mbox{\hyperlink{namespacenanodbc_1_1detail_a7a37700bb1851e4d3bc4a6d852e47e55}{nanodbc\+::detail\+::from\+\_\+string}} (std\+::string const \&s, unsigned long long)
+\item 
+{\footnotesize template$<$typename R , typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+integral$<$ R $>$\+::value, int $>$\+::type  = 0$>$ }\\auto \mbox{\hyperlink{namespacenanodbc_1_1detail_abda6bc1783f2b3d0a6eae7e368bf8b21}{nanodbc\+::detail\+::from\+\_\+string}} (std\+::string const \&s, R)
+\item 
+{\footnotesize template$<$typename R $>$ }\\auto \mbox{\hyperlink{namespacenanodbc_a4cd107d8dff968512bfb806d7798a5f2}{nanodbc\+::from\+\_\+string}} (std\+::string const \&s) -\/$>$ R
+\item 
+std\+::list$<$ driver $>$ \mbox{\hyperlink{group__mainf_ga6f80fb8f7af3bb099e04bf8d603a210a}{nanodbc\+::list\+\_\+drivers}} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of O\+D\+BC drivers on your system. \end{DoxyCompactList}\item 
+result \mbox{\hyperlink{group__mainf_ga5cbac617a3964611bd16a2fc6f991b83}{nanodbc\+::execute}} (connection \&conn, const string \&query, long batch\+\_\+operations=1, long timeout=0)
+\begin{DoxyCompactList}\small\item\em Immediately opens, prepares, and executes the given query directly on the given connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__mainf_gaee1775943fa1c5906cda9341851633c1}{nanodbc\+::just\+\_\+execute}} (connection \&conn, const string \&query, long batch\+\_\+operations=1, long timeout=0)
+\begin{DoxyCompactList}\small\item\em Opens, prepares, and executes query directly without creating result object. \end{DoxyCompactList}\item 
+result \mbox{\hyperlink{group__mainf_gad178fcf995fa5ac42702607f35e5ba39}{nanodbc\+::execute}} (statement \&stmt, long batch\+\_\+operations=1)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__mainf_gafa9051df00f710f9d4123dc24896d821}{nanodbc\+::just\+\_\+execute}} (statement \&stmt, long batch\+\_\+operations=1)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now and without creating result object. \end{DoxyCompactList}\item 
+result \mbox{\hyperlink{group__mainf_ga3f5b3e15f31690ef54ca20058ea89074}{nanodbc\+::transact}} (statement \&stmt, long batch\+\_\+operations)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__mainf_ga343e69acce5e8122723ca8d38b0a7f92}{nanodbc\+::just\+\_\+transact}} (statement \&stmt, long batch\+\_\+operations)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now and without creating result object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__mainf_ga961a75629487f22ebc87d114c5699bc2}{nanodbc\+::prepare}} (statement \&stmt, const string \&query, long timeout=0)
+\begin{DoxyCompactList}\small\item\em Prepares the given statement to execute on it associated connection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_af1aee669cf097969d60a8b0c7794ca3f}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (std\+::string\+::value\+\_\+type)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a065aa26d5702d7955bc669b4a2e64908}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (wide\+\_\+string\+::value\+\_\+type)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a115ad39b53c312d2ab2641325206061f}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (short)
+\item 
+\mbox{\hyperlink{namespacenanodbc_afcfd3c5f4a6829effff407fe9c21a872}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (unsigned short)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a80ac2da1a14bdbd348859d09f060e6b7}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (int)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a582f84a436ec19bbf41d8427f23e43a8}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (unsigned int)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a4b9a8566c0dbaf1b795ae4b004411dd1}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (long int)
+\item 
+\mbox{\hyperlink{namespacenanodbc_adfa6e8f3936895382ccd66af6a22161f}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (unsigned long int)
+\item 
+\mbox{\hyperlink{namespacenanodbc_aed0d204bb9f87edd36cbd9d18cb70a32}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (long long)
+\item 
+\mbox{\hyperlink{namespacenanodbc_af4351155ee0f8b078d91b0774457b9f9}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (unsigned long long)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a658fb25530270ac5f3853842e1514150}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (float)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a6a46d28d2f51a6199c30d1ee94d899cd}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (double)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a1c5c5ecb254381e457c3096204a1af99}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (date)
+\item 
+\mbox{\hyperlink{namespacenanodbc_ad4b04e6da98b27ba43decc4e3757ff4a}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (time)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a7c4809d9487f6f871beaab2909ddc7e5}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS}} (timestamp)
+\item 
+\mbox{\hyperlink{namespacenanodbc_affb3519ec607369744551f28d664ad1e}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+D\+\_\+\+S\+T\+R\+I\+N\+GS}} (std\+::string)
+\item 
+\mbox{\hyperlink{namespacenanodbc_a03d2a4acfe2dcbde590724c5103c42b7}{nanodbc\+::\+N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+D\+\_\+\+S\+T\+R\+I\+N\+GS}} (wide\+\_\+string)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation details. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nanodbc_8cpp_a937c378d1cccc7e1d88e707526d82b1b}\label{nanodbc_8cpp_a937c378d1cccc7e1d88e707526d82b1b}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_ASSERT@{NANODBC\_ASSERT}}
+\index{NANODBC\_ASSERT@{NANODBC\_ASSERT}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_ASSERT}{NANODBC\_ASSERT}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+A\+S\+S\+E\+RT(\begin{DoxyParamCaption}\item[{}]{expr }\end{DoxyParamCaption})~assert(expr)}
+
+
+
+Definition at line 35 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a987f15e019bc37bcc79db1f29cdf11f0}\label{nanodbc_8cpp_a987f15e019bc37bcc79db1f29cdf11f0}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_CALL@{NANODBC\_CALL}}
+\index{NANODBC\_CALL@{NANODBC\_CALL}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_CALL}{NANODBC\_CALL}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+A\+LL(\begin{DoxyParamCaption}\item[{}]{F\+U\+NC,  }\item[{}]{... }\end{DoxyParamCaption})~F\+U\+NC(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)}
+
+
+
+Definition at line 198 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a7b5117a70b1e06d2c6ae2cdefe573cd7}\label{nanodbc_8cpp_a7b5117a70b1e06d2c6ae2cdefe573cd7}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_CALL\_RC@{NANODBC\_CALL\_RC}}
+\index{NANODBC\_CALL\_RC@{NANODBC\_CALL\_RC}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_CALL\_RC}{NANODBC\_CALL\_RC}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+A\+L\+L\+\_\+\+RC(\begin{DoxyParamCaption}\item[{}]{F\+U\+NC,  }\item[{}]{RC,  }\item[{}]{... }\end{DoxyParamCaption})~RC = F\+U\+NC(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)}
+
+
+
+Definition at line 197 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_ac6b0a6745f146cbf8c8109fac0be2dd3}\label{nanodbc_8cpp_ac6b0a6745f146cbf8c8109fac0be2dd3}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_CODECVT\_TYPE@{NANODBC\_CODECVT\_TYPE}}
+\index{NANODBC\_CODECVT\_TYPE@{NANODBC\_CODECVT\_TYPE}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_CODECVT\_TYPE}{NANODBC\_CODECVT\_TYPE}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+C\+O\+D\+E\+C\+V\+T\+\_\+\+T\+Y\+PE~std\+::codecvt\+\_\+utf8\+\_\+utf16}
+
+
+
+Definition at line 147 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a11af5bc7ee7a40cd0ee6d3ba550a0f84}\label{nanodbc_8cpp_a11af5bc7ee7a40cd0ee6d3ba550a0f84}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_FUNC@{NANODBC\_FUNC}}
+\index{NANODBC\_FUNC@{NANODBC\_FUNC}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_FUNC}{NANODBC\_FUNC}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+F\+U\+NC(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f}
+
+
+
+Definition at line 137 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a65ec9e62c5ebc5c07787d2da2386cb6d}\label{nanodbc_8cpp_a65ec9e62c5ebc5c07787d2da2386cb6d}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_INSTANTIATE\_BIND\_STRINGS@{NANODBC\_INSTANTIATE\_BIND\_STRINGS}}
+\index{NANODBC\_INSTANTIATE\_BIND\_STRINGS@{NANODBC\_INSTANTIATE\_BIND\_STRINGS}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_INSTANTIATE\_BIND\_STRINGS}{NANODBC\_INSTANTIATE\_BIND\_STRINGS}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+D\+\_\+\+S\+T\+R\+I\+N\+GS(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template} \textcolor{keywordtype}{void} statement::bind\_strings(\textcolor{keywordtype}{short}, std::vector<type> \textcolor{keyword}{const}\&, param\_direction);       \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind\_strings(                                                         \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, std::vector<type> \textcolor{keyword}{const}\&, type::value\_type \textcolor{keyword}{const}*, param\_direction);                \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind\_strings(                                                         \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, std::vector<type> \textcolor{keyword}{const}\&, \textcolor{keywordtype}{bool} \textcolor{keyword}{const}*, param\_direction);                            \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind\_strings(                                                         \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, \textcolor{keyword}{const} type::value\_type*, std::size\_t, std::size\_t, param\_direction);                \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind\_strings(                                                         \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short},                                                                                     \(\backslash\)}
+\DoxyCodeLine{        type::value\_type \textcolor{keyword}{const}*,                                                                   \(\backslash\)}
+\DoxyCodeLine{        std::size\_t,                                                                               \(\backslash\)}
+\DoxyCodeLine{        std::size\_t,                                                                               \(\backslash\)}
+\DoxyCodeLine{        type::value\_type \textcolor{keyword}{const}*,                                                                   \(\backslash\)}
+\DoxyCodeLine{        param\_direction);                                                                          \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind\_strings(                                                         \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, type::value\_type \textcolor{keyword}{const}*, std::size\_t, std::size\_t, \textcolor{keywordtype}{bool} \textcolor{keyword}{const}*, param\_direction)}
+
+\end{DoxyCode}
+
+
+Definition at line 3998 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_accfc5974247800f786dee2b40c8135f1}\label{nanodbc_8cpp_accfc5974247800f786dee2b40c8135f1}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_INSTANTIATE\_BINDS@{NANODBC\_INSTANTIATE\_BINDS}}
+\index{NANODBC\_INSTANTIATE\_BINDS@{NANODBC\_INSTANTIATE\_BINDS}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_INSTANTIATE\_BINDS}{NANODBC\_INSTANTIATE\_BINDS}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+B\+I\+N\+DS(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template} \textcolor{keywordtype}{void} statement::bind(\textcolor{keywordtype}{short}, \textcolor{keyword}{const} type*, param\_direction);              \textcolor{comment}{/* 1-ary */}   \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind(\textcolor{keywordtype}{short}, \textcolor{keyword}{const} type*, std::size\_t, param\_direction); \textcolor{comment}{/* n-ary */}   \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind(                                                                 \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, \textcolor{keyword}{const} type*, std::size\_t, \textcolor{keyword}{const} type*, param\_direction); \textcolor{comment}{/* n-ary, sentry */}        \(\backslash\)}
+\DoxyCodeLine{    template \textcolor{keywordtype}{void} statement::bind(                                                                 \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keywordtype}{short}, \textcolor{keyword}{const} type*, std::size\_t, \textcolor{keyword}{const} \textcolor{keywordtype}{bool}*, param\_direction) \textcolor{comment}{/* n-ary, flags */}}
+
+\end{DoxyCode}
+
+
+Definition at line 3990 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_af9d42bdca01c9288d2009f023b7bef98}\label{nanodbc_8cpp_af9d42bdca01c9288d2009f023b7bef98}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_ODBC\_VERSION@{NANODBC\_ODBC\_VERSION}}
+\index{NANODBC\_ODBC\_VERSION@{NANODBC\_ODBC\_VERSION}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_ODBC\_VERSION}{NANODBC\_ODBC\_VERSION}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+O\+D\+B\+C\+\_\+\+V\+E\+R\+S\+I\+ON~S\+Q\+L\+\_\+\+O\+V\+\_\+\+O\+D\+B\+C3}
+
+
+
+Definition at line 113 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_afc736fbf86bfe6519d315df7a814070d}\label{nanodbc_8cpp_afc736fbf86bfe6519d315df7a814070d}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_SQLCHAR@{NANODBC\_SQLCHAR}}
+\index{NANODBC\_SQLCHAR@{NANODBC\_SQLCHAR}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_SQLCHAR}{NANODBC\_SQLCHAR}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+Q\+L\+C\+H\+AR~S\+Q\+L\+C\+H\+AR}
+
+
+
+Definition at line 138 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_af70bd9057bf0a7ff78fddbd749322e32}\label{nanodbc_8cpp_af70bd9057bf0a7ff78fddbd749322e32}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_STRINGIZE@{NANODBC\_STRINGIZE}}
+\index{NANODBC\_STRINGIZE@{NANODBC\_STRINGIZE}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_STRINGIZE}{NANODBC\_STRINGIZE}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})~\mbox{\hyperlink{nanodbc_8cpp_ab21d4c08490fa7910f5b385666dfe635}{N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+Z\+E\+\_\+I}}(text)}
+
+
+
+Definition at line 173 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_ab21d4c08490fa7910f5b385666dfe635}\label{nanodbc_8cpp_ab21d4c08490fa7910f5b385666dfe635}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_STRINGIZE\_I@{NANODBC\_STRINGIZE\_I}}
+\index{NANODBC\_STRINGIZE\_I@{NANODBC\_STRINGIZE\_I}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_STRINGIZE\_I}{NANODBC\_STRINGIZE\_I}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+Z\+E\+\_\+I(\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})~\#text}
+
+
+
+Definition at line 172 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a2e5286c1b2e0a37b2ad6d8c193eda5d3}\label{nanodbc_8cpp_a2e5286c1b2e0a37b2ad6d8c193eda5d3}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!NANODBC\_THROW\_DATABASE\_ERROR@{NANODBC\_THROW\_DATABASE\_ERROR}}
+\index{NANODBC\_THROW\_DATABASE\_ERROR@{NANODBC\_THROW\_DATABASE\_ERROR}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{NANODBC\_THROW\_DATABASE\_ERROR}{NANODBC\_THROW\_DATABASE\_ERROR}}
+{\footnotesize\ttfamily \#define N\+A\+N\+O\+D\+B\+C\+\_\+\+T\+H\+R\+O\+W\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+E\+R\+R\+OR(\begin{DoxyParamCaption}\item[{}]{handle,  }\item[{}]{handle\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{throw} \mbox{\hyperlink{classnanodbc_1_1database__error}{nanodbc::database\_error}}(                                                                 \(\backslash\)}
+\DoxyCodeLine{        handle, handle\_type, \_\_FILE\_\_ \textcolor{stringliteral}{":"} \mbox{\hyperlink{nanodbc_8cpp_af70bd9057bf0a7ff78fddbd749322e32}{NANODBC\_STRINGIZE}}(\_\_LINE\_\_) \textcolor{stringliteral}{": "})}
+
+\end{DoxyCode}
+
+
+Definition at line 513 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a897ae76e9ab2dadd48d1ba800f20bae1}\label{nanodbc_8cpp_a897ae76e9ab2dadd48d1ba800f20bae1}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_NVARCHAR@{SQL\_NVARCHAR}}
+\index{SQL\_NVARCHAR@{SQL\_NVARCHAR}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_NVARCHAR}{SQL\_NVARCHAR}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+N\+V\+A\+R\+C\+H\+AR~(-\/10)}
+
+
+
+Definition at line 93 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a4af01fc849bb827cd135880a2ec90017}\label{nanodbc_8cpp_a4af01fc849bb827cd135880a2ec90017}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_LENGTH\_UNLIMITED@{SQL\_SS\_LENGTH\_UNLIMITED}}
+\index{SQL\_SS\_LENGTH\_UNLIMITED@{SQL\_SS\_LENGTH\_UNLIMITED}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_LENGTH\_UNLIMITED}{SQL\_SS\_LENGTH\_UNLIMITED}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+U\+N\+L\+I\+M\+I\+T\+ED~(0)}
+
+
+
+Definition at line 99 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a144c35af1d60c02f23a6bb7249c6fed5}\label{nanodbc_8cpp_a144c35af1d60c02f23a6bb7249c6fed5}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_TABLE@{SQL\_SS\_TABLE}}
+\index{SQL\_SS\_TABLE@{SQL\_SS\_TABLE}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_TABLE}{SQL\_SS\_TABLE}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+A\+B\+LE~(-\/153)}
+
+
+
+Definition at line 74 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a0383bc9a0f3bd1f6490780d6e38f8ede}\label{nanodbc_8cpp_a0383bc9a0f3bd1f6490780d6e38f8ede}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_TIME2@{SQL\_SS\_TIME2}}
+\index{SQL\_SS\_TIME2@{SQL\_SS\_TIME2}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_TIME2}{SQL\_SS\_TIME2}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+I\+M\+E2~(-\/154)}
+
+
+
+Definition at line 77 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a1c41b39dbd834c87ed9a88226bcff9e7}\label{nanodbc_8cpp_a1c41b39dbd834c87ed9a88226bcff9e7}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_TIMESTAMPOFFSET@{SQL\_SS\_TIMESTAMPOFFSET}}
+\index{SQL\_SS\_TIMESTAMPOFFSET@{SQL\_SS\_TIMESTAMPOFFSET}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_TIMESTAMPOFFSET}{SQL\_SS\_TIMESTAMPOFFSET}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+O\+F\+F\+S\+ET~(-\/155)}
+
+
+
+Definition at line 80 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a5358a4636ed5a40dcc692bd6ff5d4830}\label{nanodbc_8cpp_a5358a4636ed5a40dcc692bd6ff5d4830}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_UDT@{SQL\_SS\_UDT}}
+\index{SQL\_SS\_UDT@{SQL\_SS\_UDT}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_UDT}{SQL\_SS\_UDT}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+U\+DT~(-\/151)}
+
+
+
+Definition at line 89 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a374d4285c9d485c308f5458e9bfe81eb}\label{nanodbc_8cpp_a374d4285c9d485c308f5458e9bfe81eb}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_VARIANT@{SQL\_SS\_VARIANT}}
+\index{SQL\_SS\_VARIANT@{SQL\_SS\_VARIANT}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_VARIANT}{SQL\_SS\_VARIANT}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+V\+A\+R\+I\+A\+NT~(-\/150)}
+
+
+
+Definition at line 68 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a5f7a971d9812666419f685a98f37a2e7}\label{nanodbc_8cpp_a5f7a971d9812666419f685a98f37a2e7}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQL\_SS\_XML@{SQL\_SS\_XML}}
+\index{SQL\_SS\_XML@{SQL\_SS\_XML}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQL\_SS\_XML}{SQL\_SS\_XML}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+\_\+\+S\+S\+\_\+\+X\+ML~(-\/152)}
+
+
+
+Definition at line 71 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{nanodbc_8cpp_a6b04ad0c5479668bc57ca7bbedfb0b08}\label{nanodbc_8cpp_a6b04ad0c5479668bc57ca7bbedfb0b08}} 
+\index{nanodbc.cpp@{nanodbc.cpp}!SQLSERVER\_DBMAXCHAR@{SQLSERVER\_DBMAXCHAR}}
+\index{SQLSERVER\_DBMAXCHAR@{SQLSERVER\_DBMAXCHAR}!nanodbc.cpp@{nanodbc.cpp}}
+\subsubsection{\texorpdfstring{SQLSERVER\_DBMAXCHAR}{SQLSERVER\_DBMAXCHAR}}
+{\footnotesize\ttfamily \#define S\+Q\+L\+S\+E\+R\+V\+E\+R\+\_\+\+D\+B\+M\+A\+X\+C\+H\+AR~(8000 + 1)}
+
+
+
+Definition at line 104 of file nanodbc.\+cpp.
+

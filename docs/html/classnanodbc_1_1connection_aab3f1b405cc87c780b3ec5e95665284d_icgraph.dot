@@ -1,0 +1,12 @@
+digraph "nanodbc::connection::connection"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="nanodbc::connection\l::connection",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Create new connection object, initially not connected."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="nanodbc::transaction\l::operator class connection &",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1transaction.html#a8492d86e1c09aac1c76c12a0621e8b5a",tooltip="Returns the connection object."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="nanodbc::transaction\l::operator const class\l connection &",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1transaction.html#ae2f6e59ea672314d66b5107f55b91e24",tooltip="Returns the connection object."];
+}

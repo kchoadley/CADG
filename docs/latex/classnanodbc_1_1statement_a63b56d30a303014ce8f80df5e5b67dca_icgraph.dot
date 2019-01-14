@@ -1,0 +1,20 @@
+digraph "nanodbc::statement::prepare"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node91 [label="nanodbc::statement\l::prepare",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Opens and prepares the given statement to execute on the given connection."];
+  Node91 -> Node92 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node92 [label="nanodbc::prepare",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga961a75629487f22ebc87d114c5699bc2",tooltip="Prepares the given statement to execute on it associated connection."];
+  Node92 -> Node93 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node93 [label="nanodbc::statement\l::statement_impl::statement_impl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement_1_1statement__impl.html#aeb976ed1c29dc5325bd00034033e0967",tooltip=" "];
+  Node92 -> Node94 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node94 [label="nanodbc::statement\l::statement_impl::prepare",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement_1_1statement__impl.html#a7d93dd08169247d9c2462686b79dccd7",tooltip=" "];
+  Node92 -> Node95 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node95 [label="cadg_rest::DataAccessObject\l::RemoveUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a049df84fde79be3547fe363be40850e4",tooltip="Removes a user by the provided id."];
+  Node92 -> Node96 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node96 [label="cadg_rest::DataAccessObject\l::AddUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#a6d80c563e1cd526791fa69f32cd1d896",tooltip="Adds a new user."];
+  Node92 -> Node97 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node97 [label="cadg_rest::DataAccessObject\l::UpdateUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_object.html#af9a88b06de9cd2c7042c91be83e00872",tooltip="Updates a user."];
+}

@@ -1,0 +1,10 @@
+digraph "nanodbc::connection::connection_impl::disconnect"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node53 [label="nanodbc::connection\l::connection_impl::disconnect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node53 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 [label="nanodbc::connection\l::connection_impl::connected",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1connection_1_1connection__impl.html#a07e1296c6fef6975a2e18960d7c4eaf8",tooltip=" "];
+}

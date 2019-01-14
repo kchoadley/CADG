@@ -1,0 +1,10 @@
+digraph "nanodbc::catalog::tables::table_catalog"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node6 [label="nanodbc::catalog::tables\l::table_catalog",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Fetch table catalog."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="nanodbc::catalog::list\l_catalogs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1catalog.html#a47339f7d553a97b737f6529b53ee2b3d",tooltip="Returns names of all catalogs (or databases) available in connected data source."];
+}

@@ -1,0 +1,10 @@
+digraph "nanodbc::statement::operator="
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node82 [label="nanodbc::statement\l::operator=",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Assignment."];
+  Node82 -> Node83 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node83 [label="nanodbc::statement\l::swap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement.html#aaeb282293b92d0c9c0dc9e6452c91695",tooltip="Member swap."];
+}

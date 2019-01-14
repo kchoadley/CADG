@@ -1,0 +1,12 @@
+digraph "cadg_rest::Logger::Log"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node16 [label="cadg_rest::Logger::Log",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generic log method for logging method calls."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="cadg_rest::Logger::Log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger.html#a192e92e4e3137687bedbfd1157257e78",tooltip="Generic log method."];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="cadg_rest::Logger::\lConvertLogLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger.html#a16fc28a4f058a0ccfccd894925668021",tooltip="Translates log_level for spdlog."];
+}

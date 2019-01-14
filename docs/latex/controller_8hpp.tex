@@ -1,0 +1,39 @@
+\hypertarget{controller_8hpp}{}\section{rest-\/server/src/controller/controller.hpp File Reference}
+\label{controller_8hpp}\index{rest-\/server/src/controller/controller.hpp@{rest-\/server/src/controller/controller.hpp}}
+
+
+A R\+E\+ST endpoint controller abstract class.  
+
+
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cpprest/http\+\_\+listener.\+h$>$}\newline
+{\ttfamily \#include $<$cpprest/http\+\_\+msg.\+h$>$}\newline
+{\ttfamily \#include $<$pplx/pplxtasks.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}logger\+\_\+interface.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcadg__rest_1_1_controller}{cadg\+\_\+rest\+::\+Controller}}
+\begin{DoxyCompactList}\small\item\em A R\+E\+ST endpoint controller abstract class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacecadg__rest}{cadg\+\_\+rest}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A R\+E\+ST endpoint controller abstract class. 
+
+Controller is a base class for R\+E\+ST controller classes, it has some common methods defined and leaves methods that need to be defined by parent classes undefined. A controller has an endpoint, can be started with Accept and ended with Shutdown. The default supported http verbs are G\+ET, P\+UT, P\+O\+ST, and D\+E\+L\+E\+TE.
+
+Copyright 2018 Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael Mc\+Culley
+
+\begin{DoxyAuthor}{Authors}
+\{ Kristofer Hoadley \} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+November, 2018 
+\end{DoxyDate}

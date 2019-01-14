@@ -1,0 +1,16 @@
+digraph "cadg_rest::UserController::HandlePost"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node39 [label="cadg_rest::UserController\l::HandlePost",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Creates a new user."];
+  Node39 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="cadg_rest::LoggerInterface\l::LogNetworkActivity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a9f3648fc2c6d697e80961041a40d2e24",tooltip="Generic log method for logging method calls."];
+  Node39 -> Node41 [color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="cadg_rest::Controller\l::endpoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#addeea914faab4557cc7caa493fce1d2d",tooltip=" "];
+  Node39 -> Node42 [color="midnightblue",fontsize="10",style="solid"];
+  Node42 [label="cadg_rest::DataAccessInterface\l::AddUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#a625cb7ba6f4637e3157acda84f81eae9",tooltip="Adds a new user."];
+  Node39 -> Node43 [color="midnightblue",fontsize="10",style="solid"];
+  Node43 [label="cadg_rest::LoggerInterface::Log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a56f53c1fb9687825ade3acced5e3a10a",tooltip="Generic log method."];
+}

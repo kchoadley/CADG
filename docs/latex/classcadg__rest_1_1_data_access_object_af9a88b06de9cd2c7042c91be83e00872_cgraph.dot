@@ -1,0 +1,25 @@
+digraph "cadg_rest::DataAccessObject::UpdateUser"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node43 [label="cadg_rest::DataAccessObject\l::UpdateUser",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Updates a user."];
+  Node43 -> Node44 [color="midnightblue",fontsize="10",style="solid"];
+  Node44 [label="nanodbc::prepare",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga961a75629487f22ebc87d114c5699bc2",tooltip="Prepares the given statement to execute on it associated connection."];
+  Node44 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
+  Node45 [label="nanodbc::statement\l::prepare",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement.html#a63b56d30a303014ce8f80df5e5b67dca",tooltip="Opens and prepares the given statement to execute on the given connection."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node46 [label="nanodbc::statement\l::timeout",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement.html#adbd1acbbdcc529dc668bfef341593573",tooltip="Sets the number in seconds before query timeout. Default is 0 indicating no timeout."];
+  Node44 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 [label="nanodbc::statement\l::connection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement.html#a4eb59e468b303a9d6acbe3ba1c408495",tooltip="Returns the associated connection object if any."];
+  Node44 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node43 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
+  Node48 [label="nanodbc::statement\l::bind",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__binding.html#gabe1b3e2f93e5b854f6f6a3dfa3250f5c",tooltip="Binds given value to given parameter placeholder number in the prepared statement."];
+  Node43 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 [label="nanodbc::execute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mainf.html#ga5cbac617a3964611bd16a2fc6f991b83",tooltip="Immediately opens, prepares, and executes the given query directly on the given connection."];
+  Node49 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 [label="nanodbc::statement\l::execute_direct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1statement.html#af070dc29a840854e261bda5761318cf0",tooltip="Opens, prepares, and executes the given query directly on the given connection."];
+  Node50 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+}

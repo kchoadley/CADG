@@ -1,0 +1,1078 @@
+\hypertarget{classnanodbc_1_1result}{}\section{nanodbc\+::result Class Reference}
+\label{classnanodbc_1_1result}\index{nanodbc::result@{nanodbc::result}}
+
+
+A resource for managing result sets from statement execution.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1result_1_1result__impl}{result\+\_\+impl}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1result_ad4d59619a46d67bbc171d0d5c9e84705}{result}} ()
+\begin{DoxyCompactList}\small\item\em Empty result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result_a19f6d7665824d9b06d7c2db22b34b4f3}{$\sim$result}} () noexcept
+\begin{DoxyCompactList}\small\item\em Free result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result_a47f04c9526ecd6a1abf503ac534edc23}{result}} (const \mbox{\hyperlink{classnanodbc_1_1result}{result}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result_af616d94ee18fa55cfd60687b98ff9ebd}{result}} (\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result}{result}} \& \mbox{\hyperlink{classnanodbc_1_1result_a231eaf6046c90656ab52337e1549d572}{operator=}} (\mbox{\hyperlink{classnanodbc_1_1result}{result}} rhs)
+\begin{DoxyCompactList}\small\item\em Assignment. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1result_a8cfba4b26f5dbddc955494484bc41a0d}{swap}} (\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Member swap. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classnanodbc_1_1result_aa98342a662f490baeaaf686e815b0896}{native\+\_\+statement\+\_\+handle}} () const
+\begin{DoxyCompactList}\small\item\em Returns the native O\+D\+BC statement handle. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1result_adea873810ff2e393096c16aabeadd48f}{rowset\+\_\+size}} () const noexcept
+\begin{DoxyCompactList}\small\item\em The rowset size for this result set. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1result_ab038630cf35248dc6731eea37b14d12d}{affected\+\_\+rows}} () const
+\begin{DoxyCompactList}\small\item\em Number of affected rows by the request or -\/1 if the affected rows is not available. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_aba877de8e2cb4e17235464b3b9b7c069}{has\+\_\+affected\+\_\+rows}} () const
+\begin{DoxyCompactList}\small\item\em Reports if number of affected rows is available. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1result_a7138ae9ec911fd4694a5c81ef902db89}{rows}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Rows in the current rowset or 0 if the number of rows is not available. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1result_af21bbbe31f0e2578701edb3b386cd536}{columns}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of columns in a result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a8ce75f4ab1bb039c6ee6724966f54a93}{first}} ()
+\begin{DoxyCompactList}\small\item\em Fetches the first row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a5078a998be38e7814338597eaf100405}{last}} ()
+\begin{DoxyCompactList}\small\item\em Fetches the last row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a31470b51f194181373e4c2c4292d11c4}{next}} ()
+\begin{DoxyCompactList}\small\item\em Fetches the next row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a8c690c95797a04a6ea022e64867d0f53}{async\+\_\+next}} (void $\ast$event\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Initiates an asynchronous fetch of the next row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a0af2da5efc2576da4d2b2b54e340e11c}{complete\+\_\+next}} ()
+\begin{DoxyCompactList}\small\item\em Completes a previously-\/initiated async fetch for next row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_afd0b71a0bfe3e184f3b9a1caf8f17058}{prior}} ()
+\begin{DoxyCompactList}\small\item\em Fetches the prior row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a70388a8ca569a6e30367a45f215f2986}{move}} (long row)
+\begin{DoxyCompactList}\small\item\em Moves to and fetches the specified row in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_abcd96eb3fd8fea53fa41289c5fc87377}{skip}} (long \mbox{\hyperlink{classnanodbc_1_1result_a7138ae9ec911fd4694a5c81ef902db89}{rows}})
+\begin{DoxyCompactList}\small\item\em Skips a number of rows and then fetches the resulting row in the current result set. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{classnanodbc_1_1result_a240f2c35df4ff9816150918a60a83f0e}{position}} () const
+\begin{DoxyCompactList}\small\item\em Returns the row position in the current result set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_ab6c9e33d74b195c57766dcdd37d101d2}{at\+\_\+end}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns true if there are no more results in the current result set. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classnanodbc_1_1result_ad606b9ccfa02d6dbdae7a28c7a92bb14}{get\+\_\+ref}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}, T \&\mbox{\hyperlink{classnanodbc_1_1result}{result}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classnanodbc_1_1result_a5f1ed8303dd506ed57a3eb87acd219b1}{get\+\_\+ref}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}, const T \&fallback, T \&\mbox{\hyperlink{classnanodbc_1_1result}{result}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classnanodbc_1_1result_a09a12956778629533cbb619a4fd9216d}{get\+\_\+ref}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}, T \&\mbox{\hyperlink{classnanodbc_1_1result}{result}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column by name of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classnanodbc_1_1result_aacbd54c96647e3450c62b16a0678d027}{get\+\_\+ref}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}, const T \&fallback, T \&\mbox{\hyperlink{classnanodbc_1_1result}{result}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column by name of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{classnanodbc_1_1result_affa949e32147a8f262d066a790651ad7}{get}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{classnanodbc_1_1result_af33ef788292fc12198c06924db24fe97}{get}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}, const T \&fallback) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{classnanodbc_1_1result_a3be6ab61aea0902cb05f55ad814e85c1}{get}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column by name of the current rowset. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{classnanodbc_1_1result_a447e4575031945386b584c576c3a89bd}{get}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}, const T \&fallback) const
+\begin{DoxyCompactList}\small\item\em Gets data from the given column by name of the current rowset. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a85462f6eaed91a5b03739319bd2712e7}{is\+\_\+null}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns true if and only if the given column of the current rowset is null. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a9201ef6814bf934ffb9caa7b62f3bad9}{is\+\_\+null}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns true if and only if the given column by name of the current rowset is null. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns the column number of the specified column name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns the name of the specified column. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1result_ae6c9d812e8be9ea46a5cd346e83a6cba}{column\+\_\+size}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns the size of the specified column. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1result_a43c42071bf86c4532039b61ad3f3c6c6}{column\+\_\+size}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns the size of the specified column by name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_aa2568f3d624d65a9f850880e1d2747f8}{column\+\_\+decimal\+\_\+digits}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns the number of decimal digits of the specified column. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_aabbb9fb0a14a5b0fbb33fda4a1143b78}{column\+\_\+decimal\+\_\+digits}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns the number of decimal digits of the specified column by name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_a8adc601a07a055f15908724e285133bb}{column\+\_\+datatype}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns a identifying integer value representing the S\+QL type of this column. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_af698d05f12656b6ab0809b0a60ea9a60}{column\+\_\+datatype}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns a identifying integer value representing the S\+QL type of this column by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1result_a72775ba759833560efebba44892576b3}{column\+\_\+datatype\+\_\+name}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns data source dependent data type name of this column. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1result_a391d792c4a37be4037274b681c96da59}{column\+\_\+datatype\+\_\+name}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns data source dependent data type name of this column by name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_a094ee5a13d83c0aeabd8ccab4c4e130c}{column\+\_\+c\+\_\+datatype}} (short \mbox{\hyperlink{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}{column}}) const
+\begin{DoxyCompactList}\small\item\em Returns a identifying integer value representing the C type of this column. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnanodbc_1_1result_a3f505031acffabc538b2d840416074fa}{column\+\_\+c\+\_\+datatype}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}{column\+\_\+name}}) const
+\begin{DoxyCompactList}\small\item\em Returns a identifying integer value representing the C type of this column by name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1result_a9cb9d5325c3ce58e7c48c1e4da1a99bb}{next\+\_\+result}} ()
+\begin{DoxyCompactList}\small\item\em Returns the next result, e.\+g. when stored procedure returns multiple result sets. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1result_a235653804363793ffe2e8300160694f6}{operator bool}} () const
+\begin{DoxyCompactList}\small\item\em If and only if result object is valid, returns true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1result_aef4143376fa8878d00721aca642cbfee}{nanodbc\+::statement\+::statement\+\_\+impl}}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1result_af0f3134c7f6f1f36bfe1e247318dfe43}{nanodbc\+::catalog}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A resource for managing result sets from statement execution. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{statement\+::execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}{statement\+::execute\+\_\+direct()}} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+result objects may be copied, however all copies will refer to the same result set. 
+\end{DoxyNote}
+
+
+Definition at line 1206 of file nanodbc.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1result_ad4d59619a46d67bbc171d0d5c9e84705}\label{classnanodbc_1_1result_ad4d59619a46d67bbc171d0d5c9e84705}} 
+\index{nanodbc::result@{nanodbc::result}!result@{result}}
+\index{result@{result}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{result()}{result()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily nanodbc\+::result\+::result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Empty result set. 
+
+
+
+Definition at line 4631 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a19f6d7665824d9b06d7c2db22b34b4f3}\label{classnanodbc_1_1result_a19f6d7665824d9b06d7c2db22b34b4f3}} 
+\index{nanodbc::result@{nanodbc::result}!````~result@{$\sim$result}}
+\index{````~result@{$\sim$result}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{$\sim$result()}{~result()}}
+{\footnotesize\ttfamily nanodbc\+::result\+::$\sim$result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Free result set. 
+
+
+
+Definition at line 4636 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a47f04c9526ecd6a1abf503ac534edc23}\label{classnanodbc_1_1result_a47f04c9526ecd6a1abf503ac534edc23}} 
+\index{nanodbc::result@{nanodbc::result}!result@{result}}
+\index{result@{result}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{result()}{result()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily nanodbc\+::result\+::result (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classnanodbc_1_1result}{result}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+
+Definition at line 4648 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_af616d94ee18fa55cfd60687b98ff9ebd}\label{classnanodbc_1_1result_af616d94ee18fa55cfd60687b98ff9ebd}} 
+\index{nanodbc::result@{nanodbc::result}!result@{result}}
+\index{result@{result}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{result()}{result()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily nanodbc\+::result\+::result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. 
+
+
+
+Definition at line 4643 of file nanodbc.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1result_ab038630cf35248dc6731eea37b14d12d}\label{classnanodbc_1_1result_ab038630cf35248dc6731eea37b14d12d}} 
+\index{nanodbc::result@{nanodbc::result}!affected\_rows@{affected\_rows}}
+\index{affected\_rows@{affected\_rows}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{affected\_rows()}{affected\_rows()}}
+{\footnotesize\ttfamily long nanodbc\+::result\+::affected\+\_\+rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Number of affected rows by the request or -\/1 if the affected rows is not available. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4675 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a8c690c95797a04a6ea022e64867d0f53}\label{classnanodbc_1_1result_a8c690c95797a04a6ea022e64867d0f53}} 
+\index{nanodbc::result@{nanodbc::result}!async\_next@{async\_next}}
+\index{async\_next@{async\_next}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{async\_next()}{async\_next()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::async\+\_\+next (\begin{DoxyParamCaption}\item[{void $\ast$}]{event\+\_\+handle }\end{DoxyParamCaption})}
+
+
+
+Initiates an asynchronous fetch of the next row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if the caller needs to wait for the event to be signalled, false if \mbox{\hyperlink{classnanodbc_1_1result_a0af2da5efc2576da4d2b2b54e340e11c}{complete\+\_\+next()}} can be called immediately. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classnanodbc_1_1result_ab6c9e33d74b195c57766dcdd37d101d2}\label{classnanodbc_1_1result_ab6c9e33d74b195c57766dcdd37d101d2}} 
+\index{nanodbc::result@{nanodbc::result}!at\_end@{at\_end}}
+\index{at\_end@{at\_end}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{at\_end()}{at\_end()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::at\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns true if there are no more results in the current result set. 
+
+
+
+Definition at line 4742 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}\label{classnanodbc_1_1result_ae4e254b2db63c65473cc058de3d5a844}} 
+\index{nanodbc::result@{nanodbc::result}!column@{column}}
+\index{column@{column}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column()}{column()}}
+{\footnotesize\ttfamily short nanodbc\+::result\+::column (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns the column number of the specified column name. 
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4757 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a094ee5a13d83c0aeabd8ccab4c4e130c}\label{classnanodbc_1_1result_a094ee5a13d83c0aeabd8ccab4c4e130c}} 
+\index{nanodbc::result@{nanodbc::result}!column\_c\_datatype@{column\_c\_datatype}}
+\index{column\_c\_datatype@{column\_c\_datatype}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_c\_datatype()}{column\_c\_datatype()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+c\+\_\+datatype (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns a identifying integer value representing the C type of this column. 
+
+
+
+Definition at line 4807 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a3f505031acffabc538b2d840416074fa}\label{classnanodbc_1_1result_a3f505031acffabc538b2d840416074fa}} 
+\index{nanodbc::result@{nanodbc::result}!column\_c\_datatype@{column\_c\_datatype}}
+\index{column\_c\_datatype@{column\_c\_datatype}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_c\_datatype()}{column\_c\_datatype()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+c\+\_\+datatype (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns a identifying integer value representing the C type of this column by name. 
+
+
+
+Definition at line 4812 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a8adc601a07a055f15908724e285133bb}\label{classnanodbc_1_1result_a8adc601a07a055f15908724e285133bb}} 
+\index{nanodbc::result@{nanodbc::result}!column\_datatype@{column\_datatype}}
+\index{column\_datatype@{column\_datatype}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_datatype()}{column\_datatype()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+datatype (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns a identifying integer value representing the S\+QL type of this column. 
+
+
+
+Definition at line 4787 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_af698d05f12656b6ab0809b0a60ea9a60}\label{classnanodbc_1_1result_af698d05f12656b6ab0809b0a60ea9a60}} 
+\index{nanodbc::result@{nanodbc::result}!column\_datatype@{column\_datatype}}
+\index{column\_datatype@{column\_datatype}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_datatype()}{column\_datatype()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+datatype (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns a identifying integer value representing the S\+QL type of this column by name. 
+
+
+
+Definition at line 4792 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a72775ba759833560efebba44892576b3}\label{classnanodbc_1_1result_a72775ba759833560efebba44892576b3}} 
+\index{nanodbc::result@{nanodbc::result}!column\_datatype\_name@{column\_datatype\_name}}
+\index{column\_datatype\_name@{column\_datatype\_name}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_datatype\_name()}{column\_datatype\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::result\+::column\+\_\+datatype\+\_\+name (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns data source dependent data type name of this column. 
+
+The function calls S\+Q\+L\+Co\+L\+Attribute with the field attribute S\+Q\+L\+\_\+\+D\+E\+S\+C\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+A\+ME to obtain the data type name. If the type is unknown, an empty string is returned. \begin{DoxyNote}{Note}
+Unlike other column metadata functions (eg. \mbox{\hyperlink{classnanodbc_1_1result_a8adc601a07a055f15908724e285133bb}{column\+\_\+datatype()}}), this function cost is an extra O\+D\+BC A\+PI call. 
+\end{DoxyNote}
+
+
+Definition at line 4797 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a391d792c4a37be4037274b681c96da59}\label{classnanodbc_1_1result_a391d792c4a37be4037274b681c96da59}} 
+\index{nanodbc::result@{nanodbc::result}!column\_datatype\_name@{column\_datatype\_name}}
+\index{column\_datatype\_name@{column\_datatype\_name}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_datatype\_name()}{column\_datatype\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::result\+::column\+\_\+datatype\+\_\+name (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns data source dependent data type name of this column by name. 
+
+The function calls S\+Q\+L\+Co\+L\+Attribute with the field attribute S\+Q\+L\+\_\+\+D\+E\+S\+C\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+A\+ME to obtain the data type name. If the type is unknown, an empty string is returned. \begin{DoxyNote}{Note}
+Unlike other column metadata functions (eg. \mbox{\hyperlink{classnanodbc_1_1result_a8adc601a07a055f15908724e285133bb}{column\+\_\+datatype()}}), this function cost is an extra O\+D\+BC A\+PI call. 
+\end{DoxyNote}
+
+
+Definition at line 4802 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aa2568f3d624d65a9f850880e1d2747f8}\label{classnanodbc_1_1result_aa2568f3d624d65a9f850880e1d2747f8}} 
+\index{nanodbc::result@{nanodbc::result}!column\_decimal\_digits@{column\_decimal\_digits}}
+\index{column\_decimal\_digits@{column\_decimal\_digits}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_decimal\_digits()}{column\_decimal\_digits()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+decimal\+\_\+digits (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of decimal digits of the specified column. 
+
+Applies to exact numeric types (scale), datetime and interval types (prcision). If the number cannot be determined or is not applicable, drivers typically return 0.
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4777 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aabbb9fb0a14a5b0fbb33fda4a1143b78}\label{classnanodbc_1_1result_aabbb9fb0a14a5b0fbb33fda4a1143b78}} 
+\index{nanodbc::result@{nanodbc::result}!column\_decimal\_digits@{column\_decimal\_digits}}
+\index{column\_decimal\_digits@{column\_decimal\_digits}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_decimal\_digits()}{column\_decimal\_digits()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int nanodbc\+::result\+::column\+\_\+decimal\+\_\+digits (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of decimal digits of the specified column by name. 
+
+
+
+Definition at line 4782 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}\label{classnanodbc_1_1result_a2bd3fc4e416108960c4191b2cbba256b}} 
+\index{nanodbc::result@{nanodbc::result}!column\_name@{column\_name}}
+\index{column\_name@{column\_name}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_name()}{column\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::result\+::column\+\_\+name (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns the name of the specified column. 
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4762 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_ae6c9d812e8be9ea46a5cd346e83a6cba}\label{classnanodbc_1_1result_ae6c9d812e8be9ea46a5cd346e83a6cba}} 
+\index{nanodbc::result@{nanodbc::result}!column\_size@{column\_size}}
+\index{column\_size@{column\_size}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_size()}{column\_size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily long nanodbc\+::result\+::column\+\_\+size (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns the size of the specified column. 
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4767 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a43c42071bf86c4532039b61ad3f3c6c6}\label{classnanodbc_1_1result_a43c42071bf86c4532039b61ad3f3c6c6}} 
+\index{nanodbc::result@{nanodbc::result}!column\_size@{column\_size}}
+\index{column\_size@{column\_size}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{column\_size()}{column\_size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily long nanodbc\+::result\+::column\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns the size of the specified column by name. 
+
+
+
+Definition at line 4772 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_af21bbbe31f0e2578701edb3b386cd536}\label{classnanodbc_1_1result_af21bbbe31f0e2578701edb3b386cd536}} 
+\index{nanodbc::result@{nanodbc::result}!columns@{columns}}
+\index{columns@{columns}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{columns()}{columns()}}
+{\footnotesize\ttfamily short nanodbc\+::result\+::columns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of columns in a result set. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4690 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a0af2da5efc2576da4d2b2b54e340e11c}\label{classnanodbc_1_1result_a0af2da5efc2576da4d2b2b54e340e11c}} 
+\index{nanodbc::result@{nanodbc::result}!complete\_next@{complete\_next}}
+\index{complete\_next@{complete\_next}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{complete\_next()}{complete\_next()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::complete\+\_\+next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Completes a previously-\/initiated async fetch for next row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are more results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classnanodbc_1_1result_a8ce75f4ab1bb039c6ee6724966f54a93}\label{classnanodbc_1_1result_a8ce75f4ab1bb039c6ee6724966f54a93}} 
+\index{nanodbc::result@{nanodbc::result}!first@{first}}
+\index{first@{first}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{first()}{first()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::first (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetches the first row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are more results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4695 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_affa949e32147a8f262d066a790651ad7}\label{classnanodbc_1_1result_affa949e32147a8f262d066a790651ad7}} 
+\index{nanodbc::result@{nanodbc::result}!get@{get}}
+\index{get@{get}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T nanodbc\+::result\+::get (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column of the current rowset. 
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1null__access__error}{null\+\_\+access\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4847 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_af33ef788292fc12198c06924db24fe97}\label{classnanodbc_1_1result_af33ef788292fc12198c06924db24fe97}} 
+\index{nanodbc::result@{nanodbc::result}!get@{get}}
+\index{get@{get}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T nanodbc\+::result\+::get (\begin{DoxyParamCaption}\item[{short}]{column,  }\item[{const T \&}]{fallback }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column of the current rowset. 
+
+If the data is null, fallback is returned instead.
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+{\em fallback} & if value is null, return fallback instead. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4853 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a3be6ab61aea0902cb05f55ad814e85c1}\label{classnanodbc_1_1result_a3be6ab61aea0902cb05f55ad814e85c1}} 
+\index{nanodbc::result@{nanodbc::result}!get@{get}}
+\index{get@{get}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T nanodbc\+::result\+::get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column by name of the current rowset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1null__access__error}{null\+\_\+access\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4859 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a447e4575031945386b584c576c3a89bd}\label{classnanodbc_1_1result_a447e4575031945386b584c576c3a89bd}} 
+\index{nanodbc::result@{nanodbc::result}!get@{get}}
+\index{get@{get}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T nanodbc\+::result\+::get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name,  }\item[{const T \&}]{fallback }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column by name of the current rowset. 
+
+If the data is null, fallback is returned instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+{\em fallback} & if value is null, return fallback instead. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4865 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_ad606b9ccfa02d6dbdae7a28c7a92bb14}\label{classnanodbc_1_1result_ad606b9ccfa02d6dbdae7a28c7a92bb14}} 
+\index{nanodbc::result@{nanodbc::result}!get\_ref@{get\_ref}}
+\index{get\_ref@{get\_ref}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get\_ref()}{get\_ref()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::result\+::get\+\_\+ref (\begin{DoxyParamCaption}\item[{short}]{column,  }\item[{T \&}]{result }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column of the current rowset. 
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+{\em result} & The column\textquotesingle{}s value will be written to this parameter. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1null__access__error}{null\+\_\+access\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4823 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a5f1ed8303dd506ed57a3eb87acd219b1}\label{classnanodbc_1_1result_a5f1ed8303dd506ed57a3eb87acd219b1}} 
+\index{nanodbc::result@{nanodbc::result}!get\_ref@{get\_ref}}
+\index{get\_ref@{get\_ref}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get\_ref()}{get\_ref()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::result\+::get\+\_\+ref (\begin{DoxyParamCaption}\item[{short}]{column,  }\item[{const T \&}]{fallback,  }\item[{T \&}]{result }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column of the current rowset. 
+
+If the data is null, fallback is returned instead.
+
+Columns are numbered from left to right and 0-\/indexed. 
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+{\em fallback} & if value is null, return fallback instead. \\
+\hline
+{\em result} & The column\textquotesingle{}s value will be written to this parameter. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4829 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a09a12956778629533cbb619a4fd9216d}\label{classnanodbc_1_1result_a09a12956778629533cbb619a4fd9216d}} 
+\index{nanodbc::result@{nanodbc::result}!get\_ref@{get\_ref}}
+\index{get\_ref@{get\_ref}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get\_ref()}{get\_ref()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::result\+::get\+\_\+ref (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name,  }\item[{T \&}]{result }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column by name of the current rowset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+{\em result} & The column\textquotesingle{}s value will be written to this parameter. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1null__access__error}{null\+\_\+access\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4835 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aacbd54c96647e3450c62b16a0678d027}\label{classnanodbc_1_1result_aacbd54c96647e3450c62b16a0678d027}} 
+\index{nanodbc::result@{nanodbc::result}!get\_ref@{get\_ref}}
+\index{get\_ref@{get\_ref}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{get\_ref()}{get\_ref()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::result\+::get\+\_\+ref (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name,  }\item[{const T \&}]{fallback,  }\item[{T \&}]{result }\end{DoxyParamCaption}) const}
+
+
+
+Gets data from the given column by name of the current rowset. 
+
+If the data is null, fallback is returned instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+{\em fallback} & if value is null, return fallback instead. \\
+\hline
+{\em result} & The column\textquotesingle{}s value will be written to this parameter. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1type__incompatible__error}{type\+\_\+incompatible\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4841 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aba877de8e2cb4e17235464b3b9b7c069}\label{classnanodbc_1_1result_aba877de8e2cb4e17235464b3b9b7c069}} 
+\index{nanodbc::result@{nanodbc::result}!has\_affected\_rows@{has\_affected\_rows}}
+\index{has\_affected\_rows@{has\_affected\_rows}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{has\_affected\_rows()}{has\_affected\_rows()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::has\+\_\+affected\+\_\+rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reports if number of affected rows is available. 
+
+\begin{DoxyReturn}{Returns}
+true if number of affected rows is known, regardless of the value; false if the number is not available. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{assert(r.has\_affected\_rows() == (r.affected\_rows() >= 0));}
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4680 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a85462f6eaed91a5b03739319bd2712e7}\label{classnanodbc_1_1result_a85462f6eaed91a5b03739319bd2712e7}} 
+\index{nanodbc::result@{nanodbc::result}!is\_null@{is\_null}}
+\index{is\_null@{is\_null}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{is\_null()}{is\_null()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::is\+\_\+null (\begin{DoxyParamCaption}\item[{short}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Returns true if and only if the given column of the current rowset is null. 
+
+There is a bug/limitation in O\+D\+BC drivers for S\+QL Server (and possibly others) which causes S\+Q\+L\+Bind\+Col() to never write S\+Q\+L\+\_\+\+N\+O\+T\+\_\+\+N\+U\+LL to the length/indicator buffer unless you also bind the data column. nanodbc\textquotesingle{}s \mbox{\hyperlink{classnanodbc_1_1result_a85462f6eaed91a5b03739319bd2712e7}{is\+\_\+null()}} will return correct values for (n)varchar(max) columns when you ensure that S\+Q\+L\+Get\+Data() has been called for that column (i.\+e. after \mbox{\hyperlink{classnanodbc_1_1result_affa949e32147a8f262d066a790651ad7}{get()}} or \mbox{\hyperlink{classnanodbc_1_1result_ad606b9ccfa02d6dbdae7a28c7a92bb14}{get\+\_\+ref()}} is called).
+
+Columns are numbered from left to right and 0-\/indexed. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1result_affa949e32147a8f262d066a790651ad7}{get()}}, \mbox{\hyperlink{classnanodbc_1_1result_ad606b9ccfa02d6dbdae7a28c7a92bb14}{get\+\_\+ref()}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em column} & position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4747 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a9201ef6814bf934ffb9caa7b62f3bad9}\label{classnanodbc_1_1result_a9201ef6814bf934ffb9caa7b62f3bad9}} 
+\index{nanodbc::result@{nanodbc::result}!is\_null@{is\_null}}
+\index{is\_null@{is\_null}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{is\_null()}{is\_null()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::is\+\_\+null (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Returns true if and only if the given column by name of the current rowset is null. 
+
+See is\+\_\+null(short column) for details on a bug/limitation of some O\+D\+BC drivers. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1result_a85462f6eaed91a5b03739319bd2712e7}{is\+\_\+null()}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+name} & column\textquotesingle{}s name. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1index__range__error}{index\+\_\+range\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4752 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a5078a998be38e7814338597eaf100405}\label{classnanodbc_1_1result_a5078a998be38e7814338597eaf100405}} 
+\index{nanodbc::result@{nanodbc::result}!last@{last}}
+\index{last@{last}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{last()}{last()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::last (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetches the last row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are more results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4700 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a70388a8ca569a6e30367a45f215f2986}\label{classnanodbc_1_1result_a70388a8ca569a6e30367a45f215f2986}} 
+\index{nanodbc::result@{nanodbc::result}!move@{move}}
+\index{move@{move}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::move (\begin{DoxyParamCaption}\item[{long}]{row }\end{DoxyParamCaption})}
+
+
+
+Moves to and fetches the specified row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4727 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aa98342a662f490baeaaf686e815b0896}\label{classnanodbc_1_1result_aa98342a662f490baeaaf686e815b0896}} 
+\index{nanodbc::result@{nanodbc::result}!native\_statement\_handle@{native\_statement\_handle}}
+\index{native\_statement\_handle@{native\_statement\_handle}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{native\_statement\_handle()}{native\_statement\_handle()}}
+{\footnotesize\ttfamily void $\ast$ nanodbc\+::result\+::native\+\_\+statement\+\_\+handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the native O\+D\+BC statement handle. 
+
+
+
+Definition at line 4665 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a31470b51f194181373e4c2c4292d11c4}\label{classnanodbc_1_1result_a31470b51f194181373e4c2c4292d11c4}} 
+\index{nanodbc::result@{nanodbc::result}!next@{next}}
+\index{next@{next}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetches the next row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are more results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4705 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a9cb9d5325c3ce58e7c48c1e4da1a99bb}\label{classnanodbc_1_1result_a9cb9d5325c3ce58e7c48c1e4da1a99bb}} 
+\index{nanodbc::result@{nanodbc::result}!next\_result@{next\_result}}
+\index{next\_result@{next\_result}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{next\_result()}{next\_result()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::next\+\_\+result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the next result, e.\+g. when stored procedure returns multiple result sets. 
+
+
+
+Definition at line 4817 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a235653804363793ffe2e8300160694f6}\label{classnanodbc_1_1result_a235653804363793ffe2e8300160694f6}} 
+\index{nanodbc::result@{nanodbc::result}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily nanodbc\+::result\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+If and only if result object is valid, returns true. 
+
+
+
+Definition at line 4870 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a231eaf6046c90656ab52337e1549d572}\label{classnanodbc_1_1result_a231eaf6046c90656ab52337e1549d572}} 
+\index{nanodbc::result@{nanodbc::result}!operator=@{operator=}}
+\index{operator=@{operator=}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result}{result}} \& nanodbc\+::result\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1result}{result}}}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Assignment. 
+
+
+
+Definition at line 4653 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a240f2c35df4ff9816150918a60a83f0e}\label{classnanodbc_1_1result_a240f2c35df4ff9816150918a60a83f0e}} 
+\index{nanodbc::result@{nanodbc::result}!position@{position}}
+\index{position@{position}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{position()}{position()}}
+{\footnotesize\ttfamily unsigned long nanodbc\+::result\+::position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the row position in the current result set. 
+
+
+
+Definition at line 4737 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_afd0b71a0bfe3e184f3b9a1caf8f17058}\label{classnanodbc_1_1result_afd0b71a0bfe3e184f3b9a1caf8f17058}} 
+\index{nanodbc::result@{nanodbc::result}!prior@{prior}}
+\index{prior@{prior}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{prior()}{prior()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::prior (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetches the prior row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are more results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4722 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a7138ae9ec911fd4694a5c81ef902db89}\label{classnanodbc_1_1result_a7138ae9ec911fd4694a5c81ef902db89}} 
+\index{nanodbc::result@{nanodbc::result}!rows@{rows}}
+\index{rows@{rows}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily long nanodbc\+::result\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Rows in the current rowset or 0 if the number of rows is not available. 
+
+
+
+Definition at line 4685 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_adea873810ff2e393096c16aabeadd48f}\label{classnanodbc_1_1result_adea873810ff2e393096c16aabeadd48f}} 
+\index{nanodbc::result@{nanodbc::result}!rowset\_size@{rowset\_size}}
+\index{rowset\_size@{rowset\_size}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{rowset\_size()}{rowset\_size()}}
+{\footnotesize\ttfamily long nanodbc\+::result\+::rowset\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+The rowset size for this result set. 
+
+
+
+Definition at line 4670 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_abcd96eb3fd8fea53fa41289c5fc87377}\label{classnanodbc_1_1result_abcd96eb3fd8fea53fa41289c5fc87377}} 
+\index{nanodbc::result@{nanodbc::result}!skip@{skip}}
+\index{skip@{skip}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool nanodbc\+::result\+::skip (\begin{DoxyParamCaption}\item[{long}]{rows }\end{DoxyParamCaption})}
+
+
+
+Skips a number of rows and then fetches the resulting row in the current result set. 
+
+\begin{DoxyReturn}{Returns}
+true if there are results or false otherwise. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 4732 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_a8cfba4b26f5dbddc955494484bc41a0d}\label{classnanodbc_1_1result_a8cfba4b26f5dbddc955494484bc41a0d}} 
+\index{nanodbc::result@{nanodbc::result}!swap@{swap}}
+\index{swap@{swap}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void nanodbc\+::result\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1result}{result}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Member swap. 
+
+
+
+Definition at line 4659 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1result_af0f3134c7f6f1f36bfe1e247318dfe43}\label{classnanodbc_1_1result_af0f3134c7f6f1f36bfe1e247318dfe43}} 
+\index{nanodbc::result@{nanodbc::result}!nanodbc::catalog@{nanodbc::catalog}}
+\index{nanodbc::catalog@{nanodbc::catalog}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{nanodbc::catalog}{nanodbc::catalog}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1catalog}{nanodbc\+::catalog}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1479 of file nanodbc.\+hpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1result_aef4143376fa8878d00721aca642cbfee}\label{classnanodbc_1_1result_aef4143376fa8878d00721aca642cbfee}} 
+\index{nanodbc::result@{nanodbc::result}!nanodbc::statement::statement\_impl@{nanodbc::statement::statement\_impl}}
+\index{nanodbc::statement::statement\_impl@{nanodbc::statement::statement\_impl}!nanodbc::result@{nanodbc::result}}
+\subsubsection{\texorpdfstring{nanodbc::statement::statement\_impl}{nanodbc::statement::statement\_impl}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1statement_1_1statement__impl}{nanodbc\+::statement\+::statement\+\_\+impl}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1477 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

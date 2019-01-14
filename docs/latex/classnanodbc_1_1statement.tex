@@ -1,0 +1,1018 @@
+\hypertarget{classnanodbc_1_1statement}{}\section{nanodbc\+::statement Class Reference}
+\label{classnanodbc_1_1statement}\index{nanodbc::statement@{nanodbc::statement}}
+
+
+Represents a statement on the database.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1statement_1_1statement__impl}{statement\+\_\+impl}}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} \{ \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}, 
+\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a62f755c84582e1dc9e5a8c0ab703e615}{P\+A\+R\+A\+M\+\_\+\+O\+UT}}, 
+\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a75c3aa96cde8c4cbd8c58e3837fbdc5b}{P\+A\+R\+A\+M\+\_\+\+I\+N\+O\+UT}}, 
+\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a2ee8caf768eba50d5b8517ba832b69f4}{P\+A\+R\+A\+M\+\_\+\+R\+E\+T\+U\+RN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Provides support for retrieving output/return parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_ac9ea91624b4b6136f98b002f75376cd9}{statement}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new un-\/prepared statement. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_aaa2dbe21f428c67d7dd32b9d8eeb8877}{statement}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn)
+\begin{DoxyCompactList}\small\item\em Constructs a statement object and associates it to the given connection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_a81bee831e734bedb4fbedd4cbf1a238f}{statement}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Constructs and prepares a statement using the given connection and query. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_a78cdb0dbf1437cd98eff448e8c6a8757}{statement}} (const \mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_a99b7708d308ee9313f5879ed09750fdf}{statement}} (\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \& \mbox{\hyperlink{classnanodbc_1_1statement_aaaa08f3783cb111c4426d42ae8d1ecd3}{operator=}} (\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} rhs)
+\begin{DoxyCompactList}\small\item\em Assignment. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_aaeb282293b92d0c9c0dc9e6452c91695}{swap}} (\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Member swap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnanodbc_1_1statement_aa30610291426567164aab50aeacaa537}{$\sim$statement}} () noexcept
+\begin{DoxyCompactList}\small\item\em Closes the statement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn)
+\begin{DoxyCompactList}\small\item\em Creates a statement for the given connection. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1statement_a7e34012ad0120d8c3780bea1d29c3903}{open}} () const
+\begin{DoxyCompactList}\small\item\em Returns true if connection is open. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1statement_aa3e77eb9771cf5d8478208b0a9e2c59a}{connected}} () const
+\begin{DoxyCompactList}\small\item\em Returns true if connected to the database. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& \mbox{\hyperlink{classnanodbc_1_1statement_a4eb59e468b303a9d6acbe3ba1c408495}{connection}} ()
+\begin{DoxyCompactList}\small\item\em Returns the associated connection object if any. \end{DoxyCompactList}\item 
+const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& \mbox{\hyperlink{classnanodbc_1_1statement_ae2e4f53a94056c5280fc5919c7bf5086}{connection}} () const
+\begin{DoxyCompactList}\small\item\em Returns the associated connection object if any. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classnanodbc_1_1statement_a3698e721741be20dac1f933ed425c8d7}{native\+\_\+statement\+\_\+handle}} () const
+\begin{DoxyCompactList}\small\item\em Returns the native O\+D\+BC statement handle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_abcf1dda8ab40a3b8ebd33c69afa4a399}{close}} ()
+\begin{DoxyCompactList}\small\item\em Closes the statement and frees all associated resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a81f6e6e0b547a900d20652fe5abe7b75}{cancel}} ()
+\begin{DoxyCompactList}\small\item\em Cancels execution of the statement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Opens and prepares the given statement to execute on the given connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a811a7bdbdea77b59af4aed8eddbc6840}{prepare}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Prepares the given statement to execute its associated connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}} (long timeout=0)
+\begin{DoxyCompactList}\small\item\em Sets the number in seconds before query timeout. Default is 0 indicating no timeout. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result}{result}} \mbox{\hyperlink{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}{execute\+\_\+direct}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Opens, prepares, and executes the given query directly on the given connection. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1statement_ab676933b9578da7d773f97269d270eee}{async\+\_\+prepare}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, void $\ast$event\+\_\+handle, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Prepare the given statement, in asynchronous mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a416c39007e292cf9b95f368d829ad5cb}{complete\+\_\+prepare}} ()
+\begin{DoxyCompactList}\small\item\em Completes a previously initiated asynchronous query preparation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1statement_a34184874a281b654f685b2f351956302}{async\+\_\+execute\+\_\+direct}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn, void $\ast$event\+\_\+handle, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Opens, prepares, and executes query directly on the given connection, in async mode. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classnanodbc_1_1statement_ac7086dafc8c0f014c629d15f97cc9505}{async\+\_\+execute}} (void $\ast$event\+\_\+handle, long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now, in asynchronous mode. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result}{result}} \mbox{\hyperlink{classnanodbc_1_1statement_aa4a0bb3fc0112469e837e1acd5ef3f6a}{complete\+\_\+execute}} (long batch\+\_\+operations=1)
+\begin{DoxyCompactList}\small\item\em Completes a previously initiated asynchronous query execution, returning the result. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{nanodbc_8hpp_a19335d16a1c69aa9d7b948100c4847ab}{N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} class \mbox{\hyperlink{classnanodbc_1_1result}{result}} \mbox{\hyperlink{classnanodbc_1_1statement_ab5498ba941c04dfe1e7e47928161b0e5}{async\+\_\+complete}} (long batch\+\_\+operations=1)
+\begin{DoxyCompactList}\small\item\em Completes a previously initiated asynchronous query execution, returning the result. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_ada8ceb1d90ebe7c0a876a185fa89f009}{enable\+\_\+async}} (void $\ast$event\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em undocumented -\/ for internal use only (used from result\+\_\+impl) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a7b96b992fb9891b46411c300b017fe74}{disable\+\_\+async}} () const
+\begin{DoxyCompactList}\small\item\em undocumented -\/ for internal use only (used from result\+\_\+impl) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_a1e18b1014feb323c346683a331df7adb}{just\+\_\+execute\+\_\+direct}} (class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&conn, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&query, long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now without constructing result object. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result}{result}} \mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute}} (long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_aef172a65f45487aaeb76c45954b42b75}{just\+\_\+execute}} (long batch\+\_\+operations=1, long \mbox{\hyperlink{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}{timeout}}=0)
+\begin{DoxyCompactList}\small\item\em Execute the previously prepared query now without constructing result object. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnanodbc_1_1result}{result}} \mbox{\hyperlink{classnanodbc_1_1statement_a4b3f414e8bc027db8351e2c59b8239d3}{procedure\+\_\+columns}} (const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&\mbox{\hyperlink{classnanodbc_1_1catalog}{catalog}}, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&schema, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&procedure, const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&column)
+\begin{DoxyCompactList}\small\item\em Returns the input and output paramters of the specified stored procedure. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classnanodbc_1_1statement_af904239b45c5a45af262d41cc6441398}{affected\+\_\+rows}} () const
+\begin{DoxyCompactList}\small\item\em Returns rows affected by the request or -\/1 if affected rows is not available. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1statement_a750301a6d2cfa67bc32c766edfc7825c}{columns}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of columns in a result set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnanodbc_1_1statement_ae225c1ec30fb1095f96f207fab2a8793}{reset\+\_\+parameters}} () noexcept
+\begin{DoxyCompactList}\small\item\em Resets all currently bound parameters. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1statement_a7af565aeec0737be62c1a458deddd606}{parameters}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of parameters in the statement. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{classnanodbc_1_1statement_aef87fd2e1a1b307f212755fdab1dad07}{parameter\+\_\+size}} (short param\+\_\+index) const
+\begin{DoxyCompactList}\small\item\em Returns parameter size for indicated parameter placeholder in a prepared statement. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__binding_gabe1b3e2f93e5b854f6f6a3dfa3250f5c}{bind}} (short param\+\_\+index, T const $\ast$value, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds given value to given parameter placeholder number in the prepared statement. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_ga21de5d66a3e381040ca03a4f0fdcc5db}{bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_gadc594c1e061661b7f95639fcf25ec2cb}{bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, T const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_gab7047fdb7cfec9bed6861b9a9c9b98cb}{bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_gac04830aadf2e00d3a3d05af8690eb241}{bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_ga5242c1154450bfe699b73a2f26294560}{bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_ga72e3b3fea37e2e8456f4cf2b66aa21f2}{bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, uint8\+\_\+t const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_ga8914c229f28ee7b02cf1b85684741326}{bind\+\_\+strings}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t value\+\_\+size, std\+::size\+\_\+t batch\+\_\+size, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+string$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_gaecd4578e6c204ffb15203e743a4ffdba}{bind\+\_\+strings}} (short param\+\_\+index, std\+::vector$<$ T $>$ const \&values, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Batch\+Size, std\+::size\+\_\+t Value\+Size, class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_ga979e2bdbe4d7b3a6845112a306735a3e}{bind\+\_\+strings}} (short param\+\_\+index, T const (\&values)\mbox{[}Batch\+Size\mbox{]}\mbox{[}Value\+Size\mbox{]}, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_gaab3ea540d9998532141d11970107767d}{bind\+\_\+strings}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t value\+\_\+size, std\+::size\+\_\+t batch\+\_\+size, T const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+string$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_gab3fcf94cac28bc25a794c3cd9b9cf47c}{bind\+\_\+strings}} (short param\+\_\+index, std\+::vector$<$ T $>$ const \&values, typename T\+::value\+\_\+type const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Batch\+Size, std\+::size\+\_\+t Value\+Size, class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_gaeb56183ce0f1c8a213b3088b8b03b6ff}{bind\+\_\+strings}} (short param\+\_\+index, T const (\&values)\mbox{[}Batch\+Size\mbox{]}\mbox{[}Value\+Size\mbox{]}, T const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_gadfdbae0cd7e7bf3737715bd32904438c}{bind\+\_\+strings}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t value\+\_\+size, std\+::size\+\_\+t batch\+\_\+size, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , typename  = enable\+\_\+if\+\_\+string$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_ga7cc7255e38df32cedd8e50f86512a9a8}{bind\+\_\+strings}} (short param\+\_\+index, std\+::vector$<$ T $>$ const \&values, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Batch\+Size, std\+::size\+\_\+t Value\+Size, class T , typename  = enable\+\_\+if\+\_\+character$<$\+T$>$$>$ }\\void \mbox{\hyperlink{group__bind__strings_ga15d74df8689ffbc2543cd7453d32097b}{bind\+\_\+strings}} (short param\+\_\+index, T const (\&values)\mbox{[}Batch\+Size\mbox{]}\mbox{[}Value\+Size\mbox{]}, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple string values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__binding_ga1c92f0059d16d859355f61a020e78d13}{bind\+\_\+null}} (short param\+\_\+index, std\+::size\+\_\+t batch\+\_\+size=1)
+\begin{DoxyCompactList}\small\item\em Binds null values to the parameter placeholder number in the prepared statement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1statement_acd5af29ec5e35cfbeb0751b6d9859b28}{nanodbc\+::result}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a statement on the database. 
+
+Definition at line 458 of file nanodbc.\+hpp.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}\label{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}} 
+\index{nanodbc::statement@{nanodbc::statement}!param\_direction@{param\_direction}}
+\index{param\_direction@{param\_direction}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{param\_direction}{param\_direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{nanodbc\+::statement\+::param\+\_\+direction}}}
+
+
+
+Provides support for retrieving output/return parameters. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__binding}{Binding parameters}} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_IN@{PARAM\_IN}!nanodbc::statement@{nanodbc::statement}}\index{nanodbc::statement@{nanodbc::statement}!PARAM\_IN@{PARAM\_IN}}}\mbox{\Hypertarget{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}\label{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}} 
+P\+A\+R\+A\+M\+\_\+\+IN&Binding an input parameter. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_OUT@{PARAM\_OUT}!nanodbc::statement@{nanodbc::statement}}\index{nanodbc::statement@{nanodbc::statement}!PARAM\_OUT@{PARAM\_OUT}}}\mbox{\Hypertarget{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a62f755c84582e1dc9e5a8c0ab703e615}\label{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a62f755c84582e1dc9e5a8c0ab703e615}} 
+P\+A\+R\+A\+M\+\_\+\+O\+UT&Binding an output parameter. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_INOUT@{PARAM\_INOUT}!nanodbc::statement@{nanodbc::statement}}\index{nanodbc::statement@{nanodbc::statement}!PARAM\_INOUT@{PARAM\_INOUT}}}\mbox{\Hypertarget{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a75c3aa96cde8c4cbd8c58e3837fbdc5b}\label{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a75c3aa96cde8c4cbd8c58e3837fbdc5b}} 
+P\+A\+R\+A\+M\+\_\+\+I\+N\+O\+UT&Binding an input/output parameter. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_RETURN@{PARAM\_RETURN}!nanodbc::statement@{nanodbc::statement}}\index{nanodbc::statement@{nanodbc::statement}!PARAM\_RETURN@{PARAM\_RETURN}}}\mbox{\Hypertarget{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a2ee8caf768eba50d5b8517ba832b69f4}\label{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6a2ee8caf768eba50d5b8517ba832b69f4}} 
+P\+A\+R\+A\+M\+\_\+\+R\+E\+T\+U\+RN&Binding a return parameter. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 463 of file nanodbc.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1statement_ac9ea91624b4b6136f98b002f75376cd9}\label{classnanodbc_1_1statement_ac9ea91624b4b6136f98b002f75376cd9}} 
+\index{nanodbc::statement@{nanodbc::statement}!statement@{statement}}
+\index{statement@{statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{statement()}{statement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new un-\/prepared statement. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_aef172a65f45487aaeb76c45954b42b75}{just\+\_\+execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}{execute\+\_\+direct()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a1e18b1014feb323c346683a331df7adb}{just\+\_\+execute\+\_\+direct()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3786 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aaa2dbe21f428c67d7dd32b9d8eeb8877}\label{classnanodbc_1_1statement_aaa2dbe21f428c67d7dd32b9d8eeb8877}} 
+\index{nanodbc::statement@{nanodbc::statement}!statement@{statement}}
+\index{statement@{statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{statement()}{statement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::statement (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a statement object and associates it to the given connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3791 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a81bee831e734bedb4fbedd4cbf1a238f}\label{classnanodbc_1_1statement_a81bee831e734bedb4fbedd4cbf1a238f}} 
+\index{nanodbc::statement@{nanodbc::statement}!statement@{statement}}
+\index{statement@{statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{statement()}{statement()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::statement (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructs and prepares a statement using the given connection and query. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to use. \\
+\hline
+{\em query} & The S\+QL query statement. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default\+: 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_aef172a65f45487aaeb76c45954b42b75}{just\+\_\+execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}{execute\+\_\+direct()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a1e18b1014feb323c346683a331df7adb}{just\+\_\+execute\+\_\+direct()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3801 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a78cdb0dbf1437cd98eff448e8c6a8757}\label{classnanodbc_1_1statement_a78cdb0dbf1437cd98eff448e8c6a8757}} 
+\index{nanodbc::statement@{nanodbc::statement}!statement@{statement}}
+\index{statement@{statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{statement()}{statement()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::statement (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+
+Definition at line 3806 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a99b7708d308ee9313f5879ed09750fdf}\label{classnanodbc_1_1statement_a99b7708d308ee9313f5879ed09750fdf}} 
+\index{nanodbc::statement@{nanodbc::statement}!statement@{statement}}
+\index{statement@{statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{statement()}{statement()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::statement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. 
+
+
+
+Definition at line 3796 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aa30610291426567164aab50aeacaa537}\label{classnanodbc_1_1statement_aa30610291426567164aab50aeacaa537}} 
+\index{nanodbc::statement@{nanodbc::statement}!````~statement@{$\sim$statement}}
+\index{````~statement@{$\sim$statement}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{$\sim$statement()}{~statement()}}
+{\footnotesize\ttfamily nanodbc\+::statement\+::$\sim$statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Closes the statement. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_abcf1dda8ab40a3b8ebd33c69afa4a399}{close()}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3823 of file nanodbc.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1statement_af904239b45c5a45af262d41cc6441398}\label{classnanodbc_1_1statement_af904239b45c5a45af262d41cc6441398}} 
+\index{nanodbc::statement@{nanodbc::statement}!affected\_rows@{affected\_rows}}
+\index{affected\_rows@{affected\_rows}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{affected\_rows()}{affected\_rows()}}
+{\footnotesize\ttfamily long nanodbc\+::statement\+::affected\+\_\+rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns rows affected by the request or -\/1 if affected rows is not available. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3964 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_ab5498ba941c04dfe1e7e47928161b0e5}\label{classnanodbc_1_1statement_ab5498ba941c04dfe1e7e47928161b0e5}} 
+\index{nanodbc::statement@{nanodbc::statement}!async\_complete@{async\_complete}}
+\index{async\_complete@{async\_complete}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{async\_complete()}{async\_complete()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{nanodbc_8hpp_a19335d16a1c69aa9d7b948100c4847ab}{N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} class \mbox{\hyperlink{classnanodbc_1_1result}{result}} nanodbc\+::statement\+::async\+\_\+complete (\begin{DoxyParamCaption}\item[{long}]{batch\+\_\+operations = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Completes a previously initiated asynchronous query execution, returning the result. 
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]Use complete\+\_\+execute instead. \end{DoxyRefDesc}
+\mbox{\Hypertarget{classnanodbc_1_1statement_ac7086dafc8c0f014c629d15f97cc9505}\label{classnanodbc_1_1statement_ac7086dafc8c0f014c629d15f97cc9505}} 
+\index{nanodbc::statement@{nanodbc::statement}!async\_execute@{async\_execute}}
+\index{async\_execute@{async\_execute}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{async\_execute()}{async\_execute()}}
+{\footnotesize\ttfamily bool nanodbc\+::statement\+::async\+\_\+execute (\begin{DoxyParamCaption}\item[{void $\ast$}]{event\+\_\+handle,  }\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Execute the previously prepared query now, in asynchronous mode. 
+
+This method will only be available if nanodbc is built against O\+D\+BC headers and library that supports asynchronous mode. Such that the identifiers {\ttfamily S\+Q\+L\+\_\+\+A\+T\+T\+R\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+S\+T\+M\+T\+\_\+\+E\+V\+E\+NT} and {\ttfamily S\+Q\+L\+Complete\+Async} are extant. Otherwise this method will be defined, but not implemented.
+
+Asynchronous features can be disabled entirely by defining {\ttfamily N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+S\+Y\+NC} when building nanodbc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+\_\+handle} & The event handle the caller will wait before calling complete\+\_\+execute. \\
+\hline
+{\em batch\+\_\+operations} & Rows to fetch per rowset or number of batch parameters to process. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+Boolean\+: true if event handle needs to be awaited, false if result is ready now. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_aa4a0bb3fc0112469e837e1acd5ef3f6a}{complete\+\_\+execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classnanodbc_1_1statement_a34184874a281b654f685b2f351956302}\label{classnanodbc_1_1statement_a34184874a281b654f685b2f351956302}} 
+\index{nanodbc::statement@{nanodbc::statement}!async\_execute\_direct@{async\_execute\_direct}}
+\index{async\_execute\_direct@{async\_execute\_direct}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{async\_execute\_direct()}{async\_execute\_direct()}}
+{\footnotesize\ttfamily bool nanodbc\+::statement\+::async\+\_\+execute\+\_\+direct (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn,  }\item[{void $\ast$}]{event\+\_\+handle,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Opens, prepares, and executes query directly on the given connection, in async mode. 
+
+This method will only be available if nanodbc is built against O\+D\+BC headers and library that supports asynchronous mode. Such that the identifiers {\ttfamily S\+Q\+L\+\_\+\+A\+T\+T\+R\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+S\+T\+M\+T\+\_\+\+E\+V\+E\+NT} and {\ttfamily S\+Q\+L\+Complete\+Async} are extant. Otherwise this method will be defined, but not implemented.
+
+Asynchronous features can be disabled entirely by defining {\ttfamily N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+S\+Y\+NC} when building nanodbc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection where the statement will be executed. \\
+\hline
+{\em event\+\_\+handle} & The event handle the caller will wait before calling complete\+\_\+execute. \\
+\hline
+{\em query} & The S\+QL query that will be executed. \\
+\hline
+{\em batch\+\_\+operations} & Rows to fetch per rowset or number of batch parameters to process. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+Boolean\+: true if event handle needs to be awaited, false if result ready now. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_aa4a0bb3fc0112469e837e1acd5ef3f6a}{complete\+\_\+execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classnanodbc_1_1statement_ab676933b9578da7d773f97269d270eee}\label{classnanodbc_1_1statement_ab676933b9578da7d773f97269d270eee}} 
+\index{nanodbc::statement@{nanodbc::statement}!async\_prepare@{async\_prepare}}
+\index{async\_prepare@{async\_prepare}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{async\_prepare()}{async\_prepare()}}
+{\footnotesize\ttfamily bool nanodbc\+::statement\+::async\+\_\+prepare (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{void $\ast$}]{event\+\_\+handle,  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Prepare the given statement, in asynchronous mode. 
+
+\begin{DoxyNote}{Note}
+If the statement is not open throws \mbox{\hyperlink{classnanodbc_1_1programming__error}{programming\+\_\+error}}.
+\end{DoxyNote}
+This method will only be available if nanodbc is built against O\+D\+BC headers and library that supports asynchronous mode. Such that the identifiers {\ttfamily S\+Q\+L\+\_\+\+A\+T\+T\+R\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+S\+T\+M\+T\+\_\+\+E\+V\+E\+NT} and {\ttfamily S\+Q\+L\+Complete\+Async} are extant. Otherwise this method will be defined, but not implemented.
+
+Asynchronous features can be disabled entirely by defining {\ttfamily N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+S\+Y\+NC} when building nanodbc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+\_\+handle} & The event handle the caller will wait before calling complete\+\_\+prepare. \\
+\hline
+{\em query} & The S\+QL query that will be prepared. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+Boolean\+: true if the event handle needs to be awaited, false is result is ready now. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a416c39007e292cf9b95f368d829ad5cb}{complete\+\_\+prepare()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classnanodbc_1_1statement_a81f6e6e0b547a900d20652fe5abe7b75}\label{classnanodbc_1_1statement_a81f6e6e0b547a900d20652fe5abe7b75}} 
+\index{nanodbc::statement@{nanodbc::statement}!cancel@{cancel}}
+\index{cancel@{cancel}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::cancel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancels execution of the statement. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3860 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_abcf1dda8ab40a3b8ebd33c69afa4a399}\label{classnanodbc_1_1statement_abcf1dda8ab40a3b8ebd33c69afa4a399}} 
+\index{nanodbc::statement@{nanodbc::statement}!close@{close}}
+\index{close@{close}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes the statement and frees all associated resources. 
+
+
+
+Definition at line 3855 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a750301a6d2cfa67bc32c766edfc7825c}\label{classnanodbc_1_1statement_a750301a6d2cfa67bc32c766edfc7825c}} 
+\index{nanodbc::statement@{nanodbc::statement}!columns@{columns}}
+\index{columns@{columns}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{columns()}{columns()}}
+{\footnotesize\ttfamily short nanodbc\+::statement\+::columns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of columns in a result set. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3969 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aa4a0bb3fc0112469e837e1acd5ef3f6a}\label{classnanodbc_1_1statement_aa4a0bb3fc0112469e837e1acd5ef3f6a}} 
+\index{nanodbc::statement@{nanodbc::statement}!complete\_execute@{complete\_execute}}
+\index{complete\_execute@{complete\_execute}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{complete\_execute()}{complete\_execute()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{classnanodbc_1_1result}{result}} nanodbc\+::statement\+::complete\+\_\+execute (\begin{DoxyParamCaption}\item[{long}]{batch\+\_\+operations = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Completes a previously initiated asynchronous query execution, returning the result. 
+
+This method will only be available if nanodbc is built against O\+D\+BC headers and library that supports asynchronous mode. Such that the identifiers {\ttfamily S\+Q\+L\+\_\+\+A\+T\+T\+R\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+S\+T\+M\+T\+\_\+\+E\+V\+E\+NT} and {\ttfamily S\+Q\+L\+Complete\+Async} are extant. Otherwise this method will be defined, but not implemented.
+
+Asynchronous features can be disabled entirely by defining {\ttfamily N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+S\+Y\+NC} when building nanodbc.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+operations} & Rows to fetch per rowset or number of batch parameters to process. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_ac7086dafc8c0f014c629d15f97cc9505}{async\+\_\+execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a34184874a281b654f685b2f351956302}{async\+\_\+execute\+\_\+direct()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classnanodbc_1_1statement_a416c39007e292cf9b95f368d829ad5cb}\label{classnanodbc_1_1statement_a416c39007e292cf9b95f368d829ad5cb}} 
+\index{nanodbc::statement@{nanodbc::statement}!complete\_prepare@{complete\_prepare}}
+\index{complete\_prepare@{complete\_prepare}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{complete\_prepare()}{complete\_prepare()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::complete\+\_\+prepare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Completes a previously initiated asynchronous query preparation. 
+
+This method will only be available if nanodbc is built against O\+D\+BC headers and library that supports asynchronous mode. Such that the identifiers {\ttfamily S\+Q\+L\+\_\+\+A\+T\+T\+R\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+S\+T\+M\+T\+\_\+\+E\+V\+E\+NT} and {\ttfamily S\+Q\+L\+Complete\+Async} are extant. Otherwise this method will be defined, but not implemented.
+
+Asynchronous features can be disabled entirely by defining {\ttfamily N\+A\+N\+O\+D\+B\+C\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+S\+Y\+NC} when building nanodbc.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_ab676933b9578da7d773f97269d270eee}{async\+\_\+prepare()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classnanodbc_1_1statement_aa3e77eb9771cf5d8478208b0a9e2c59a}\label{classnanodbc_1_1statement_aa3e77eb9771cf5d8478208b0a9e2c59a}} 
+\index{nanodbc::statement@{nanodbc::statement}!connected@{connected}}
+\index{connected@{connected}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{connected()}{connected()}}
+{\footnotesize\ttfamily bool nanodbc\+::statement\+::connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns true if connected to the database. 
+
+
+
+Definition at line 3835 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a4eb59e468b303a9d6acbe3ba1c408495}\label{classnanodbc_1_1statement_a4eb59e468b303a9d6acbe3ba1c408495}} 
+\index{nanodbc::statement@{nanodbc::statement}!connection@{connection}}
+\index{connection@{connection}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{connection()}{connection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& nanodbc\+::statement\+::connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the associated connection object if any. 
+
+
+
+Definition at line 3845 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_ae2e4f53a94056c5280fc5919c7bf5086}\label{classnanodbc_1_1statement_ae2e4f53a94056c5280fc5919c7bf5086}} 
+\index{nanodbc::statement@{nanodbc::statement}!connection@{connection}}
+\index{connection@{connection}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{connection()}{connection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \& nanodbc\+::statement\+::connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the associated connection object if any. 
+
+
+
+Definition at line 3840 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a7b96b992fb9891b46411c300b017fe74}\label{classnanodbc_1_1statement_a7b96b992fb9891b46411c300b017fe74}} 
+\index{nanodbc::statement@{nanodbc::statement}!disable\_async@{disable\_async}}
+\index{disable\_async@{disable\_async}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{disable\_async()}{disable\_async()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::disable\+\_\+async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+undocumented -\/ for internal use only (used from result\+\_\+impl) 
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_ada8ceb1d90ebe7c0a876a185fa89f009}\label{classnanodbc_1_1statement_ada8ceb1d90ebe7c0a876a185fa89f009}} 
+\index{nanodbc::statement@{nanodbc::statement}!enable\_async@{enable\_async}}
+\index{enable\_async@{enable\_async}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{enable\_async()}{enable\_async()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::enable\+\_\+async (\begin{DoxyParamCaption}\item[{void $\ast$}]{event\+\_\+handle }\end{DoxyParamCaption})}
+
+
+
+undocumented -\/ for internal use only (used from result\+\_\+impl) 
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}\label{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}} 
+\index{nanodbc::statement@{nanodbc::statement}!execute@{execute}}
+\index{execute@{execute}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result}{result}} nanodbc\+::statement\+::execute (\begin{DoxyParamCaption}\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Execute the previously prepared query now. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+operations} & Rows to fetch per rowset, or number of batch parameters to process. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3945 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}\label{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}} 
+\index{nanodbc::statement@{nanodbc::statement}!execute\_direct@{execute\_direct}}
+\index{execute\_direct@{execute\_direct}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{execute\_direct()}{execute\_direct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result}{result}} nanodbc\+::statement\+::execute\+\_\+direct (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Opens, prepares, and executes the given query directly on the given connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection where the statement will be executed. \\
+\hline
+{\em query} & The S\+QL query that will be executed. \\
+\hline
+{\em batch\+\_\+operations} & Numbers of rows to fetch per rowset, or the number of batch parameters to process. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits occurring after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3880 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aef172a65f45487aaeb76c45954b42b75}\label{classnanodbc_1_1statement_aef172a65f45487aaeb76c45954b42b75}} 
+\index{nanodbc::statement@{nanodbc::statement}!just\_execute@{just\_execute}}
+\index{just\_execute@{just\_execute}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{just\_execute()}{just\_execute()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::just\+\_\+execute (\begin{DoxyParamCaption}\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Execute the previously prepared query now without constructing result object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+operations} & Rows to fetch per rowset, or number of batch parameters to process. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3950 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a1e18b1014feb323c346683a331df7adb}\label{classnanodbc_1_1statement_a1e18b1014feb323c346683a331df7adb}} 
+\index{nanodbc::statement@{nanodbc::statement}!just\_execute\_direct@{just\_execute\_direct}}
+\index{just\_execute\_direct@{just\_execute\_direct}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{just\_execute\_direct()}{just\_execute\_direct()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::just\+\_\+execute\+\_\+direct (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{batch\+\_\+operations = {\ttfamily 1},  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Execute the previously prepared query now without constructing result object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection where the statement will be executed. \\
+\hline
+{\em query} & The S\+QL query that will be executed. \\
+\hline
+{\em batch\+\_\+operations} & Rows to fetch per rowset, or number of batch parameters to process. \\
+\hline
+{\em timeout} & Seconds before query timeout. Default is 0 indicating no timeout. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+\begin{DoxyAttention}{Attention}
+You will want to use transactions if you are doing batch operations because it will prevent auto commits after each individual operation is executed. 
+\end{DoxyAttention}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}}, \mbox{\hyperlink{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}{prepare()}}, \mbox{\hyperlink{classnanodbc_1_1statement_ab30dac3e4defd5a90181202e99ee8ca5}{execute()}}, \mbox{\hyperlink{classnanodbc_1_1statement_af070dc29a840854e261bda5761318cf0}{execute\+\_\+direct()}}, \mbox{\hyperlink{classnanodbc_1_1result}{result}}, \mbox{\hyperlink{classnanodbc_1_1transaction}{transaction}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 3936 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a3698e721741be20dac1f933ed425c8d7}\label{classnanodbc_1_1statement_a3698e721741be20dac1f933ed425c8d7}} 
+\index{nanodbc::statement@{nanodbc::statement}!native\_statement\_handle@{native\_statement\_handle}}
+\index{native\_statement\_handle@{native\_statement\_handle}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{native\_statement\_handle()}{native\_statement\_handle()}}
+{\footnotesize\ttfamily void $\ast$ nanodbc\+::statement\+::native\+\_\+statement\+\_\+handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the native O\+D\+BC statement handle. 
+
+
+
+Definition at line 3850 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}\label{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}} 
+\index{nanodbc::statement@{nanodbc::statement}!open@{open}}
+\index{open@{open}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{open()}{open()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::open (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn }\end{DoxyParamCaption})}
+
+
+
+Creates a statement for the given connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection where the statement will be executed. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3825 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a7e34012ad0120d8c3780bea1d29c3903}\label{classnanodbc_1_1statement_a7e34012ad0120d8c3780bea1d29c3903}} 
+\index{nanodbc::statement@{nanodbc::statement}!open@{open}}
+\index{open@{open}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{open()}{open()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool nanodbc\+::statement\+::open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns true if connection is open. 
+
+
+
+Definition at line 3830 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aaaa08f3783cb111c4426d42ae8d1ecd3}\label{classnanodbc_1_1statement_aaaa08f3783cb111c4426d42ae8d1ecd3}} 
+\index{nanodbc::statement@{nanodbc::statement}!operator=@{operator=}}
+\index{operator=@{operator=}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \& nanodbc\+::statement\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1statement}{statement}}}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Assignment. 
+
+
+
+Definition at line 3811 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aef87fd2e1a1b307f212755fdab1dad07}\label{classnanodbc_1_1statement_aef87fd2e1a1b307f212755fdab1dad07}} 
+\index{nanodbc::statement@{nanodbc::statement}!parameter\_size@{parameter\_size}}
+\index{parameter\_size@{parameter\_size}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{parameter\_size()}{parameter\_size()}}
+{\footnotesize\ttfamily unsigned long nanodbc\+::statement\+::parameter\+\_\+size (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index }\end{DoxyParamCaption}) const}
+
+
+
+Returns parameter size for indicated parameter placeholder in a prepared statement. 
+
+
+
+Definition at line 3984 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a7af565aeec0737be62c1a458deddd606}\label{classnanodbc_1_1statement_a7af565aeec0737be62c1a458deddd606}} 
+\index{nanodbc::statement@{nanodbc::statement}!parameters@{parameters}}
+\index{parameters@{parameters}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{parameters()}{parameters()}}
+{\footnotesize\ttfamily short nanodbc\+::statement\+::parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of parameters in the statement. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3974 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}\label{classnanodbc_1_1statement_a63b56d30a303014ce8f80df5e5b67dca}} 
+\index{nanodbc::statement@{nanodbc::statement}!prepare@{prepare}}
+\index{prepare@{prepare}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{prepare()}{prepare()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::prepare (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classnanodbc_1_1connection}{connection}} \&}]{conn,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Opens and prepares the given statement to execute on the given connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection where the statement will be executed. \\
+\hline
+{\em query} & The S\+QL query that will be executed. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3865 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a811a7bdbdea77b59af4aed8eddbc6840}\label{classnanodbc_1_1statement_a811a7bdbdea77b59af4aed8eddbc6840}} 
+\index{nanodbc::statement@{nanodbc::statement}!prepare@{prepare}}
+\index{prepare@{prepare}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{prepare()}{prepare()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::prepare (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{query,  }\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Prepares the given statement to execute its associated connection. 
+
+\begin{DoxyNote}{Note}
+If the statement is not open throws \mbox{\hyperlink{classnanodbc_1_1programming__error}{programming\+\_\+error}}. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The S\+QL query that will be executed. \\
+\hline
+{\em timeout} & The number in seconds before query timeout. Default 0 meaning no timeout. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classnanodbc_1_1statement_a473ec2d726f6d8acc42ce0f5f6d1b967}{open()}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}},\mbox{\hyperlink{classnanodbc_1_1programming__error}{programming\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3870 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_a4b3f414e8bc027db8351e2c59b8239d3}\label{classnanodbc_1_1statement_a4b3f414e8bc027db8351e2c59b8239d3}} 
+\index{nanodbc::statement@{nanodbc::statement}!procedure\_columns@{procedure\_columns}}
+\index{procedure\_columns@{procedure\_columns}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{procedure\_columns()}{procedure\_columns()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnanodbc_1_1result}{result}} nanodbc\+::statement\+::procedure\+\_\+columns (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{catalog,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{schema,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{procedure,  }\item[{const \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \&}]{column }\end{DoxyParamCaption})}
+
+
+
+Returns the input and output paramters of the specified stored procedure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em catalog} & The catalog name of the procedure. \\
+\hline
+{\em schema} & Pattern to use for schema names. \\
+\hline
+{\em procedure} & The name of the procedure. \\
+\hline
+{\em column} & Pattern to use for column names. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A result set object. 
+\end{DoxyReturn}
+
+
+Definition at line 3955 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_ae225c1ec30fb1095f96f207fab2a8793}\label{classnanodbc_1_1statement_ae225c1ec30fb1095f96f207fab2a8793}} 
+\index{nanodbc::statement@{nanodbc::statement}!reset\_parameters@{reset\_parameters}}
+\index{reset\_parameters@{reset\_parameters}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{reset\_parameters()}{reset\_parameters()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::reset\+\_\+parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Resets all currently bound parameters. 
+
+
+
+Definition at line 3979 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_aaeb282293b92d0c9c0dc9e6452c91695}\label{classnanodbc_1_1statement_aaeb282293b92d0c9c0dc9e6452c91695}} 
+\index{nanodbc::statement@{nanodbc::statement}!swap@{swap}}
+\index{swap@{swap}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnanodbc_1_1statement}{statement}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Member swap. 
+
+
+
+Definition at line 3817 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}\label{classnanodbc_1_1statement_adbd1acbbdcc529dc668bfef341593573}} 
+\index{nanodbc::statement@{nanodbc::statement}!timeout@{timeout}}
+\index{timeout@{timeout}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{timeout()}{timeout()}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::timeout (\begin{DoxyParamCaption}\item[{long}]{timeout = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Sets the number in seconds before query timeout. Default is 0 indicating no timeout. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 3875 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1statement_acd5af29ec5e35cfbeb0751b6d9859b28}\label{classnanodbc_1_1statement_acd5af29ec5e35cfbeb0751b6d9859b28}} 
+\index{nanodbc::statement@{nanodbc::statement}!nanodbc::result@{nanodbc::result}}
+\index{nanodbc::result@{nanodbc::result}!nanodbc::statement@{nanodbc::statement}}
+\subsubsection{\texorpdfstring{nanodbc::result}{nanodbc::result}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1result}{nanodbc\+::result}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 985 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

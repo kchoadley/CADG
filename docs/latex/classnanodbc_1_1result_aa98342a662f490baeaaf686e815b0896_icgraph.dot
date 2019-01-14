@@ -1,0 +1,10 @@
+digraph "nanodbc::result::native_statement_handle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node158 [label="nanodbc::result::native\l_statement_handle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the native ODBC statement handle."];
+  Node158 -> Node159 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node159 [label="nanodbc::result_iterator\l::operator==",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1result__iterator.html#a8db639b2b70997cb2e7c79368cb0f994",tooltip="Iterators are equal if they a tied to the same native statemnt handle, or both empty."];
+}

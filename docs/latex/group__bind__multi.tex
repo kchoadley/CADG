@@ -1,0 +1,159 @@
+\hypertarget{group__bind__multi}{}\section{Binding multiple non-\/string values}
+\label{group__bind__multi}\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+
+
+Binds given values to given parameter placeholder number in the prepared statement.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_ga21de5d66a3e381040ca03a4f0fdcc5db}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_gadc594c1e061661b7f95639fcf25ec2cb}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, T const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{group__bind__multi_gab7047fdb7cfec9bed6861b9a9c9b98cb}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, T const $\ast$values, std\+::size\+\_\+t batch\+\_\+size, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_gac04830aadf2e00d3a3d05af8690eb241}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_ga5242c1154450bfe699b73a2f26294560}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, bool const $\ast$nulls, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bind__multi_ga72e3b3fea37e2e8456f4cf2b66aa21f2}{nanodbc\+::statement\+::bind}} (short param\+\_\+index, std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&values, uint8\+\_\+t const $\ast$null\+\_\+sentry, \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}} direction=\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}})
+\begin{DoxyCompactList}\small\item\em Binds multiple values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Binds given values to given parameter placeholder number in the prepared statement. 
+
+If your prepared S\+QL query has any parameter markers, ? (question mark) placeholders, this is how you bind values to them. Parameter markers are numbered using Zero-\/based index from left to right.
+
+It is possible to use these functions for batch operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+\_\+index} & Zero-\/based index of parameter marker (placeholder position). \\
+\hline
+{\em values} & Values to substitute into placeholder. \\
+\hline
+{\em batch\+\_\+size} & The number of values being bound. \\
+\hline
+{\em null\+\_\+sentry} & Value which should represent a null value. \\
+\hline
+{\em nulls} & Flags for values that should be set to a null value. \\
+\hline
+{\em param\+\_\+direciton} & O\+D\+BC parameter direction. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classnanodbc_1_1database__error}{database\+\_\+error}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__bind__multi_ga21de5d66a3e381040ca03a4f0fdcc5db}\label{group__bind__multi_ga21de5d66a3e381040ca03a4f0fdcc5db}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{T const $\ast$}]{values,  }\item[{std\+::size\+\_\+t}]{batch\+\_\+size,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4045 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{group__bind__multi_gadc594c1e061661b7f95639fcf25ec2cb}\label{group__bind__multi_gadc594c1e061661b7f95639fcf25ec2cb}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{T const $\ast$}]{values,  }\item[{std\+::size\+\_\+t}]{batch\+\_\+size,  }\item[{T const $\ast$}]{null\+\_\+sentry,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4055 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{group__bind__multi_gab7047fdb7cfec9bed6861b9a9c9b98cb}\label{group__bind__multi_gab7047fdb7cfec9bed6861b9a9c9b98cb}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{T const $\ast$}]{values,  }\item[{std\+::size\+\_\+t}]{batch\+\_\+size,  }\item[{bool const $\ast$}]{nulls,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4066 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{group__bind__multi_gac04830aadf2e00d3a3d05af8690eb241}\label{group__bind__multi_gac04830aadf2e00d3a3d05af8690eb241}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&}]{values,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4076 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{group__bind__multi_ga5242c1154450bfe699b73a2f26294560}\label{group__bind__multi_ga5242c1154450bfe699b73a2f26294560}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&}]{values,  }\item[{bool const $\ast$}]{nulls,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4084 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{group__bind__multi_ga72e3b3fea37e2e8456f4cf2b66aa21f2}\label{group__bind__multi_ga72e3b3fea37e2e8456f4cf2b66aa21f2}} 
+\index{Binding multiple non-\/string values@{Binding multiple non-\/string values}!bind@{bind}}
+\index{bind@{bind}!Binding multiple non-\/string values@{Binding multiple non-\/string values}}
+\subsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily void nanodbc\+::statement\+::bind (\begin{DoxyParamCaption}\item[{short}]{param\+\_\+index,  }\item[{std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$$>$ const \&}]{values,  }\item[{uint8\+\_\+t const $\ast$}]{null\+\_\+sentry,  }\item[{\mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6}{param\+\_\+direction}}}]{direction = {\ttfamily \mbox{\hyperlink{classnanodbc_1_1statement_a523142f53cbbee8d68a074da993e7fa6ae33f42ce0677d00c291ff4d8e39f99de}{P\+A\+R\+A\+M\+\_\+\+IN}}} }\end{DoxyParamCaption})}
+
+
+
+Binds multiple values. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__bind__multi}{Binding multiple non-\/string values}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4093 of file nanodbc.\+cpp.
+

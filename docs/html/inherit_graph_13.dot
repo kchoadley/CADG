@@ -1,0 +1,18 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node10 [label="runtime_error",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="nanodbc::database_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1database__error.html",tooltip="General database error."];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="nanodbc::index_range\l_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1index__range__error.html",tooltip="Index out of range."];
+  Node10 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="nanodbc::null_access\l_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1null__access__error.html",tooltip="Accessed null data."];
+  Node10 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="nanodbc::programming\l_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1programming__error.html",tooltip="Programming logic error."];
+  Node10 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="nanodbc::type_incompatible\l_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnanodbc_1_1type__incompatible__error.html",tooltip="Type incompatible."];
+}

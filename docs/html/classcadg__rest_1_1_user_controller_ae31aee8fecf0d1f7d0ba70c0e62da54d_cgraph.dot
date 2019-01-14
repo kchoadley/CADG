@@ -1,0 +1,31 @@
+digraph "cadg_rest::UserController::HandleGet"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node26 [label="cadg_rest::UserController\l::HandleGet",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the requested user(s)."];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="cadg_rest::LoggerInterface\l::LogNetworkActivity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a9f3648fc2c6d697e80961041a40d2e24",tooltip="Generic log method for logging method calls."];
+  Node26 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="cadg_rest::Controller\l::endpoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#addeea914faab4557cc7caa493fce1d2d",tooltip=" "];
+  Node26 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="cadg_rest::Controller\l::Queries",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_controller.html#a6405c6b368ec22d3c870bdd1db92490a",tooltip="Queries parses the provided query string of a URL path."];
+  Node26 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="cadg_rest::UserController\l::GetUserByID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a1d3d450422fabffd4ff66a9267834ea6",tooltip="Returns an existing user with the specified ID."];
+  Node30 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="cadg_rest::UserController\l::ParseUserID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a3523d014f2ada4364034e175f6d645f8",tooltip="Returns an ID specified in a URL path."];
+  Node31 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="cadg_rest::LoggerInterface::Log",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_logger_interface.html#a56f53c1fb9687825ade3acced5e3a10a",tooltip="Generic log method."];
+  Node30 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="cadg_rest::DataAccessInterface\l::GetUserByID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#a9df9cb8876073f42e7e54ada41eec3b3",tooltip="Returns all users with the provided id."];
+  Node30 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 [label="cadg_rest::UserController\l::GetUsersByName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#aa98afe262762a47ff443a36eb4a97b8d",tooltip=" "];
+  Node34 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 -> Node35 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 [label="cadg_rest::DataAccessInterface\l::GetUsersByName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#ae6cf7e7fad98f27ffc797a9bf5a6b7df",tooltip="Returns all users that contain the provided name."];
+  Node26 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="cadg_rest::DataAccessInterface\l::GetUsers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_data_access_interface.html#a657bd814589e6c5553a0303115350783",tooltip="Returns all users."];
+  Node26 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

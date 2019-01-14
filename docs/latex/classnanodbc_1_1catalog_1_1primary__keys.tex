@@ -1,0 +1,160 @@
+\hypertarget{classnanodbc_1_1catalog_1_1primary__keys}{}\section{nanodbc\+::catalog\+::primary\+\_\+keys Class Reference}
+\label{classnanodbc_1_1catalog_1_1primary__keys}\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+
+
+Result set for a list of columns that compose the primary key of a single table.  
+
+
+
+
+{\ttfamily \#include $<$nanodbc.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a1bf49eceb97125f61a0bde77a932e0f6}{next}} ()
+\begin{DoxyCompactList}\small\item\em Move to the next result in the result set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_afbfca580980e280e66819c2f0a3240f6}{table\+\_\+catalog}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table catalog. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a9e3b4c7726c653c734db68fdb3a97317}{table\+\_\+schema}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table schema. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a94dd82e753c3fd03bdd946298b1b187a}{table\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch table name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a27c5a18b8efc9d0632da922bf826903c}{column\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Fetch column name. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a433cd68a00686979966c4c9a0cf3efc4}{column\+\_\+number}} () const
+\begin{DoxyCompactList}\small\item\em Column sequence number in the key (starting with 1). Returns valye of K\+E\+Y\+\_\+\+S\+EQ column in result set returned by S\+Q\+L\+Primary\+Keys. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_a97c3ac806273deb1b5ecaea3eb67721f}{primary\+\_\+key\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Primary key name. N\+U\+LL if not applicable to the data source. Returns valye of P\+K\+\_\+\+N\+A\+ME column in result set returned by S\+Q\+L\+Primary\+Keys. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnanodbc_1_1catalog_1_1primary__keys_af0f3134c7f6f1f36bfe1e247318dfe43}{nanodbc\+::catalog}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Result set for a list of columns that compose the primary key of a single table. 
+
+Definition at line 1654 of file nanodbc.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a27c5a18b8efc9d0632da922bf826903c}\label{classnanodbc_1_1catalog_1_1primary__keys_a27c5a18b8efc9d0632da922bf826903c}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!column\_name@{column\_name}}
+\index{column\_name@{column\_name}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{column\_name()}{column\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::primary\+\_\+keys\+::column\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch column name. 
+
+
+
+Definition at line 4297 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a433cd68a00686979966c4c9a0cf3efc4}\label{classnanodbc_1_1catalog_1_1primary__keys_a433cd68a00686979966c4c9a0cf3efc4}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!column\_number@{column\_number}}
+\index{column\_number@{column\_number}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{column\_number()}{column\_number()}}
+{\footnotesize\ttfamily short nanodbc\+::catalog\+::primary\+\_\+keys\+::column\+\_\+number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Column sequence number in the key (starting with 1). Returns valye of K\+E\+Y\+\_\+\+S\+EQ column in result set returned by S\+Q\+L\+Primary\+Keys. 
+
+
+
+Definition at line 4303 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a1bf49eceb97125f61a0bde77a932e0f6}\label{classnanodbc_1_1catalog_1_1primary__keys_a1bf49eceb97125f61a0bde77a932e0f6}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!next@{next}}
+\index{next@{next}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily bool nanodbc\+::catalog\+::primary\+\_\+keys\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move to the next result in the result set. 
+
+
+
+Definition at line 4274 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a97c3ac806273deb1b5ecaea3eb67721f}\label{classnanodbc_1_1catalog_1_1primary__keys_a97c3ac806273deb1b5ecaea3eb67721f}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!primary\_key\_name@{primary\_key\_name}}
+\index{primary\_key\_name@{primary\_key\_name}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{primary\_key\_name()}{primary\_key\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::primary\+\_\+keys\+::primary\+\_\+key\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Primary key name. N\+U\+LL if not applicable to the data source. Returns valye of P\+K\+\_\+\+N\+A\+ME column in result set returned by S\+Q\+L\+Primary\+Keys. 
+
+
+
+Definition at line 4309 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_afbfca580980e280e66819c2f0a3240f6}\label{classnanodbc_1_1catalog_1_1primary__keys_afbfca580980e280e66819c2f0a3240f6}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!table\_catalog@{table\_catalog}}
+\index{table\_catalog@{table\_catalog}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{table\_catalog()}{table\_catalog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::primary\+\_\+keys\+::table\+\_\+catalog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table catalog. 
+
+
+
+Definition at line 4279 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a94dd82e753c3fd03bdd946298b1b187a}\label{classnanodbc_1_1catalog_1_1primary__keys_a94dd82e753c3fd03bdd946298b1b187a}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!table\_name@{table\_name}}
+\index{table\_name@{table\_name}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{table\_name()}{table\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::primary\+\_\+keys\+::table\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table name. 
+
+
+
+Definition at line 4291 of file nanodbc.\+cpp.
+
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_a9e3b4c7726c653c734db68fdb3a97317}\label{classnanodbc_1_1catalog_1_1primary__keys_a9e3b4c7726c653c734db68fdb3a97317}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!table\_schema@{table\_schema}}
+\index{table\_schema@{table\_schema}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{table\_schema()}{table\_schema()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacenanodbc_abfc0ece56278e590911ec8352774c212}{string}} nanodbc\+::catalog\+::primary\+\_\+keys\+::table\+\_\+schema (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Fetch table schema. 
+
+
+
+Definition at line 4285 of file nanodbc.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnanodbc_1_1catalog_1_1primary__keys_af0f3134c7f6f1f36bfe1e247318dfe43}\label{classnanodbc_1_1catalog_1_1primary__keys_af0f3134c7f6f1f36bfe1e247318dfe43}} 
+\index{nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}!nanodbc::catalog@{nanodbc::catalog}}
+\index{nanodbc::catalog@{nanodbc::catalog}!nanodbc::catalog::primary\_keys@{nanodbc::catalog::primary\_keys}}
+\subsubsection{\texorpdfstring{nanodbc::catalog}{nanodbc::catalog}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classnanodbc_1_1catalog}{nanodbc\+::catalog}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1673 of file nanodbc.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8hpp}{nanodbc.\+hpp}}\item 
+rest-\/server/src/nanodbc/\mbox{\hyperlink{nanodbc_8cpp}{nanodbc.\+cpp}}\end{DoxyCompactItemize}

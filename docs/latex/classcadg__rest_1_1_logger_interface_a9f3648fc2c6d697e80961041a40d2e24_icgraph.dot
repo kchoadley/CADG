@@ -1,0 +1,21 @@
+digraph "cadg_rest::LoggerInterface::LogNetworkActivity"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node19 [label="cadg_rest::LoggerInterface\l::LogNetworkActivity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generic log method for logging method calls."];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="cadg_rest::UserController\l::HandleGet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#ae31aee8fecf0d1f7d0ba70c0e62da54d",tooltip="Returns the requested user(s)."];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="cadg_rest::UserController\l::InitHandlers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a213210b1e1f8f7417133f3290fbb9b67",tooltip="Initializes listeners and binds methods to proper handlers."];
+  Node19 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="cadg_rest::UserController\l::HandlePut",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a5da4d0addb0504184929a57d7f196c79",tooltip="Updates a current user's data."];
+  Node22 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="cadg_rest::UserController\l::HandlePost",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a6c3307f7b6fd4dc0b697bc956503e478",tooltip="Creates a new user."];
+  Node23 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="cadg_rest::UserController\l::HandleDelete",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcadg__rest_1_1_user_controller.html#a99ed4e9459766b3e000814b503378a2d",tooltip="Removes an existing user."];
+  Node24 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}
