@@ -86,7 +86,7 @@ if(DOXYGEN_FOUND)
 #            DEPENDS ${CMAKE_SOURCE_DIR}/doc/html/index.html)
 #
 #    add_dependencies(${PROJECT_NAME} DOXYGEN_DOCUMENTATION_TARGET)
-    message("Uncomment the documentation section in CMakeLists.txt to generate documentation.")
+    message("To generate documentation, uncomment the documentation section in CMakeLists.txt and build/run.")
 else()
 message("Please consider installing Doxygen to generate documentation")
 endif(DOXYGEN_FOUND)
