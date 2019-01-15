@@ -58,9 +58,9 @@ class DataAccessObject : public DataAccessInterface {
     std::vector<User> GetUserByID(int id) override;
     /// Removes a user by the provided id.
     /**
-     * RemoveUser removes the user in the data store by id.
+     * RemoveUser removes the user in the data store.
      *
-     * @param id The id of the user to remove.
+     * @param user The user object to remove.
      * @return Bool indicating successful removal.
      */
     bool RemoveUser(User user) override;

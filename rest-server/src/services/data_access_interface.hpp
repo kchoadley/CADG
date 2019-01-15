@@ -50,7 +50,7 @@ class DataAccessInterface {
     /**
      * RemoveUser removes the user in the data store by id.
      * 
-     * @param id The id of the user to remove.
+     * @param user The user object to remove.
      * @return Bool indicating successful removal.
      */
     virtual bool RemoveUser(User user) = 0;

@@ -71,7 +71,7 @@ class UserController: public Controller {
      * GetUserByID wraps the logic for when a GET request specifies a User ID.
      * The response json is passed by reference so it can be updated.
      * 
-     * @param resonse The reference to the current response json.
+     * @param response The reference to the current response json.
      * @param path The path with the user id in it.
      */
     void GetUserByID(json::value& response, const std::string& path);
@@ -79,7 +79,7 @@ class UserController: public Controller {
      * GetUsersByName wraps the logic for when a GET request specifies a User Name.
      * The response json is passed by reference so it can be updated.
      * 
-     * @param resonse The reference to the current response json.
+     * @param response The reference to the current response json.
      * @param user_name The name, or partial name, of the user
      */
     void GetUsersByName(json::value& response, const std::string& user_name);

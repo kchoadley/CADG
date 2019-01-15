@@ -4,7 +4,7 @@
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
  *
- * @file        rest_server.hpp
+ * @file        rest_server.cpp
  * @authors     Kristofer Hoadley
  * @date        November, 2018
  */
