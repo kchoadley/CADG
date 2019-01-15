@@ -17,7 +17,8 @@ apt-get -q -y install \
     libspdlog-dev \
     software-properties-common \
     unixodbc-dev \
-    wget
+    wget \
+    doxygen
 
 # Make g++ 6 the default g++ executable
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
