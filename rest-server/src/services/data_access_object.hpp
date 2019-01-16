@@ -35,6 +35,7 @@ class DataAccessObject : public DataAccessInterface {
     DataAccessObject(DataAccessObject const&) = delete;
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(DataAccessObject const&) = delete;
+
     /// Returns all users.
     /**
      * GetUsers gets all users in the data store.
@@ -81,6 +82,7 @@ class DataAccessObject : public DataAccessInterface {
      * @param user_info The updated information for the user.
      */
     std::optional<bool> UpdateUser(int id, web::json::object user_info) override;
+
   private:
     std::string getEnvVar(std::string const& key) {
         char const* val = getenv(key.c_str()); 

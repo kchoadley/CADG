@@ -22,26 +22,45 @@ namespace cadg_rest {
     void AogController::HandleGet(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
 
-        message.reply(status_codes::OK);
+        try {
+            auto response = json::value::object();
+            response["aogs"] = json::value::object();
+            auto queries = Queries(message.relative_uri().query());
+            auto relative_path = message.relative_uri().to_string();
+            std::vector<Aog> aogs;
+            if (queries.count("name") > 0) {
+                aogs = dao__.GetAogByName(queries["name"]);
+            } else {
+                aogs = dao__.GetAogs();
+            }
+            for (auto& aog : aogs) {
+                response["aogs"][std::to_string(aog.id)] = aog.to_json();
+            }
+            message.reply(status_codes::OK, response);
+
+        } catch (std::exception& e) {
+            logger__.Log(LogLevel::ERR, e.what(), "AogController", "Handleget");
+            message.reply(status_codes::InternalError, json::value::string(e.what()));
+        }
     }
 
     void AogController::HandlePut(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
 
-        message.reply(status_codes::Accepted);
+        message.reply(status_codes::NotImplemented);
 
     }
 
     void AogController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
 
-        message.reply(status_codes::Created);
+        message.reply(status_codes::NotImplemented);
     }
 
     void AogController::HandleDelete(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
 
-        message.reply(status_codes::Accepted);
+        message.reply(status_codes::NotImplemented);
     }
 
 

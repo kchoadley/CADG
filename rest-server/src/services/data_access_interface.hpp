@@ -16,6 +16,7 @@
 #include <string>
 #include <vector>
 #include "user.hpp"
+#include "aog.hpp"
 
 namespace cadg_rest {
 /**
@@ -69,7 +70,17 @@ class DataAccessInterface {
      * @param id The id of the user to update.
      * @param user_info The updated information for the user.
      */
+
     virtual std::optional<bool> UpdateUser(int id, web::json::object user_info) = 0;
+
+    virtual void UpdateUser(int id, web::json::object user_info) = 0;
+    /**
+     * SetConnectionString sets the string used for connecting with the database.
+     * 
+     * @param connStr
+     */
+
+
 };
 }
 #endif // DATA_ACCESS_INTERFACE_H
