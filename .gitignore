@@ -471,3 +471,4 @@ ASALocalRun/
 
 # Custom ignores
 */build/
+*/doc/html/

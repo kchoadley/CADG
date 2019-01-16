@@ -1,5 +1,12 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+///Tests the User Controller Class
+/**
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
+ * @file    user_controller_test.cpp
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
+ */
 
 #include <gtest/gtest.h>
 #include "user_controller.hpp"
