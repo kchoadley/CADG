@@ -30,8 +30,10 @@ namespace cadg_rest {
             std::vector<Aog> aogs;
             if (queries.count("name") > 0) {
                 aogs = dao__.GetAogByName(queries["name"]);
+            } else if (queries.count("agency") > 0){
+                    aogs = dao__.GetAogsByAgency(queries["agency"]);
             } else {
-                aogs = dao__.GetAogs();
+                    aogs = dao__.GetAogs();
             }
             for (auto& aog : aogs) {
                 response["aogs"][std::to_string(aog.id)] = aog.to_json();

@@ -45,6 +45,7 @@ class DataAccessObject : public DataAccessInterface {
     /// AOG handling methods
     std::vector<Aog> GetAogs() override;
     std::vector<Aog> GetAogByName(std::string name) override;
+    std::vector<Aog> GetAogsByAgency(std::string agency) override;
 
   private:
     DataAccessObject() { }
