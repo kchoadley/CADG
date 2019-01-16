@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.1)
 
 project(cadg-rest-server)
 
+option(DOX "User provided flag for documentation generation" off)
+
 SET( ODBC_FOUND 0 )
 
 FIND_PATH(ODBC_INCLUDE_DIRECTORIES sql.h
@@ -76,20 +78,23 @@ set(THREADS Threads::Threads)
 set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY} ${ODBC_LIBRARIES})
 
 # documentation
-if(DOXYGEN_FOUND)
-#    add_custom_command(
-#            OUTPUT ${CMAKE_SOURCE_DIR}/doc/html/index.html
-#            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/doc/Doxyfile
-#            COMMENT "Generating documentation: ${CMAKE_SOURCE_DIR}/doc/html/index.html"
-#    )
-#    add_custom_target(DOXYGEN_DOCUMENTATION_TARGET
-#            DEPENDS ${CMAKE_SOURCE_DIR}/doc/html/index.html)
-#
-#    add_dependencies(${PROJECT_NAME} DOXYGEN_DOCUMENTATION_TARGET)
-    message("To generate documentation, uncomment the documentation section in CMakeLists.txt and build/run.")
+if(${DOX})
+  if(DOXYGEN_FOUND)
+    add_custom_command(
+            OUTPUT ${CMAKE_SOURCE_DIR}/doc/html/index.html
+            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/doc/Doxyfile
+            COMMENT "Generating documentation: ${CMAKE_SOURCE_DIR}/doc/html/index.html"
+    )
+    add_custom_target(DOXYGEN_DOCUMENTATION_TARGET DEPENDS ${CMAKE_SOURCE_DIR}/doc/html/index.html)
+    add_dependencies(${PROJECT_NAME} DOXYGEN_DOCUMENTATION_TARGET)
+    message("Will generate documentation at: ${CMAKE_SOURCE_DIR}/doc/html/index.html")
+  else()
+    message("Please consider installing Doxygen to generate documentation")
+  endif(DOXYGEN_FOUND)
 else()
-message("Please consider installing Doxygen to generate documentation")
-endif(DOXYGEN_FOUND)
+  string(ASCII 27 Esc)
+  message("${Esc}[35mTo generate documentation, add '-D DOX:BOOL=on' to cmake command${Esc}[m")
+endif(${DOX})
 
 include_directories(${HEADER_PATHS})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
