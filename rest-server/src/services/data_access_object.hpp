@@ -35,7 +35,7 @@ class DataAccessObject : public DataAccessInterface {
     DataAccessObject(DataAccessObject const&) = delete;
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(DataAccessObject const&) = delete;
-
+    
     /// Returns all users.
     /**
      * GetUsers gets all users in the data store.

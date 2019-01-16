@@ -232,4 +232,23 @@ std::vector<Aog> DataAccessObject::GetAogByName(std::string name) {
     }
 }
 
+std::vector<Aog> DataAccessObject::GetAogsByAgency(std::string agency) {
+    try {
+        nanodbc::connection connection(connStr_);
+        nanodbc::result results;
+        results = execute(connection, NANODBC_TEXT("select name, aog_id, agency from aog_db.aog where agency = " + agency +";"));
+        std::vector<Aog> db_aogs;
+        while (results.next()) {
+            db_aogs.push_back(Aog {
+                    results.get<int>(0, 0)
+                    , results.get<std::string>(1, "null_name")
+                    , results.get<std::string>(2, "null_agency")});
+        }
+        return db_aogs;
+    } catch (...) {
+        std::vector<Aog> db_aogs;
+        return db_aogs;
+    }
+}
+
 }  // namespace cadg_rest

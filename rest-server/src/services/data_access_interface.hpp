@@ -80,6 +80,9 @@ class DataAccessInterface {
      * @param connStr
      */
 
+    // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
+    // TO-DO(Mike): connStr should be conn_str.
+    virtual void SetConnectionString(std::string connStr) = 0;
 
 };
 }
