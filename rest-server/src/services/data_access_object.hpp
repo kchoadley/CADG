@@ -33,6 +33,7 @@ class DataAccessObject : public DataAccessInterface {
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(DataAccessObject const&) = delete;
 
+    /// User handling methods
     std::vector<User> GetUsers() override;
     std::vector<User> GetUsersByName(const std::string& name) override;
     std::vector<User> GetUserByID(int id) override;
@@ -40,6 +41,11 @@ class DataAccessObject : public DataAccessInterface {
     void AddUser(User user) override;
     void UpdateUser(int id, web::json::object user_info) override;
     void SetConnectionString(std::string connStr) override;
+
+    /// AOG handling methods
+    std::vector<Aog> GetAogs() override;
+    std::vector<Aog> GetAogByName(std::string name) override;
+
   private:
     DataAccessObject() { }
     std::vector<User> users__;

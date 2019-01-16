@@ -33,7 +33,7 @@ int main(int argc, const char * argv[]) {
         server_address.append(":8080");
     server_address.append("/v1/cadg/api");
     user_controller.endpoint(server_address + "/users");
-    aog_controller.endpoint(server_address + "/aog");
+    aog_controller.endpoint(server_address + "/aogs");
     try {
         user_controller.Accept().wait();
         aog_controller.Accept().wait();
