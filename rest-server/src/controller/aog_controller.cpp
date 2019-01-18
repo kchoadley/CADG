@@ -55,8 +55,29 @@ namespace cadg_rest {
 
     void AogController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
-
-        message.reply(status_codes::NotImplemented);
+        try {
+            // parse body and extract user data
+            const json::value body_json = message.extract_json().get();
+            // validate user data
+            // if valid add using dao
+            auto aogs_json = body_json.at("aogs").as_object();
+            for (auto iter = aogs_json.cbegin(); iter != aogs_json.cend(); ++iter) {
+                auto &key = iter->first;
+                const json::value &value = iter->second;
+                if (value.is_object()) {
+                    auto aog_json = value.as_object();
+                    dao__.AddAog(
+                            Aog {std::stoi(key),
+                                 aog_json["name"].as_string(),
+                                  aog_json["agency"].as_string()});
+                }
+            }
+            // respond with successfully created (201)
+            message.reply(status_codes::Created);
+        } catch (std::exception&  e) {  // for testing purposes
+            logger__.Log(LogLevel::WARN, e.what(), "AogController", "HandlePost");
+            message.reply(status_codes::BadRequest, e.what());
+        }
     }
 
     void AogController::HandleDelete(http_request message) {
