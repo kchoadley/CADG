@@ -76,6 +76,8 @@ class DataAccessInterface {
 
     virtual std::vector<Aog> GetAogsByAgency(std::string agency) = 0;
 
+    virtual void AddAog(Aog aog) = 0;
+
     // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
     // TO-DO(Mike): connStr should be conn_str.
     virtual void SetConnectionString(std::string connStr) = 0;

@@ -189,4 +189,8 @@ std::vector<Aog> DataAccessObject::GetAogsByAgency(std::string agency) {
     }
 }
 
+void DataAccessObject::AddAog(cadg_rest::Aog aog) {
+    
+}
+
 }  // namespace cadg_rest
