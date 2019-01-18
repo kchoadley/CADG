@@ -70,14 +70,6 @@ class AdminDaoInterface {
      * @param password The new password.
      */
     virtual void UpdateAdminPassword(int id, std::string password) = 0;
-    /**
-     * SetConnectionString sets the string used for connecting with the database.
-     * 
-     * @param connStr
-     */
-    // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
-    // TO-DO(Mike): connStr should be conn_str.
-    virtual void SetConnectionString(std::string connStr) = 0;
 };
 }
 #endif // ADMIN_DAO_INTERFACE_H

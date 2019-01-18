@@ -17,9 +17,6 @@ AdminDao& AdminDao::Instance() {
     static AdminDao instance;
     return instance;
 }
-void AdminDao::SetConnectionString(std::string connStr) {
-    connStr_ = connStr;
-}
 std::vector<Admin> AdminDao::GetAdmins() {
     try {
         nanodbc::connection connection(connStr_);

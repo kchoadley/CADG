@@ -40,9 +40,11 @@ class AdminDao : public AdminDaoInterface {
     void AddAdmin(Admin admin, std::string password) override;
     void UpdateAdmin(int id, web::json::object admin_info) override;
     void UpdateAdminPassword(int id, std::string password) override;
-    void SetConnectionString(std::string connStr) override;
   private:
-    AdminDao() { }
+    AdminDao() {
+      //TO-DO:(Kris) Use an environment variable instead.
+      connStr_ = "this will be the actual connection string";
+    }
     std::vector<Admin> admins__;
     std::string connStr_;
 };
