@@ -16,7 +16,12 @@ services:
                 depends_on:
                         - "cadg-db"
                 environment:
+                        - DB_TEST_NAME=${DB_TEST_NAME}
+                        - DB_TEST_TABLE=${DB_TEST_TABLE}
                         - DB_PASSWORD=${DB_PASSWORD}
+                        - DB_PORT=${DB_PORT}
+                        - DB_SERVER=${DB_SERVER}
+                        - DB_UID=${DB_UID}
         cadg-db:
                 build: ../cadg-db
                 networks:

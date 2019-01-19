@@ -13,7 +13,7 @@ RUN apt-get -qq -d update
 RUN apt-get -qq -y install \
     cmake \
     cppcheck \
-    g++-6 \
+    g++-8 \
     libasio-dev \
     libcpprest-dev \
     libspdlog-dev \
@@ -22,7 +22,7 @@ RUN apt-get -qq -y install \
     wget
 
 # Make g++ 6 the default g++ executable
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 
 # Google Fruit dependency injection, build install remove old files
 RUN mkdir gfruit &&\

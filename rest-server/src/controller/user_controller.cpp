@@ -7,6 +7,7 @@
  * @authors     Kristofer Hoadley
  * @date        November, 2018
  */
+#include <optional>
 #include <cpprest/uri_builder.h>
 #include <cpprest/base_uri.h>
 #include <algorithm>
@@ -31,16 +32,27 @@ void UserController::HandleGet(http_request message) {
         auto queries = Queries(message.relative_uri().query());
         auto relative_path = message.relative_uri().to_string();
         if (relative_path.length() > 1 && relative_path.at(1) != '?') {
-            GetUserByID(response, relative_path);
+            if (GetUserByID(response, relative_path))
+                message.reply(status_codes::OK, response);
+            else
+                message.reply(status_codes::InternalError, json::value::string("Unable to retrieve data"));
         } else if (queries.count("name") > 0) {
-            GetUsersByName(response, queries["name"]);
+            if (GetUsersByName(response, queries["name"]))
+                message.reply(status_codes::OK, response);
+            else
+                message.reply(status_codes::InternalError, json::value::string("Unable to retrieve data"));
         } else {
-            auto users = dao__.GetUsers();
-            for (auto& user : users) {
-                response["users"][std::to_string(user.id)] = user.to_json();
+            if (auto user_value = dao__.GetUsers()) {
+                auto users = user_value.value();
+                for (auto& user : users) {
+                    response["users"][std::to_string(user.id)] = user.to_json();
+                }
+                message.reply(status_codes::OK, response);
+            } else {
+                message.reply(status_codes::InternalError, json::value::string("Unable to retrieve data"));
+                return;
             }
         }
-        message.reply(status_codes::OK, response);
     } catch (std::exception&  e) {
         // return error for testing purposes only
         logger__.Log(LogLevel::WARN, e.what(), "UserController", "HandleGet");
@@ -56,9 +68,15 @@ void UserController::HandlePut(http_request message) {
         auto relative_path = message.relative_uri().to_string();
         if (relative_path.length() > 1 && relative_path.at(1) != '?') {
             std::string id_as_string = ParseUserID(relative_path);
-            dao__.UpdateUser(std::stoi(id_as_string), body_json.as_object());
+            if (auto update_reply = dao__.UpdateUser(std::stoi(id_as_string), body_json.as_object())) {
+                message.reply(status_codes::ResetContent);
+            } else {
+                message.reply(status_codes::InternalError, json::value::string("Unable to update data"));
+                return;
+            }
+        } else {
+            message.reply(status_codes::BadRequest, json::value::string("Malformed data"));
         }
-        message.reply(status_codes::ResetContent);
     }
     catch (std::exception& e) {
         message.reply(status_codes::BadRequest, e.what());
@@ -77,9 +95,13 @@ void UserController::HandlePost(http_request message) {
             const json::value &value = iter->second;
             if (value.is_object()) {
                 auto user_json = value.as_object();
-                dao__.AddUser(
+                if (auto success_return = dao__.AddUser(
                         User {user_json["name"].as_string(),
-                        std::stoi(key), user_json["password"].as_string()});
+                        std::stoi(key), user_json["password"].as_string()})) {
+                } else {
+                    message.reply(status_codes::InternalError, json::value::string("Unable to post data"));
+                    return;
+                }
             }
         }
         // respond with successfully created (201)
@@ -94,13 +116,16 @@ void UserController::HandleDelete(http_request message) {
     try {
         auto replyStatus = status_codes::OK;
         auto path = message.relative_uri().to_string();
-        auto userID = ParseUserID(path);
-        if (userID.length() > 0) {  // Verify request has user id
-            auto user = dao__.GetUserByID(std::stoi(userID));  // Gets user from DAO
-            if (user.size() > 0) {  // Verifies user was found
-                dao__.RemoveUser(user[0]);
+        auto user_id = ParseUserID(path);
+        if (user_id.length() > 0) {  // Verify request has user id
+            if (auto remove_response = dao__.RemoveUser(std::stoi(user_id))) {
+                if (remove_response.value() == true) {
+                    replyStatus = status_codes::OK;
+                } else {
+                    replyStatus = status_codes::NotFound;
+                }
             } else {
-                replyStatus = status_codes::NotFound;
+                replyStatus = status_codes::InternalError;
             }
         } else {
             replyStatus = status_codes::BadRequest;
@@ -110,22 +135,30 @@ void UserController::HandleDelete(http_request message) {
         message.reply(status_codes::BadRequest, e.what());
     }
 }
-void UserController::GetUserByID(json::value& response, const std::string& path) {
+bool UserController::GetUserByID(json::value& response, const std::string& path) {
     auto id_as_string = ParseUserID(path);
     if (id_as_string.find_first_not_of("0123456789") == std::string::npos) {
         int id = std::stoi(id_as_string);
-        auto users = dao__.GetUserByID(id);
-        if (users.size() > 0) {
-            logger__.Log(LogLevel::DEBUG, "name of found user: " + users[0].name);
-            response["users"][std::to_string(users[0].id)] = users[0].to_json();
+        if (auto user_response = dao__.GetUserByID(id)) {
+            auto users = user_response.value();
+            if (users.size() > 0) {
+                logger__.Log(LogLevel::DEBUG, "name of found user: " + users[0].name);
+                response["users"][std::to_string(users[0].id)] = users[0].to_json();
+            }
+            return true;
         }
     }
+    return false;
 }
-void UserController::GetUsersByName(json::value& response, const std::string& user_name) {
+bool UserController::GetUsersByName(json::value& response, const std::string& user_name) {
     logger__.Log(LogLevel::DEBUG, "user name query: " + user_name);
-    auto users = dao__.GetUsersByName(user_name);
-    for (auto& user : users) {
-        response["users"][std::to_string(user.id)] = user.to_json();
+    if (auto user_response = dao__.GetUsersByName(user_name)) {
+        auto users = user_response.value();
+        for (auto& user : users)
+            response["users"][std::to_string(user.id)] = user.to_json();
+        return true;
+    } else {
+        return false;
     }
 }
 /// Currently assumes the path only contains a slash and numbers.

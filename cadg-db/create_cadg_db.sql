@@ -21,6 +21,15 @@ DROP SCHEMA IF EXISTS `admin_db` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `admin_db` ;
 -- -----------------------------------------------------
+-- Schema test_db
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `test_db` ;
+
+-- -----------------------------------------------------
+-- Schema test_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `test_db` ;
+-- -----------------------------------------------------
 -- Schema aog_db
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `aog_db` ;
@@ -198,6 +207,23 @@ CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
   `country` VARCHAR(45) NULL,
   `state/region` VARCHAR(45) NULL,
   `zip` VARCHAR(10) NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB
+COMMENT = '				';
+
+USE `test_db` ;
+
+-- -----------------------------------------------------
+-- Table `test_db`.`test`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `test_db`.`test` ;
+
+CREATE TABLE IF NOT EXISTS `test_db`.`test` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(120) NOT NULL,
+  `password` VARCHAR(120) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
