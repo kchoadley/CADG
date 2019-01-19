@@ -16,7 +16,6 @@
 #include <string>
 #include <vector>
 #include "user.hpp"
-#include "aog.hpp"
 
 namespace cadg_rest {
 /**

@@ -11,12 +11,14 @@
 #include <iostream>
 #include <string>
 #include "data_access_object.hpp"
+#include "aog_dao.hpp"
 #include "logger.hpp"
 #include "aog_controller.hpp"
 #include "user_controller.hpp"
 #include "log_level.hpp"
 #include "user_controller.hpp"
 using cadg_rest::DataAccessObject;
+using cadg_rest::AogDao;
 using cadg_rest::Logger;
 using cadg_rest::LoggerInterface;
 using cadg_rest::AogController;
@@ -31,8 +33,12 @@ int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
     logger.LogLevel(LogLevel::INFO);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
+    DataAccessObject::Instance().SetConnectionString(
+        "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
+    AogDao::Instance().SetConnectionString(
+            "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
-    AogController aog_controller(Logger::Instance(), DataAccessObject::Instance());
+    AogController aog_controller(Logger::Instance(), AogDao::Instance());
     std::string server_address;
     if (argc > 2)
         server_address.append(argv[2]);

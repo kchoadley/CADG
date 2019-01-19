@@ -5,17 +5,15 @@
 #ifndef REST_SERVER_AOG_CONTROLLER_HPP
 #define REST_SERVER_AOG_CONTROLLER_HPP
 
-#endif //REST_SERVER_AOG_CONTROLLER_HPP
-
 #include <controller.hpp>
-#include "data_access_interface.hpp"
+#include "aog_dao_interface.hpp"
 
-using cadg_rest::DataAccessInterface;
+using cadg_rest::AogDaoInterface;
 
 namespace cadg_rest {
     class AogController: public Controller {
     public:
-        AogController(LoggerInterface& logger__, DataAccessInterface& dao__) : dao__(dao__), Controller(logger__) {}
+        AogController(LoggerInterface& logger__, AogDaoInterface& input_dao__) : dao__(input_dao__), Controller(logger__) {}
 
         ~AogController() { }
 
@@ -30,7 +28,9 @@ namespace cadg_rest {
         void HandleDelete(http_request message) override;
 
     private:
-        DataAccessInterface& dao__;
+        AogDaoInterface& dao__;
     };
 
 } // end cadg_rest
+
+#endif //REST_SERVER_AOG_CONTROLLER_HPP
