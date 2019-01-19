@@ -55,6 +55,7 @@ add_executable(${PROJECT_NAME}
                                 ./src/controller/aog_controller.cpp
                                 ./src/controller/user_controller.cpp
                                 ./src/nanodbc/nanodbc.cpp
+                                ./src/services/aog_dao.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
                                 ./src/util/network_utils.cpp)

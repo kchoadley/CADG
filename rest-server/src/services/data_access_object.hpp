@@ -42,12 +42,6 @@ class DataAccessObject : public DataAccessInterface {
     void UpdateUser(int id, web::json::object user_info) override;
     void SetConnectionString(std::string connStr) override;
 
-    /// AOG handling methods
-    std::vector<Aog> GetAogs() override;
-    std::vector<Aog> GetAogByName(std::string name) override;
-    std::vector<Aog> GetAogsByAgency(std::string agency) override;
-    void AddAog(Aog aog) override;
-
   private:
     DataAccessObject() { }
     std::vector<User> users__;

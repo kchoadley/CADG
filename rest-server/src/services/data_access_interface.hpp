@@ -14,7 +14,6 @@
 #include <string>
 #include <vector>
 #include "user.hpp"
-#include "aog.hpp"
 
 namespace cadg_rest {
 /**
@@ -70,13 +69,6 @@ class DataAccessInterface {
      * @param connStr
      */
 
-    virtual std::vector<Aog> GetAogs() = 0;
-
-    virtual std::vector<Aog> GetAogByName(std::string name) = 0;
-
-    virtual std::vector<Aog> GetAogsByAgency(std::string agency) = 0;
-
-    virtual void AddAog(Aog aog) = 0;
 
     // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
     // TO-DO(Mike): connStr should be conn_str.
