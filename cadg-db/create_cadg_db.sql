@@ -5,6 +5,14 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+-- -----------------------------------------------------
+-- Schema test_db
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `test_db` ;
+-- -----------------------------------------------------
+-- Schema test_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `test_db` ;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
@@ -16,13 +24,31 @@ DROP SCHEMA IF EXISTS `cadg` ;
 -- Schema cadg
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `cadg` ;
-USE `cadg` ;
 
+USE `test_db` ;
+
+-- -----------------------------------------------------
+-- Table `test_db`.`test`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `test_db`.`test` ;
+
+CREATE TABLE IF NOT EXISTS `test_db`.`test` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(120) NOT NULL,
+  `password` VARCHAR(120) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB
+COMMENT = '				';
+                                  
 -- -----------------------------------------------------
 -- Table `cadg`.`originator`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `cadg`.`originator` ;
-
+                                  
+USE `cadg` ;
+                                  
 CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
   `originator_id` INT NOT NULL,
   `originator_name` VARCHAR(45) NULL,
