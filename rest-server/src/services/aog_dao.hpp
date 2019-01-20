@@ -5,6 +5,8 @@
 #ifndef REST_SERVER_AOG_DAO_HPP
 #define REST_SERVER_AOG_DAO_HPP
 #include "aog_dao_interface.hpp"
+#include "logger.hpp"
+#include "log_level.hpp"
 #include <string>
 #include <vector>
 
