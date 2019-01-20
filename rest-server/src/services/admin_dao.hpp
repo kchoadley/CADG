@@ -35,13 +35,13 @@ class AdminDao : public AdminDaoInterface {
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(AdminDao const&) = delete;
 
-    std::vector<Admin> GetAdmins() override;
-    std::vector<Admin> GetAdminsByName(const std::string& name) override;
-    std::vector<Admin> GetAdminByID(int id) override;
-    bool RemoveAdmin(int id) override;
-    void AddAdmin(Admin admin, std::string password) override;
-    void UpdateAdmin(int id, web::json::object admin_info) override;
-    void UpdateAdminPassword(int id, std::string password) override;
+    std::optional<std::vector<Admin>> GetAdmins() override;
+    std::optional<std::vector<Admin>> GetAdminsByName(const std::string& name) override;
+    std::optional<std::vector<Admin>> GetAdminByID(int id) override;
+    std::optional<bool> RemoveAdmin(int id) override;
+    std::optional<bool> AddAdmin(Admin admin, std::string password) override;
+    std::optional<bool> UpdateAdmin(Admin admin) override;
+    std::optional<bool> UpdateAdminPassword(int id, std::string password) override;
   private:
     std::string getEnvVar(std::string const& key) {
         char const* val = getenv(key.c_str()); 

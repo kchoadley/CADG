@@ -17,7 +17,7 @@ AdminDao& AdminDao::Instance() {
     static AdminDao instance;
     return instance;
 }
-std::vector<Admin> AdminDao::GetAdmins() {
+std::optional<std::vector<Admin>> AdminDao::GetAdmins() {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::result results;
@@ -42,7 +42,7 @@ std::vector<Admin> AdminDao::GetAdmins() {
  *       Will need to convert '%20' to space ' '.
  * 
  */
-std::vector<Admin> AdminDao::GetAdminsByName(const std::string& name) {
+std::optional<std::vector<Admin>> AdminDao::GetAdminsByName(const std::string& name) {
     std::vector<Admin> matching_admins;
     for (auto& admin : admins__) {
         if (std::search(admin.name.begin(), admin.name.end(),
@@ -60,7 +60,7 @@ std::vector<Admin> AdminDao::GetAdminsByName(const std::string& name) {
  * a vector with 1 Admin in it. Check returned vector size
  * to determine if there was a Admin with the associated ID.
  */
-std::vector<Admin> AdminDao::GetAdminByID(int id) {
+std::optional<std::vector<Admin>> AdminDao::GetAdminByID(int id) {
     std::vector<Admin> matching_admins;
     for (auto& admin : admins__) {
         if (admin.id == id) {
@@ -70,7 +70,7 @@ std::vector<Admin> AdminDao::GetAdminByID(int id) {
     }
     return matching_admins;
 }
-bool AdminDao::RemoveAdmin(int id) {
+std::optional<bool> AdminDao::RemoveAdmin(int id) {
     try {
         nanodbc::connection connection(connStr_);
         nanodbc::statement statement(connection);
@@ -82,7 +82,7 @@ bool AdminDao::RemoveAdmin(int id) {
         return false;
     }
 }
-void AdminDao::AddAdmin(Admin admin, std::string password) {
+std::optional<bool> AdminDao::AddAdmin(Admin admin, std::string password) {
     // TODO(All): password either needs to be hashes/salted before it gets here or once it is here.
     try {
         nanodbc::connection connection(connStr_);
@@ -109,7 +109,7 @@ void AdminDao::AddAdmin(Admin admin, std::string password) {
     }
 }
 
-void AdminDao::UpdateAdminPassword(int id, std::string password) {
+std::optional<bool> AdminDao::UpdateAdminPassword(int id, std::string password) {
     // TODO(All): password either needs to be hashes/salted before it gets here or once it is here.
     try {
         // Declare and set nanodbc statement parameters.
@@ -124,7 +124,7 @@ void AdminDao::UpdateAdminPassword(int id, std::string password) {
         // TODO(All): Something?
     }
 }
-void AdminDao::UpdateAdmin(int id, web::json::object admin_info) {
+std::optional<bool> AdminDao::UpdateAdmin(int id, web::json::object admin_info) {
     try {
         // Declare and set nanodbc statement parameters.
         nanodbc::string adminname;
