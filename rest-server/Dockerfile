@@ -5,7 +5,8 @@ FROM oswasabi/cadg-test-env:latest
 WORKDIR "/usr/src/cadg-rest-server"
 
 # Copy the current folder which contains C++ source code to the Docker image under /usr/src
-COPY . .
+COPY "./src/" "./src/"
+COPY CMakeLists.txt .
 
 ENV DB_TEST_NAME=${DB_TEST_NAME}
 ENV DB_TEST_TABLE=${DB_TEST_TABLE}
