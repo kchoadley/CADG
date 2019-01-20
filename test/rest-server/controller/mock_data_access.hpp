@@ -3,6 +3,7 @@
 //
 #include "user.hpp"
 #include "data_access_interface.hpp"
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -24,13 +25,12 @@ namespace cadg_rest{
       MockDataAccess(MockDataAccess const&) = delete;
       void operator=(MockDataAccess const&) = delete;
 
-      std::vector<User> GetUsers() override { return users__; };
-      std::vector<User> GetUsersByName(const std::string& name) override { return users__; };
-      std::vector<User> GetUserByID(int id) override { return users__; };
-      bool RemoveUser(User user) override { return true; };
-      void AddUser(User user) override { };
-      void UpdateUser(int id, web::json::object user_info) override { };
-      void SetConnectionString(std::string connStr) override { };
+      std::optional<std::vector<User>> GetUsers() override { return users__; };
+      std::optional<std::vector<User>> GetUsersByName(const std::string& name) override { return users__; };
+      std::optional<std::vector<User>> GetUserByID(int id) override { return users__; };
+      std::optional<bool> RemoveUser(int id) override { return true; };
+      std::optional<bool> AddUser(User user) override { return true; };
+      std::optional<bool> UpdateUser(int id, web::json::object user_info) override { return true; };
     private:
       std::vector<User> users__;
   };
