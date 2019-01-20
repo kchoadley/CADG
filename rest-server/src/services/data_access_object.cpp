@@ -1,7 +1,6 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+/// Implements the DataAccessObject.
 /**
- * Implementation of DataAccessObject.
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
  *
  * @file        data_access_object.cpp
  * @authors     Kristofer Hoadley, Micheal McCulley
@@ -61,11 +60,8 @@ std::optional<std::vector<User>> DataAccessObject::GetUsers() {
     }
 }
 /**
- * Gets user by partial string match of name, ignores case.
- * 
  * TODO: Does not handle a space ' ' in the url correctly. 
  *       Will need to convert '%20' to space ' '.
- * 
  */
 std::optional<std::vector<User>> DataAccessObject::GetUsersByName(const std::string& name) {
     try {

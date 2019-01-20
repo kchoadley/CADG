@@ -1,5 +1,13 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+///Tests the Controller Class
+/**
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
+ * @file    controller_test.cpp
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
+ */
+
 #include <gtest/gtest.h>
 #include <iostream>
 #include "controller.hpp"

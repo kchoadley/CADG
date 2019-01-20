@@ -1,6 +1,12 @@
-//
-// Created by Vaniya on 11/30/2018.
-//
+///GMock of the Data Access Interface
+/**
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
+ * @file    mock_data_access.cpp
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
+ */
 
 #ifndef CADG_MOCK_DATA_ACCESS_INTERFACE_HPP
 #define CADG_MOCK_DATA_ACCESS_INTERFACE_HPP

@@ -1,5 +1,12 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+///Tests the XML Parser
+/**
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ * @file    xml_parser_test.cpp
+ * @authors { Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley }
+ * @date    January, 2019
+ */
+
 #include <gtest/gtest.h>
 #include <iostream>
 #include <fstream>

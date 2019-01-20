@@ -1,5 +1,13 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+/// Runs the REST server
+/**
+ * Used to initialize and start the REST server.
+ *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        rest_server.cpp
+ * @authors     Kristofer Hoadley
+ * @date        November, 2018
+ */
 #include <iostream>
 #include <string>
 #include "data_access_object.hpp"

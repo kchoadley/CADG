@@ -1,9 +1,9 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
 /// A logger.
 /**
- * This logger adhers to the LoggerInterface. It is a singleton,
+ * This logger adheres to the LoggerInterface. It is a singleton,
  * accessed through the static method Instance().
+ *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
  *
  * @file        logger.hpp
  * @authors     Kristofer Hoadley
@@ -32,9 +32,9 @@ class Logger : public LoggerInterface {
     Logger(Logger const&) = delete;
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(Logger const&) = delete;
+    /// Returns json string of a map collection.
     /**
      * Converts a map collection of string to string into a single string in a json valid format.
-     * 
      * @param name The name of the collection.
      * @param map Map representation of the collection.
      * @return A string representation of the collection.
@@ -49,10 +49,10 @@ class Logger : public LoggerInterface {
     void LogNetworkActivity(http_request message, std::string endpoint, int verbosity = 0) override;
     void LogLevel(int log_level) override;
   protected:
+    /// Translates log_level for spdlog.
     /**
      * Converts an integer log level, as defined in log_level.hpp, to
      * the level_enum of spdlog.
-     * 
      * @param log_level Integer representation of the log level to convert.
      * @return The equivelant log level enum of spdlog.
      */

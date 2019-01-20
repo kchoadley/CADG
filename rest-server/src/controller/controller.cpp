@@ -1,8 +1,8 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+/// General implementation of Controller.
 /**
- * Implementation of Controller.
- *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+                    Shawn Hulce, Michael McCulley
+
  * @file        controller.cpp
  * @authors     Kristofer Hoadley
  * @date        November, 2018
@@ -37,12 +37,14 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
+/// Extracts individual queries from a query string.
 /**
  * Some limitations of this implementation:
  * Does not handle converting spaces (%20) or other special characters.
  * Does not handle delimiting queries by ';'
  * Does not handle multiple values for a key (keeps the last one).
- * 
+ * @param   query_string    full query string to extract queries from
+ * @return  map of individual queries using the query key as the map key
  */
 std::map<std::string, std::string> Controller::Queries(std::string query_string) {
     std::map<std::string, std::string> query_map;
