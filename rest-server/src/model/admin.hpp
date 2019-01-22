@@ -18,9 +18,17 @@ namespace cadg_rest {
  * An admin struct which contains a name, id, and email.
  */
 struct Admin {
-    std::string name;
-    int id;
+    int user_id;
+    std::string first_name;
+    std::string last_name;
+    std::string username;
+    std::string password;
     std::string email;
+    std::string phone;
+    std::string address;
+    std::string country;
+    std::string state_region;
+    std::string zip;
     /**
      * Converts the admin struct to a json object.
      * 
@@ -31,8 +39,17 @@ struct Admin {
      */
     web::json::value to_json() {
         auto admin_json  = web::json::value::object();
-        admin_json["name"] = web::json::value::string(name);
+        admin_json["user_id"] = web::json::value::number(user_id);
+        admin_json["first_name"] = web::json::value::string(first_name);
+        admin_json["last_name"] = web::json::value::string(last_name);
+        admin_json["username"] = web::json::value::string(username);
+        admin_json["password"] = web::json::value::string(password);
         admin_json["email"] = web::json::value::string(email);
+        admin_json["phone"] = web::json::value::string(phone);
+        admin_json["address"] = web::json::value::string(address);
+        admin_json["country"] = web::json::value::string(country);
+        admin_json["state_region"] = web::json::value::string(state_region);
+        admin_json["zip"] = web::json::value::string(zip);
         return admin_json;
     }
 };
