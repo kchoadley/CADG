@@ -40,7 +40,7 @@ USE `admin_db` ;
 DROP TABLE IF EXISTS `admin_db`.`admin` ;
 
 CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
-  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
@@ -49,10 +49,10 @@ CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
   `phone` VARCHAR(45) NULL,
   `address` VARCHAR(255) NULL,
   `country` VARCHAR(45) NULL,
-  `state/region` VARCHAR(45) NULL,
+  `state_region` VARCHAR(45) NULL,
   `zip` VARCHAR(45) NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `userID_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB
 COMMENT = '				';

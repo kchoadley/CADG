@@ -11,9 +11,6 @@
  */
 #ifndef ADMIN_DAO_H
 #define ADMIN_DAO_H
-#include <string>
-#include <vector>
-#include "admin.hpp"
 #include "admin_dao_interface.hpp"
 #include "logger.hpp"
 #include "log_level.hpp"
@@ -47,23 +44,11 @@ class AdminDao : public AdminDaoInterface {
         char const* val = getenv(key.c_str()); 
         return val == NULL ? std::string() : std::string(val);
     }
-    AdminDao() {
-      LoggerInterface& logger(Logger::Instance());
-      //TO-DO:(Kris) Use an environment variable instead.
-      std::string db_admin_table = getEnvVar("DB_ADMIN_TABLE");
-      logger.Log(LogLevel::INFO, "The env db_admin_table is: " + db_admin_table);
-      std::string db_password = getEnvVar("DB_PASSWORD");
-      logger.Log(LogLevel::INFO, "The env db_password is: " + db_password);
-      std::string db_port = getEnvVar("DB_PORT");
-      logger.Log(LogLevel::INFO, "The env db_port is: " + db_port);
-      std::string db_server = getEnvVar("DB_SERVER");
-      logger.Log(LogLevel::INFO, "The env db_server is: " + db_server);
-      std::string db_uid = getEnvVar("DB_UID");
-      logger.Log(LogLevel::INFO, "The env db_uid is: " + db_uid);
-      connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database="+ db_admin_table +";Uid="+ db_uid +";Pwd="+ db_password +";";
-    }
+    AdminDao() ;
     std::vector<Admin> admins__;
-    std::string connStr_;
+    std::string conn_str__;
+    std::string db_admin_table__;
+    LoggerInterface& logger;
 };
 }
 #endif // ADMIN_DAO_H
