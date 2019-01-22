@@ -58,7 +58,10 @@ add_executable(${PROJECT_NAME}
                                 ./src/controller/aog_controller.cpp
                                 ./src/controller/user_controller.cpp
                                 ./src/nanodbc/nanodbc.cpp
+<<<<<<< HEAD
                                 ./src/services/admin_dao.cpp
+=======
+>>>>>>> 838bb612fd1f2d99203fd7a56c3acdc9683465a2
                                 ./src/services/aog_dao.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp

@@ -21,7 +21,9 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
+
             results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator;"));
+
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
@@ -41,7 +43,9 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
+
             results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where name like '%" + name +"%';"));
+
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 Logger::Instance().Log(LogLevel::DEBUG, results.get<std::string>(1), "AogDao", "GetAogByName");
@@ -62,6 +66,7 @@ namespace cadg_rest {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
             results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where agency like '%" + agency +"%';"));
+
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
