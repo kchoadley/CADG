@@ -12,20 +12,22 @@
 #include <string>
 #include "data_access_object.hpp"
 #include "logger.hpp"
-#include "user_controller.hpp"
 #include "log_level.hpp"
+#include "user_controller.hpp"
 using cadg_rest::DataAccessObject;
 using cadg_rest::Logger;
 using cadg_rest::LoggerInterface;
 using cadg_rest::UserController;
 using cadg_rest::LogLevel;
 
+std::string getEnvVar(std::string const& key) {
+    char const* val = getenv(key.c_str());
+    return val == NULL ? std::string() : std::string(val);
+}
 int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
-    logger.LogLevel(LogLevel::DEBUG);
+    logger.LogLevel(LogLevel::INFO);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
-    DataAccessObject::Instance().SetConnectionString(
-        "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     std::string server_address;
     if (argc > 2)

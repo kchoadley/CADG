@@ -4,5 +4,9 @@ language: generic
 services: docker
 
 script: 
-  - docker build --rm -t cadg:test -f ./test/Dockerfile .
+  - |
+    docker build --rm \
+    -t cadg:test \
+    -f ./test/Dockerfile \
+    .
   - docker build --rm -t cadg-rest-server:test -f ./rest-server/Dockerfile ./rest-server/

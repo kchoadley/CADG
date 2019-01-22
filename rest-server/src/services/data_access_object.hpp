@@ -16,6 +16,8 @@
 #include <vector>
 #include "user.hpp"
 #include "data_access_interface.hpp"
+#include "logger.hpp"
+#include "log_level.hpp"
 
 namespace cadg_rest {
 /// A DAO for users.
@@ -38,7 +40,7 @@ class DataAccessObject : public DataAccessInterface {
      * GetUsers gets all users in the data store.
      * @return Vector of all users.
      */
-    std::vector<User> GetUsers() override;
+    std::optional<std::vector<User>> GetUsers() override;
     /// Returns all users that contain the provided name.
     /**
      * GetUsersByName gets all users in the data store which have a name that
@@ -47,7 +49,7 @@ class DataAccessObject : public DataAccessInterface {
      * @param name The name of the user(s) to search for.
      * @return Vector of all users that match the name.
      */
-    std::vector<User> GetUsersByName(const std::string& name) override;
+    std::optional<std::vector<User>> GetUsersByName(const std::string& name) override;
     /// Returns all users with the provided id.
     /**
      * GetUserByID gets the user in the data store by id.
@@ -55,7 +57,7 @@ class DataAccessObject : public DataAccessInterface {
      * @param id The id of the user to return.
      * @return Vector containing the found user, or empty if there is no matching user.
      */
-    std::vector<User> GetUserByID(int id) override;
+    std::optional<std::vector<User>> GetUserByID(int id) override;
     /// Removes a user by the provided id.
     /**
      * RemoveUser removes the user in the data store.
@@ -63,14 +65,14 @@ class DataAccessObject : public DataAccessInterface {
      * @param user The user object to remove.
      * @return Bool indicating successful removal.
      */
-    bool RemoveUser(User user) override;
+    std::optional<bool> RemoveUser(int id) override;
     /// Adds a new user
     /**
      * AddUser adds the user to the data store.
      *
      * @param user The user to add to the data store.
      */
-    void AddUser(User user) override;
+    std::optional<bool> AddUser(User user) override;
     /// Updates a user.
     /**
      * UpdateUser updates a user in the data store.
@@ -78,16 +80,17 @@ class DataAccessObject : public DataAccessInterface {
      * @param id The id of the user to update.
      * @param user_info The updated information for the user.
      */
-    void UpdateUser(int id, web::json::object user_info) override;
-    /**
-     * SetConnectionString sets the string used for connecting with the database.
-     * @param connStr
-     */
-    void SetConnectionString(std::string connStr) override;
+    std::optional<bool> UpdateUser(int id, web::json::object user_info) override;
   private:
-    DataAccessObject() { }
+    std::string getEnvVar(std::string const& key) {
+        char const* val = getenv(key.c_str()); 
+        return val == NULL ? std::string() : std::string(val);
+    }
+    DataAccessObject();
     std::vector<User> users__;
-    std::string connStr_;
+    std::string conn_str__;
+    std::string db_test_table__;
+    LoggerInterface& logger;
 };
 }
 #endif // DATA_ACCESS_OBJECT_H
