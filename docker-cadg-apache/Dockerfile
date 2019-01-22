@@ -14,12 +14,7 @@ RUN apt-get install vim -y \
 COPY "./apache_config/*" "/usr/local/apache2/conf"
 
 # Copy any HTML files to be served locally into the Docker
-<<<<<<< HEAD
-
 COPY "./html_files/*" "/usr/local/apache2/htdocs/"
 
-=======
-COPY "./html_files/*" "/usr/local/apache2/htdocs/"
->>>>>>> 838bb612fd1f2d99203fd7a56c3acdc9683465a2
 
 
