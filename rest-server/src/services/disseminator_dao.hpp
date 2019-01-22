@@ -14,7 +14,6 @@
 #include <string>
 #include <vector>
 #include "disseminator.hpp"
-#include "disseminator_endpoint.hpp"
 #include "disseminator_dao_interface.hpp"
 
 namespace cadg_rest {
@@ -38,8 +37,8 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     std::vector<Disseminator> GetDisseminatorsByName(const std::string& name) override;
     std::vector<Disseminator> GetDisseminatorByID(int id) override;
     bool RemoveDisseminator(int id) override;
-    void AddDisseminator(Disseminator disseminator, std::string password) override;
-    void UpdateDisseminator(int id, web::json::object disseminator_info) override;
+    bool AddDisseminator(Disseminator disseminator) override;
+    bool UpdateDisseminator(Disseminator disseminator) override;
     void SetConnectionString(std::string conn_str);
     
   private:

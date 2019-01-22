@@ -71,13 +71,37 @@ bool DisseminatorDao::RemoveDisseminator(int id) {
         return false;
     }
 }
-void DisseminatorDao::AddDisseminator(Disseminator disseminator) {
-    disseminators__.push_back(disseminator);
-    // TODO(Mike): Write to DB.
+bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
+    try {
+        nanodbc::connection connection(conn_str__);
+        nanodbc::statement statement(connection);
+        prepare(statement, NANODBC_TEXT("insert into cadg.disseminators (name, type, format, ip) values (?,?,?,?);");
+        nanodbc::string const name = NANODBC_TEXT(disseminator.name);
+        statement.bind(0, name.c_str());
+        nanodbc::string const type = NANODBC_TEXT(disseminator.type);
+        statement.bind(1, type.c_str());
+        nanodbc::string const format = NANODBC_TEXT(disseminator.format);
+        statement.bind(2, format.c_str());
+        nanodbc::string const ip = NANODBC_TEXT(disseminator.ip);
+        statement.bind(3, ip.c_str());
+        execute(statement);
+        // Get the ID of the newly created user record.
+        nanodbc::result results;
+        results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
+        results.next();
+        int new_id = results.get<int>(0, 0);
+        if (new_id > 0) {
+            disseminator.id = new_id;
+            disseminators__.push_back(disseminator);
+            return true;
+        }
+    } catch (std::exception&  e) {
+        return false;
+    }
 }
 
 
-void DisseminatorDao::UpdateDisseminator(int id, web::json::object disseminator_info) {
+bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
     try {
         // Declare and set nanodbc statement parameters.
         nanodbc::string name;
