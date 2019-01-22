@@ -55,14 +55,14 @@ class DisseminatorDaoInterface {
      * 
      * @param disseminator The disseminator to add to the data store.
      */
-    virtual void AddDisseminator(Disseminator disseminator) = 0;
+    virtual bool AddDisseminator(Disseminator disseminator) = 0;
     /**
      * UpdateDisseminator updates a disseminator in the data store.
      * 
      * @param id The id of the disseminator to update.
      * @param disseminator_info The updated information for the disseminator.
      */
-    virtual void UpdateDisseminator(int id, web::json::object disseminator_info) = 0;
+    virtual bool UpdateDisseminator(int id, web::json::object disseminator_info) = 0;
 };
 }
 #endif // DISSEMINATOR_DAO_INTERFACE_H
