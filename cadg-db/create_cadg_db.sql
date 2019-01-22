@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `cadg`.`originator` ;
 USE `cadg` ;
                                   
 CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
-  `originator_id` INT NOT NULL,
+  `originator_id` INT NOT NULL AUTO_INCREMENT,
   `originator_name` VARCHAR(45) NULL,
   `status` ENUM('ACTIVE', 'DISABLED') NULL,
   `agency` VARCHAR(45) NULL,

@@ -72,7 +72,6 @@ class DataAccessInterface {
 
     virtual std::optional<bool> UpdateUser(int id, web::json::object user_info) = 0;
 
-    virtual void UpdateUser(int id, web::json::object user_info) = 0;
     /**
      * SetConnectionString sets the string used for connecting with the database.
      * 
@@ -81,7 +80,6 @@ class DataAccessInterface {
 
     // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
     // TO-DO(Mike): connStr should be conn_str.
-    virtual void SetConnectionString(std::string connStr) = 0;
 
 };
 }

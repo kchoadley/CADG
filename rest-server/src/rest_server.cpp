@@ -33,10 +33,8 @@ int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
     logger.LogLevel(LogLevel::INFO);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
-    DataAccessObject::Instance().SetConnectionString(
-        "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
     AogDao::Instance().SetConnectionString(
-            "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=admin_db;Uid=root;Pwd=example;");
+            "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=cadg;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     AogController aog_controller(Logger::Instance(), AogDao::Instance());
     std::string server_address;

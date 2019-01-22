@@ -21,7 +21,7 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-            results = execute(connection, NANODBC_TEXT("select aog_id, name, agency from aog_db.aog;"));
+            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator;"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
@@ -41,7 +41,7 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-            results = execute(connection, NANODBC_TEXT("select aog_id, name, agency from aog_db.aog where name like '%" + name +"%';"));
+            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where name like '%" + name +"%';"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 Logger::Instance().Log(LogLevel::DEBUG, results.get<std::string>(1), "AogDao", "GetAogByName");
@@ -61,7 +61,7 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-            results = execute(connection, NANODBC_TEXT("select aog_id, name, agency from aog_db.aog where agency like '%" + agency +"%';"));
+            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where agency like '%" + agency +"%';"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
@@ -80,10 +80,10 @@ namespace cadg_rest {
 
         nanodbc::connection connection(connStr_);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("insert into aog_db.aog (name, agency) values(?,?);"));
+        prepare(statement, NANODBC_TEXT("insert into cadg.originator (originator_name, agency) values(?,?);"));
         nanodbc::result results;
-        nanodbc::string const name = NANODBC_TEXT(aog.name);
-        statement.bind(0, name.c_str());
+        nanodbc::string const originator_name = NANODBC_TEXT(aog.name);
+        statement.bind(0, originator_name.c_str());
         nanodbc::string const agency = NANODBC_TEXT(aog.agency);
         statement.bind(1, agency.c_str());
         execute(statement);
