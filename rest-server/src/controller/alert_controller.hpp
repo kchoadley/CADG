@@ -27,19 +27,21 @@ public:
     void InitHandlers() override;
     /// Returns the requested alert(s).
     /**
-     * HandleGet returns an alert or collection of alerts determined
-     * by the parameters in the URL path.
-     * If there is no URL path, this returns all alerts.
-     * If there is an alert id, or another search parameter, this returns
-     * all alerts that match the search key.
+     * HandleGet request will return a collection of all alerts
+     * in the system. An extended URI will search on alertID,
+     * while a query string will search on the keys passed (category,
+     * severity, or urgency).
+     *
+     * GET all alerts (/alerts)
+     * GET specific alerts(/alerts/{id})
+     * GET filtered alerts(/alerts?urgency=immediate)
      *
      * @param message   The http request message to be parsed.
      */
     void HandleGet(http_request message) override;
-    /// Creates a new alert.
+    /// Creates a new alert with the provided information and forwards it along.
     /**
-     * HandlePost adds a new alert based on information provided
-     * in the body of the http_request (in json format). This method
+     * HandlePost adds a new alert received in CAP format. This method
      * forwards the message along for conversion to CMAC and CMSP distribution.
      *
      * @param message   The http request message that includes the alert info in
