@@ -26,9 +26,9 @@ namespace cadg_rest {
         void operator=(AogDao const&) = delete;
 
         /// AOG handling methods
-        std::vector<Aog> GetAogs() override;
-        std::vector<Aog> GetAogByName(std::string name) override;
-        std::vector<Aog> GetAogsByAgency(std::string agency) override;
+        std::optional<std::vector<Aog>> GetAogs() override;
+        std::optional<std::vector<Aog>> GetAogByName(std::string name) override;
+        std::optional<std::vector<Aog>> GetAogsByAgency(std::string agency) override;
         void AddAog(Aog aog) override;
         void SetConnectionString(std::string connStr) override;
 

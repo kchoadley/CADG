@@ -27,7 +27,7 @@ namespace cadg_rest {
             response["aogs"] = json::value::object();
             auto queries = Queries(message.relative_uri().query());
             auto relative_path = message.relative_uri().to_string();
-            std::vector<Aog> aogs;
+            std::optional<std::vector<Aog>> aogs;
             if (queries.count("name") > 0) {
                 aogs = dao__.GetAogByName(queries["name"]);
             } else if (queries.count("agency") > 0){
@@ -35,8 +35,14 @@ namespace cadg_rest {
             } else {
                     aogs = dao__.GetAogs();
             }
-            for (auto& aog : aogs) {
-                response["aogs"][std::to_string(aog.id)] = aog.to_json();
+
+            if (aogs) {
+                for (auto &aog : *aogs) {
+                    response["aogs"][std::to_string(aog.id)] = aog.to_json();
+                }
+            } else {
+                message.reply(status_codes::BadRequest, "No Data Found");
+                return;
             }
             message.reply(status_codes::OK, response);
 

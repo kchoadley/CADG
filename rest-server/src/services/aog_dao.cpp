@@ -17,7 +17,7 @@ namespace cadg_rest {
         connStr_ = connStr;
     }
 
-    std::vector<Aog> AogDao::GetAogs() {
+    std::optional<std::vector<Aog>> AogDao::GetAogs() {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
@@ -33,12 +33,11 @@ namespace cadg_rest {
             }
             return db_aogs;
         } catch (...) {
-            std::vector<Aog> db_aogs;
-            return db_aogs;
+            return std::nullopt;
         }
     }
 
-    std::vector<Aog> AogDao::GetAogByName(std::string name) {
+    std::optional<std::vector<Aog>> AogDao::GetAogByName(std::string name) {
 
         try {
             nanodbc::connection connection(connStr_);
@@ -56,12 +55,11 @@ namespace cadg_rest {
             }
             return db_aogs;
         } catch (...) {
-            std::vector<Aog> db_aogs;
-            return db_aogs;
+            return std::nullopt;
         }
     }
 
-    std::vector<Aog> AogDao::GetAogsByAgency(std::string agency) {
+    std::optional<std::vector<Aog>> AogDao::GetAogsByAgency(std::string agency) {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
@@ -76,8 +74,7 @@ namespace cadg_rest {
             }
             return db_aogs;
         } catch (...) {
-            std::vector<Aog> db_aogs;
-            return db_aogs;
+            return std::nullopt;
         }
     }
 

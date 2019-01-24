@@ -7,6 +7,7 @@
 #include "aog.hpp"
 #include <string>
 #include <vector>
+#include <optional>
 
 namespace cadg_rest {
 
@@ -14,11 +15,11 @@ namespace cadg_rest {
 
     public:
 
-        virtual std::vector<Aog> GetAogs() = 0;
+        virtual std::optional<std::vector<Aog>> GetAogs() = 0;
 
-        virtual std::vector<Aog> GetAogByName(std::string name) = 0;
+        virtual std::optional<std::vector<Aog>> GetAogByName(std::string name) = 0;
 
-        virtual std::vector<Aog> GetAogsByAgency(std::string agency) = 0;
+        virtual std::optional<std::vector<Aog>> GetAogsByAgency(std::string agency) = 0;
 
         virtual void AddAog(Aog aog) = 0;
 
