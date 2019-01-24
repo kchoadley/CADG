@@ -42,8 +42,7 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-
-            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where name like '%" + name +"%';"));
+            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where originator_name like '%" + name +"%';"));
 
             std::vector<Aog> db_aogs;
             while (results.next()) {
