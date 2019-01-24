@@ -52,7 +52,11 @@ namespace cadg_rest {
                         , results.get<std::string>(1, "null_name")
                         , results.get<std::string>(2, "null_agency")});
             }
-            return db_aogs;
+            if (db_aogs.size() > 0) {
+                return db_aogs;
+            } else {
+                return std::nullopt;
+            }
         } catch (...) {
             return std::nullopt;
         }
@@ -71,7 +75,12 @@ namespace cadg_rest {
                         , results.get<std::string>(1, "null_name")
                         , results.get<std::string>(2, "null_agency")});
             }
-            return db_aogs;
+            if (db_aogs.size() > 0) {
+                return db_aogs;
+            } else {
+                return std::nullopt;
+            }
+
         } catch (...) {
             return std::nullopt;
         }
