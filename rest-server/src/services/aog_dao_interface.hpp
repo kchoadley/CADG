@@ -1,6 +1,12 @@
-//
-// Created by shulce on 1/19/19.
-//
+/**
+ * Interface for Alert Originator Groups Data Access
+ *
+ * Copyright 2019   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        aog_dao_interface.hpp
+ * @authors     Shawn Hulce
+ * @date        January 2019
+ */
 
 #ifndef REST_SERVER_AOG_DAO_INTERFACE_HPP
 #define REST_SERVER_AOG_DAO_INTERFACE_HPP

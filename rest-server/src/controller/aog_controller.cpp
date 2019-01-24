@@ -1,6 +1,12 @@
-//
-// Created by shulce on 1/16/19.
-//
+/**
+ *  Alert Originator Groups API Endpoint Controller
+ *
+ * Copyright 2019   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        aog_controller.cpp
+ * @authors     Shawn Hulce
+ * @date        January 2019
+ */
 
 #include <cpprest/uri_builder.h>
 #include <cpprest/base_uri.h>
@@ -35,7 +41,6 @@ namespace cadg_rest {
             } else {
                     aogs = dao__.GetAogs();
             }
-
             if (aogs) {
                 for (auto &aog : *aogs) {
                     response["aogs"][std::to_string(aog.id)] = aog.to_json();
@@ -45,7 +50,6 @@ namespace cadg_rest {
                 return;
             }
             message.reply(status_codes::OK, response);
-
         } catch (std::exception& e) {
             logger__.Log(LogLevel::ERR, e.what(), "AogController", "Handleget");
             message.reply(status_codes::InternalError, json::value::string(e.what()));
@@ -93,4 +97,4 @@ namespace cadg_rest {
     }
 
 
-} // end cadg_rest
+}  // namespace cadg_rest

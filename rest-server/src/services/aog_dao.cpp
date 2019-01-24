@@ -1,6 +1,12 @@
-//
-// Created by shulce on 1/19/19.
-//
+/**
+ *  Alert Originator Groups Data Access
+ *
+ * Copyright 2019   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        aog_dao.cpp
+ * @authors     Shawn Hulce
+ * @date        January 2019
+ */
 
 #include <string>
 #include <vector>
@@ -22,8 +28,8 @@ namespace cadg_rest {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
 
-            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator;"));
-
+            results = execute(connection, NANODBC_TEXT(
+                    "select originator_id, originator_name, agency from cadg.originator;"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
@@ -38,12 +44,10 @@ namespace cadg_rest {
     }
 
     std::optional<std::vector<Aog>> AogDao::GetAogByName(std::string name) {
-
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
             results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where originator_name like '%" + name +"%';"));
-
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 Logger::Instance().Log(LogLevel::DEBUG, results.get<std::string>(1), "AogDao", "GetAogByName");
@@ -66,8 +70,8 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-            results = execute(connection, NANODBC_TEXT("select originator_id, originator_name, agency from cadg.originator where agency like '%" + agency +"%';"));
-
+            results = execute(connection, NANODBC_TEXT(
+                    "select originator_id, originator_name, agency from cadg.originator where agency like '%" + agency +"%';"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
                 db_aogs.push_back(Aog {
@@ -80,14 +84,12 @@ namespace cadg_rest {
             } else {
                 return std::nullopt;
             }
-
         } catch (...) {
             return std::nullopt;
         }
     }
 
     void AogDao::AddAog(cadg_rest::Aog aog) {
-
         nanodbc::connection connection(connStr_);
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT("insert into cadg.originator (originator_name, agency) values(?,?);"));
@@ -97,7 +99,6 @@ namespace cadg_rest {
         nanodbc::string const agency = NANODBC_TEXT(aog.agency);
         statement.bind(1, agency.c_str());
         execute(statement);
-
     }
-} //end cadg_rest
+}  // namespace cadg_rest
 

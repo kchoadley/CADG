@@ -16,18 +16,15 @@ namespace cadg_rest {
         int id;
         std::string name;
         std::string agency;
-
         web::json::value to_json() {
             auto aog_json = web::json::value::object();
             aog_json["name"] = web::json::value::string(name);
             aog_json["agency"] = web::json::value::string(agency);
             return aog_json;
         }
-
         //Compares if two Aog constructs are the same
         inline bool operator==(const Aog& other) {
             return id == other.id && name == other.name && agency == other.agency;
         }
     };
-
-} // end cadg_rest
+}  // namespace cadg_rest

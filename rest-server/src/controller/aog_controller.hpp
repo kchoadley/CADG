@@ -1,6 +1,12 @@
-//
-// Created by shulce on 1/16/19.
-//
+/**
+ *  Alert Originator Groups API Endpoint Controller
+ *
+ * Copyright 2019   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        aog_controller.hpp
+ * @authors     Shawn Hulce
+ * @date        January 2019
+ */
 
 #ifndef REST_SERVER_AOG_CONTROLLER_HPP
 #define REST_SERVER_AOG_CONTROLLER_HPP
@@ -31,6 +37,6 @@ namespace cadg_rest {
         AogDaoInterface& dao__;
     };
 
-} // end cadg_rest
+}  // namespace cadg_rest
 
 #endif //REST_SERVER_AOG_CONTROLLER_HPP

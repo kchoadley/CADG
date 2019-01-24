@@ -1,7 +1,12 @@
-//
-// Created by shulce on 1/19/19.
-//
-
+/**
+ *  Alert Originator Groups Data Access
+ *
+ * Copyright 2019   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley, Shawn Hulce, Michael McCulley
+ *
+ * @file        aog_dao.hpp
+ * @authors     Shawn Hulce
+ * @date        January 2019
+ */
 #ifndef REST_SERVER_AOG_DAO_HPP
 #define REST_SERVER_AOG_DAO_HPP
 #include "aog_dao_interface.hpp"
@@ -37,6 +42,6 @@ namespace cadg_rest {
         std::string connStr_;
     };
 
-}
+}  // namespace cadg_rest
 
 #endif //REST_SERVER_AOG_DAO_HPP
