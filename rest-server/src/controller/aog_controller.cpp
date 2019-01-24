@@ -12,6 +12,7 @@
 #include <cpprest/base_uri.h>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "aog_controller.hpp"
 #include "log_level.hpp"
 
@@ -36,7 +37,7 @@ namespace cadg_rest {
             std::optional<std::vector<Aog>> aogs;
             if (queries.count("name") > 0) {
                 aogs = dao__.GetAogByName(queries["name"]);
-            } else if (queries.count("agency") > 0){
+            } else if (queries.count("agency") > 0) {
                     aogs = dao__.GetAogsByAgency(queries["agency"]);
             } else {
                     aogs = dao__.GetAogs();
@@ -60,7 +61,6 @@ namespace cadg_rest {
         logger__.LogNetworkActivity(message, endpoint(), 2);
 
         message.reply(status_codes::NotImplemented);
-
     }
 
     void AogController::HandlePost(http_request message) {

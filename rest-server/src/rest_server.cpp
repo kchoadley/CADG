@@ -14,7 +14,6 @@
 #include "aog_dao.hpp"
 #include "logger.hpp"
 #include "aog_controller.hpp"
-#include "user_controller.hpp"
 #include "log_level.hpp"
 #include "user_controller.hpp"
 using cadg_rest::DataAccessObject;
