@@ -52,7 +52,24 @@ void AdminController::HandlePut(http_request message) {
     // TODO(Kris): Implement
 }
 void AdminController::HandlePost(http_request message) {
-    // TODO(Kris): Implement
+    logger__.LogNetworkActivity(message, endpoint(), 1);
+    try {
+        const json::value body_json = message.extract_json().get();
+        json::value admin_json = body_json.at("admin");
+        if (auto admin_optional = Admin::from_json(admin_json)) {
+            Admin admin = admin_optional.value();
+            if (auto success_optional = dao__.AddAdmin(admin, "")) {
+                message.reply(status_codes::Created);
+            } else {
+                message.reply(status_codes::InternalError, json::value::string("Unable to post data"));
+            }
+        } else {
+            message.reply(status_codes::BadRequest, json::value::string("Bad Request"));
+        }
+    } catch (std::exception&  e) {  // for testing purposes
+        logger__.Log(LogLevel::WARN, e.what(), "UserController", "HandlePost");
+        message.reply(status_codes::InternalError, json::value::string("Internal Error"));
+    }
 }
 void AdminController::HandleDelete(http_request message) {
     // TODO(Kris): Implement

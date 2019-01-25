@@ -60,14 +60,14 @@ struct Admin {
      * @return an Admin
      * 
      */
-    std::optional<Admin> from_json(web::json::value admin_json) {
-        if (    admin_json.has_field("id")              && admin_json["id"].is_integer() &&
-                admin_json.has_field("first_name")      && admin_json["first_name"].is_string() &&
+    static std::optional<Admin> from_json(web::json::value admin_json) {
+        if (    admin_json.has_field("first_name")      && admin_json["first_name"].is_string() &&
                 admin_json.has_field("last_name")       && admin_json["last_name"].is_string() &&
                 admin_json.has_field("username")        && admin_json["username"].is_string() &&
                 admin_json.has_field("email")           && admin_json["email"].is_string()) {
             Admin admin;
-            admin.id = admin_json["id"].as_integer();
+            if (admin_json.has_field("id") && admin_json["id"].is_integer())
+                admin.id = admin_json.at("id").as_integer();
             admin.first_name = admin_json["first_name"].as_string();
             admin.last_name = admin_json["last_name"].as_string();
             admin.username = admin_json["username"].as_string();
