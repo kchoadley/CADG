@@ -23,6 +23,7 @@
 #include <cpprest/http_msg.h>
 #include <pplx/pplxtasks.h>
 #include "logger_interface.hpp"
+#include "logger.hpp"
 using namespace web;
 using namespace http;
 using namespace http::experimental::listener;
@@ -41,6 +42,7 @@ namespace cadg_rest {
 class Controller {
   public: 
     /// Takes in a Logger object reference that adheres to the Logger interface.
+    Controller() : logger__(Logger::Instance()) { }
     Controller(LoggerInterface& logger__) : logger__(logger__) { }
     ~Controller() { }
 
