@@ -36,7 +36,7 @@ class AdminDao : public AdminDaoInterface {
     std::optional<std::vector<Admin>> GetAdminsByName(const std::string& name) override;
     std::optional<std::vector<Admin>> GetAdminByID(int id) override;
     std::optional<bool> RemoveAdmin(int id) override;
-    std::optional<bool> AddAdmin(Admin admin, std::string password) override;
+    std::optional<bool> AddAdmin(Admin admin) override;
     std::optional<bool> UpdateAdmin(Admin admin) override;
     std::optional<bool> UpdateAdminPassword(int id, std::string password) override;
   private:

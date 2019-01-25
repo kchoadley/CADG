@@ -58,7 +58,7 @@ void AdminController::HandlePost(http_request message) {
         json::value admin_json = body_json.at("admin");
         if (auto admin_optional = Admin::from_json(admin_json)) {
             Admin admin = admin_optional.value();
-            if (auto success_optional = dao__.AddAdmin(admin, "")) {
+            if (auto success_optional = dao__.AddAdmin(admin)) {
                 message.reply(status_codes::Created);
             } else {
                 message.reply(status_codes::InternalError, json::value::string("Unable to post data"));

@@ -56,7 +56,7 @@ class AdminDaoInterface {
      * 
      * @param admin The admin to add to the data store.
      */
-    virtual std::optional<bool> AddAdmin(Admin admin, std::string password) = 0;
+    virtual std::optional<bool> AddAdmin(Admin admin) = 0;
     /**
      * UpdateAdmin updates a admin in the data store.
      * 

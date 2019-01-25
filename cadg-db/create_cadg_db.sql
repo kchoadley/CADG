@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(258) NOT NULL,
+  `password` CHAR(64) NULL,
   `email` VARCHAR(100) NOT NULL,
   `phone` VARCHAR(45) NULL,
   `address` VARCHAR(255) NULL,
