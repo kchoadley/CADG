@@ -61,7 +61,7 @@ namespace cadg_rest {
                                                            ", status: "+ alert.status +
                                                            ", urgency: "+ alert.urgency +
                                                            ", severity: "+ alert.severity +
-                                                           ", sent_time: "+ alert.sent_time;
+                                                           ", sent_time: "+ alert.sent_time);
         try {
             nanodbc::connection connection(conn_str__);
             nanodbc::statement statement(connection);
