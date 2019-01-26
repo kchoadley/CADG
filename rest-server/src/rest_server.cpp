@@ -32,8 +32,6 @@ int main(int argc, const char * argv[]) {
     LoggerInterface& logger(Logger::Instance());
     logger.LogLevel(LogLevel::DEBUG);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
-    AogDao::Instance().SetConnectionString(
-            "Driver={MySQL8Driver};Server=cadg-db;Port=3306;Database=cadg;Uid=root;Pwd=example;");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
     AogController aog_controller(Logger::Instance(), AogDao::Instance());
     std::string server_address;

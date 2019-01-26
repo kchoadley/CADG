@@ -41,8 +41,14 @@ namespace cadg_rest {
         void SetConnectionString(std::string connStr) override;
 
     private:
-        AogDao() { }
+        AogDao();
         std::string connStr_;
+        LoggerInterface& logger;
+
+        std::string getEnvVar(std::string const& key) {
+            char const* val = getenv(key.c_str());
+            return val == NULL ? std::string() : std::string(val);
+        }
     };
 
 }  // namespace cadg_rest

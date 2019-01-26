@@ -95,7 +95,7 @@ namespace cadg_rest {
             // if valid add using dao
             auto aogs_json = body_json.as_object();
             if (auto valid_aog = Aog::from_json(body_json)) {
-                dao__.AddAog(*valid_aog);
+                dao__.AddAog(valid_aog.value());
             } else {
                 message.reply(status_codes::BadRequest);
                 return;

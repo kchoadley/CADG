@@ -11,18 +11,29 @@
 #include "cpprest/json.h"
 
 namespace cadg_rest {
-
+    /**
+     * Data structure to model originator information.
+     */
     struct Aog {
         int id;
         std::string name;
         std::string agency;
+        /**
+         * Converts an Aog struct into a json value object
+         * @return web::json::value representation of Aog
+         */
         web::json::value to_json() {
             auto aog_json = web::json::value::object();
+            aog_json["id"] = id;
             aog_json["name"] = web::json::value::string(name);
             aog_json["agency"] = web::json::value::string(agency);
             return aog_json;
         }
-
+        /**
+         * Creates an Aog from an input json value
+         * @param input json value representation of Aog
+         * @return Aog struct version of input json, or nullopt if bad input
+         */
         static std::optional<Aog> from_json(web::json::value input) {
             if (input.has_field("name") && input["name"].is_string() &&
                 input.has_field("agency") && input["agency"].is_string()) {

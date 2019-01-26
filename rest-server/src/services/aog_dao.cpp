@@ -15,6 +15,31 @@
 
 namespace cadg_rest {
 
+    AogDao::AogDao() : logger(Logger::Instance()) {
+        std::string db_password = getEnvVar("DB_PASSWORD");
+        logger.Log(LogLevel::INFO, "The env db_password is: " + db_password);
+        if (db_password.empty()) {
+            db_password = "example";
+        }
+        std::string db_port = getEnvVar("DB_PORT");
+        if (db_port.empty()) {
+            db_port = "3306";  // default port
+        }
+        logger.Log(LogLevel::INFO, "The env db_port is: " + db_port);
+        std::string db_server = getEnvVar("DB_SERVER");
+        if (db_server.empty()) {
+            db_server = "cadg-db";  // localhost
+        }
+        logger.Log(LogLevel::INFO, "The env db_server is: " + db_server);
+        std::string db_uid = getEnvVar("DB_UID");
+        if (db_uid.empty()) {
+            db_uid = "root";
+        }
+        logger.Log(LogLevel::INFO, "The env db_uid is: " + db_uid);
+        connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database=cadg;Uid="+ db_uid +";Pwd="+ db_password +";";
+        logger.Log(LogLevel::INFO, "The AogDao connection string is: " + connStr_);
+    }
+
     AogDao& AogDao::Instance() {
         static AogDao instance;
         return instance;
@@ -51,7 +76,7 @@ namespace cadg_rest {
                     name +"%';"));
             std::vector<Aog> db_aogs;
             while (results.next()) {
-                Logger::Instance().Log(LogLevel::DEBUG, results.get<std::string>(1), "AogDao", "GetAogByName");
+                logger.Log(LogLevel::DEBUG, results.get<std::string>(1), "AogDao", "GetAogByName");
                 db_aogs.push_back(Aog {
                         results.get<int>(0, 0)
                         , results.get<std::string>(1, "null_name")
@@ -111,14 +136,14 @@ namespace cadg_rest {
                 return std::nullopt;
             }
         } catch (std::exception& e) {
-            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "GetAogById");
+            logger.Log(LogLevel::WARN, e.what(), "AogDao", "GetAogById");
             return std::nullopt;
         }
     }
 
     std::optional<bool> AogDao::AddAog(cadg_rest::Aog aog) {
         try {
-            Logger::Instance().Log(LogLevel::DEBUG, "Aog to Add: " + aog.name + " " + aog.agency, "AogDao", "AddAog");
+            logger.Log(LogLevel::DEBUG, "Aog to Add: " + aog.name + " " + aog.agency, "AogDao", "AddAog");
             nanodbc::connection connection(connStr_);
             nanodbc::statement statement(connection);
             prepare(statement, NANODBC_TEXT("insert into cadg.originator (originator_name, agency) values(?,?);"));
@@ -130,7 +155,7 @@ namespace cadg_rest {
             execute(statement);
             return true;
         } catch (std::exception& e) {
-            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "AddAog");
+            logger.Log(LogLevel::WARN, e.what(), "AogDao", "AddAog");
             return std::nullopt;
         }
     }
@@ -151,7 +176,7 @@ namespace cadg_rest {
             execute(statement);
             return true;
         } catch (std::exception& e) {
-            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "UpdateAog");
+            logger.Log(LogLevel::WARN, e.what(), "AogDao", "UpdateAog");
             return std::nullopt;
         }
     }
@@ -166,7 +191,7 @@ namespace cadg_rest {
             execute(statement);
             return true;
         } catch (std::exception& e) {
-            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "DeleteAog");
+            logger.Log(LogLevel::WARN, e.what(), "AogDao", "DeleteAog");
             return std::nullopt;
         }
     }

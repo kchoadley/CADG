@@ -24,13 +24,29 @@ namespace cadg_rest {
         ~AogController() { }
 
         void InitHandlers() override;
-
+        /**
+         * Handles incoming GET http requests on the Aog endpoint. Replies to message directly with
+         * requested information based on passed queries. Used to get information on Aogs
+         * @param message incoming http message request
+         */
         void HandleGet(http_request message) override;
-
+        /**
+         * Handles incoming PUT http requests on the Aog endpoint. Replies to message directly with
+         * success or failure. Used to update information on Aogs in the database
+         * @param message
+         */
         void HandlePut(http_request message) override;
-
+        /**
+         * Handles incoming POST http requests on the Aog endpoint. Replies to message directly with
+         * success or failure. Used to add new Aogs to the database
+         * @param message
+         */
         void HandlePost(http_request message) override;
-
+        /**
+         * Handles incoming DELETE http requests on the Aog endpoint. Replies to message directly with
+         * success or failure. Used to delete Aogs from the database
+         * @param message
+         */
         void HandleDelete(http_request message) override;
 
     private:
