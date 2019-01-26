@@ -15,10 +15,11 @@
 #define ALERT_H
 
 #include <optional>
+#include <ctime>
+#include <sstream>
 #include <string>
 #include <cpprest/json.h>
-//#include "boost/date_time/gregorian/gregorian_types.hpp"
-//#include "boost/date_time/posix_time/posix_time_types.hpp"
+#include <iomanip>
 
 namespace cadg_rest {
     /// An alert struct.
@@ -30,13 +31,12 @@ namespace cadg_rest {
         int message_id;
         std::string identifier;
         int originator_id;
-        std::string message_type;
-        std::string scope;
-        std::string status;
-        std::string urgency;
-        std::string severity;
-//        boost::gregorian::date sent_date;
-//        boost::posix_time::ptime sent_time;
+        std::string message_type;   /// Options: actual, exercise, system, test, draft
+        std::string scope;          /// Options: public, restricted, private
+        std::string status;         /// Options: active, canceled, expired
+        std::string urgency;        /// Options: immediate, expected, future, past, unknown
+        std::string severity;       /// Options: extreme, severe, moderate, minor, unknown
+        std::time_t sent_time;
         std::string cap_xml;
 
         /// Convert Alert struct to JSON format.
@@ -54,11 +54,8 @@ namespace cadg_rest {
             alert_json["status"] = web::json::value::string(status);
             alert_json["urgency"] = web::json::value::string(urgency);
             alert_json["severity"] = web::json::value::string(severity);
-
-            //  TODO: Vaniya
-            //  utilize boost library to convert date/time to json
-
             alert_json["cap_xml"] = web::json::value::string(cap_xml);
+            alert_json["sent_time"] = web::json::value::string(time_to_string());
             return alert_json;
         }
 
@@ -79,27 +76,39 @@ namespace cadg_rest {
                 alert_json.has_field("status")          && alert_json["status"].is_string() &&
                 alert_json.has_field("urgency")         && alert_json["urgency"].is_string() &&
                 alert_json.has_field("severity")        && alert_json["severity"].is_string() &&
-//              alert_json.has_field("sent_date")       && alert_json["sent_date"].is_string() &&
-//              alert_json.has_field("sent_time")       && alert_json["sent_time"].is_string() &&
+                alert_json.has_field("sent_time")       && alert_json["sent_time"].is_string() &&
                 alert_json.has_field("cap_xml")         && alert_json["cap_xml"].is_string()) {
 
                 Alert alert;
                 alert.message_id = alert_json["message_id"].as_integer();
-                alert.identifier = alert_json["alert_identifier"].as_string();
+                alert.identifier = alert_json["identifier"].as_string();
                 alert.originator_id = alert_json["originator_id"].as_integer();
                 alert.message_type = alert_json["message_type"].as_string();
                 alert.scope = alert_json["scope"].as_string();
                 alert.status = alert_json["status"].as_string();
                 alert.urgency = alert_json["urgency"].as_string();
                 alert.severity = alert_json["severity"].as_string();
-//                alert.sent_date = alert_json["sent_date"].as_string();
-//                alert.sent_time = alert_json["sent_time"].as_string();
+                alert.sent_time = time_from_string(alert_json["sent_time"].as_string());
                 alert.cap_xml = alert_json["cap_xml"].as_string();
-
                 return alert;
             } else {
                 return std::nullopt;
             }
+        }
+        /// Converts to GMTime and then to string.
+        std::string time_to_string() {
+            auto tm = *std::localtime(&sent_time);
+            std::ostringstream oss;
+            oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+            std::string sent_time_str = oss.str();
+            return sent_time_str;
+        }
+        std::time_t time_from_string(std::string str) {
+            std::tm tm;
+            std::istringstream iss(str);
+            iss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            std::time_t time = mktime(&tm);
+            return time;
         }
     };
     /// Compares two alerts.
@@ -118,8 +127,7 @@ namespace cadg_rest {
                 a.status == b.status &&
                 a.urgency == b.urgency &&
                 a.severity == b.severity &&
-//                a.sent_date == b.sent_date &&
-//                a.sent_time == b.sent_time
+                a.sent_time == b.sent_time;
     }
 }
 #endif //CADG_REST_SERVER_ALERT_HPP
