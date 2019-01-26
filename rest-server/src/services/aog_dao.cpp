@@ -36,7 +36,8 @@ namespace cadg_rest {
             db_uid = "root";
         }
         logger.Log(LogLevel::INFO, "The env db_uid is: " + db_uid);
-        connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database=cadg;Uid="+ db_uid +";Pwd="+ db_password +";";
+        connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database=cadg;Uid="+
+            db_uid +";Pwd="+ db_password +";";
         logger.Log(LogLevel::INFO, "The AogDao connection string is: " + connStr_);
     }
 
