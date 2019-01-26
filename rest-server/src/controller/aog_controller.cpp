@@ -94,19 +94,6 @@ namespace cadg_rest {
             // validate user data
             // if valid add using dao
             auto aogs_json = body_json.as_object();
-            /**for (auto iter = aogs_json.cbegin(); iter != aogs_json.cend(); ++iter) {
-                //auto &key = iter->first;
-                const json::value &value = iter->second;
-                logger__.Log(LogLevel::DEBUG, "Value: " + value.serialize(), "AogController", "HandlePost");
-                if (value.is_object()) {
-                    auto aog_json = value.as_object();
-                     if (auto valid_aog = Aog::from_json(value)) {
-                        dao__.AddAog(*valid_aog);
-                     } else {
-                         message.reply(status_codes::BadRequest);
-                     }
-                }
-            }**/
             if (auto valid_aog = Aog::from_json(body_json)) {
                 dao__.AddAog(*valid_aog);
             } else {
@@ -127,7 +114,7 @@ namespace cadg_rest {
             const json::value body_json = message.extract_json().get();
             if (body_json.has_field("id") && body_json.at("id").is_integer()) {
                 if (auto aog_exists = dao__.GetAogById(body_json.at("id").as_integer())) {
-                    if ( auto removed = dao__.DeleteAog(body_json.at("id").as_integer())) {
+                    if (auto removed = dao__.DeleteAog(body_json.at("id").as_integer())) {
                         message.reply(status_codes::Accepted);
                         return;
                     }

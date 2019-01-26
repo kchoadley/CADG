@@ -98,8 +98,7 @@ namespace cadg_rest {
             std::vector<Aog> aogs;
             results = execute(connection, NANODBC_TEXT(
                     "select originator_id, originator_name, agency from cadg.originator where originator_id = " +
-                    std::to_string(id)
-                    ));
+                    std::to_string(id)));
             while (results.next()) {
                 aogs.push_back(Aog {
                         results.get<int>(0, 0),
@@ -140,13 +139,13 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::statement statement(connection);
-            prepare(statement, NANODBC_TEXT("update cadg.originator set originator_name=?, agency=? where originator_id=?;"));
+            prepare(statement, NANODBC_TEXT(
+                    "update cadg.originator set originator_name=?, agency=? where originator_id=?;"));
             nanodbc::result results;
             nanodbc::string const originator_name = NANODBC_TEXT(aog.name);
             statement.bind(0, originator_name.c_str());
             nanodbc::string const agency = NANODBC_TEXT(aog.agency);
             statement.bind(1, agency.c_str());
-            //nanodbc::string const originator_id = NANODBC_TEXT(std::to_string(aog.id));
             const int *originator_id = &aog.id;
             statement.bind(2, originator_id);
             execute(statement);
