@@ -33,9 +33,9 @@ namespace cadg_rest {
                     std::string("urgency, severity, sent_time, cap_xml from ") +
                     db_alert_table__ + ";"));
             std::vector<Alert> db_alerts;
-            while(results.next()) {
+            while (results.next()) {
                 db_alerts.push_back(Alert{
-                    results.get<int>(0,0),
+                    results.get<int>(0, 0),
                     results.get<std::string>(1, ""),
                     results.get<int>(2, 0),
                     results.get<std::string>(3, ""),
@@ -67,7 +67,8 @@ namespace cadg_rest {
             nanodbc::connection connection(conn_str__);
             nanodbc::statement statement(connection);
             prepare(statement, NANODBC_TEXT("insert into " + db_alert_table__ +
-                                            " (identifier, originator_id, message_type, scope, status, urgency, severity, sent_time, cap_xml)" +
+                                            " (identifier, originator_id, message_type, scope, status," +
+                                            " urgency, severity, sent_time, cap_xml)" +
                                             " values(?,?,?,?,?,?,?,?,?);"));
             nanodbc::string const identifier = NANODBC_TEXT(alert.identifier);
             statement.bind(0, identifier.c_str());
@@ -87,7 +88,7 @@ namespace cadg_rest {
             statement.bind(7, sent_time.c_str());
             nanodbc::string const cap_xml = NANODBC_TEXT(alert.cap_xml);
             statement.bind(8, cap_xml.c_str());
-            //  TODO(Vaniya): Verify the DB inserted successfully.
+            // TODO(Vaniya): Verify the DB inserted successfully.
             execute(statement);
 
             nanodbc::result results;
@@ -104,5 +105,4 @@ namespace cadg_rest {
         }
         return true;
     }
-}
-
+}   // namespace cadg_rest
