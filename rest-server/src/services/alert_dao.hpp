@@ -53,7 +53,6 @@ namespace cadg_rest {
             return val == NULL ? std::string() : std::string(val);
         }
         AlertDao();
-        std::vector<Alert> alerts__;
         std::string conn_str__;
         std::string db_alert_table__;
         LoggerInterface& logger;
