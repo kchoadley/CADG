@@ -27,7 +27,6 @@ namespace cadg_rest {
         try {
             nanodbc::connection connection(connStr_);
             nanodbc::result results;
-
             results = execute(connection, NANODBC_TEXT(
                     "select originator_id, originator_name, agency from cadg.originator;"));
             std::vector<Aog> db_aogs;
@@ -92,16 +91,85 @@ namespace cadg_rest {
         }
     }
 
-    void AogDao::AddAog(cadg_rest::Aog aog) {
-        nanodbc::connection connection(connStr_);
-        nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("insert into cadg.originator (originator_name, agency) values(?,?);"));
-        nanodbc::result results;
-        nanodbc::string const originator_name = NANODBC_TEXT(aog.name);
-        statement.bind(0, originator_name.c_str());
-        nanodbc::string const agency = NANODBC_TEXT(aog.agency);
-        statement.bind(1, agency.c_str());
-        execute(statement);
+    std::optional<std::vector<Aog>> AogDao::GetAogById(int id) {
+        try {
+            nanodbc::connection connection(connStr_);
+            nanodbc::result results;
+            std::vector<Aog> aogs;
+            results = execute(connection, NANODBC_TEXT(
+                    "select originator_id, originator_name, agency from cadg.originator where originator_id = " +
+                    std::to_string(id)
+                    ));
+            while (results.next()) {
+                aogs.push_back(Aog {
+                        results.get<int>(0, 0),
+                        results.get<std::string>(1, "null_name"),
+                        results.get<std::string>(2, "null_agency")});
+            }
+            if (aogs.size() > 0) {
+                return aogs;
+            } else {
+                return std::nullopt;
+            }
+        } catch (std::exception& e) {
+            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "GetAogById");
+            return std::nullopt;
+        }
+    }
+
+    std::optional<bool> AogDao::AddAog(cadg_rest::Aog aog) {
+        try {
+            Logger::Instance().Log(LogLevel::DEBUG, "Aog to Add: " + aog.name + " " + aog.agency, "AogDao", "AddAog");
+            nanodbc::connection connection(connStr_);
+            nanodbc::statement statement(connection);
+            prepare(statement, NANODBC_TEXT("insert into cadg.originator (originator_name, agency) values(?,?);"));
+            nanodbc::result results;
+            nanodbc::string const originator_name = NANODBC_TEXT(aog.name);
+            statement.bind(0, originator_name.c_str());
+            nanodbc::string const agency = NANODBC_TEXT(aog.agency);
+            statement.bind(1, agency.c_str());
+            execute(statement);
+            return true;
+        } catch (std::exception& e) {
+            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "AddAog");
+            return std::nullopt;
+        }
+    }
+
+    std::optional<bool> AogDao::UpdateAog(Aog aog) {
+        try {
+            nanodbc::connection connection(connStr_);
+            nanodbc::statement statement(connection);
+            prepare(statement, NANODBC_TEXT("update cadg.originator set originator_name=?, agency=? where originator_id=?;"));
+            nanodbc::result results;
+            nanodbc::string const originator_name = NANODBC_TEXT(aog.name);
+            statement.bind(0, originator_name.c_str());
+            nanodbc::string const agency = NANODBC_TEXT(aog.agency);
+            statement.bind(1, agency.c_str());
+            //nanodbc::string const originator_id = NANODBC_TEXT(std::to_string(aog.id));
+            const int *originator_id = &aog.id;
+            statement.bind(2, originator_id);
+            execute(statement);
+            return true;
+        } catch (std::exception& e) {
+            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "UpdateAog");
+            return std::nullopt;
+        }
+    }
+
+    std::optional<bool> AogDao::DeleteAog(int id) {
+        try {
+            nanodbc::connection connection(connStr_);
+            nanodbc::statement statement(connection);
+            prepare(statement, NANODBC_TEXT("delete from cadg.originator where originator_id=?;"));
+            const int *originator_id = &id;
+            statement.bind(0, originator_id);
+            execute(statement);
+            return true;
+        } catch (std::exception& e) {
+            Logger::Instance().Log(LogLevel::WARN, e.what(), "AogDao", "DeleteAog");
+            return std::nullopt;
+        }
     }
 }  // namespace cadg_rest
 

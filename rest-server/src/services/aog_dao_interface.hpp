@@ -27,7 +27,13 @@ namespace cadg_rest {
 
         virtual std::optional<std::vector<Aog>> GetAogsByAgency(std::string agency) = 0;
 
-        virtual void AddAog(Aog aog) = 0;
+        virtual std::optional<bool> AddAog(Aog aog) = 0;
+
+        virtual std::optional<std::vector<Aog>> GetAogById(int id) = 0;
+
+        virtual std::optional<bool> UpdateAog(Aog aog) = 0;
+
+        virtual std::optional<bool> DeleteAog(int id) = 0;
 
         virtual void SetConnectionString(std::string connStr) = 0;
     };

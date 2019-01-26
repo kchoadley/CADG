@@ -28,7 +28,6 @@ namespace cadg_rest {
 
     void AogController::HandleGet(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
-
         try {
             auto response = json::value::object();
             response["aogs"] = json::value::object();
@@ -39,6 +38,8 @@ namespace cadg_rest {
                 aogs = dao__.GetAogByName(queries["name"]);
             } else if (queries.count("agency") > 0) {
                     aogs = dao__.GetAogsByAgency(queries["agency"]);
+            } else if (queries.count("id") > 0) {
+                    aogs = dao__.GetAogById(std::stoi(queries["id"]));
             } else {
                     aogs = dao__.GetAogs();
             }
@@ -59,8 +60,30 @@ namespace cadg_rest {
 
     void AogController::HandlePut(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
-
-        message.reply(status_codes::NotImplemented);
+        try {
+            const json::value body_json = message.extract_json().get();
+            if (body_json.has_field("id") && body_json.at("id").is_integer()) {
+                if (auto aog_exists = dao__.GetAogById(body_json.at("id").as_integer())) {
+                    Aog aog = aog_exists.value()[0];
+                    logger__.Log(LogLevel::DEBUG, "Aog Found: " + std::to_string(aog.id) + " " +
+                            aog.name + " " + aog.agency);
+                    if (body_json.has_field("name") && body_json.at("name").is_string()) {
+                        aog.name = body_json.at("name").as_string();
+                    }
+                    if (body_json.has_field("agency") && body_json.at("agency").is_string()) {
+                        aog.agency = body_json.at("agency").as_string();
+                    }
+                    if (auto updated = dao__.UpdateAog(aog)) {
+                        message.reply(status_codes::Accepted);
+                        return;
+                    }
+                }
+            }
+            message.reply(status_codes::BadRequest);
+        } catch (std::exception& e) {
+            logger__.Log(LogLevel::ERR, e.what(), "AogController", "HandlePut");
+            message.reply(status_codes::InternalError, json::value::string(e.what()));
+        }
     }
 
     void AogController::HandlePost(http_request message) {
@@ -70,21 +93,29 @@ namespace cadg_rest {
             const json::value body_json = message.extract_json().get();
             // validate user data
             // if valid add using dao
-            auto aogs_json = body_json.at("aogs").as_object();
-            for (auto iter = aogs_json.cbegin(); iter != aogs_json.cend(); ++iter) {
-                auto &key = iter->first;
+            auto aogs_json = body_json.as_object();
+            /**for (auto iter = aogs_json.cbegin(); iter != aogs_json.cend(); ++iter) {
+                //auto &key = iter->first;
                 const json::value &value = iter->second;
+                logger__.Log(LogLevel::DEBUG, "Value: " + value.serialize(), "AogController", "HandlePost");
                 if (value.is_object()) {
                     auto aog_json = value.as_object();
-                    dao__.AddAog(
-                            Aog {std::stoi(key),
-                                 aog_json["name"].as_string(),
-                                  aog_json["agency"].as_string()});
+                     if (auto valid_aog = Aog::from_json(value)) {
+                        dao__.AddAog(*valid_aog);
+                     } else {
+                         message.reply(status_codes::BadRequest);
+                     }
                 }
+            }**/
+            if (auto valid_aog = Aog::from_json(body_json)) {
+                dao__.AddAog(*valid_aog);
+            } else {
+                message.reply(status_codes::BadRequest);
+                return;
             }
             // respond with successfully created (201)
             message.reply(status_codes::Created);
-        } catch (std::exception&  e) {  // for testing purposes
+        } catch (std::exception&  e) {
             logger__.Log(LogLevel::WARN, e.what(), "AogController", "HandlePost");
             message.reply(status_codes::BadRequest, e.what());
         }
@@ -92,8 +123,21 @@ namespace cadg_rest {
 
     void AogController::HandleDelete(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 2);
-
-        message.reply(status_codes::NotImplemented);
+        try {
+            const json::value body_json = message.extract_json().get();
+            if (body_json.has_field("id") && body_json.at("id").is_integer()) {
+                if (auto aog_exists = dao__.GetAogById(body_json.at("id").as_integer())) {
+                    if ( auto removed = dao__.DeleteAog(body_json.at("id").as_integer())) {
+                        message.reply(status_codes::Accepted);
+                        return;
+                    }
+                }
+            }
+            message.reply(status_codes::BadRequest);
+        } catch (std::exception&  e) {
+            logger__.Log(LogLevel::WARN, e.what(), "AogController", "HandleDelete");
+            message.reply(status_codes::BadRequest, e.what());
+        }
     }
 
 

@@ -34,7 +34,10 @@ namespace cadg_rest {
         std::optional<std::vector<Aog>> GetAogs() override;
         std::optional<std::vector<Aog>> GetAogByName(std::string name) override;
         std::optional<std::vector<Aog>> GetAogsByAgency(std::string agency) override;
-        void AddAog(Aog aog) override;
+        std::optional<bool> AddAog(Aog aog) override;
+        std::optional<std::vector<Aog>> GetAogById(int id) override;
+        std::optional<bool> UpdateAog(Aog aog) override;
+        std::optional<bool> DeleteAog(int id) override;
         void SetConnectionString(std::string connStr) override;
 
     private:
