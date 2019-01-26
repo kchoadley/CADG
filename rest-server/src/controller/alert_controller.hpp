@@ -13,16 +13,16 @@
  * @date        January, 2019
  */
 
-#ifndef ALERT_CONTROLLER_HPP
-#define ALERT_CONTROLLER_HPP
+#ifndef ALERT_CONTROLLER_H
+#define ALERT_CONTROLLER_H
 #include <controller.hpp>
-#include "data_access_interface.hpp"
-using cadg_rest::DataAccessInterface;
+#include "alert_dao_interface.hpp"
+using cadg_rest::AlertDaoInterface;
 
 namespace cadg_rest {
 class AlertController: public Controller {
 public:
-    AlertController(AlertController& logger__, DataAccessInterface& dao__) : dao__(dao__), Controller(logger__) {}
+    AlertController(AlertDaoInterface& dao__) : dao__(dao__) { }
     ~AlertController() { }
     void InitHandlers() override;
     /// Returns the requested alert(s).
@@ -48,8 +48,11 @@ public:
      *                  json format with the body.
      */
     void HandlePost(http_request message) override;
+    void HandlePut(http_request message) override;
+    void HandleDelete(http_request message) override;
+
 private:
-    DataAccessInterface& dao__;
+    AlertDaoInterface& dao__;
 };
 }
 #endif //ALERT_CONTROLLER_HPP

@@ -32,6 +32,22 @@ namespace cadg_rest {
          * @return
          */
         virtual std::optional<std::vector<Alert>> GetAlerts() = 0;
+        /// Returns the alerts sent by the specified originator.
+        /**
+         * GetAlertsByOriginator returns all alerts with an originator_id that
+         * matches the provided id.
+         * @param id    The originator_id.
+         * @return      Collection of alerts.
+         */
+        virtual std::optional<std::vector<Alert>> GetAlertsByOriginator(int id) = 0;
+        /// Returns all alerts with the specified status.
+        /**
+         * GetAlertsByStatus returns all alerts that have the specified status.
+         * Status can be 'ACTIVE', 'CANCELED', or 'EXPIRED'.
+         * @param status    'ACTIVE', 'CANCELED', or 'EXPIRED'.
+         * @return          The collection of alerts.
+         */
+        virtual std::optional<std::vector<Alert>> GetAlertsByStatus(const std::string& status) = 0;
         /// Adds a new alert.
         /**
          * Creates a new alert in the data storage based on the Alert object

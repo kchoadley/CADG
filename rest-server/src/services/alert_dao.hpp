@@ -39,6 +39,8 @@ namespace cadg_rest {
         void operator = (AlertDao const&) = delete;
 
         std::optional<std::vector<Alert>> GetAlerts() override;
+        std::optional<std::vector<Alert>> GetAlertsByOriginator(int id) override;
+        std::optional<std::vector<Alert>> GetAlertsByStatus(const std::string& status) override;
         std::optional<bool> AddAlert(Alert alert) override;
     private:
         /// Returns the environment variable for the specified key
