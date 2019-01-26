@@ -95,18 +95,29 @@ namespace cadg_rest {
                 return std::nullopt;
             }
         }
-        /// Converts to GMTime and then to string.
+        /// Converts current sent_time to string.
+        /**
+         * Converts the current sent_time to localtime and then to a string.
+         * @return sent_time in string representation based on local time.
+         */
         std::string time_to_string() {
             auto tm = *std::localtime(&sent_time);
             std::ostringstream oss;
-            oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+            oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S %z");
             std::string sent_time_str = oss.str();
             return sent_time_str;
         }
+        /// Converts from localtime string to epoch.
+        /**
+         * Converts a string representation of a local time into a time_t object
+         * in epoch.
+         * @param str   The string representing the local time in the format:  %Y-%m-%d %H:%M:%S %z
+         * @return      The new time object.
+         */
         std::time_t time_from_string(std::string str) {
             std::tm tm;
             std::istringstream iss(str);
-            iss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            iss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S %z");
             std::time_t time = mktime(&tm);
             return time;
         }
