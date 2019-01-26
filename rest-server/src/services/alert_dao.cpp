@@ -53,21 +53,22 @@ namespace cadg_rest {
         }
     }
     std::optional<bool> AlertDao::AddAlert(Alert alert) {
-        logger.Log(LogLevel::INFO, "AlertDao", "AlertDao", std::string("Alert message_id: ")+ std::to_string(alert.message_id) +
-                                                           ", identifier: "+ alert.identifier +
-                                                           ", originator_id: "+ std::to_string(alert.originator_id) +
-                                                           ", message_type: "+ alert.message_type +
-                                                           ", scope: "+ alert.scope +
-                                                           ", status: "+ alert.status +
-                                                           ", urgency: "+ alert.urgency +
-                                                           ", severity: "+ alert.severity +
-                                                           ", sent_time: "+ alert.sent_time);
+        logger.Log(LogLevel::INFO, "AlertDao", "AlertDao",
+                   std::string("Alert message_id: ") + std::to_string(alert.message_id) +
+                   ", identifier: " + alert.identifier +
+                   ", originator_id: " + std::to_string(alert.originator_id) +
+                   ", message_type: " + alert.message_type +
+                   ", scope: " + alert.scope +
+                   ", status: " + alert.status +
+                   ", urgency: " + alert.urgency +
+                   ", severity: " + alert.severity +
+                   ", sent_time: " + alert.sent_time);
         try {
             nanodbc::connection connection(conn_str__);
             nanodbc::statement statement(connection);
             prepare(statement, NANODBC_TEXT("insert into " + db_alert_table__ +
-                    " (identifier, originator_id, message_type, scope, status, urgency, severity, sent_time, cap_xml)" +
-                    " values(?,?,?,?,?,?,?,?,?);"));
+                                            " (identifier, originator_id, message_type, scope, status, urgency, severity, sent_time, cap_xml)" +
+                                            " values(?,?,?,?,?,?,?,?,?);"));
             nanodbc::string const identifier = NANODBC_TEXT(alert.identifier);
             statement.bind(0, identifier.c_str());
             const int originator_id = alert.originator_id;
@@ -96,11 +97,12 @@ namespace cadg_rest {
             logger.Log(LogLevel::DEBUG, "Has id: " + newId);
             if (results.next() && newId > 0) {
                 alert.message_id = newId;
-        }
-    } catch (std::exception& e) {
+            }
+        } catch (std::exception &e) {
             logger.Log(LogLevel:ERR, e.what(), "AlertDao", "AddAlert");
             return std::nullopt;
+        }
+        return true;
     }
-    return true;
 }
 
