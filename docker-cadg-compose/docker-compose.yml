@@ -18,6 +18,8 @@ services:
                 environment:
                         - DB_TEST_NAME=${DB_TEST_NAME}
                         - DB_TEST_TABLE=${DB_TEST_TABLE}
+                        - DB_ADMIN_NAME=${DB_ADMIN_NAME}
+                        - DB_ADMIN_TABLE=${DB_ADMIN_TABLE}
                         - DB_PASSWORD=${DB_PASSWORD}
                         - DB_PORT=${DB_PORT}
                         - DB_SERVER=${DB_SERVER}
