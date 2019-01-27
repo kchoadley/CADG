@@ -74,12 +74,12 @@ CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `cadg`.`message`
+-- Table `cadg`.`alert`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cadg`.`message` ;
+DROP TABLE IF EXISTS `cadg`.`alert` ;
 
-CREATE TABLE IF NOT EXISTS `cadg`.`message` (
-  `message_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
+  `alert_id` INT NOT NULL AUTO_INCREMENT,
   `identifier` VARCHAR(255) NULL,
   `originator_id` INT NULL,
   `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NULL,
@@ -87,17 +87,17 @@ CREATE TABLE IF NOT EXISTS `cadg`.`message` (
   `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NULL,
   `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NULL,
   `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NULL,
-  `sent_time` TIMESTAMP NULL,
+  `sent_time` VARCHAR(50) NULL,
   `cap_xml` TEXT NULL,
-  PRIMARY KEY (`message_id`),
-  CONSTRAINT `message_originator`
+  PRIMARY KEY (`alert_id`),
+  CONSTRAINT `alert_originator`
     FOREIGN KEY (`originator_id`)
     REFERENCES `cadg`.`originator` (`originator_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `message_originator_idx` ON `cadg`.`message` (`originator_id` ASC) VISIBLE;
+CREATE INDEX `alert_originator_idx` ON `cadg`.`alert` (`originator_id` ASC) VISIBLE;
 
 -- -----------------------------------------------------
 -- Table `cadg`.`originator`

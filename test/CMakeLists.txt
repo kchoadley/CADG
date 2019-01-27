@@ -54,6 +54,7 @@ set(TEST_SOURCES
         soap/xml-parsing/xml_parser_test.cpp
         soap/xml-parsing/soap_message_test.xml
         rest-server/controller/user_controller_test.cpp
+        rest-server/model/alert_test.cpp
         )
 
 set(CADG_SOURCES
