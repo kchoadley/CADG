@@ -67,9 +67,11 @@ namespace cadg_rest {
         }
     }
     std::optional<std::vector<Alert>> AlertDao::GetAlertsByOriginator(int id) {
+        // TODO(All): Implement
         return std::nullopt;
     }
     std::optional<std::vector<Alert>> AlertDao::GetAlertsByStatus(const std::string& status) {
+        // TODO(All): Implement
         return std::nullopt;
     }
     std::optional<bool> AlertDao::AddAlert(Alert alert) {

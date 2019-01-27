@@ -35,9 +35,9 @@ namespace cadg_rest {
             response["alerts"] = json::value::object();
             auto queries = Queries(message.relative_uri().query());
             auto relative_path = message.relative_uri().to_string();
-            if(auto alert_optional = dao__.GetAlerts()) {
+            if (auto alert_optional = dao__.GetAlerts()) {
                 auto alerts = alert_optional.value();
-                for(auto& alert : alerts) {
+                for (auto& alert : alerts) {
                     response["alerts"][std::to_string(alert.alert_id)] = alert.to_json();
                 }
                 message.reply(status_codes::OK, response);
@@ -54,8 +54,7 @@ namespace cadg_rest {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
             const json::value body_json = message.extract_json().get();
-//            auto alert_json = body_json.as_object();
-            if(auto alert = Alert::from_json(body_json)) {
+            if (auto alert = Alert::from_json(body_json)) {
                 dao__.AddAlert(alert.value());
             } else {
                 message.reply(status_codes::BadRequest);
@@ -66,12 +65,11 @@ namespace cadg_rest {
             logger__.Log(LogLevel::WARN, e.what(), "AlertController", "HandlePost");
             message.reply(status_codes::BadRequest, e.what());
         }
-
     }
     void AlertController::HandlePut(http_request message) {
-
+        message.reply(status_codes::Forbidden);
     }
     void AlertController::HandleDelete(http_request message) {
-
+        message.reply(status_codes::Forbidden);
     }
 }   // namespace cadg_rest
