@@ -33,6 +33,7 @@ AdminDao::AdminDao() : logger(Logger::Instance()) {
         if (db_server.empty()) {
             db_server = "127.0.0.1";  // localhost
         }
+        std::string salt__ = getEnvVar("ADMIN_SALT");
         logger.Log(LogLevel::INFO, "The env db_server is: " + db_server);
         std::string db_uid = getEnvVar("DB_UID");
         logger.Log(LogLevel::INFO, "The env db_uid is: " + db_uid);
@@ -71,15 +72,44 @@ std::optional<std::vector<Admin>> AdminDao::GetAdminsByName(const std::string& n
     // TODO(Kris): implement GetAdminsByName
     return std::nullopt;
 }
-std::optional<std::vector<Admin>> AdminDao::GetAdminByID(int id) {
-    // TODO(Kris): implement GetAdminByID
+std::optional<Admin> AdminDao::GetAdminByID(int id) {
+    try {
+        nanodbc::connection connection(conn_str__);
+        nanodbc::statement statement(connection);
+        prepare(statement, NANODBC_TEXT(
+                std::string("SELECT id, first_name, last_name, username, email, ") +
+                std::string("phone, address, country, state_region, zip ") +
+                std::string("FROM ")+ db_admin_table__ +
+                std::string(" WHERE id = ?;")));
+        statement.bind(0, &id);
+        auto results = execute(statement);
+        if (results.next()) {
+            return Admin {
+                results.get<int>(0, 0),
+                results.get<std::string>(1, ""),
+                results.get<std::string>(2, ""),
+                results.get<std::string>(3, ""),
+                results.get<std::string>(4, ""),
+                results.get<std::string>(5, ""),
+                results.get<std::string>(6, ""),
+                results.get<std::string>(7, ""),
+                results.get<std::string>(8, ""),
+                results.get<std::string>(9, "")};
+        } else {
+            Admin admin;
+            return admin;  // empty admin, or not found. id = 0.
+        }
+    } catch (std::exception&  e) {
+        logger.Log(LogLevel::ERR, e.what(), "AdminDao", "GetAdmins");
+        return std::nullopt;
+    }
     return std::nullopt;
 }
 std::optional<bool> AdminDao::RemoveAdmin(int id) {
     // TODO(Kris): implement RemoveAdmin
     return std::nullopt;
 }
-std::optional<bool> AdminDao::AddAdmin(Admin admin, std::string password) {
+std::optional<bool> AdminDao::AddAdmin(Admin admin) {
     logger.Log(LogLevel::INFO, "AdminDao", "AddAdmin", std::string("Admin id: ")+ std::to_string(admin.id) +
                                                     ", first_name: "+ admin.first_name +
                                                     ", last_name: "+ admin.first_name +
@@ -94,8 +124,8 @@ std::optional<bool> AdminDao::AddAdmin(Admin admin, std::string password) {
         nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT("insert into "+ db_admin_table__ +
-                " (first_name, last_name, username, email, phone, address, country, state_region, zip, password)"+
-                " values(?,?,?,?,?,?,?,?,?,?);"));
+                " (first_name, last_name, username, email, phone, address, country, state_region, zip)"+
+                " values(?,?,?,?,?,?,?,?,?);"));
         nanodbc::string const first_name = NANODBC_TEXT(admin.first_name);
         statement.bind(0, first_name.c_str());
         nanodbc::string const last_name = NANODBC_TEXT(admin.last_name);
@@ -114,18 +144,11 @@ std::optional<bool> AdminDao::AddAdmin(Admin admin, std::string password) {
         statement.bind(7, state_region.c_str());
         nanodbc::string const zip = NANODBC_TEXT(admin.zip);
         statement.bind(8, zip.c_str());
-        nanodbc::string const password = NANODBC_TEXT(password);
-        statement.bind(9, password.c_str());
-        // TODO(ALL): Verify the DB inserted successfully (check return value of execute).
         execute(statement);
-        // Get the ID of the newly created admin record.
-        // Note: LAST_INSERT_ID() is per connection.
-        nanodbc::result results;
-        results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
+        nanodbc::result results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
         results.next();
         int newId = results.get<int>(0, 0);
         logger.Log(LogLevel::DEBUG, "Has id: " + newId);
-        // Update the admin.id if successful.
         if (results.next() && newId > 0) {
             admin.id = newId;
         }
@@ -137,8 +160,62 @@ std::optional<bool> AdminDao::AddAdmin(Admin admin, std::string password) {
 }
 
 std::optional<bool> AdminDao::UpdateAdminPassword(int id, std::string password) {
-    // TODO(Kris): implement UpdateAdminPassword
-    return std::nullopt;
+    logger.Log(LogLevel::DEBUG, "Updating Password to: " + password);
+    try {
+        nanodbc::connection connection(conn_str__);
+        nanodbc::statement statement(connection);
+        prepare(statement, NANODBC_TEXT("UPDATE "+ db_admin_table__ +
+                " SET password = SHA2(?,256)"+
+                " WHERE id = ?"));
+        nanodbc::string const new_password = NANODBC_TEXT(password + salt__);
+        statement.bind(0, new_password.c_str());
+        statement.bind(1, &id);
+        // TODO(ALL): Verify the DB inserted successfully (check return value of execute).
+        execute(statement);
+    } catch (std::exception&  e) {
+        logger.Log(LogLevel::ERR, e.what(), "AdminDao", "UpdateAdminPassword");
+        return std::nullopt;
+    }
+    return true;
+}
+std::optional<bool> AdminDao::VerifyAdminPassword(std::string username, std::string password) {
+    try {
+        nanodbc::connection connection(conn_str__);
+        nanodbc::statement statement(connection);
+        prepare(statement, NANODBC_TEXT("select id from " + db_admin_table__ +
+            " where password = SHA2(?, 256) AND username = ?;"));
+        nanodbc::string const new_password = NANODBC_TEXT(password + salt__);
+        statement.bind(0, new_password.c_str());
+        nanodbc::string const nano_username = NANODBC_TEXT(username);
+        statement.bind(1, nano_username.c_str());
+        auto results = execute(statement);
+        if (results.next()) {
+            return results.get<int>(0, 0);
+        } else {
+            return false;
+        }
+    } catch (std::exception&  e) {
+        logger.Log(LogLevel::ERR, e.what(), "AdminDao", "VerifyAdminPassword");
+        return std::nullopt;
+    }
+}
+std::optional<std::string> AdminDao::GetAdminPassword(int id) {
+    try {
+        nanodbc::connection connection(conn_str__);
+        nanodbc::result results = execute(connection, NANODBC_TEXT(
+                std::string("SELECT password")+
+                std::string(" FROM ")+ db_admin_table__ +
+                std::string(" WHERE id = ")+ std::to_string(id) +";"));
+        std::vector<Admin> db_admins;
+        if (results.next()) {
+            return results.get<std::string>(0, "not set");
+        } else {
+            return std::string();
+        }
+    } catch (std::exception&  e) {
+        logger.Log(LogLevel::ERR, e.what(), "AdminDao", "GetAdminPassword");
+        return std::nullopt;
+    }
 }
 std::optional<bool> AdminDao::UpdateAdmin(Admin admin_info) {
     // TODO(Kris): implement UpdateAdmin

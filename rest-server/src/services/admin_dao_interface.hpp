@@ -43,7 +43,7 @@ class AdminDaoInterface {
      * @param id The id of the admin to return.
      * @return Vector containing the found admin, or empty if there is no matching admin.
      */
-    virtual std::optional<std::vector<Admin>> GetAdminByID(int id) = 0;
+    virtual std::optional<Admin> GetAdminByID(int id) = 0;
     /**
      * RemoveAdmin removes the admin in the data store by id.
      * 
@@ -56,7 +56,7 @@ class AdminDaoInterface {
      * 
      * @param admin The admin to add to the data store.
      */
-    virtual std::optional<bool> AddAdmin(Admin admin, std::string password) = 0;
+    virtual std::optional<bool> AddAdmin(Admin admin) = 0;
     /**
      * UpdateAdmin updates a admin in the data store.
      * 
@@ -71,6 +71,19 @@ class AdminDaoInterface {
      * @param password The new password.
      */
     virtual std::optional<bool> UpdateAdminPassword(int id, std::string password) = 0;
+    /**
+     * UpdateAdminPassword updates an admin's password in the data store.
+     *
+     * @param username The username of the admin to verify password.
+     * @param password The password.
+     */
+    virtual std::optional<bool> VerifyAdminPassword(std::string username, std::string password) = 0;
+    /**
+     * UpdateAdminPassword updates an admin's password in the data store.
+     *
+     * @param id The id of the admin to get password for.
+     */
+    virtual std::optional<std::string> GetAdminPassword(int id) = 0;
 };
 }
 #endif // ADMIN_DAO_INTERFACE_H

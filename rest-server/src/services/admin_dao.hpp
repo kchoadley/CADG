@@ -34,20 +34,22 @@ class AdminDao : public AdminDaoInterface {
 
     std::optional<std::vector<Admin>> GetAdmins() override;
     std::optional<std::vector<Admin>> GetAdminsByName(const std::string& name) override;
-    std::optional<std::vector<Admin>> GetAdminByID(int id) override;
+    std::optional<Admin> GetAdminByID(int id) override;
     std::optional<bool> RemoveAdmin(int id) override;
-    std::optional<bool> AddAdmin(Admin admin, std::string password) override;
+    std::optional<bool> AddAdmin(Admin admin) override;
     std::optional<bool> UpdateAdmin(Admin admin) override;
     std::optional<bool> UpdateAdminPassword(int id, std::string password) override;
+    std::optional<bool> VerifyAdminPassword(std::string username, std::string password) override;
+    std::optional<std::string> GetAdminPassword(int id) override;
   private:
     std::string getEnvVar(std::string const& key) {
         char const* val = getenv(key.c_str()); 
         return val == NULL ? std::string() : std::string(val);
     }
-    AdminDao() ;
-    std::vector<Admin> admins__;
+    AdminDao();
     std::string conn_str__;
     std::string db_admin_table__;
+    std::string salt__;
     LoggerInterface& logger;
 };
 }

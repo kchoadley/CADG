@@ -29,11 +29,26 @@ class AdminController: public Controller {
     /**
      * HandleGet will return a admin or collection of admins determined
      * by the parameters in the url path.
-     * If there is not url path, it returns all admins.
-     * IF there is a admin id (a number) next in the path, it returns
-     * a admin with that id, or no admin if there isn't one.
-     * If a query for name is in the path, it returns all admins with
-     * the name as a part of their name.
+     * 
+     * '/v1/cadg/api/admins/'
+     *    GET at root path returns all admins.
+     * 
+     * '/v1/cadg/api/admins/{id}'
+     *    GET with admin id (integer) in the path returns
+     *    an admin with that id, or no admin if there isn't one.
+     * 
+     * '/v1/cadg/api/admins/{id}/password'
+     * ```{
+     *    "username":"{username}",
+     *    "password":"{password}"
+     * }```
+     *    GET on an id/password will validate a user's password.
+     *    The username and password should be passed into the body as a json object.
+     *    Success -> 204: 'No Content'
+     *    Failure -> 400: 'Bad Request'
+     * 
+     * '/v1/cadg/api/admins?username={username}'
+     *    GET with a query for username returns admin with that username.
      * 
      * @param message The http request to be parsed.
      */
@@ -43,6 +58,16 @@ class AdminController: public Controller {
      * HandlePut will update a admin's data if one exists.
      * The admin id should be at the end of the url path.
      * The admin's new data should be in the body as json.
+     * 
+     * 
+     * '/v1/cadg/api/admins/{id}/password'
+     * ```{
+     *    "password":"{password}"
+     * }```
+     *    PUT on an id/password will update user's password.
+     *    The password should be passed into the body as a json object.
+     *    Success -> 204: 'No Content'
+     *    Failure -> 400: 'Bad Request'
      * 
      * @param message The http request message to be parsed.
      */
@@ -80,14 +105,6 @@ class AdminController: public Controller {
      * @param admin_name The name, or partial name, of the admin
      */
     bool GetAdminsByUsername(json::value& response, const std::string& username);
-    /// Returns an ID specified in a URL path.
-    /**
-     * ParseAdminID will extract the ID of a admin as a string from the url path.
-     * 
-     * @param path The path to extract the admin id from.
-     * @return the string with only the admin ID in it.
-     */
-    std::string ParseAdminID(const std::string& path);
   private:
     AdminDaoInterface& dao__;
 };
