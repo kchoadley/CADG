@@ -69,7 +69,18 @@ class DataAccessInterface {
      * @param id The id of the user to update.
      * @param user_info The updated information for the user.
      */
+
     virtual std::optional<bool> UpdateUser(int id, web::json::object user_info) = 0;
+
+    /**
+     * SetConnectionString sets the string used for connecting with the database.
+     * 
+     * @param connStr
+     */
+
+    // TO-DO(Mike): This method, SetConnectionString, should be in the inheriting class.
+    // TO-DO(Mike): connStr should be conn_str.
+
 };
 }
 #endif // DATA_ACCESS_INTERFACE_H

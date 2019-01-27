@@ -192,4 +192,5 @@ std::optional<bool> DataAccessObject::UpdateUser(int id, web::json::object user_
     }
     return true;
 }
+
 }  // namespace cadg_rest
