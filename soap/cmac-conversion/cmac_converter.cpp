@@ -1,7 +1,3 @@
-// Created by Ross on 1/18/2019.
-// Currently only reads in an existing SOAP file
-// into memory and displays the status node to prove read functionality.
-
 #include <iostream>
 #include <string>
 #include <ctime>
@@ -9,6 +5,17 @@
 #include "../pugixml-1.9/src/pugixml.hpp"
 #include "../pugixml-1.9/src/pugixml.cpp"
 
+///Converts any syntactically correct SOAP CAP document into a CMAC XML document.
+/**
+ * Converts syntactically correct SOAP CAP documents into CMAC XML documents.
+ * Pulls the SOAP XML document content in the soap_filename argument into memory
+ * for content needed in the upcoming CMAC XML document structure. The CMAC
+ * document structure is then created and filled with content from the
+ * SOAP XML document before saving to the filepath and filename in the
+ * cmac_filename argument.
+ * @param soap_filename     Filepath and filename of the SOAP document to be converted
+ * @param cmac_filename     Filepath and filename of the CMAC document to be saved
+ */
 void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     //Obtaining the current date-time for later use.
     std::time_t time = std::time(0);
@@ -59,12 +66,23 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
 
     auto cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
+    auto cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
     auto cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
-    auto cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
 
-    //TODO: Make this loop through all CAP message geocode points and add them individually
-    auto value_name = cmac_cap_geocode.append_child("valueName");
-    auto value = cmac_cap_geocode.append_child("value");
+    //Creating geocode nodes and filling with content
+    for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
+        std::string node_name = geocode.name();
+        //std::cout << node_name << ' ';
+        if(node_name.compare("geocode") == 0) {
+            //std::cout << " made it ";
+            auto cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
+            auto value_name = cmac_cap_geocode.append_child("valueName");
+            auto value = cmac_cap_geocode.append_child("value");
+
+            value_name.text().set(geocode.child("valueName").text().get());
+            value.text().set(geocode.child("value").text().get());
+        }
+    }
 
     auto cmac_digital_signature = root_node.append_child("CMAC_Digital_Signature");
 
@@ -107,7 +125,7 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         cmac_note.text().set(cap_message.child("note").text().get());
     }
 
-    cmac_cap_alert_uri.text().set("Temp value"); //TODO: Determine how to obtain from the gateway.
+    cmac_cap_alert_uri.text().set("Temporary value"); //TODO: Determine how to obtain from the gateway.
     cmac_cap_identifier.text().set(cap_message.child("identifier").text().get());
     cmac_cap_sent_date_time.text().set(cap_message.child("sent").text().get());
 
@@ -140,12 +158,35 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     cmac_text_alert_message_length.text().set(alert_message.length());
     cmac_text_alert_message.text().set(cap_message.child("info").child("description").text().get());
 
+    cmac_area_description.text().set(cap_message.child("info").child("area").child("areaDesc").text().get());
+    if (cap_message.child("info").child("area").child("polygon")) {
+        cmac_polygon.text().set(cap_message.child("info").child("area").child("polygon").text().get());
+    }
+    cmac_cmas_geocode.text().set(cap_message.child("info").child("area").child("polygon").text().get());
+
+    canonicalization_method.append_attribute("Algorithm");
+    canonicalization_method.attribute("Algorithm") = "http://www.w3.org/2001/10/xml-exc-c14n#";
+    signature_method.append_attribute("Algorithm");
+    signature_method.attribute("Algorithm") = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
+    reference.append_attribute("URI");
+    transform.append_attribute("Algorithm");
+    transform.attribute("Algorithm") = "http://www.w3.org/2000/09/xmldsig#enveloped-signature";
+    digest_method.append_attribute("Algorithm");
+    digest_method.attribute("Algorithm") = "http://www.w3.org/2001/04/xmlenc#sha256";
+
+    //Assigning temporary values for currently unknown information.
+    digest_value.text().set("Temporary value");
+    signature_value.text().set("Temporary value");
+    x509_subject_name.text().set("Temporary value");
+    x509_certificate.text().set("Temporary value");
+
+
     //Saving CMAC document.
     bool saved = cmac_doc.save_file(cmac_filename.c_str());
 }
 
-int main() {
-    CMAC::convert("soap_message_test.xml", "test.xml");
-}
+//int main() {
+//    CMAC::convert("soap_message_test.xml", "test.xml");
+//}
 
 
