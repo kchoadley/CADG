@@ -10,12 +10,16 @@
  */
 #include <iostream>
 #include <string>
+#include "admin_controller.hpp"
+#include "admin_dao.hpp"
 #include "data_access_object.hpp"
 #include "aog_dao.hpp"
 #include "logger.hpp"
 #include "aog_controller.hpp"
 #include "log_level.hpp"
 #include "user_controller.hpp"
+using cadg_rest::AdminController;
+using cadg_rest::AdminDao;
 using cadg_rest::DataAccessObject;
 using cadg_rest::AogDao;
 using cadg_rest::Logger;
@@ -33,6 +37,7 @@ int main(int argc, const char * argv[]) {
     logger.LogLevel(LogLevel::DEBUG);
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
     UserController user_controller(Logger::Instance(), DataAccessObject::Instance());
+    AdminController admin_controller(AdminDao::Instance());
     AogController aog_controller(Logger::Instance(), AogDao::Instance());
     std::string server_address;
     if (argc > 2)
@@ -44,11 +49,14 @@ int main(int argc, const char * argv[]) {
     else
         server_address.append(":8080");
     server_address.append("/v1/cadg/api");
+    admin_controller.endpoint(server_address + "/admins");
     user_controller.endpoint(server_address + "/users");
     aog_controller.endpoint(server_address + "/aogs");
     try {
-        user_controller.Accept().wait();
+        admin_controller.Accept().wait();
         aog_controller.Accept().wait();
+        user_controller.Accept().wait();
+        logger.Log(LogLevel::INFO, "Listening for requests at: " +  admin_controller.endpoint());
         logger.Log(LogLevel::INFO, "Listening for requests at: " +  user_controller.endpoint());
         logger.Log(LogLevel::INFO, "Listening for requests at: " + aog_controller.endpoint());
         logger.Log(LogLevel::INFO, "Press ENTER to exit.");
@@ -59,7 +67,7 @@ int main(int argc, const char * argv[]) {
     }
     catch(std::exception&  e) {
         logger.Log(LogLevel::ERR, "There was an error");
-       logger.Log(LogLevel::ERR, e.what());
+        logger.Log(LogLevel::ERR, e.what());
     }
     return 0;
 }

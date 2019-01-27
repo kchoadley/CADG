@@ -55,6 +55,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -DBOOST_LOG_DYN_LINK")
 add_executable(${PROJECT_NAME}  
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
+                                ./src/controller/admin_controller.cpp
                                 ./src/controller/aog_controller.cpp
                                 ./src/controller/user_controller.cpp
                                 ./src/nanodbc/nanodbc.cpp
