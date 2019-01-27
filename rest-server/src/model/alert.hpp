@@ -28,7 +28,7 @@ namespace cadg_rest {
      * information of the alert.
      */
     struct Alert {
-        int message_id;
+        int alert_id;
         std::string identifier;
         int originator_id;
         std::string message_type;   /// Options: actual, exercise, system, test, draft
@@ -46,7 +46,7 @@ namespace cadg_rest {
          */
         web::json::value to_json() {
             auto alert_json = web::json::value::object();
-            alert_json["message_id"] = web::json::value::number(message_id);
+            alert_json["alert_id"] = web::json::value::number(alert_id);
             alert_json["identifier"] = web::json::value::string(identifier);
             alert_json["originator_id"] = web::json::value::number(originator_id);
             alert_json["message_type"] = web::json::value::string(message_type);
@@ -67,9 +67,8 @@ namespace cadg_rest {
          * @param alert_json    The json value representing the alert.
          * @return              The alert in Alert format, or a nullopt.
          */
-        std::optional<Alert> from_json(web::json::value alert_json) {
-            if( alert_json.has_field("message_id")      && alert_json["message_id"].is_integer() &&
-                alert_json.has_field("identifier")      && alert_json["identifier"].is_string() &&
+        static std::optional<Alert> from_json(web::json::value alert_json) {
+            if( alert_json.has_field("identifier")      && alert_json["identifier"].is_string() &&
                 alert_json.has_field("originator_id")   && alert_json["originator_id"].is_integer() &&
                 alert_json.has_field("message_type")    && alert_json["message_type"].is_string() &&
                 alert_json.has_field("scope")           && alert_json["scope"].is_string() &&
@@ -80,7 +79,9 @@ namespace cadg_rest {
                 alert_json.has_field("cap_xml")         && alert_json["cap_xml"].is_string()) {
 
                 Alert alert;
-                alert.message_id = alert_json["message_id"].as_integer();
+                if(alert_json.has_field("alert_id") && alert_json["alert_id"].is_integer()) {
+                    alert.alert_id = alert_json["alert_id"].as_integer();
+                }
                 alert.identifier = alert_json["identifier"].as_string();
                 alert.originator_id = alert_json["originator_id"].as_integer();
                 alert.message_type = alert_json["message_type"].as_string();
@@ -114,7 +115,7 @@ namespace cadg_rest {
          * @param str   The string representing the local time in the format:  %Y-%m-%d %H:%M:%S %z
          * @return      The new time object.
          */
-        std::time_t time_from_string(std::string str) {
+        static std::time_t time_from_string(std::string str) {
             std::tm tm;
             std::istringstream iss(str);
             iss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S %z");
@@ -130,7 +131,7 @@ namespace cadg_rest {
      * @return  True if the alerts match on every field (exc. CAP XML).
      */
     inline bool operator == (const Alert &a, const Alert &b) {
-        return  a.message_id == b.message_id &&
+        return  a.alert_id == b.alert_id &&
                 a.identifier == b.identifier &&
                 a.originator_id == b.originator_id &&
                 a.message_type == b.message_type &&

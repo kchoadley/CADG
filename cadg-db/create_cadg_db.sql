@@ -64,7 +64,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `cadg`.`alert` ;
 
 CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
-  `alert_id` INT NOT NULL,
+  `alert_id` INT NOT NULL AUTO_INCREMENT,
   `identifier` VARCHAR(255) NULL,
   `originator_id` INT NULL,
   `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NULL,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
   `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NULL,
   `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NULL,
   `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NULL,
-  `sent_time` TIMESTAMP NULL,
+  `sent_time` VARCHAR(50) NULL,
   `cap_xml` TEXT NULL,
   PRIMARY KEY (`alert_id`),
   CONSTRAINT `alert_originator`

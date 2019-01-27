@@ -40,36 +40,36 @@ namespace cadg_rest {
         logger.Log(LogLevel::INFO, "The connection string is: " + conn_str__);
     }
     std::optional<std::vector<Alert>> AlertDao::GetAlerts() {
-//        try {
-//            nanodbc::connection connection(conn_str__);
-//            nanodbc::result results = execute(connection, NANODBC_TEXT(
-//                    std::string("select alert_id, identifier, originator_id, message_type, scope, status, ") +
-//                    std::string("urgency, severity, sent_time, cap_xml from ") +
-//                    db_alert_table__ + ";"));
-//            std::vector<Alert> db_alerts;
-//            while (results.next()) {
-//                db_alerts.push_back(Alert{
-//                    results.get<int>(0, 0),
-//                    results.get<std::string>(1, ""),
-//                    results.get<int>(2, 0),
-//                    results.get<std::string>(3, ""),
-//                    results.get<std::string>(4, ""),
-//                    results.get<std::string>(5, ""),
-//                    results.get<std::string>(6, ""),
-//                    results.get<std::string>(7, ""),
-//                    results.get<std::string>(8, ""),
-//                    results.get<std::string>(9, "")});
-//            }
-//            return db_alerts;
-//        } catch (std::exception& e) {
-//            logger.Log(LogLevel::ERR, e.what(), "AlertDao", "GetAlerts");
+        try {
+            nanodbc::connection connection(conn_str__);
+            nanodbc::result results = execute(connection, NANODBC_TEXT(
+                    std::string("select alert_id, identifier, originator_id, message_type, scope, status, ") +
+                    std::string("urgency, severity, sent_time, cap_xml from ") +
+                    db_alert_table__ + ";"));
+            std::vector<Alert> db_alerts;
+            while (results.next()) {
+                db_alerts.push_back(Alert{
+                    results.get<int>(0, 0),
+                    results.get<std::string>(1, ""),
+                    results.get<int>(2, 0),
+                    results.get<std::string>(3, ""),
+                    results.get<std::string>(4, ""),
+                    results.get<std::string>(5, ""),
+                    results.get<std::string>(6, ""),
+                    results.get<std::string>(7, ""),
+                    Alert::time_from_string(results.get<std::string>(8, "")),
+                    results.get<std::string>(9, "")});
+            }
+            return db_alerts;
+        } catch (std::exception& e) {
+            logger.Log(LogLevel::ERR, e.what(), "AlertDao", "GetAlerts");
             return std::nullopt;
-//        }
+        }
     }
-    std::optional<std::vector<Alert>> GetAlertsByOriginator(int id) {
+    std::optional<std::vector<Alert>> AlertDao::GetAlertsByOriginator(int id) {
         return std::nullopt;
     }
-    std::optional<std::vector<Alert>> GetAlertsByStatus(const std::string& status) {
+    std::optional<std::vector<Alert>> AlertDao::GetAlertsByStatus(const std::string& status) {
         return std::nullopt;
     }
     std::optional<bool> AlertDao::AddAlert(Alert alert) {
@@ -92,7 +92,7 @@ namespace cadg_rest {
                                             " values(?,?,?,?,?,?,?,?,?);"));
             nanodbc::string const identifier = NANODBC_TEXT(alert.identifier);
             statement.bind(0, identifier.c_str());
-            const int originator_id = alert.originator_id;
+            int const originator_id = alert.originator_id;
             statement.bind(1, &originator_id);
             nanodbc::string const message_type = NANODBC_TEXT(alert.message_type);
             statement.bind(2, message_type.c_str());
