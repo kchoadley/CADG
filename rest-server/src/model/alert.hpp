@@ -68,6 +68,7 @@ namespace cadg_rest {
          * @return              The alert in Alert format, or a nullopt.
          */
         static std::optional<Alert> from_json(web::json::value alert_json) {
+            // TODO(ALL): Only require fields that the DB requires (set as NOT NULL).
             if( alert_json.has_field("identifier")      && alert_json["identifier"].is_string() &&
                 alert_json.has_field("originator_id")   && alert_json["originator_id"].is_integer() &&
                 alert_json.has_field("message_type")    && alert_json["message_type"].is_string() &&
