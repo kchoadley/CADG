@@ -5,6 +5,24 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema admin_db
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `admin_db` ;
+-- -----------------------------------------------------
+-- Schema admin_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `admin_db` ;
+-- -----------------------------------------------------
+-- Schema cadg
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `cadg` ;
+-- -----------------------------------------------------
+-- Schema cadg
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `cadg` ;
 -- -----------------------------------------------------
 -- Schema test_db
 -- -----------------------------------------------------
@@ -13,77 +31,31 @@ DROP SCHEMA IF EXISTS `test_db` ;
 -- Schema test_db
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `test_db` ;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+USE `admin_db` ;
 
 -- -----------------------------------------------------
--- Schema cadg
+-- Table `admin_db`.`admin`
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `cadg` ;
+DROP TABLE IF EXISTS `admin_db`.`admin` ;
 
--- -----------------------------------------------------
--- Schema cadg
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `cadg` ;
-
-USE `test_db` ;
-
--- -----------------------------------------------------
--- Table `test_db`.`test`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_db`.`test` ;
-
-CREATE TABLE IF NOT EXISTS `test_db`.`test` (
-  `user_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(120) NOT NULL,
-  `password` VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
+CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` CHAR(64) NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(45) NULL,
+  `address` VARCHAR(255) NULL,
+  `country` VARCHAR(45) NULL,
+  `state_region` VARCHAR(45) NULL,
+  `zip` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `userID_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB
 COMMENT = '				';
-                                  
--- -----------------------------------------------------
--- Table `cadg`.`originator`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `cadg`.`originator` ;
-                                  
-USE `cadg` ;
-                                  
-CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
-  `originator_id` INT NOT NULL,
-  `originator_name` VARCHAR(45) NULL,
-  `status` ENUM('ACTIVE', 'DISABLED') NULL,
-  `agency` VARCHAR(45) NULL,
-  PRIMARY KEY (`originator_id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cadg`.`message`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `cadg`.`message` ;
-
-CREATE TABLE IF NOT EXISTS `cadg`.`message` (
-  `message_id` INT NOT NULL,
-  `identifier` VARCHAR(255) NULL,
-  `originator_id` INT NULL,
-  `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NULL,
-  `scope` ENUM('PUBLIC', 'RESTRICTED', 'PRIVATE') NULL,
-  `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NULL,
-  `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NULL,
-  `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NULL,
-  `sent_time` TIMESTAMP NULL,
-  `cap_xml` TEXT NULL,
-  PRIMARY KEY (`message_id`),
-  CONSTRAINT `message_originator`
-    FOREIGN KEY (`originator_id`)
-    REFERENCES `cadg`.`originator` (`originator_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `message_originator_idx` ON `cadg`.`message` (`originator_id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `cadg`.`disseminator`
@@ -101,7 +73,64 @@ CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
   PRIMARY KEY (`disseminator_id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `cadg`.`alert`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cadg`.`alert` ;
 
+CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
+  `alert_id` INT NOT NULL AUTO_INCREMENT,
+  `identifier` VARCHAR(255) NULL,
+  `originator_id` INT NULL,
+  `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NULL,
+  `scope` ENUM('PUBLIC', 'RESTRICTED', 'PRIVATE') NULL,
+  `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NULL,
+  `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NULL,
+  `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NULL,
+  `sent_time` VARCHAR(50) NULL,
+  `cap_xml` TEXT NULL,
+  PRIMARY KEY (`alert_id`),
+  CONSTRAINT `alert_originator`
+    FOREIGN KEY (`originator_id`)
+    REFERENCES `cadg`.`originator` (`originator_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `alert_originator_idx` ON `cadg`.`alert` (`originator_id` ASC) VISIBLE;
+
+-- -----------------------------------------------------
+-- Table `cadg`.`originator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cadg`.`originator` ;
+                                  
+USE `cadg` ;
+                                  
+CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
+  `originator_id` INT NOT NULL AUTO_INCREMENT,
+  `originator_name` VARCHAR(45) NULL,
+  `status` ENUM('ACTIVE', 'DISABLED') NULL,
+  `agency` VARCHAR(45) NULL,
+  PRIMARY KEY (`originator_id`))
+ENGINE = InnoDB;
+
+USE `test_db` ;
+
+-- -----------------------------------------------------
+-- Table `test_db`.`test`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `test_db`.`test` ;
+
+CREATE TABLE IF NOT EXISTS `test_db`.`test` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(120) NOT NULL,
+  `password` VARCHAR(120) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `userID_UNIQUE` (`user_id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB
+COMMENT = '				';
+       
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

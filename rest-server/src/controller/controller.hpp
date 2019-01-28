@@ -23,6 +23,7 @@
 #include <cpprest/http_msg.h>
 #include <pplx/pplxtasks.h>
 #include "logger_interface.hpp"
+#include "logger.hpp"
 using namespace web;
 using namespace http;
 using namespace http::experimental::listener;
@@ -41,7 +42,7 @@ namespace cadg_rest {
 class Controller {
   public: 
     /// Takes in a Logger object reference that adheres to the Logger interface.
-    Controller(LoggerInterface& logger__) : logger__(logger__) { }
+    Controller() : logger__(Logger::Instance()) { }
     ~Controller() { }
 
     void endpoint(const std::string& endpoint);
@@ -54,6 +55,14 @@ class Controller {
     pplx::task<void> Accept();
     /// Stops the controller from listening at it's endoint.
     pplx::task<void> Shutdown();
+    /// PathSegments parses the provided path string of a URL path.
+    /**
+     * The paths are parsed with '/' delimiting segments
+     * 
+     * @param path_string The path string to be parsed.
+     * @return A <string> vector of path segment names.
+     */
+    static std::vector<std::string> PathSegments(const std::string& path_string);
     /// Queries parses the provided query string of a URL path.
     /**
      * The queries are parsed with '&' delimiting queries
@@ -62,7 +71,7 @@ class Controller {
      * @param query_string The path query string to be parsed.
      * @return A <string, string> map of query name as keys and variable as value.
      */
-    static std::map<std::string, std::string> Queries(std::string query_string);
+    static std::map<std::string, std::string> Queries(const std::string& query_string);
 
     ///Initializes listeners and binds methods to proper handlers.
     /**
