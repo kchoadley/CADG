@@ -59,7 +59,6 @@ set(TEST_SOURCES
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
         ../rest-server/src/nanodbc/nanodbc.cpp
-        ../rest-server/src/services/data_access_object.cpp
         ../rest-server/src/services/logger.cpp
         ../rest-server/src/util/network_utils.cpp)
 
