@@ -16,10 +16,10 @@ services:
                 depends_on:
                         - "cadg-db"
                 environment:
-                        - DB_TEST_NAME=${DB_TEST_NAME}
-                        - DB_TEST_TABLE=${DB_TEST_TABLE}
                         - DB_ADMIN_NAME=${DB_ADMIN_NAME}
                         - DB_ADMIN_TABLE=${DB_ADMIN_TABLE}
+                        - DB_ALERT_TABLE=${DB_ALERT_TABLE}
+                        - DB_CADG_NAME=${DB_CADG_NAME}
                         - DB_PASSWORD=${DB_PASSWORD}
                         - DB_PORT=${DB_PORT}
                         - DB_SERVER=${DB_SERVER}

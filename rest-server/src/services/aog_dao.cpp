@@ -36,7 +36,12 @@ namespace cadg_rest {
             db_uid = "root";
         }
         logger.Log(LogLevel::INFO, "The env db_uid is: " + db_uid);
-        connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database=cadg;Uid="+
+        std::string db_name = getEnvVar("DB_CADG_NAME");
+        if (db_name.empty()) {
+            db_name = "cadg";
+        }
+        logger.Log(LogLevel::INFO, "The env db_name is: " + db_name);
+        connStr_ = "Driver={MySQL8Driver};Server="+ db_server +";Port="+ db_port +";Database="+db_name+";Uid="+
             db_uid +";Pwd="+ db_password +";";
         logger.Log(LogLevel::INFO, "The AogDao connection string is: " + connStr_);
     }
