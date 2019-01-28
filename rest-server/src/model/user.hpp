@@ -1,9 +1,10 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+/// User Class.
 /**
  * Contains a user data struct for moving user data to/from
  * a data store and a REST endpoint.
  *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
  * @file        controller.cpp
  * @authors     Kristofer Hoadley
  * @date        November, 2018
@@ -21,11 +22,9 @@ struct User {
     std::string name;
     int id;
     std::string password;
+    /// Converts the user struct to a json object.
     /**
-     * Converts the user struct to a json object.
-     * 
      * The id of the user is to be set to the object name.
-     * 
      * @return a json object representation of a user.
      * 
      */
@@ -37,6 +36,12 @@ struct User {
     }
 };
 /// Necessary for comparing if two users are equal.
+/**
+ * Returns whether two user objects contain the same information.
+ * @param a The first user object.
+ * @param b The second user object.
+ * @return True if both users have the same name, id, and password.
+ */
 inline bool operator==(const User &a, const User &b) {
     return a.name == b.name &&
            a.id == b.id &&

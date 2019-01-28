@@ -1,8 +1,8 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
+/// General implementation of Controller.
 /**
- * Implementation of Controller.
- *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+                    Shawn Hulce, Michael McCulley
+
  * @file        controller.cpp
  * @authors     Kristofer Hoadley
  * @date        November, 2018
@@ -37,14 +37,31 @@ pplx::task<void> Controller::Accept() {
 pplx::task<void> Controller::Shutdown() {
     return listener__.close();
 }
+std::vector<std::string> Controller::PathSegments(const std::string& path_string) {
+    std::vector<std::string> parsed_path;
+    std::string token_delimeter = "/";
+    for (int begining_position = 0, ending_position = 0;
+                ending_position < path_string.length() && begining_position < path_string.length();
+                begining_position = ending_position + token_delimeter.length()) {
+        ending_position = path_string.find(token_delimeter, begining_position);
+        if (ending_position == std::string::npos)  // found the end of the query string
+            ending_position = path_string.length();
+        std::string token = path_string.substr(begining_position, ending_position - begining_position);
+        if (!token.empty())
+            parsed_path.push_back(token);
+    }
+    return parsed_path;
+}
+/// Extracts individual queries from a query string.
 /**
  * Some limitations of this implementation:
  * Does not handle converting spaces (%20) or other special characters.
  * Does not handle delimiting queries by ';'
  * Does not handle multiple values for a key (keeps the last one).
- * 
+ * @param   query_string    full query string to extract queries from
+ * @return  map of individual queries using the query key as the map key
  */
-std::map<std::string, std::string> Controller::Queries(std::string query_string) {
+std::map<std::string, std::string> Controller::Queries(const std::string& query_string) {
     std::map<std::string, std::string> query_map;
     std::string query_delimeter = "&";  // technically, it could be delimited by ';' too
     std::string value_delimeter = "=";

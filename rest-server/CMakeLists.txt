@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.1)
 
 project(cadg-rest-server)
 
+option(DOX "User provided flag for documentation generation" off)
+
 SET( ODBC_FOUND 0 )
 
 FIND_PATH(ODBC_INCLUDE_DIRECTORIES sql.h
@@ -42,6 +44,7 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(OpenSSL 1.0.1 REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(Threads REQUIRED)
+find_package(Doxygen REQUIRED)
 
 set(OPENSSL_VERSION "1.0.1")
 
@@ -52,9 +55,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -DBOOST_LOG_DYN_LINK")
 add_executable(${PROJECT_NAME}  
                                 ./src/rest_server.cpp
                                 ./src/controller/controller.cpp
-                                ./src/controller/user_controller.cpp
+                                ./src/controller/admin_controller.cpp
+                                ./src/controller/aog_controller.cpp
+                                ./src/controller/alert_controller.cpp
                                 ./src/nanodbc/nanodbc.cpp
-                                ./src/services/data_access_object.cpp
+                                ./src/services/admin_dao.cpp
+                                ./src/services/alert_dao.cpp
+                                ./src/services/aog_dao.cpp
                                 ./src/services/logger.cpp
                                 ./src/util/network_utils.cpp)
 
@@ -73,6 +80,25 @@ set(OPENSSL_LIBS "${OPENSSL_LIBRARIES}")
 set(SPDLOG_LIBRARY spdlog::spdlog)
 set(THREADS Threads::Threads)
 set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${SPDLOG_LIBRARY} ${THREADS} ${BOOST_LIBRARY} ${ODBC_LIBRARIES})
+
+# documentation
+if(${DOX})
+  if(DOXYGEN_FOUND)
+    add_custom_command(
+            OUTPUT ${CMAKE_SOURCE_DIR}/doc/html/index.html
+            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/doc/Doxyfile
+            COMMENT "Generating documentation: ${CMAKE_SOURCE_DIR}/doc/html/index.html"
+    )
+    add_custom_target(DOXYGEN_DOCUMENTATION_TARGET DEPENDS ${CMAKE_SOURCE_DIR}/doc/html/index.html)
+    add_dependencies(${PROJECT_NAME} DOXYGEN_DOCUMENTATION_TARGET)
+    message("Will generate documentation at: ${CMAKE_SOURCE_DIR}/doc/html/index.html")
+  else()
+    message("Please consider installing Doxygen to generate documentation")
+  endif(DOXYGEN_FOUND)
+else()
+  string(ASCII 27 Esc)
+  message("${Esc}[35mTo generate documentation, add '-D DOX:BOOL=on' to cmake command${Esc}[m")
+endif(${DOX})
 
 include_directories(${HEADER_PATHS})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})

@@ -1,6 +1,12 @@
-//
-// Created by Vaniya on 11/30/2018.
-//
+///GMock of the Logger Interface
+/**
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
+ * @file    mock_logger.cpp
+ * @authors Vaniya Agrawal
+ * @date    January, 2019
+ */
 
 #ifndef CADG_MOCK_LOGGER_INTERFACE_HPP
 #define CADG_MOCK_LOGGER_INTERFACE_HPP

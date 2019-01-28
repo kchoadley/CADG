@@ -5,7 +5,7 @@ services:
                 ports:
                         - "8080:80"
                 depends_on:
-                  - "cadg-rest"
+                        - "cadg-rest"
                 networks:
                         - cadgnet
         cadg-rest:
@@ -13,6 +13,17 @@ services:
                 tty: true
                 networks:
                         - cadgnet
+                depends_on:
+                        - "cadg-db"
+                environment:
+                        - DB_ADMIN_NAME=${DB_ADMIN_NAME}
+                        - DB_ADMIN_TABLE=${DB_ADMIN_TABLE}
+                        - DB_ALERT_TABLE=${DB_ALERT_TABLE}
+                        - DB_CADG_NAME=${DB_CADG_NAME}
+                        - DB_PASSWORD=${DB_PASSWORD}
+                        - DB_PORT=${DB_PORT}
+                        - DB_SERVER=${DB_SERVER}
+                        - DB_UID=${DB_UID}
         cadg-db:
                 build: ../cadg-db
                 networks:

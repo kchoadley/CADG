@@ -11,16 +11,17 @@ apt-get -q -d update
 apt-get -q -y install \
     cmake \
     cppcheck \
-    g++-6 \
+    g++-8 \
     libasio-dev \
     libcpprest-dev \
     libspdlog-dev \
     software-properties-common \
     unixodbc-dev \
-    wget
+    wget \
+    doxygen
 
 # Make g++ 6 the default g++ executable
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 
 # Google Fruit dependency injection, build install remove old files
 cd /usr/src &&\
