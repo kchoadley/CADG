@@ -55,6 +55,7 @@ namespace cadg_rest {
         try {
             const json::value body_json = message.extract_json().get();
             if (auto alert = Alert::from_json(body_json)) {
+                // TODO(ALL): Verify the DB actually was able to add the alert
                 dao__.AddAlert(alert.value());
             } else {
                 message.reply(status_codes::BadRequest);
