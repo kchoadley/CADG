@@ -43,7 +43,6 @@ class Controller {
   public: 
     /// Takes in a Logger object reference that adheres to the Logger interface.
     Controller() : logger__(Logger::Instance()) { }
-    Controller(LoggerInterface& logger__) : logger__(logger__) { }
     ~Controller() { }
 
     void endpoint(const std::string& endpoint);

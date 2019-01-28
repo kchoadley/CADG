@@ -19,7 +19,7 @@ using cadg_rest::AogDaoInterface;
 namespace cadg_rest {
     class AogController: public Controller {
     public:
-        AogController(LoggerInterface& logger__, AogDaoInterface& input_dao__) : dao__(input_dao__), Controller(logger__) {}
+        AogController(AogDaoInterface& input_dao__) : dao__(input_dao__), logger__(Logger::Instance()) {}
 
         ~AogController() { }
 
@@ -51,6 +51,7 @@ namespace cadg_rest {
 
     private:
         AogDaoInterface& dao__;
+        LoggerInterface& logger__;
     };
 
 }  // namespace cadg_rest

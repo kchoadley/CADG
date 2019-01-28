@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     logger.Log(LogLevel::INFO, "Starting cadg rest server");
     AlertController alert_controller(AlertDao::Instance());
     AdminController admin_controller(AdminDao::Instance());
-    AogController aog_controller(Logger::Instance(), AogDao::Instance());
+    AogController aog_controller(AogDao::Instance());
     std::string server_address;
     if (argc > 2)
         server_address.append(argv[2]);
