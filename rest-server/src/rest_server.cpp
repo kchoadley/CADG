@@ -62,6 +62,8 @@ int main(int argc, const char * argv[]) {
         logger.Log(LogLevel::INFO, "Press ENTER to exit.");
         std::string line;
         std::getline(std::cin, line);
+        admin_controller.Shutdown().wait();
+        alert_controller.Shutdown().wait();
         aog_controller.Shutdown().wait();
     }
     catch(std::exception&  e) {
