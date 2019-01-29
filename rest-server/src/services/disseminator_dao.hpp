@@ -35,7 +35,7 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     /// Deletes the assignment constructor to enforce singleton.
     void operator=(DisseminatorDao const&) = delete;
 
-    bool Requery() override;
+    bool Requery();
     std::vector<Disseminator> GetDisseminators() override;
     std::vector<Disseminator> GetDisseminatorsByName(const std::string& name) override;
     std::vector<Disseminator> GetDisseminatorByID(int id) override;

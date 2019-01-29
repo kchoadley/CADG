@@ -58,7 +58,7 @@ add_executable(${PROJECT_NAME}
                                 ./src/controller/user_controller.cpp
                                 ./src/nanodbc/nanodbc.cpp
                                 ./src/services/admin_dao.cpp
-                                ./src/services/disseminator_doa.cpp
+                                ./src/services/disseminator_dao.cpp
                                 ./src/services/data_access_object.cpp
                                 ./src/services/logger.cpp
                                 ./src/util/network_utils.cpp)

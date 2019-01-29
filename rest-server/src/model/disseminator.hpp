@@ -29,7 +29,7 @@ struct Disseminator {
      */
     web::json::value to_json() {
         auto d_json  = web::json::value::object();
-        d_json["id"] = web::json::value::string(id);
+        d_json["id"] = web::json::value::string(std::to_string(id));
         d_json["name"] = web::json::value::string(name);
         d_json["type"] = web::json::value::string(type);
         d_json["format"] = web::json::value::string(format);
@@ -59,10 +59,10 @@ struct Disseminator {
                 disseminator.ip = d_json["ip"].as_string();
                 return disseminator;
             } else {
-                return std:nullopt;
+                return std::nullopt;
             }
         } catch (std::exception&  e) {  
-            return std:nullopt;
+            return std::nullopt;
         }
     }      
 };

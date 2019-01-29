@@ -62,7 +62,7 @@ class DisseminatorDaoInterface {
      * @param id The id of the disseminator to update.
      * @param disseminator_info The updated information for the disseminator.
      */
-    virtual bool UpdateDisseminator(int id, web::json::object disseminator_info) = 0;
+    virtual bool UpdateDisseminator(Disseminator disseminator) = 0;
 };
 }
 #endif // DISSEMINATOR_DAO_INTERFACE_H
