@@ -69,10 +69,10 @@ struct Disseminator {
 /// Necessary for comparing if two disseminators are equal.
 inline bool operator==(const Disseminator &a, const Disseminator &b) {
     return a.id == b.id 
-        && a.name = b.name
-        && a.type = b.type
-        && a.format = b.format
-        && a.ip = b.ip;
+        && a.name == b.name
+        && a.type == b.type
+        && a.format == b.format
+        && a.ip == b.ip;
 }
 }
 #endif // DISSEMINATOR_H

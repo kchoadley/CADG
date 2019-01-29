@@ -10,20 +10,34 @@
 #include <string>
 #include <vector>
 #include "disseminator_dao.hpp"
-#include "disseminator_endpoint.hpp"
 #include "nanodbc.hpp"
+
+//TODO(Mike): Make database queries async.
 
 namespace cadg_rest {
 DisseminatorDao& DisseminatorDao::Instance() {
     static DisseminatorDao instance;
     return instance;
 }
-void DisseminatorDao::SetConnectionString(std::string conn_str) {
-    conn_str_ = conn_str;
+DisseminatorDao::DisseminatorDao() : logger(Logger::Instance()){
+    std::string db_password = getEnvVar("DB_PASSWORD");
+    std::string db_port = getEnvVar("DB_PORT");
+    if (db_port.empty()) {
+        db_port = "3306";  // default port
+    }
+    std::string db_server = getEnvVar("DB_SERVER");
+    if (db_server.empty()) {
+        db_server = "127.0.0.1";  // localhost
+    }
+    std::string db_uid = getEnvVar("DB_UID");
+    std::string db_driver = getEnvVar("DB_ODBC_DRIVER");
+    conn_str___ = "Driver={"+db_driver +"};Server="+ db_server +";Port="+ db_port 
+            +";Database=cadg_db;Uid="+ db_uid +";Pwd="+ db_password +";";
+    logger.Log(LogLevel::INFO, "DisseminatorDao connection string is: " + conn_str___);
 }
-bool Requery() {
+bool DisseminatorDao::Requery() {
     try {
-        nanodbc::connection connection(conn_str_);
+        nanodbc::connection connection(conn_str__);
         nanodbc::result results;
         results = execute(connection, NANODBC_TEXT("select id, name, type, format, ip from cadg.disseminator;"));
         std::vector<Disseminator> temp_disseminators;
@@ -82,11 +96,12 @@ std::vector<Disseminator> DisseminatorDao::GetDisseminatorByID(int id) {
 }
 bool DisseminatorDao::RemoveDisseminator(int id) {
     try {
-        nanodbc::connection connection(conn_str_);
+        nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT("delete from cadg.disseminator where disseminator_id =?;"));
         statement.bind(0, &id);
         execute(statement);
+        DisseminatorDao::Requery();
         return true;
     } catch (...) {
         return false;
@@ -94,7 +109,7 @@ bool DisseminatorDao::RemoveDisseminator(int id) {
 }
 bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
     try {
-        nanodbc::connection connection(conn_str_);
+        nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT("insert into cadg.disseminator (name, type, format, ip) values (?,?,?,?);");
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
@@ -108,9 +123,11 @@ bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
         execute(statement);
         // Get the ID of the newly created user record.
         nanodbc::result results;
-        results = execute(connection, NANODBC_TEXT("SELECT LAST_INSERT_ID();"));
-        results.next();
-        int new_id = results.get<int>(0, 0);
+        results = execute(connection, NANODBC_TEXT("select last_insert_id();"));
+        int new_id = 0;
+        if (results.next()) {
+            new_id = results.get<int>(0, 0);
+        }
         if (new_id > 0) {
             disseminator.id = new_id;
             disseminators__.push_back(disseminator);
@@ -120,11 +137,9 @@ bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
         return false;
     }
 }
-
-
 bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
     try {
-        nanodbc::connection connection(conn_str_);
+        nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT("update cadg.disseminator set name = ?, type = ?, format = ?, ip = ? where id = ?;")
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
@@ -150,23 +165,6 @@ bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
         return true;
     } catch (std::exception&  e) {
         return false;
-    }
-}
-}  // namespace cadg_rest
-
-            auto &value = iter->second;
-            if (key.compare("name") == 0) disseminatorname = NANODBC_TEXT(value.as_string());
-            else if (key.compare("email") == 0) email = NANODBC_TEXT(value.as_string());
-        }
-        nanodbc::connection connection(connStr_);
-        nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("update disseminator set name = ?, email = ? where dissseminator_id = ?;"));
-        statement.bind(0, disseminatorname.c_str());
-        statement.bind(1, email.c_str());
-        statement.bind(2, &id);
-        execute(statement);
-    } catch (...) {
-        // TODO(All): Something?
     }
 }
 }  // namespace cadg_rest

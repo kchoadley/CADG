@@ -15,6 +15,8 @@
 #include <vector>
 #include "disseminator.hpp"
 #include "disseminator_dao_interface.hpp"
+#include "logger.hpp"
+#include "log_level.hpp"
 
 namespace cadg_rest {
 /// A DAO for disseminators.
@@ -40,12 +42,16 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     bool RemoveDisseminator(int id) override;
     bool AddDisseminator(Disseminator disseminator) override;
     bool UpdateDisseminator(Disseminator disseminator) override;
-    void SetConnectionString(std::string conn_str);
     
   private:
-    DisseminatorDao() { }
+    std::string getEnvVar(std::string const& key) {
+        char const* val = getenv(key.c_str()); 
+        return val == NULL ? std::string() : std::string(val);
+    }
+    DisseminatorDao();
     std::vector<Disseminator> disseminators__;
-    std::string conn_str_;
+    std::string conn_str__;
+    LoggerInterface& logger;
 };
 }
 #endif // ADMIN_DAO_H
