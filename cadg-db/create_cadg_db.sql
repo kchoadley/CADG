@@ -80,15 +80,15 @@ DROP TABLE IF EXISTS `cadg`.`alert` ;
 
 CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
   `alert_id` INT NOT NULL AUTO_INCREMENT,
-  `identifier` VARCHAR(255) NULL,
-  `originator_id` INT NULL,
-  `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NULL,
-  `scope` ENUM('PUBLIC', 'RESTRICTED', 'PRIVATE') NULL,
-  `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NULL,
-  `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NULL,
-  `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NULL,
-  `sent_time` VARCHAR(50) NULL,
-  `cap_xml` TEXT NULL,
+  `identifier` VARCHAR(255) NOT NULL,
+  `originator_id` INT NOT NULL,
+  `message_type` ENUM('ACTUAL', 'EXERCISE', 'SYSTEM', 'TEST', 'DRAFT') NOT NULL,
+  `scope` ENUM('PUBLIC', 'RESTRICTED', 'PRIVATE') NOT NULL,
+  `status` ENUM('ACTIVE', 'CANCELED', 'EXPIRED') NOT NULL,
+  `urgency` ENUM('IMMEDIATE', 'EXPECTED', 'FUTURE', 'PAST', 'UNKNOWN') NOT NULL,
+  `severity` ENUM('EXTREME', 'SEVERE', 'MODERATE', 'MINOR', 'UNKNOWN') NOT NULL,
+  `sent_time` VARCHAR(50) NOT NULL,
+  `cap_xml` TEXT NOT NULL,
   PRIMARY KEY (`alert_id`),
   CONSTRAINT `alert_originator`
     FOREIGN KEY (`originator_id`)
