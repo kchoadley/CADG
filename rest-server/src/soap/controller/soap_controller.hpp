@@ -7,7 +7,7 @@
 #define SOAP_CONTROLLER_HPP
 #include <controller.hpp>
 #include <data_access_interface.hpp>
-#include "../../gSoapFiles/CAP/cadg_soapH.hpp"
+#include "../../gSoapFiles/CAP/soapH.h"
 using cadg_rest::DataAccessInterface;
 
 namespace cadg_soap {

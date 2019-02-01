@@ -8,8 +8,9 @@
 #include <string>
 #include "soap_controller.hpp"
 #include "log_level.hpp"
-#include "../../gSoapFiles/CAP/cadg_soapH.hpp"
-#include "../../gSoapFiles/CAP/ns1.nsmap"
+#include "../../gSoapFiles/CAP/soapH.h"
+#include "../../gSoapFiles/CAP/ns2.nsmap"
+using cadg_rest::LogLevel;
 
 namespace cadg_soap {
     void SoapController::InitHandlers() {
@@ -22,21 +23,22 @@ namespace cadg_soap {
     void SoapController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
-            struct _ns1__alert alertMessage;
+            struct _ns2__alert alertMessage;
             std::string bodyContent = "";
             //Should generate soap context that can read input and create alert. Not sure how
             soap* ctx = soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
             auto body = message.extract_string().get();
-            std::istringstream strStream;
+            logger__.Log(LogLevel::DEBUG, "SOAP Received: " + body, "SoapController", "HandlePost");
+            std::istringstream strStream;  // creates a string stream
 
-            strStream.str(body);
+            strStream.str(body);  // passes message body to into the string stream
 
-            ctx->is = &strStream;
+            ctx->is = &strStream;  // sets the instream of the soap ctx  object to the string input stream
 
-            soap_read__ns1__alert(ctx, &alertMessage);
+            soap_read__ns2__alert(ctx, &alertMessage);  // should read the soap context and output the details to the alertMessage object
 
-            std::cout << alertMessage.identifier << std::endl;
-            message.reply(status_codes::OK);
+            logger__.Log(LogLevel::DEBUG, alertMessage.identifier.c_str(), "SoapController", "HandlePost");
+            message.reply(status_codes::OK, "Got it");
 
         } catch (std::exception& e) {
             message.reply(SOAP_FAULT);
