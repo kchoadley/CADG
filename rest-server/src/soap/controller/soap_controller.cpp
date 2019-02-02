@@ -23,13 +23,14 @@ namespace cadg_soap {
     void SoapController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
-            struct _ns2__alert alertMessage;
+            _ns2__alert alertMessage;
+            std::stringstream strStream;  // creates a string stream
             std::string bodyContent = "";
             //Should generate soap context that can read input and create alert. Not sure how
-            soap* ctx = soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
+            struct soap *ctx = soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
             auto body = message.extract_string().get();
+
             logger__.Log(LogLevel::DEBUG, "SOAP Received: " + body, "SoapController", "HandlePost");
-            std::istringstream strStream;  // creates a string stream
 
             strStream.str(body);  // passes message body to into the string stream
 
@@ -37,7 +38,7 @@ namespace cadg_soap {
 
             soap_read__ns2__alert(ctx, &alertMessage);  // should read the soap context and output the details to the alertMessage object
 
-            logger__.Log(LogLevel::DEBUG, alertMessage.identifier.c_str(), "SoapController", "HandlePost");
+            logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
             message.reply(status_codes::OK, "Got it");
 
         } catch (std::exception& e) {
