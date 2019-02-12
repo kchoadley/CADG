@@ -32,26 +32,87 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     auto declaration_node = cmac_doc.append_child(pugi::node_declaration);
     declaration_node.append_attribute("version") = "1.0";
     auto root_node = cmac_doc.append_child("CMAC_Alert_Attributes");
+    root_node.append_attribute("xmlns") = "\"cmac:2.0\""; //TODO: Check value. Potentially temporary.
 
-    //Creating the node structure for the entire CMAC document.
+    //Creating the node structure and node content for the CMAC_Alert_Attributes block.
     //All node variable names match the corresponding CMAC
     //structure as closely as possible.
     auto cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
-    auto cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
-    auto cmac_message_number = root_node.append_child("CMAC_message_number");
-    auto cmac_referenced_message_cap_identifier = root_node.append_child("CMAC_referenced_message_cap_identifier");
-    auto cmac_special_handling = root_node.append_child("CMAC_special_handling");
-    auto cmac_sender = root_node.append_child("CMAC_sender");
-    auto cmac_sent_date_time = root_node.append_child("CMAC_sent_date_time");
-    auto cmac_status = root_node.append_child("CMAC_status");
-    auto cmac_message_type = root_node.append_child("CMAC_message_type");
-    auto cmac_response_code = root_node.append_child("CMAC_response_code");
-    auto cmac_note = root_node.append_child("CMAC_note");
-    auto cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
-    auto cmac_cap_identifier = root_node.append_child("CMAC_cap_identifier");
-    auto cmac_cap_sent_date_time = root_node.append_child("CMAC_cap_sent_date_time");
-    auto cmac_alert_info = root_node.append_child("CMAC_alert_info");
+    cmac_protocol_version.text().set("2.0"); //TODO: Determine how to get the protocol version based on either CAP message or other source.
 
+    auto cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
+    cmac_sending_gateway_id.text().set("Temporary value"); //TODO: Determine how to get gateway IP or URI.
+
+    auto cmac_message_number = root_node.append_child("CMAC_message_number");
+    cmac_message_number.text().set(cap_message.child("identifier").text().get()); //TODO: Determining how to identify CMSP-initiated value, when applicable.
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_referenced_message_number = root_node.append_child("CMAC_referenced_message_number");
+        cmac_referenced_message_number.text().set("Temporary value");
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_referenced_message_cap_identifier = root_node.append_child("CMAC_referenced_message_cap_identifier");
+        cmac_referenced_message_cap_identifier.text().set("Temporary value");
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_special_handling = root_node.append_child("CMAC_special_handling");
+        cmac_special_handling.text().set(cap_message.child("scope").text().get()); //TODO: Ensure correctness.
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_sender = root_node.append_child("CMAC_sender");
+        cmac_sender.text().set(cap_message.child("sender").text().get());
+    }
+
+    auto cmac_sent_date_time = root_node.append_child("CMAC_sent_date_time");
+    cmac_sent_date_time.text().set(date_time_str.c_str());
+
+    auto cmac_status = root_node.append_child("CMAC_status");
+    cmac_status.text().set(cap_message.child("status").text().get());
+
+    auto cmac_message_type = root_node.append_child("CMAC_message_type");
+    cmac_message_type.text().set(cap_message.child("msgType").text().get());
+
+    //TODO: Complete when CMAC object is available.
+    //NOTE: Multiple occurrences possible
+    if (true) {
+        auto cmac_response_code = root_node.append_child("CMAC_response_code");
+        cmac_response_code.text().set("Temporary value");
+    }
+
+    //TODO: Complete when CMAC object is available.
+    //NOTE: Multiple occurrences possible
+    if (true) {
+        auto cmac_note = root_node.append_child("CMAC_note");
+        cmac_note.text().set(cap_message.child("note").text().get());
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
+        cmac_cap_alert_uri.text().set("Temporary value"); //TODO: Determine how to obtain from the gateway.
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_cap_identifier = root_node.append_child("CMAC_cap_identifier");
+        cmac_cap_identifier.text().set(cap_message.child("identifier").text().get());
+    }
+
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_cap_sent_date_time = root_node.append_child("CMAC_cap_sent_date_time");
+        cmac_cap_sent_date_time.text().set(cap_message.child("sent").text().get());
+    }
+
+
+    auto cmac_alert_info = root_node.append_child("CMAC_alert_info");
     auto cmac_category = cmac_alert_info.append_child("CMAC_category");
     auto cmac_event_code = cmac_alert_info.append_child("CMAC_event_code");
     auto cmac_response_type = cmac_alert_info.append_child("CMAC_response_type");
@@ -111,23 +172,7 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     auto x509_certificate = x509_data.append_child("X509Certificate");
 
     //Setting values for all CMAC document nodes.
-    cmac_protocol_version.text().set("1.0");
-    cmac_sending_gateway_id.text().set(cap_message.child("sender").text().get()); //TODO: Determine how to get gateway IP?
-    cmac_message_number.text().set(cap_message.child("identifier").text().get()); //TODO: Determining how to identify CMSP-initiated value, when applicable.
-    cmac_special_handling.text().set(cap_message.child("scope").text().get()); //TODO: Ensure correctness.
-    cmac_sender.text().set(cap_message.child("sender").text().get());
-    cmac_sent_date_time.text().set(date_time_str.c_str());
-    cmac_status.text().set(cap_message.child("status").text().get());
-    cmac_message_type.text().set(cap_message.child("msgType").text().get());
-    cmac_response_code.text().set(cap_message.child("info").child("responseType").text().get());
 
-    if (cap_message.child("note")) {
-        cmac_note.text().set(cap_message.child("note").text().get());
-    }
-
-    cmac_cap_alert_uri.text().set("Temporary value"); //TODO: Determine how to obtain from the gateway.
-    cmac_cap_identifier.text().set(cap_message.child("identifier").text().get());
-    cmac_cap_sent_date_time.text().set(cap_message.child("sent").text().get());
 
     cmac_category.text().set(cap_message.child("info").child("category").text().get());
 
