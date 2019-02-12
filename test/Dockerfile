@@ -8,7 +8,7 @@ WORKDIR "/usr/src/cadg"
 COPY . .
 
 # You have to set an explicit error code, otherwise it goes undetected and you have to check the logs to see if there is an issue
-RUN cppcheck --error-exitcode=1 .
+RUN cppcheck --error-exitcode=1 i/usr/src/cadg/gSoapFiles -i/usr/src/cadg/nanodbc -i/usr/src/cadg/util .
 
 # Lint the files
 RUN ./cpplint.py --headers=h --extensions=cpp --linelength=120 \
