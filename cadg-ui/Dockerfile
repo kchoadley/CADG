@@ -5,9 +5,8 @@
 # Get base node image from Docker Hub
 FROM node:latest
 
-# Copy apache configuration file into the Docker
 COPY . /cadg-ui
-
 WORKDIR /cadg-ui
 
+RUN npm install
 RUN npm run build

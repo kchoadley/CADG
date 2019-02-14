@@ -56,7 +56,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "postbuild": "cp -r build/. ../docker-cadg-apache/html_files",
+    "postbuild": "mkdir -p ../docker-cadg-apache/html_files && rm -rf ../docker-cadg-apache/html_files/* && cp -r build/. ../docker-cadg-apache/html_files",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
