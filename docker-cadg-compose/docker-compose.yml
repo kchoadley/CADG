@@ -6,8 +6,11 @@ services:
                         - "8080:80"
                 depends_on:
                         - "cadg-rest"
+                        - "cadg-ui"
                 networks:
                         - cadgnet
+                volumes:
+                        - "react-app:/usr/local/apache2/htdocs"
         cadg-rest:
                 build: ../rest-server/
                 tty: true
@@ -28,5 +31,11 @@ services:
                 build: ../cadg-db
                 networks:
                         - cadgnet
+        cadg-ui:
+                build: ../cadg-ui
+                volumes:
+                        - "react-app:/cadg-ui/build"
 networks:
         cadgnet:
+volumes:
+        react-app:
