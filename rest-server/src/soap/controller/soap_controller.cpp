@@ -10,6 +10,8 @@
 #include "log_level.hpp"
 #include "../../gSoapFiles/CAP/soapH.h"
 #include "../../gSoapFiles/CAP/ns2.nsmap"
+#include "cap_validation.hpp"
+#include "cap_validation.hpp"
 using cadg_rest::LogLevel;
 
 namespace cadg_soap {
@@ -33,7 +35,7 @@ namespace cadg_soap {
             ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input stream
             // should read the soap context and output the details to the alertMessage object
             soap_read__ns2__alert(&ctx, &alertMessage);
-            logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
+            bool alert_is_valid = cap_validation::from_soap_alert(alertMessage);
             message.reply(status_codes::OK, "Got it");
         } catch (std::exception& e) {
             message.reply(SOAP_FAULT);
