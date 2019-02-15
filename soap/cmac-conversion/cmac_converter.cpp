@@ -35,8 +35,7 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     root_node.append_attribute("xmlns") = "\"cmac:2.0\""; //TODO: Check value. Potentially temporary.
 
     //Creating the node structure and node content for the CMAC_Alert_Attributes block.
-    //All node variable names match the corresponding CMAC
-    //structure as closely as possible.
+    //All node variable names match the corresponding CMAC structure as closely as possible.
     auto cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
     cmac_protocol_version.text().set("2.0"); //TODO: Determine how to get the protocol version based on either CAP message or other source.
 
@@ -111,21 +110,49 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         cmac_cap_sent_date_time.text().set(cap_message.child("sent").text().get());
     }
 
+    //Creating the node structure and node content for the CMAC_alert_info block.
+    //All node variable names match the corresponding CMAC structure as closely as possible.
+    //TODO: Complete when CMAC object is available.
+    if (true) {
+        auto cmac_alert_info = root_node.append_child("CMAC_alert_info");
+        auto cmac_category = cmac_alert_info.append_child("CMAC_category");
+        cmac_category.text().set(cap_message.child("info").child("category").text().get());
 
-    auto cmac_alert_info = root_node.append_child("CMAC_alert_info");
-    auto cmac_category = cmac_alert_info.append_child("CMAC_category");
-    auto cmac_event_code = cmac_alert_info.append_child("CMAC_event_code");
-    auto cmac_response_type = cmac_alert_info.append_child("CMAC_response_type");
-    auto cmac_severity = cmac_alert_info.append_child("CMAC_severity");
-    auto cmac_urgency = cmac_alert_info.append_child("CMAC_urgency");
-    auto cmac_certainty = cmac_alert_info.append_child("CMAC_certainty");
-    auto cmac_expires_date_time = cmac_alert_info.append_child("CMAC_expires_date_time");
-    auto cmac_sender_name = cmac_alert_info.append_child("CMAC_sender_name");
+        //TODO: Complete when CMAC object is available.
+        if (true) {
+            auto cmac_response_type = cmac_alert_info.append_child("CMAC_response_type");
+            cmac_response_type.text().set(cap_message.child("info").child("responseType").text().get());
+        }
+
+        auto cmac_severity = cmac_alert_info.append_child("CMAC_severity");
+        cmac_severity.text().set(cap_message.child("info").child("severity").text().get());
+
+        auto cmac_urgency = cmac_alert_info.append_child("CMAC_urgency");
+        cmac_urgency.text().set(cap_message.child("info").child("urgency").text().get());
+
+        auto cmac_certainty = cmac_alert_info.append_child("CMAC_certainty");
+        cmac_certainty.text().set(cap_message.child("info").child("certainty").text().get());
+
+        auto cmac_expires_date_time = cmac_alert_info.append_child("CMAC_expires_date_time");
+        cmac_expires_date_time.text().set(cap_message.child("info").child("expires").text().get());
+
+        //TODO: Complete when CMAC object is available.
+        if (true) {
+            auto cmac_sender_name = cmac_alert_info.append_child("CMAC_sender_name");
+            cmac_sender_name.text().set(cap_message.child("info").child("senderName").text().get());
+        }
+    }
+
+
+    //Creating the node structure and node content for the CMAC_Alert_Text block.
+    //All node variable names match the corresponding CMAC structure as closely as possible.
     auto cmac_text_language = cmac_alert_info.append_child("CMAC_text_language");
     auto cmac_text_alert_message_length = cmac_alert_info.append_child("CMAC_text_alert_message_length");
     auto cmac_text_alert_message = cmac_alert_info.append_child("CMAC_text_alert_message");
-    auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
 
+    //Creating the node structure and node content for the CMAC_Alert_Area block.
+    //All node variable names match the corresponding CMAC structure as closely as possible.
+    auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
     auto cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
     auto cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
     auto cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
@@ -145,6 +172,8 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         }
     }
 
+    //Creating the node structure and node content for the CMAC_Digital_Signature block.
+    //All node variable names match the corresponding CMAC structure as closely as possible.
     auto cmac_digital_signature = root_node.append_child("CMAC_Digital_Signature");
 
     auto signature = cmac_digital_signature.append_child("Signature");
@@ -172,29 +201,6 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     auto x509_certificate = x509_data.append_child("X509Certificate");
 
     //Setting values for all CMAC document nodes.
-
-
-    cmac_category.text().set(cap_message.child("info").child("category").text().get());
-
-    //TODO: Verify if this if-else is even necessary.
-    std::string special_handling = cmac_special_handling.text().get();
-    if (special_handling.compare("Presidential") == 0) {
-        cmac_event_code.text().set("EAN");
-    }
-    else if (special_handling.compare("Child Abduction") == 0) {
-        cmac_event_code.text().set("CAE");
-    }
-    else if (special_handling.compare("Required Monthly Test") == 0) {
-        cmac_event_code.text().set("RMT");
-    }
-
-    cmac_response_type.text().set(cap_message.child("info").child("responseType").text().get());
-    cmac_severity.text().set(cap_message.child("info").child("severity").text().get());
-    cmac_urgency.text().set(cap_message.child("info").child("urgency").text().get());
-    cmac_certainty.text().set(cap_message.child("info").child("certainty").text().get());
-    cmac_expires_date_time.text().set(cap_message.child("info").child("expires").text().get());
-    cmac_sender_name.text().set(cap_message.child("info").child("senderName").text().get());
-
     if (cap_message.child("language")) {
         cmac_text_language.text().set(cap_message.child("language").text().get());
     }
@@ -233,5 +239,3 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
 //int main() {
 //    CMAC::convert("soap_message_test.xml", "test.xml");
 //}
-
-
