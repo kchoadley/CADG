@@ -12,14 +12,16 @@
  */
 
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router'
 import adminReducer from './adminReducer';
 import alertReducer from './alertReducer';
 import cmspReducer from './cmspReducer';
 import aogReducer from './aogReducer';
 
-export default combineReducers({
+export default (history) => combineReducers({
   admins: adminReducer,
   alerts: alertReducer,
   cmsps: cmspReducer,
-  aogs: aogReducer
+  aogs: aogReducer,
+  router: connectRouter(history)
 })
