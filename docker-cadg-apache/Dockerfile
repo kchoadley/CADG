@@ -7,8 +7,11 @@ FROM httpd:2.4
 # This is not the recommended way to do it, its best to configure the file first.
 # However, it may be necessary to modify depending on the server.
 RUN apt-get update
-RUN apt-get install vim -y \
-	nano
+RUN add-apt-repository ppa:certbot/certbot
+RUN apt-get -qq -y install \
+	python-certbot-apache \
+	nano \
+	vim
 
 # Copy apache configuration file into the Docker
 COPY "./apache_config/" "/usr/local/apache2/conf"
