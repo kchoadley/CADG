@@ -143,34 +143,57 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         }
     }
 
+    //TODO: Complete when CMAC object is available.
+    for (int i = 0; i < 9001; i++) {
+        //Creating the node structure and node content for the CMAC_Alert_Area block.
+        //All node variable names match the corresponding CMAC structure as closely as possible.
+        auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
+        auto cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
+        cmac_area_description.text().set(cap_message.child("info").child("area").child("areaDesc").text().get());
+
+        //TODO: Complete when CMAC object is available.
+        for (int j = 0; j < 9001; j++) {
+            auto cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
+            cmac_polygon.text().set(cap_message.child("info").child("area").child("polygon").text().get());
+        }
+
+        //TODO: Complete when CMAC object is available.
+        for (int j = 0; j < 9001; j++) {
+            auto cmac_circle = cmac_alert_area.append_child("CMAC_circle");
+            cmac_circle.text().set(cap_message.child("info").child("area").child("circle").text().get());
+        }
+
+        //TODO: Complete when CMAC object is available.
+        for (int j = 0; j < 9001; j++) {
+            auto cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
+            cmac_cmas_geocode.text().set("Temporary value"); //TODO: Determine value
+        }
+
+        //Creating geocode nodes and filling with content
+        for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
+            std::string node_name = geocode.name();
+            if(node_name.compare("geocode") == 0) {
+                auto cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
+                auto value_name = cmac_cap_geocode.append_child("valueName");
+                auto value = cmac_cap_geocode.append_child("value");
+
+                value_name.text().set(geocode.child("valueName").text().get());
+                value.text().set(geocode.child("value").text().get());
+            }
+        }
+
+        //TODO: Complete when CMAC object is available.
+        for (int j = 0; j < 9001; j++) {
+            auto cmac_gnis = cmac_alert_area.append_child("CMAC_gnis");
+            cmac_gnis.text().set("Temporary value"); //TODO: Determine value
+        }
+    }
 
     //Creating the node structure and node content for the CMAC_Alert_Text block.
     //All node variable names match the corresponding CMAC structure as closely as possible.
     auto cmac_text_language = cmac_alert_info.append_child("CMAC_text_language");
     auto cmac_text_alert_message_length = cmac_alert_info.append_child("CMAC_text_alert_message_length");
     auto cmac_text_alert_message = cmac_alert_info.append_child("CMAC_text_alert_message");
-
-    //Creating the node structure and node content for the CMAC_Alert_Area block.
-    //All node variable names match the corresponding CMAC structure as closely as possible.
-    auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
-    auto cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
-    auto cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
-    auto cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
-
-    //Creating geocode nodes and filling with content
-    for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
-        std::string node_name = geocode.name();
-        //std::cout << node_name << ' ';
-        if(node_name.compare("geocode") == 0) {
-            //std::cout << " made it ";
-            auto cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
-            auto value_name = cmac_cap_geocode.append_child("valueName");
-            auto value = cmac_cap_geocode.append_child("value");
-
-            value_name.text().set(geocode.child("valueName").text().get());
-            value.text().set(geocode.child("value").text().get());
-        }
-    }
 
     //Creating the node structure and node content for the CMAC_Digital_Signature block.
     //All node variable names match the corresponding CMAC structure as closely as possible.
@@ -209,11 +232,7 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     cmac_text_alert_message_length.text().set(alert_message.length());
     cmac_text_alert_message.text().set(cap_message.child("info").child("description").text().get());
 
-    cmac_area_description.text().set(cap_message.child("info").child("area").child("areaDesc").text().get());
-    if (cap_message.child("info").child("area").child("polygon")) {
-        cmac_polygon.text().set(cap_message.child("info").child("area").child("polygon").text().get());
-    }
-    cmac_cmas_geocode.text().set(cap_message.child("info").child("area").child("polygon").text().get());
+
 
     canonicalization_method.append_attribute("Algorithm");
     canonicalization_method.attribute("Algorithm") = "http://www.w3.org/2001/10/xml-exc-c14n#";
