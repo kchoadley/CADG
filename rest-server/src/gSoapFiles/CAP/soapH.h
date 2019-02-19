@@ -840,7 +840,6 @@ inline void soap_default__ns2__alert_status(struct soap *soap, enum _ns2__alert_
 #ifdef SOAP_DEFAULT__ns2__alert_status
 	*a = SOAP_DEFAULT__ns2__alert_status;
 #else
-//	*a = (enum _ns2__alert_status)0;
 	*a = (enum _ns2__alert_status)-1; // Modified generated code, 0 to -1.
 #endif
 }

@@ -35,8 +35,15 @@ namespace cadg_soap {
             ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input stream
             // should read the soap context and output the details to the alertMessage object
             soap_read__ns2__alert(&ctx, &alertMessage);
-            bool alert_is_valid = cap_validation::from_soap_alert(alertMessage);
-            message.reply(status_codes::OK, "Got it");
+            bool alert_is_valid = cap_validation::validate_soap_alert(alertMessage);
+            if (!alert_is_valid) {
+                logger__.Log(LogLevel::DEBUG, "Soap alert invalid.", "SoapController", "HandlePost");
+                message.reply(status_codes::UnprocessableEntity, "Invalid CAP message.");
+            }
+            else {
+                logger__.Log(LogLevel::DEBUG, "Soap alert valid.", "SoapController", "HandlePost");
+                message.reply(status_codes::OK, "Got it");
+            }
         } catch (std::exception& e) {
             message.reply(SOAP_FAULT);
         }
