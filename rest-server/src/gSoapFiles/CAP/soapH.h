@@ -840,7 +840,6 @@ inline void soap_default__ns2__alert_status(struct soap *soap, enum _ns2__alert_
 #ifdef SOAP_DEFAULT__ns2__alert_status
 	*a = SOAP_DEFAULT__ns2__alert_status;
 #else
-//	*a = (enum _ns2__alert_status)0;
 	*a = (enum _ns2__alert_status)-1; // Modified generated code, 0 to -1.
 #endif
 }
@@ -923,9 +922,9 @@ inline _ns2__alert_info_area_geocode * soap_new__ns2__alert_info_area_geocode(st
 }
 
 inline _ns2__alert_info_area_geocode * soap_new_req__ns2__alert_info_area_geocode(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_area_geocode *_p = ::soap_new__ns2__alert_info_area_geocode(soap);
 	if (_p)
@@ -937,9 +936,9 @@ inline _ns2__alert_info_area_geocode * soap_new_req__ns2__alert_info_area_geocod
 }
 
 inline _ns2__alert_info_area_geocode * soap_new_set__ns2__alert_info_area_geocode(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_area_geocode *_p = ::soap_new__ns2__alert_info_area_geocode(soap);
 	if (_p)
@@ -1020,8 +1019,8 @@ inline _ns2__alert_info_area * soap_new__ns2__alert_info_area(struct soap *soap,
 }
 
 inline _ns2__alert_info_area * soap_new_req__ns2__alert_info_area(
-		struct soap *soap,
-		const std::string& areaDesc)
+	struct soap *soap,
+	const std::string& areaDesc)
 {
 	_ns2__alert_info_area *_p = ::soap_new__ns2__alert_info_area(soap);
 	if (_p)
@@ -1032,13 +1031,13 @@ inline _ns2__alert_info_area * soap_new_req__ns2__alert_info_area(
 }
 
 inline _ns2__alert_info_area * soap_new_set__ns2__alert_info_area(
-		struct soap *soap,
-		const std::string& areaDesc,
-		const std::vector<std::string> & polygon,
-		const std::vector<std::string> & circle,
-		const std::vector<_ns2__alert_info_area_geocode> & geocode,
-		std::string *altitude,
-		std::string *ceiling)
+	struct soap *soap,
+	const std::string& areaDesc,
+	const std::vector<std::string> & polygon,
+	const std::vector<std::string> & circle,
+	const std::vector<_ns2__alert_info_area_geocode> & geocode,
+	std::string *altitude,
+	std::string *ceiling)
 {
 	_ns2__alert_info_area *_p = ::soap_new__ns2__alert_info_area(soap);
 	if (_p)
@@ -1123,9 +1122,9 @@ inline _ns2__alert_info_resource * soap_new__ns2__alert_info_resource(struct soa
 }
 
 inline _ns2__alert_info_resource * soap_new_req__ns2__alert_info_resource(
-		struct soap *soap,
-		const std::string& resourceDesc,
-		const std::string& mimeType)
+	struct soap *soap,
+	const std::string& resourceDesc,
+	const std::string& mimeType)
 {
 	_ns2__alert_info_resource *_p = ::soap_new__ns2__alert_info_resource(soap);
 	if (_p)
@@ -1137,13 +1136,13 @@ inline _ns2__alert_info_resource * soap_new_req__ns2__alert_info_resource(
 }
 
 inline _ns2__alert_info_resource * soap_new_set__ns2__alert_info_resource(
-		struct soap *soap,
-		const std::string& resourceDesc,
-		const std::string& mimeType,
-		std::string *size,
-		std::string *uri,
-		std::string *derefUri,
-		std::string *digest)
+	struct soap *soap,
+	const std::string& resourceDesc,
+	const std::string& mimeType,
+	std::string *size,
+	std::string *uri,
+	std::string *derefUri,
+	std::string *digest)
 {
 	_ns2__alert_info_resource *_p = ::soap_new__ns2__alert_info_resource(soap);
 	if (_p)
@@ -1228,9 +1227,9 @@ inline _ns2__alert_info_parameter * soap_new__ns2__alert_info_parameter(struct s
 }
 
 inline _ns2__alert_info_parameter * soap_new_req__ns2__alert_info_parameter(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_parameter *_p = ::soap_new__ns2__alert_info_parameter(soap);
 	if (_p)
@@ -1242,9 +1241,9 @@ inline _ns2__alert_info_parameter * soap_new_req__ns2__alert_info_parameter(
 }
 
 inline _ns2__alert_info_parameter * soap_new_set__ns2__alert_info_parameter(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_parameter *_p = ::soap_new__ns2__alert_info_parameter(soap);
 	if (_p)
@@ -1325,9 +1324,9 @@ inline _ns2__alert_info_eventCode * soap_new__ns2__alert_info_eventCode(struct s
 }
 
 inline _ns2__alert_info_eventCode * soap_new_req__ns2__alert_info_eventCode(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_eventCode *_p = ::soap_new__ns2__alert_info_eventCode(soap);
 	if (_p)
@@ -1339,9 +1338,9 @@ inline _ns2__alert_info_eventCode * soap_new_req__ns2__alert_info_eventCode(
 }
 
 inline _ns2__alert_info_eventCode * soap_new_set__ns2__alert_info_eventCode(
-		struct soap *soap,
-		const std::string& valueName,
-		const std::string& value)
+	struct soap *soap,
+	const std::string& valueName,
+	const std::string& value)
 {
 	_ns2__alert_info_eventCode *_p = ::soap_new__ns2__alert_info_eventCode(soap);
 	if (_p)
@@ -1422,12 +1421,12 @@ inline _ns2__alert_info * soap_new__ns2__alert_info(struct soap *soap, int n = -
 }
 
 inline _ns2__alert_info * soap_new_req__ns2__alert_info(
-		struct soap *soap,
-		const std::vector<enum _ns2__alert_info_category> & category,
-		const std::string& event,
-		enum _ns2__alert_info_urgency urgency,
-		enum _ns2__alert_info_severity severity,
-		enum _ns2__alert_info_certainty certainty)
+	struct soap *soap,
+	const std::vector<enum _ns2__alert_info_category> & category,
+	const std::string& event,
+	enum _ns2__alert_info_urgency urgency,
+	enum _ns2__alert_info_severity severity,
+	enum _ns2__alert_info_certainty certainty)
 {
 	_ns2__alert_info *_p = ::soap_new__ns2__alert_info(soap);
 	if (_p)
@@ -1442,28 +1441,28 @@ inline _ns2__alert_info * soap_new_req__ns2__alert_info(
 }
 
 inline _ns2__alert_info * soap_new_set__ns2__alert_info(
-		struct soap *soap,
-		std::string *language,
-		const std::vector<enum _ns2__alert_info_category> & category,
-		const std::string& event,
-		const std::vector<enum _ns2__alert_info_responseType> & responseType,
-		enum _ns2__alert_info_urgency urgency,
-		enum _ns2__alert_info_severity severity,
-		enum _ns2__alert_info_certainty certainty,
-		std::string *audience,
-		const std::vector<_ns2__alert_info_eventCode> & eventCode,
-		time_t *effective,
-		time_t *onset,
-		time_t *expires,
-		std::string *senderName,
-		std::string *headline,
-		std::string *description,
-		std::string *instruction,
-		std::string *web,
-		std::string *contact,
-		const std::vector<_ns2__alert_info_parameter> & parameter,
-		const std::vector<_ns2__alert_info_resource> & resource,
-		const std::vector<_ns2__alert_info_area> & area)
+	struct soap *soap,
+	std::string *language,
+	const std::vector<enum _ns2__alert_info_category> & category,
+	const std::string& event,
+	const std::vector<enum _ns2__alert_info_responseType> & responseType,
+	enum _ns2__alert_info_urgency urgency,
+	enum _ns2__alert_info_severity severity,
+	enum _ns2__alert_info_certainty certainty,
+	std::string *audience,
+	const std::vector<_ns2__alert_info_eventCode> & eventCode,
+	time_t *effective,
+	time_t *onset,
+	time_t *expires,
+	std::string *senderName,
+	std::string *headline,
+	std::string *description,
+	std::string *instruction,
+	std::string *web,
+	std::string *contact,
+	const std::vector<_ns2__alert_info_parameter> & parameter,
+	const std::vector<_ns2__alert_info_resource> & resource,
+	const std::vector<_ns2__alert_info_area> & area)
 {
 	_ns2__alert_info *_p = ::soap_new__ns2__alert_info(soap);
 	if (_p)
@@ -1563,13 +1562,13 @@ inline _ns2__alert * soap_new__ns2__alert(struct soap *soap, int n = -1)
 }
 
 inline _ns2__alert * soap_new_req__ns2__alert(
-		struct soap *soap,
-		const std::string& identifier,
-		const std::string& sender,
-		time_t sent,
-		enum _ns2__alert_status status,
-		enum _ns2__alert_msgType msgType,
-		enum _ns2__alert_scope scope)
+	struct soap *soap,
+	const std::string& identifier,
+	const std::string& sender,
+	time_t sent,
+	enum _ns2__alert_status status,
+	enum _ns2__alert_msgType msgType,
+	enum _ns2__alert_scope scope)
 {
 	_ns2__alert *_p = ::soap_new__ns2__alert(soap);
 	if (_p)
@@ -1585,22 +1584,22 @@ inline _ns2__alert * soap_new_req__ns2__alert(
 }
 
 inline _ns2__alert * soap_new_set__ns2__alert(
-		struct soap *soap,
-		const std::string& identifier,
-		const std::string& sender,
-		time_t sent,
-		enum _ns2__alert_status status,
-		enum _ns2__alert_msgType msgType,
-		std::string *source,
-		enum _ns2__alert_scope scope,
-		std::string *restriction,
-		std::string *addresses,
-		const std::vector<std::string> & code,
-		std::string *note,
-		std::string *references,
-		std::string *incidents,
-		const std::vector<_ns2__alert_info> & info,
-		const std::vector<char *> & __any)
+	struct soap *soap,
+	const std::string& identifier,
+	const std::string& sender,
+	time_t sent,
+	enum _ns2__alert_status status,
+	enum _ns2__alert_msgType msgType,
+	std::string *source,
+	enum _ns2__alert_scope scope,
+	std::string *restriction,
+	std::string *addresses,
+	const std::vector<std::string> & code,
+	std::string *note,
+	std::string *references,
+	std::string *incidents,
+	const std::vector<_ns2__alert_info> & info,
+	const std::vector<char *> & __any)
 {
 	_ns2__alert *_p = ::soap_new__ns2__alert(soap);
 	if (_p)
@@ -2033,7 +2032,7 @@ inline std::string * soap_new_std__string(struct soap *soap, int n = -1)
 }
 
 inline std::string * soap_new_req_std__string(
-		struct soap *soap)
+	struct soap *soap)
 {
 	std::string *_p = ::soap_new_std__string(soap);
 	if (_p)
@@ -2043,7 +2042,7 @@ inline std::string * soap_new_req_std__string(
 }
 
 inline std::string * soap_new_set_std__string(
-		struct soap *soap)
+	struct soap *soap)
 {
 	std::string *_p = ::soap_new_std__string(soap);
 	if (_p)
@@ -2128,7 +2127,7 @@ inline struct SOAP_ENV__Fault * soap_new_SOAP_ENV__Fault(struct soap *soap, int 
 }
 
 inline struct SOAP_ENV__Fault * soap_new_req_SOAP_ENV__Fault(
-		struct soap *soap)
+	struct soap *soap)
 {
 	struct SOAP_ENV__Fault *_p = ::soap_new_SOAP_ENV__Fault(soap);
 	if (_p)
@@ -2138,16 +2137,16 @@ inline struct SOAP_ENV__Fault * soap_new_req_SOAP_ENV__Fault(
 }
 
 inline struct SOAP_ENV__Fault * soap_new_set_SOAP_ENV__Fault(
-		struct soap *soap,
-		char *faultcode,
-		char *faultstring,
-		char *faultactor,
-		struct SOAP_ENV__Detail *detail,
-		struct SOAP_ENV__Code *SOAP_ENV__Code,
-		struct SOAP_ENV__Reason *SOAP_ENV__Reason,
-		char *SOAP_ENV__Node,
-		char *SOAP_ENV__Role,
-		struct SOAP_ENV__Detail *SOAP_ENV__Detail)
+	struct soap *soap,
+	char *faultcode,
+	char *faultstring,
+	char *faultactor,
+	struct SOAP_ENV__Detail *detail,
+	struct SOAP_ENV__Code *SOAP_ENV__Code,
+	struct SOAP_ENV__Reason *SOAP_ENV__Reason,
+	char *SOAP_ENV__Node,
+	char *SOAP_ENV__Role,
+	struct SOAP_ENV__Detail *SOAP_ENV__Detail)
 {
 	struct SOAP_ENV__Fault *_p = ::soap_new_SOAP_ENV__Fault(soap);
 	if (_p)
@@ -2170,7 +2169,7 @@ inline int soap_write_SOAP_ENV__Fault(struct soap *soap, struct SOAP_ENV__Fault 
 {
 	soap_free_temp(soap);
 	if (soap_begin_send(soap) || (::soap_serialize_SOAP_ENV__Fault(soap, p), 0) || ::soap_put_SOAP_ENV__Fault(soap, p, "SOAP-ENV:Fault", "") || soap_end_send(soap))
-		return soap->error;
+			return soap->error;
 	return SOAP_OK;
 }
 
@@ -2242,7 +2241,7 @@ inline struct SOAP_ENV__Reason * soap_new_SOAP_ENV__Reason(struct soap *soap, in
 }
 
 inline struct SOAP_ENV__Reason * soap_new_req_SOAP_ENV__Reason(
-		struct soap *soap)
+	struct soap *soap)
 {
 	struct SOAP_ENV__Reason *_p = ::soap_new_SOAP_ENV__Reason(soap);
 	if (_p)
@@ -2252,8 +2251,8 @@ inline struct SOAP_ENV__Reason * soap_new_req_SOAP_ENV__Reason(
 }
 
 inline struct SOAP_ENV__Reason * soap_new_set_SOAP_ENV__Reason(
-		struct soap *soap,
-		char *SOAP_ENV__Text)
+	struct soap *soap,
+	char *SOAP_ENV__Text)
 {
 	struct SOAP_ENV__Reason *_p = ::soap_new_SOAP_ENV__Reason(soap);
 	if (_p)
@@ -2268,7 +2267,7 @@ inline int soap_write_SOAP_ENV__Reason(struct soap *soap, struct SOAP_ENV__Reaso
 {
 	soap_free_temp(soap);
 	if (soap_begin_send(soap) || (::soap_serialize_SOAP_ENV__Reason(soap, p), 0) || ::soap_put_SOAP_ENV__Reason(soap, p, "SOAP-ENV:Reason", "") || soap_end_send(soap))
-		return soap->error;
+			return soap->error;
 	return SOAP_OK;
 }
 
@@ -2340,9 +2339,9 @@ inline struct SOAP_ENV__Detail * soap_new_SOAP_ENV__Detail(struct soap *soap, in
 }
 
 inline struct SOAP_ENV__Detail * soap_new_req_SOAP_ENV__Detail(
-		struct soap *soap,
-		int __type,
-		void *fault)
+	struct soap *soap,
+	int __type,
+	void *fault)
 {
 	struct SOAP_ENV__Detail *_p = ::soap_new_SOAP_ENV__Detail(soap);
 	if (_p)
@@ -2354,10 +2353,10 @@ inline struct SOAP_ENV__Detail * soap_new_req_SOAP_ENV__Detail(
 }
 
 inline struct SOAP_ENV__Detail * soap_new_set_SOAP_ENV__Detail(
-		struct soap *soap,
-		char *__any,
-		int __type,
-		void *fault)
+	struct soap *soap,
+	char *__any,
+	int __type,
+	void *fault)
 {
 	struct SOAP_ENV__Detail *_p = ::soap_new_SOAP_ENV__Detail(soap);
 	if (_p)
@@ -2374,7 +2373,7 @@ inline int soap_write_SOAP_ENV__Detail(struct soap *soap, struct SOAP_ENV__Detai
 {
 	soap_free_temp(soap);
 	if (soap_begin_send(soap) || (::soap_serialize_SOAP_ENV__Detail(soap, p), 0) || ::soap_put_SOAP_ENV__Detail(soap, p, "SOAP-ENV:Detail", "") || soap_end_send(soap))
-		return soap->error;
+			return soap->error;
 	return SOAP_OK;
 }
 
@@ -2446,7 +2445,7 @@ inline struct SOAP_ENV__Code * soap_new_SOAP_ENV__Code(struct soap *soap, int n 
 }
 
 inline struct SOAP_ENV__Code * soap_new_req_SOAP_ENV__Code(
-		struct soap *soap)
+	struct soap *soap)
 {
 	struct SOAP_ENV__Code *_p = ::soap_new_SOAP_ENV__Code(soap);
 	if (_p)
@@ -2456,9 +2455,9 @@ inline struct SOAP_ENV__Code * soap_new_req_SOAP_ENV__Code(
 }
 
 inline struct SOAP_ENV__Code * soap_new_set_SOAP_ENV__Code(
-		struct soap *soap,
-		char *SOAP_ENV__Value,
-		struct SOAP_ENV__Code *SOAP_ENV__Subcode)
+	struct soap *soap,
+	char *SOAP_ENV__Value,
+	struct SOAP_ENV__Code *SOAP_ENV__Subcode)
 {
 	struct SOAP_ENV__Code *_p = ::soap_new_SOAP_ENV__Code(soap);
 	if (_p)
@@ -2474,7 +2473,7 @@ inline int soap_write_SOAP_ENV__Code(struct soap *soap, struct SOAP_ENV__Code co
 {
 	soap_free_temp(soap);
 	if (soap_begin_send(soap) || (::soap_serialize_SOAP_ENV__Code(soap, p), 0) || ::soap_put_SOAP_ENV__Code(soap, p, "SOAP-ENV:Code", "") || soap_end_send(soap))
-		return soap->error;
+			return soap->error;
 	return SOAP_OK;
 }
 
@@ -2546,7 +2545,7 @@ inline struct SOAP_ENV__Header * soap_new_SOAP_ENV__Header(struct soap *soap, in
 }
 
 inline struct SOAP_ENV__Header * soap_new_req_SOAP_ENV__Header(
-		struct soap *soap)
+	struct soap *soap)
 {
 	struct SOAP_ENV__Header *_p = ::soap_new_SOAP_ENV__Header(soap);
 	if (_p)
@@ -2556,7 +2555,7 @@ inline struct SOAP_ENV__Header * soap_new_req_SOAP_ENV__Header(
 }
 
 inline struct SOAP_ENV__Header * soap_new_set_SOAP_ENV__Header(
-		struct soap *soap)
+	struct soap *soap)
 {
 	struct SOAP_ENV__Header *_p = ::soap_new_SOAP_ENV__Header(soap);
 	if (_p)
@@ -2570,7 +2569,7 @@ inline int soap_write_SOAP_ENV__Header(struct soap *soap, struct SOAP_ENV__Heade
 {
 	soap_free_temp(soap);
 	if (soap_begin_send(soap) || (::soap_serialize_SOAP_ENV__Header(soap, p), 0) || ::soap_put_SOAP_ENV__Header(soap, p, "SOAP-ENV:Header", "") || soap_end_send(soap))
-		return soap->error;
+			return soap->error;
 	return SOAP_OK;
 }
 
