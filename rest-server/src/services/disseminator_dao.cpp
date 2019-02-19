@@ -46,7 +46,7 @@ bool DisseminatorDao::Requery() {
         nanodbc::result results;
         results = execute(connection, NANODBC_TEXT(
                 std::string("SELECT disseminator_id, disseminator_name, ") +
-                std::string("disseminator_type, message_format, ip, port, status ") +
+                std::string("disseminator_type, message_format, ip, port, backup_port, status ") +
                 std::string("FROM ") + db_disseminators_table__ + ";"));
         std::vector<Disseminator> temp_disseminators;
         while (results.next()) {
@@ -57,7 +57,8 @@ bool DisseminatorDao::Requery() {
             temp.format = results.get<std::string>(3, "");
             temp.ip = results.get<std::string>(4, "");
             temp.port = results.get<int>(5, 0);
-            temp.status = results.get<std::string>(6, "");
+            temp.backup_port = results.get<int>(6, 0);
+            temp.status = results.get<std::string>(7, "");
             // TODO(Kris): Verify all fields were populated and valid?
             temp_disseminators.push_back(temp);
         }
@@ -121,7 +122,7 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
         prepare(statement, NANODBC_TEXT(
                 std::string("INSERT INTO ") +
                 db_disseminators_table__ +
-                std::string("(disseminator_name, disseminator_type, message_format, ip, port, status) ") +
+                std::string("(disseminator_name, disseminator_type, message_format, ip, port, backup_port, status) ") +
                 std::string("values (?,?,?,?,?,?);")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
@@ -132,8 +133,9 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
         nanodbc::string const ip = NANODBC_TEXT(disseminator.ip);
         statement.bind(3, ip.c_str());
         statement.bind(4, &disseminator.port);
+        statement.bind(5, &disseminator.backup_port);
         nanodbc::string const status = NANODBC_TEXT(disseminator.status);
-        statement.bind(5, status.c_str());
+        statement.bind(6, status.c_str());
         execute(statement);
         // Get the ID of the newly created user record.
         nanodbc::result results;
@@ -160,7 +162,7 @@ std::optional<bool> DisseminatorDao::UpdateDisseminator(Disseminator disseminato
         prepare(statement, NANODBC_TEXT(
                 std::string("UPDATE") + db_disseminators_table__ +
                 std::string("SET disseminator_name = ?, disseminator_type = ?, ") +
-                std::string("message_format = ?, ip = ?, port = ?, status = ? ") +
+                std::string("message_format = ?, ip = ?, port = ?, backup_port = ?, status = ? ") +
                 std::string("WHERE id = ?;")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
@@ -171,9 +173,10 @@ std::optional<bool> DisseminatorDao::UpdateDisseminator(Disseminator disseminato
         nanodbc::string const ip = NANODBC_TEXT(disseminator.ip);
         statement.bind(3, ip.c_str());
         statement.bind(4, &disseminator.port);
+        statement.bind(5, &disseminator.backup_port);
         nanodbc::string const status = NANODBC_TEXT(disseminator.status);
-        statement.bind(5, status.c_str());
-        statement.bind(6, &disseminator.id);
+        statement.bind(6, status.c_str());
+        statement.bind(7, &disseminator.id);
         execute(statement);
         for (auto& temp : disseminators__) {
             if (temp.id == disseminator.id) {
@@ -182,6 +185,7 @@ std::optional<bool> DisseminatorDao::UpdateDisseminator(Disseminator disseminato
                 temp.format = disseminator.format;
                 temp.ip = disseminator.ip;
                 temp.port = disseminator.port;
+                temp.backup_port = disseminator.backup_port;
                 temp.status = disseminator.status;
                 break;
             }

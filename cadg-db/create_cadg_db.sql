@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
   `message_format` ENUM('CMAC') NULL,
   `ip` VARCHAR(45) NULL,
   `port` INT NULL,
+  `backup_port` INT NULL,
   `status` ENUM('ACTIVE', 'DISABLED') NULL,
   PRIMARY KEY (`disseminator_id`))
 ENGINE = InnoDB;
