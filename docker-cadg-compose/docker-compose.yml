@@ -6,8 +6,11 @@ services:
                         - "8080:80"
                 depends_on:
                         - "cadg-rest"
+                        - "cadg-ui"
                 networks:
                         - cadgnet
+                volumes:
+                        - "react-app:/usr/local/apache2/htdocs"
         cadg-rest:
                 build: ../rest-server/
                 tty: true
@@ -16,8 +19,10 @@ services:
                 depends_on:
                         - "cadg-db"
                 environment:
-                        - DB_TEST_NAME=${DB_TEST_NAME}
-                        - DB_TEST_TABLE=${DB_TEST_TABLE}
+                        - DB_ADMIN_NAME=${DB_ADMIN_NAME}
+                        - DB_ADMIN_TABLE=${DB_ADMIN_TABLE}
+                        - DB_ALERT_TABLE=${DB_ALERT_TABLE}
+                        - DB_CADG_NAME=${DB_CADG_NAME}
                         - DB_PASSWORD=${DB_PASSWORD}
                         - DB_PORT=${DB_PORT}
                         - DB_SERVER=${DB_SERVER}
@@ -26,5 +31,11 @@ services:
                 build: ../cadg-db
                 networks:
                         - cadgnet
+        cadg-ui:
+                build: ../cadg-ui
+                volumes:
+                        - "react-app:/cadg-ui/build"
 networks:
         cadgnet:
+volumes:
+        react-app:

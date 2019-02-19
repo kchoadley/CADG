@@ -1,6 +1,0 @@
-# Ignore anything that isn't in src
-# ** ignores everything in this directory when docker builds
-**
-## Aferwords, list exceptions, what should go into the docker container
-!/src/**
-!CMakeLists.txt

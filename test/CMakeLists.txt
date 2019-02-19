@@ -53,14 +53,12 @@ set(TEST_SOURCES
         rest-server/controller/controller_test.cpp
         soap/xml-parsing/xml_parser_test.cpp
         soap/xml-parsing/soap_message_test.xml
-        rest-server/controller/user_controller_test.cpp
+        rest-server/model/alert_test.cpp
         )
 
 set(CADG_SOURCES
         ../rest-server/src/controller/controller.cpp
-        ../rest-server/src/controller/user_controller.cpp
         ../rest-server/src/nanodbc/nanodbc.cpp
-        ../rest-server/src/services/data_access_object.cpp
         ../rest-server/src/services/logger.cpp
         ../rest-server/src/util/network_utils.cpp)
 
