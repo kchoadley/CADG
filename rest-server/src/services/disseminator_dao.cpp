@@ -4,22 +4,24 @@
  * Implementation of DisseminatorDao.
  *
  * @file        disseminator_dao.cpp
- * @authors     Michael McCulley
- * @date        January, 2019
+ * @authors     Michael McCulley, Kristofer Hoadley
+ * @date        February, 2019
  */
 #include <string>
 #include <vector>
 #include "disseminator_dao.hpp"
 #include "nanodbc.hpp"
 
-//TODO(Mike): Make database queries async.
+// TODO(Kris): Kris database queries async.
 
 namespace cadg_rest {
 DisseminatorDao& DisseminatorDao::Instance() {
     static DisseminatorDao instance;
     return instance;
 }
-DisseminatorDao::DisseminatorDao() : logger(Logger::Instance()){
+DisseminatorDao::DisseminatorDao() : logger__(Logger::Instance()) {
+    db_disseminators_table__ = getEnvVar("DB_DISSEMINATOR_TABLE");
+    std::string db_cadg_name__ = getEnvVar("DB_CADG_NAME");
     std::string db_password = getEnvVar("DB_PASSWORD");
     std::string db_port = getEnvVar("DB_PORT");
     if (db_port.empty()) {
@@ -31,23 +33,32 @@ DisseminatorDao::DisseminatorDao() : logger(Logger::Instance()){
     }
     std::string db_uid = getEnvVar("DB_UID");
     std::string db_driver = getEnvVar("DB_ODBC_DRIVER");
-    conn_str__ = "Driver={"+db_driver +"};Server="+ db_server +";Port="+ db_port
-            +";Database=cadg_db;Uid="+ db_uid +";Pwd="+ db_password +";";
-    logger.Log(LogLevel::INFO, "DisseminatorDao connection string is: " + conn_str__);
+    if (db_driver.empty()) {
+        db_driver = "MySQL8Driver";
+    }
+    conn_str__ = "Driver={"+ db_driver +"};Server="+ db_server +";Port="+ db_port
+            +";Database="+ db_cadg_name__ +";Uid="+ db_uid +";Pwd="+ db_password +";";
+    logger__.Log(LogLevel::INFO, "DisseminatorDao connection string is: " + conn_str__);
 }
 bool DisseminatorDao::Requery() {
     try {
         nanodbc::connection connection(conn_str__);
         nanodbc::result results;
-        results = execute(connection, NANODBC_TEXT("select id, name, type, format, ip from cadg.disseminator;"));
+        results = execute(connection, NANODBC_TEXT(
+                std::string("SELECT disseminator_id, disseminator_name, ") +
+                std::string("disseminator_type, message_format, ip, port, status ") +
+                std::string("FROM ") + db_disseminators_table__ + ";"));
         std::vector<Disseminator> temp_disseminators;
         while (results.next()) {
             Disseminator temp;
-            temp.id = results.get<int>(0,0);
-            temp.name = results.get<std::string>(1,"");
-            temp.type = results.get<std::string>(2,"");
-            temp.format = results.get<std::string>(3,"");
-            temp.ip = results.get<std::string>(4,"");
+            temp.id = results.get<int>(0, 0);
+            temp.name = results.get<std::string>(1, "");
+            temp.type = results.get<std::string>(2, "");
+            temp.format = results.get<std::string>(3, "");
+            temp.ip = results.get<std::string>(4, "");
+            temp.port = results.get<int>(5, 0);
+            temp.status = results.get<std::string>(6, "");
+            // TODO(Kris): Verify all fields were populated and valid?
             temp_disseminators.push_back(temp);
         }
         disseminators__ = temp_disseminators;
@@ -56,7 +67,7 @@ bool DisseminatorDao::Requery() {
         return false;
     }
 }
-std::vector<Disseminator> DisseminatorDao::GetDisseminators() {
+std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminators() {
     return disseminators__;
 }
 /**
@@ -66,7 +77,7 @@ std::vector<Disseminator> DisseminatorDao::GetDisseminators() {
  *       Will need to convert '%20' to space ' '.
  * 
  */
-std::vector<Disseminator> DisseminatorDao::GetDisseminatorsByName(const std::string& name) {
+std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorsByName(const std::string& name) {
     std::vector<Disseminator> matching_disseminators;
     for (auto& disseminator : disseminators__) {
         if (std::search(disseminator.name.begin(), disseminator.name.end(),
@@ -78,40 +89,40 @@ std::vector<Disseminator> DisseminatorDao::GetDisseminatorsByName(const std::str
     }
     return matching_disseminators;
 }
-/**
- * ID is the primary key of data type Disseminator.
- * This method will always return either and empty vector or
- * a vector with 1 Disseminator in it. Check returned vector size
- * to determine if there was a Disseminator with the associated ID.
- */
-std::vector<Disseminator> DisseminatorDao::GetDisseminatorByID(int id) {
+std::optional<Disseminator> DisseminatorDao::GetDisseminatorByID(int id) {
     std::vector<Disseminator> matching_disseminators;
     for (auto& disseminator : disseminators__) {
         if (disseminator.id == id) {
-            matching_disseminators.push_back(disseminator);
-            break;
+            return disseminator;
         }
     }
-    return matching_disseminators;
+    return std::nullopt;
 }
-bool DisseminatorDao::RemoveDisseminator(int id) {
+std::optional<bool> DisseminatorDao::RemoveDisseminator(int id) {
     try {
         nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("delete from cadg.disseminator where disseminator_id =?;"));
+        prepare(statement, NANODBC_TEXT(
+                std::string("DELETE FROM ") +
+                db_disseminators_table__ +
+                std::string("WHERE disseminator_id =?;")));
         statement.bind(0, &id);
         execute(statement);
         DisseminatorDao::Requery();
         return true;
     } catch (...) {
-        return false;
+        return std::nullopt;
     }
 }
-bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
+std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) {
     try {
         nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("insert into cadg.disseminator (name, type, format, ip) values (?,?,?,?);"));
+        prepare(statement, NANODBC_TEXT(
+                std::string("INSERT INTO ") +
+                db_disseminators_table__ +
+                std::string("(disseminator_name, disseminator_type, message_format, ip, port, status) ") +
+                std::string("values (?,?,?,?,?,?);")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
         nanodbc::string const type = NANODBC_TEXT(disseminator.type);
@@ -120,6 +131,9 @@ bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
         statement.bind(2, format.c_str());
         nanodbc::string const ip = NANODBC_TEXT(disseminator.ip);
         statement.bind(3, ip.c_str());
+        statement.bind(4, &disseminator.port);
+        nanodbc::string const status = NANODBC_TEXT(disseminator.status);
+        statement.bind(5, status.c_str());
         execute(statement);
         // Get the ID of the newly created user record.
         nanodbc::result results;
@@ -139,11 +153,15 @@ bool DisseminatorDao::AddDisseminator(Disseminator disseminator) {
         return false;
     }
 }
-bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
+std::optional<bool> DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
     try {
         nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("update cadg.disseminator set name = ?, type = ?, format = ?, ip = ? where id = ?;"));
+        prepare(statement, NANODBC_TEXT(
+                std::string("UPDATE") + db_disseminators_table__ +
+                std::string("SET disseminator_name = ?, disseminator_type = ?, ") +
+                std::string("message_format = ?, ip = ?, port = ?, status = ? ") +
+                std::string("WHERE id = ?;")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
         nanodbc::string const type = NANODBC_TEXT(disseminator.type);
@@ -152,8 +170,10 @@ bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
         statement.bind(2, format.c_str());
         nanodbc::string const ip = NANODBC_TEXT(disseminator.ip);
         statement.bind(3, ip.c_str());
-		nanodbc::string const id = NANODBC_TEXT(std::to_string(disseminator.id));
-		statement.bind(4, id.c_str());
+        statement.bind(4, &disseminator.port);
+        nanodbc::string const status = NANODBC_TEXT(disseminator.status);
+        statement.bind(5, status.c_str());
+        statement.bind(6, &disseminator.id);
         execute(statement);
         for (auto& temp : disseminators__) {
             if (temp.id == disseminator.id) {
@@ -161,6 +181,8 @@ bool DisseminatorDao::UpdateDisseminator(Disseminator disseminator) {
                 temp.type = disseminator.type;
                 temp.format = disseminator.format;
                 temp.ip = disseminator.ip;
+                temp.port = disseminator.port;
+                temp.status = disseminator.status;
                 break;
             }
         }

@@ -11,6 +11,7 @@
  */
 #ifndef DISSEMINATOR_DAO_INTERFACE_H
 #define DISSEMINATOR_DAO_INTERFACE_H
+#include <optional>
 #include <string>
 #include <vector>
 #include "disseminator.hpp"
@@ -27,7 +28,7 @@ class DisseminatorDaoInterface {
      * 
      * @return Vector of all disseminators.
      */
-    virtual std::vector<Disseminator> GetDisseminators() = 0;
+    virtual std::optional<std::vector<Disseminator>> GetDisseminators() = 0;
     /**
      * GetDisseminatorsByName gets all disseminators in the data store which have a name that
      * partially or fully matches the name argument.
@@ -35,34 +36,34 @@ class DisseminatorDaoInterface {
      * @param name The name of the disseminator(s) to search for.
      * @return Vector of all disseminators that match the name.
      */
-    virtual std::vector<Disseminator> GetDisseminatorsByName(const std::string& name) = 0;
+    virtual std::optional<std::vector<Disseminator>> GetDisseminatorsByName(const std::string& name) = 0;
     /**
      * GetDisseminatorByID gets the disseminator in the data store by id.
      * 
      * @param id The id of the disseminator to return.
      * @return Vector containing the found disseminator, or empty if there is no matching disseminator.
      */
-    virtual std::vector<Disseminator> GetDisseminatorByID(int id) = 0;
+    virtual std::optional<Disseminator> GetDisseminatorByID(int id) = 0;
     /**
      * RemoveDisseminator removes the disseminator in the data store by id.
      * 
      * @param id The id of the disseminator to remove.
      * @return Bool indicating successful removal.
      */
-    virtual bool RemoveDisseminator(int id) = 0;
+    virtual std::optional<bool> RemoveDisseminator(int id) = 0;
     /**
      * AddDisseminator adds the disseminator to the data store.
      * 
      * @param disseminator The disseminator to add to the data store.
      */
-    virtual bool AddDisseminator(Disseminator disseminator) = 0;
+    virtual std::optional<bool> AddDisseminator(Disseminator disseminator) = 0;
     /**
      * UpdateDisseminator updates a disseminator in the data store.
      * 
      * @param id The id of the disseminator to update.
      * @param disseminator_info The updated information for the disseminator.
      */
-    virtual bool UpdateDisseminator(Disseminator disseminator) = 0;
+    virtual std::optional<bool> UpdateDisseminator(Disseminator disseminator) = 0;
 };
 }
 #endif // DISSEMINATOR_DAO_INTERFACE_H

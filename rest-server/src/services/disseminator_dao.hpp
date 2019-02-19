@@ -1,19 +1,19 @@
-// Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
-//                  Shawn Hulce, Michael McCulley
 /// A DAO for disseminators.
 /**
  * This data access object adheres to the DisseminatorDaoInterface. It is a singleton,
  * accessed through the static method Instance().
  *
+ * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
+ *                  Shawn Hulce, Michael McCulley
+ *
  * @file        disseminator_dao.hpp
- * @authors     Michael McCulley
- * @date        January, 2019
+ * @authors     Michael McCulley, Kristofer Hoadley
+ * @date        February, 2019
  */
 #ifndef ADMIN_DAO_H
 #define ADMIN_DAO_H
 #include <string>
 #include <vector>
-#include "disseminator.hpp"
 #include "disseminator_dao_interface.hpp"
 #include "logger.hpp"
 #include "log_level.hpp"
@@ -36,12 +36,12 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     void operator=(DisseminatorDao const&) = delete;
 
     bool Requery();
-    std::vector<Disseminator> GetDisseminators() override;
-    std::vector<Disseminator> GetDisseminatorsByName(const std::string& name) override;
-    std::vector<Disseminator> GetDisseminatorByID(int id) override;
-    bool RemoveDisseminator(int id) override;
-    bool AddDisseminator(Disseminator disseminator) override;
-    bool UpdateDisseminator(Disseminator disseminator) override;
+    std::optional<std::vector<Disseminator>> GetDisseminators() override;
+    std::optional<std::vector<Disseminator>> GetDisseminatorsByName(const std::string& name) override;
+    std::optional<Disseminator> GetDisseminatorByID(int id) override;
+    std::optional<bool> RemoveDisseminator(int id) override;
+    std::optional<bool> AddDisseminator(Disseminator disseminator) override;
+    std::optional<bool> UpdateDisseminator(Disseminator disseminator) override;
     
   private:
     std::string getEnvVar(std::string const& key) {
@@ -51,7 +51,8 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     DisseminatorDao();
     std::vector<Disseminator> disseminators__;
     std::string conn_str__;
-    LoggerInterface& logger;
+    std::string db_disseminators_table__;
+    LoggerInterface& logger__;
 };
 }
 #endif // ADMIN_DAO_H
