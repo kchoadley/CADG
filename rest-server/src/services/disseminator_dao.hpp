@@ -10,8 +10,8 @@
  * @authors     Michael McCulley, Kristofer Hoadley
  * @date        February, 2019
  */
-#ifndef ADMIN_DAO_H
-#define ADMIN_DAO_H
+#ifndef DISSEMINATOR_DAO_H
+#define DISSEMINATOR_DAO_H
 #include <string>
 #include <vector>
 #include "disseminator_dao_interface.hpp"
@@ -55,4 +55,4 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     LoggerInterface& logger__;
 };
 }
-#endif // ADMIN_DAO_H
+#endif // DISSEMINATOR_DAO_H

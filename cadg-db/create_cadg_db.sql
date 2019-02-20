@@ -55,7 +55,7 @@ COMMENT = '				';
 DROP TABLE IF EXISTS `cadg`.`disseminator` ;
 
 CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
-  `disseminator_id` INT NOT NULL,
+  `disseminator_id` INT NOT NULL AUTO_INCREMENT,
   `disseminator_name` VARCHAR(45) NULL,
   `disseminator_type` ENUM('CMSP') NULL,
   `message_format` ENUM('CMAC') NULL,
