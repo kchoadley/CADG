@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Main = () => {
+const Home = () => {
   return (
     <div className='full-height'>
+      You are home!
     </div>
   );
 };
 
-export default Main;
+export default Home;

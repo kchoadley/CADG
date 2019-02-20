@@ -1,27 +1,27 @@
-/// Reduces actions dispatched for the cmsp store.
+/// Reduces actions dispatched for the alert store.
 /**
  * Reduces the actions dispatched with the intention of modifying
- * cmsp data within the store.
+ * alert data within the store.
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
- * @file alertReducer.js
+ * @file alertsReducer.js
  * @date February 2019
  * @authors Vaniya Agrawal
  */
 import {  /// Alert action types.
-  GET_CMSPS,
-  CREATE_CMSP,
-  UPDATE_CMSP,
-  REMOVE_CMSP } from "../actions/types";
+  GET_ALERTS,
+  SEND_ALERT,
+  UPDATE_ALERT,
+  CANCEL_ALERT } from "../actions/types";
 
 const initialState = {  /// Initialized with no active alerts.
-  active: {},
+  activeAlerts: {},
 }
 
-/// Main reducer for cmsp actions.
+/// Home reducer for alert actions.
 /**
- * Uses a switch statement to modify the cmsp store. Switch statement is used
+ * Uses a switch statement to modify the alert store. Switch statement is used
  * to determine which action has been dispatched and to modify the store accordingly.
  *
  * IMPORTANT!! The store is IMMUTABLE. ALL cases must return a COPY of the store,
@@ -34,19 +34,19 @@ const initialState = {  /// Initialized with no active alerts.
  */
 export default (state = initialState, action) => {
   switch(action.type) {
-    case GET_CMSPS:
+    case GET_ALERTS:
       return {
         ...state
       };
-    case CREATE_CMSP:
+    case SEND_ALERT:
       return {
         ...state,
       }
-    case UPDATE_CMSP:
+    case UPDATE_ALERT:
       return {
         ...state,
       };
-    case REMOVE_CMSP:
+    case CANCEL_ALERT:
       return {
         ...state,
       };

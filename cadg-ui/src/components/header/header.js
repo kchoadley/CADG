@@ -11,6 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import logo from '../../images/logo.svg';
 
 export default class Header extends Component {
   constructor(props) {
@@ -28,41 +29,38 @@ export default class Header extends Component {
     return (
       <div>
         <Navbar color="dark" dark fixed='true' expand="md">
+          <NavbarBrand href="/">
+            <b>OS-WASABI</b> <img src={logo} alt='logo' height='42' width='42'/> CADG
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand href="/"><b>OS-WASABI </b>CADG</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Originators
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Manage
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Add
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Disseminators
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Manage
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Add
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+
+              {/*Alerts*/}
               <NavItem>
-                <NavLink href="/login"><b>Login</b></NavLink>
+                <NavLink href="/alerts"><b>Alerts</b></NavLink>
               </NavItem>
+
+              {/*Originators*/}
+              <NavItem>
+                <NavLink href="/originators"><b>Originators</b></NavLink>
+              </NavItem>
+
+              {/*Disseminators*/}
+              <NavItem>
+                <NavLink href="/disseminators"><b>Disseminators</b></NavLink>
+              </NavItem>
+
+              {/*Admins*/}
+              <NavItem>
+                <NavLink href="/admins"><b>Administrators</b></NavLink>
+              </NavItem>
+
+              {/*Login*/}
+              <NavItem>
+                <NavLink className='text-white' href="/login"><b>Login</b></NavLink>
+              </NavItem>
+
             </Nav>
           </Collapse>
         </Navbar>

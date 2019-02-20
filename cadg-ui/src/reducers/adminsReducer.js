@@ -1,27 +1,38 @@
-/// Reduces actions dispatched for the aog store.
+/// Reduces actions dispatched for the admin store.
 /**
  * Reduces the actions dispatched with the intention of modifying
- * aog data within the store.
+ * admin data within the store.
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
- * @file alertReducer.js
+ * @file adminsReducer.js
  * @date February 2019
  * @authors Vaniya Agrawal
  */
-import {  /// Alert action types.
-  GET_AOGS,
-  CREATE_AOG,
-  UPDATE_AOG,
-  REMOVE_AOG } from "../actions/types";
+import {  /// User action types.
+  GET_ADMINS,
+  CREATE_ADMIN,
+  UPDATE_ADMIN,
+  REMOVE_ADMIN } from "../actions/types";
 
-const initialState = {  /// Initialized with no active alerts.
-  active: {},
+
+const initialState = {  /// Defaults to the guest user.
+  currUser: 0,
+  admins: {
+    0: {
+      username: 'guest',
+      name: 'Guest',
+    },
+    1: {
+      username: 'vsagrawal',
+      name: 'Vaniya'
+    }
+  }
 }
 
-/// Main reducer for aog actions.
+/// Home reducer for user actions.
 /**
- * Uses a switch statement to modify the aog store. Switch statement is used
+ * Uses a switch statement to modify the admin store. Switch statement is used
  * to determine which action has been dispatched and to modify the store accordingly.
  *
  * IMPORTANT!! The store is IMMUTABLE. ALL cases must return a COPY of the store,
@@ -34,19 +45,19 @@ const initialState = {  /// Initialized with no active alerts.
  */
 export default (state = initialState, action) => {
   switch(action.type) {
-    case GET_AOGS:
+    case GET_ADMINS:
       return {
         ...state
       };
-    case CREATE_AOG:
+    case CREATE_ADMIN:
       return {
         ...state,
       }
-    case UPDATE_AOG:
+    case UPDATE_ADMIN:
       return {
         ...state,
       };
-    case REMOVE_AOG:
+    case REMOVE_ADMIN:
       return {
         ...state,
       };
