@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import './css/App.css';
-import HeaderContent from './components/header-content/header-content';
-import Sidebar from './components/sidebar/sidebar';
-import MainContent from './components/main-content/main-content'
+import Header from './components/header/header-content';
+import Main from './components/main/sidebar';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <HeaderContent/>
-          <Sidebar/>
-          <MainContent/>
+          <Header/>
+          <Main/>
       </div>
     );
   }
