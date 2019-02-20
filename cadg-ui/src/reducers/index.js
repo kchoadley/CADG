@@ -13,10 +13,10 @@
 
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router'
-import adminReducer from './adminReducer';
-import alertReducer from './alertReducer';
-import cmspReducer from './cmspReducer';
-import aogReducer from './aogReducer';
+import adminReducer from './adminsReducer';
+import alertReducer from './alertsReducer';
+import cmspReducer from './disseminatorsReducer';
+import aogReducer from './originatorsReducer';
 
 export default (history) => combineReducers({
   admins: adminReducer,
