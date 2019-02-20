@@ -11,12 +11,12 @@
 
 #ifndef CAP_VALIDATION_H
 #define CAP_VALIDATION_H
-#include <optional>
 #include <logger.hpp>
 #include <logger_interface.hpp>
 #include "log_level.hpp"
 #include "../gSoapFiles/CAP/soapH.h"
 #include <time.h>
+#include <regex.h>
 
 namespace cap_validation {
     static std::string time_t_to_xml_dt_string(const time_t &time) {
@@ -28,7 +28,9 @@ namespace cap_validation {
             date_str = date_str.substr(0, date_str.size() - 2) + ":" + date_str.substr(date_str.size() - 2);
         return date_str;
     }
-
+    static bool validate_addresses_format(std::string addresses) {
+        return true;
+    }
     static bool validate_soap_alert(const _ns2__alert &alert) {
         try {
             auto &logger(cadg_rest::Logger::Instance());
@@ -77,7 +79,24 @@ namespace cap_validation {
             if (!ipaws_profile_code_found)
                 return false;
             // Validate conditional fields.
+            if (alert.restriction && *alert.restriction != "") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Restriction: " + *alert.restriction, "cap_validation", "validate_soap_alert");
+            } else if (alert.scope == _ns2__alert_scope__Restricted) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "No restriction provided with restricted scope.",
+                           "cap_validation", "validate_soap_alert");
+                return false;
+            }
 
+            if (alert.addresses && *alert.addresses != "") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Addresses: " + *alert.addresses, "cap_validation", "validate_soap_alert");
+                if (!validate_addresses_format(*alert.addresses)) {
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Invalid format for addresses.", "cap_validation", "validate_soap_alert");
+                    return false;
+                }
+            } else if (alert.scope == _ns2__alert_scope__Private) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "No addresses provided with private scope.", "cap_validation", "validate_soap_alert");
+                return false;
+            }
             // Validate format of all fields.
             return true;
         } catch (...) {
