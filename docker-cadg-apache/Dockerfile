@@ -15,3 +15,7 @@ COPY "./apache_config/" "/usr/local/apache2/conf"
 
 # Copy any HTML files to be served locally into the Docker
 COPY "./html_files/" "/usr/local/apache2/htdocs/"
+
+RUN mkdir "/usr/local/ssl_cert"
+
+COPY "./ssl_cert/" "/usr/local/ssl_cert"
