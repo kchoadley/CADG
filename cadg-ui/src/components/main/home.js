@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  Table,
-  Jumbotron,
-  Container,
-  Button,
-  Row,
-  Col
-} from 'reactstrap';
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Button from 'react-bootstrap/Button';
 
 const Home = () => {
   return (
@@ -19,13 +13,13 @@ const Home = () => {
             Welcome to the CADG Control Panel! This panel is for managing data,
             controlling configurations, and monitoring alert activity.
         </p>
-        <hr className="my-2" />
+        <hr className='my-2'/>
         <p>
           Use the links above to access data for alerts, originator
           groups, disseminators, and other administrators.
         </p>
-        <p className="lead">
-          <Button color="primary">Learn more</Button>
+        <p className='lead'>
+          <Button variant='dark'>Learn more</Button>
         </p>
       </Jumbotron>
       {/*</Container>*/}

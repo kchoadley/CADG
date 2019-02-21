@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import logo from '../../images/logo.svg';
 
 export default class Header extends Component {
@@ -25,41 +18,30 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed='top' expand="lg">
-          <NavbarBrand href="/">
+        <Navbar bg="dark" variant="dark" fixed='top' expand="lg">
+          <Navbar.Brand href="/">
             <b>OS-WASABI</b> <img src={logo} alt='logo' height='42' width='42'/> CADG
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          </Navbar.Brand>
+          <Navbar.Toggle onClick={this.toggle} />
+          <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto" navbar>
 
               {/*Alerts*/}
-              <NavItem>
-                <NavLink href="/alerts"><b>Alerts</b></NavLink>
-              </NavItem>
+                <Nav.Link href="/alerts"><b>Alerts</b></Nav.Link>
 
               {/*Originators*/}
-              <NavItem>
-                <NavLink href="/originators"><b>Originators</b></NavLink>
-              </NavItem>
+                <Nav.Link href="/originators"><b>Originators</b></Nav.Link>
 
               {/*Disseminators*/}
-              <NavItem>
-                <NavLink href="/disseminators"><b>Disseminators</b></NavLink>
-              </NavItem>
+                <Nav.Link href="/disseminators"><b>Disseminators</b></Nav.Link>
 
               {/*Admins*/}
-              <NavItem>
-                <NavLink href="/admins"><b>Administrators</b></NavLink>
-              </NavItem>
+                <Nav.Link href="/admins"><b>Administrators</b></Nav.Link>
 
               {/*Login*/}
-              <NavItem>
-                <NavLink className='text-white' href="/login"><b>Login</b></NavLink>
-              </NavItem>
-
+                <Nav.Link className='text-white' href="/login"><b>Login</b></Nav.Link>
             </Nav>
-          </Collapse>
+          </Navbar.Collapse>
         </Navbar>
       </div>
     );

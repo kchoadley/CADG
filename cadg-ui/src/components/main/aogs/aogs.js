@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Table,
-  Container,
-  Button,
-  Row,
-  Col
-} from 'reactstrap';
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import AddAOG from './add-aog-modal'
 
@@ -29,12 +27,14 @@ class AOGs extends Component {
   getAOG() {
     return (
       Object.keys(this.props.aogs).map((id) => {
+        let aog = this.props.aogs[id];
+        let color = aog.status === 'ACTIVE' ? 'success' : 'danger';
         return (
-          <tr style={{'font-size':'small'}}>
+          <tr key={id} style={{'fontSize':'small'}}>
             <th scope='row'>{id}</th>
-            <td>{this.props.aogs[id].originator_name}</td>
-            <td>{this.props.aogs[id].status}</td>
-            <td>{this.props.aogs[id].agency}</td>
+            <td>{aog.originator_name}</td>
+            <td color={color}>{aog.status}</td>
+            <td>{aog.agency}</td>
           </tr>
         );
       })
@@ -56,7 +56,7 @@ class AOGs extends Component {
           </Row>
           <br/>
           <Table hover responsive size='sm'>
-            <thead style={{'font-size':'medium'}}>
+            <thead style={{'fontSize':'medium'}}>
             <tr>
               <th>ID#</th>
               <th>Name</th>
