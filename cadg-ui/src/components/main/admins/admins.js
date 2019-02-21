@@ -3,10 +3,6 @@ import {
   Table,
   Container,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Row,
   Col
 } from 'reactstrap';
@@ -35,7 +31,7 @@ class Admins extends Component {
      Object.keys(this.props.admins).map((id) => {
        if(id >= 0){
          return (
-           <tr style={{'font-size':'small'}}>
+           <tr key={id} style={{'fontSize':'small'}}>
              <th scope='row'>{id}</th>
              <td>{this.props.admins[id].username}</td>
              <td>{this.props.admins[id].first_name}</td>
@@ -48,6 +44,7 @@ class Admins extends Component {
            </tr>
          );
        }
+       else return null;
      })
    )
   }
@@ -67,7 +64,7 @@ class Admins extends Component {
           </Row>
           <br/>
           <Table hover responsive size='sm'>
-            <thead style={{'font-size':'medium'}}>
+            <thead style={{'fontSize':'medium'}}>
             <tr>
               <th>ID#</th>
               <th>Username</th>
