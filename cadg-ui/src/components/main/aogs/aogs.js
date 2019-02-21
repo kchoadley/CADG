@@ -3,10 +3,6 @@ import {
   Table,
   Container,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Row,
   Col
 } from 'reactstrap';

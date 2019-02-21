@@ -9,16 +9,11 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   Row,
   Col
 } from 'reactstrap';
 
 export default class Admins extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
