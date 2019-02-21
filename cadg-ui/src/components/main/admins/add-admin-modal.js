@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col
-} from 'reactstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup'
+import Col from 'react-bootstrap/Col'
 
 export default class Admins extends Component {
   render() {
@@ -19,73 +11,70 @@ export default class Admins extends Component {
       <div>
         <Form>
 
-        <Modal isOpen={this.props.isAdding} toggle={this.props.toggle}>
-          <ModalHeader toggle={this.props.toggle}>Add Administrator</ModalHeader>
-          <ModalBody>
-              <Row form>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for='given-name'>First Name</Label>
-                    <Input type='text' name='given-name' id='first_name'/>
-                  </FormGroup>
-                </Col>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for='family-name'>Last Name</Label>
-                    <Input type='text' name='family-name' id='last_name'/>
-                  </FormGroup>
-                </Col>
-              </Row>
+        <Modal show={this.props.isAdding} onHide={this.props.toggle}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add Administrator</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Row>
+              <Col>
+                <Form.Group controlId='first_name'>
+                  <Form.Control placeholder='First name' type='text'/>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='last_name'>
+                  <Form.Control placeholder='Last name' type='text'/>
+                </Form.Group>
+              </Col>
+            </Form.Row>
 
-              <Row form>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for='email'>Email</Label>
-                    <Input type='email' name='email' id='email'/>
-                  </FormGroup>
-                </Col>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for='phone'>Phone</Label>
-                    <Input type='phone' name='phone' id='phone'/>
-                  </FormGroup>
-                </Col>
-              </Row>
+            <Form.Row>
+              <Col>
+                <Form.Group controlId='email'>
+                  <Form.Control placeholder='Email' type='email'/>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='phone'>
+                  <Form.Control placeholder='Phone' type='phone'/>
+                </Form.Group>
+              </Col>
+            </Form.Row>
 
-              <FormGroup >
-                <Label for='username'>Username</Label>
-                <Input type='text' name='username' id='username'/>
-              </FormGroup>
+            <Form.Group controlId='username'>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control placeholder='Username' type='text'/>
+              </InputGroup>
+            </Form.Group>
 
-              <FormGroup>
-                <Label for="address">Address</Label>
-                <Input type="text" name="address" id="address" placeholder='1234 Main St.'/>
-              </FormGroup>
-              <Row form>
-                <Col md={5}>
-                  <FormGroup>
-                    <Label for="state">City/State/Region</Label>
-                    <Input type="text" name="state" id="state_region" placeholder='New York, NY'/>
-                  </FormGroup>
-                </Col>
-                <Col md={4}>
-                  <FormGroup>
-                    <Label for="country">Country</Label>
-                    <Input type="text" name="country" id="country" placeholder='USA'/>
-                  </FormGroup>
-                </Col>
-                <Col md={3}>
-                  <FormGroup>
-                    <Label for="zip">Zip</Label>
-                    <Input type="text" name="zip" id="zip" placeholder='12345'/>
-                  </FormGroup>
-                </Col>
-              </Row>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary">Submit</Button>{' '}
-            <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
-          </ModalFooter>
+            <Form.Group controlId='address'>
+              <Form.Control placeholder='Address' type='text'/>
+            </Form.Group>
+
+            <Form.Row>
+              <Col>
+                <Form.Control id='city' placeholder='City' type='text'/>
+              </Col>
+              <Col>
+                <Form.Control id='region_state' placeholder='State/Region' type='text'/>
+              </Col>
+              <Col>
+                <Form.Control id='country' placeholder='Country' type='text'/>
+              </Col>
+              <Col>
+                <Form.Control id='zip' placeholder='Zip' type='text'/>
+              </Col>
+            </Form.Row>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="outline-primary">Submit</Button>{' '}
+            <Button variant="light" onClick={this.props.toggle}>Cancel</Button>
+          </Modal.Footer>
         </Modal>
         </Form>
       </div>

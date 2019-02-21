@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  ButtonGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col
-} from 'reactstrap';
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col'
 
 export default class Admins extends Component {
   constructor(props) {
@@ -23,54 +14,54 @@ export default class Admins extends Component {
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
 
-  onRadioBtnClick(rSelected) { this.setState({ rSelected }); }
+  onRadioBtnClick(rSelected) { this.setState({ selected: rSelected }); }
 
   render() {
     return (
       <div>
-        <Form>
-
-        <Modal isOpen={this.props.isAdding} toggle={this.props.toggle}>
-          <ModalHeader toggle={this.props.toggle}>Add Alert Originator Group</ModalHeader>
-          <ModalBody>
-            <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for='originator_name'>Name</Label>
-                  <Input type='text' name='originator_name' id='originator_name'/>
-                </FormGroup>
+        <Form.Row>
+        <Modal show={this.props.isAdding} onHide={this.props.toggle}>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Add Alert Originator Group
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Row>
+              <Col>
+                <Form.Group controlId='originator_name'>
+                  <Form.Control placeholder='Group name' type='text'/>
+                </Form.Group>
               </Col>
               <Col md={6}>
-                <FormGroup>
-                  <Label for='status'>Status</Label>
+                <Form.Group controlId='status'>
                   <ButtonGroup>
                     <Button
-                      color='success'
+                      variant='outline-warning'
                       onClick={() => this.onRadioBtnClick('ACTIVE')}
                       active={this.state.selected==='ACTIVE'}
                     >ACTIVE</Button>
                     <Button
-                      color='danger'
+                      variant={'outline-secondary'}
                       onClick={() => this.onRadioBtnClick('DISABLED')}
                       active={this.state.selected==='DISABLED'}
                     >DISABLED</Button>
                   </ButtonGroup>
-                </FormGroup>
+                </Form.Group>
               </Col>
-            </Row>
+            </Form.Row>
 
-            <FormGroup>
-              <Label for='agency'>Agency</Label>
-              <Input type='agency' name='agency' id='agency'/>
-            </FormGroup>
+            <Form.Group  controlId='agency'>
+              <Form.Control placeholder='Agency' type='text'/>
+            </Form.Group>
 
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary">Submit</Button>{' '}
-            <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
-          </ModalFooter>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="outline-primary">Submit</Button>{' '}
+            <Button variant="light" onClick={this.props.toggle}>Cancel</Button>
+          </Modal.Footer>
         </Modal>
-        </Form>
+        </Form.Row>
       </div>
     );
   }

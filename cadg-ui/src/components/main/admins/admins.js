@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Table,
-  Container,
-  Button,
-  Row,
-  Col
-} from 'reactstrap';
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import AddAdmin from './add-admin-modal'
 
