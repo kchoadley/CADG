@@ -32,35 +32,40 @@ class Admins extends Component {
 
   getAdmin() {
    return (
-     Object.keys(this.props.admins).map((id) => (
-       <tr style={{'font-size':'small'}}>
-         <th scope='row'>{id}</th>
-         <td>{this.props.admins[id].username}</td>
-         <td>{this.props.admins[id].first_name}</td>
-         <td>{this.props.admins[id].last_name}</td>
-         <td>{this.props.admins[id].email}</td>
-         <td>{this.props.admins[id].phone}</td>
-         <td>
-           {this.props.admins[id].address} {this.props.admins[id].state_region}, {this.props.admins[id].country} {this.props.admins[id].zip}
-         </td>
-       </tr>
-     ))
+     Object.keys(this.props.admins).map((id) => {
+       if(id >= 0){
+         return (
+           <tr style={{'font-size':'small'}}>
+             <th scope='row'>{id}</th>
+             <td>{this.props.admins[id].username}</td>
+             <td>{this.props.admins[id].first_name}</td>
+             <td>{this.props.admins[id].last_name}</td>
+             <td>{this.props.admins[id].email}</td>
+             <td>{this.props.admins[id].phone}</td>
+             <td>
+               {this.props.admins[id].address} {this.props.admins[id].state_region} {this.props.admins[id].country} {this.props.admins[id].zip}
+             </td>
+           </tr>
+         );
+       }
+     })
    )
   }
 
   render() {
     return (
       <div>
-        <br/>
+        <br/><br/><br/><br/>
         <Container >
           <Row>
             <Col>
-              <h1>Administrator Dashboard</h1>
+              <h1>Administrators</h1>
             </Col>
             <Col align='right'>
               <Button size='lg' color='primary' onClick={this.toggleAdding}>+</Button>{' '}
             </Col>
           </Row>
+          <br/>
           <Table hover responsive size='sm'>
             <thead style={{'font-size':'medium'}}>
             <tr>

@@ -22,10 +22,11 @@ export default class Admins extends Component {
   render() {
     return (
       <div>
+        <Form>
+
         <Modal isOpen={this.props.isAdding} toggle={this.props.toggle}>
           <ModalHeader toggle={this.props.toggle}>Add Administrator</ModalHeader>
           <ModalBody>
-            <Form>
               <Row form>
                 <Col md={6}>
                   <FormGroup>
@@ -85,14 +86,13 @@ export default class Admins extends Component {
                   </FormGroup>
                 </Col>
               </Row>
-
-            </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">Add</Button>{' '}
+            <Button color="primary">Submit</Button>{' '}
             <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
+        </Form>
       </div>
     );
   }

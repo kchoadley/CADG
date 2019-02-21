@@ -19,12 +19,24 @@ import {  /// User action types.
 const initialState = {  /// Defaults to the guest user.
   currUser: 0,
   admins: {
-    0: {
-      id: 0,
+    '-1': {
+      id: -1,
       first_name: 'Guest',
       last_name: '',
       username: 'Guest',
-      email: 'none@none.com',
+      email: '',
+      phone: '',
+      address: '',
+      country: '',
+      state_region: '',
+      zip: ''
+    },
+    0: {
+      id: 0,
+      first_name: 'Vaniya',
+      last_name: 'Agrawal',
+      username: 'vaniya',
+      email: 'vaniya@oswasabi.com',
       phone: '(555)555-5555',
       address: '123 Main St.',
       country: 'USA',
@@ -33,10 +45,46 @@ const initialState = {  /// Defaults to the guest user.
     },
     1: {
       id: 1,
-      first_name: 'Vaniya',
-      last_name: 'Agrawal',
-      username: 'vaniya123',
-      email: 'vaniya@oswasabi.com',
+      first_name: 'Michael',
+      last_name: 'McCulley',
+      username: 'mike',
+      email: 'mike@oswasabi.com',
+      phone: '(555)555-5555',
+      address: '123 Main St.',
+      country: 'USA',
+      state_region: 'NY',
+      zip: '00000'
+    },
+    2: {
+      id: 2,
+      first_name: 'Kristofer',
+      last_name: 'Hoadley',
+      username: 'kris',
+      email: 'kris@oswasabi.com',
+      phone: '(555)555-5555',
+      address: '123 Main St.',
+      country: 'USA',
+      state_region: 'NY',
+      zip: '00000'
+    },
+    3: {
+      id: 3,
+      first_name: 'Shawn',
+      last_name: 'Hulce',
+      username: 'shawn',
+      email: 'shawn@oswasabi.com',
+      phone: '(555)555-5555',
+      address: '123 Main St.',
+      country: 'USA',
+      state_region: 'NY',
+      zip: '00000'
+    },
+    4: {
+      id: 4,
+      first_name: 'Ross',
+      last_name: 'Arcemont',
+      username: 'ross',
+      email: 'ross@oswasabi.com',
       phone: '(555)555-5555',
       address: '123 Main St.',
       country: 'USA',

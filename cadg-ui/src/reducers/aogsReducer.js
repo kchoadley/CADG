@@ -16,7 +16,14 @@ import {  /// Alert action types.
   REMOVE_AOG } from "../actions/types";
 
 const initialState = {  /// Initialized with no active alerts.
-  active: {},
+  aogs: {
+    0: {
+      originator_id: 0,
+      originator_name: 'FDNY',
+      status: 'ACTIVE',
+      agency: 'New York City'
+    },
+  }
 }
 
 /// Main reducer for aog actions.
