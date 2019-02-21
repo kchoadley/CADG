@@ -53,7 +53,7 @@ class Admins extends Component {
     return (
       <div>
         <br/><br/><br/><br/>
-        <Container >
+        <Container fluid>
           <Row>
             <Col>
               <h1>Administrators</h1>
