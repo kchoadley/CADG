@@ -189,11 +189,26 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         }
     }
 
-    //Creating the node structure and node content for the CMAC_Alert_Text block.
-    //All node variable names match the corresponding CMAC structure as closely as possible.
-    auto cmac_text_language = cmac_alert_info.append_child("CMAC_text_language");
-    auto cmac_text_alert_message_length = cmac_alert_info.append_child("CMAC_text_alert_message_length");
-    auto cmac_text_alert_message = cmac_alert_info.append_child("CMAC_text_alert_message");
+    //TODO: Complete when CMAC object is available.
+    for (int i = 0; i < 9001; i++) {
+        //Creating the node structure and node content for the CMAC_Alert_Text block.
+        //All node variable names match the corresponding CMAC structure as closely as possible.
+        auto cmac_alert_text = cmac_alert_info.append_child("CMAC_Alert_Text");
+        auto cmac_text_language = cmac_alert_text.append_child("CMAC_text_language");
+        cmac_text_language.text().set(cap_message.child("language").text().get());
+
+        auto cmac_short_text_alert_message_length = cmac_alert_text.append_child("CMAC_short_text_alert_message_length");
+        cmac_short_text_alert_message_length.text().set("Temporary value"); //TODO: Determine value
+
+        auto cmac_short_text_alert_message = cmac_alert_text.append_child("CMAC_short_text_alert_message");
+        cmac_short_text_alert_message.text().set("Temporary value"); //TODO: Determine value
+
+        auto cmac_long_text_alert_message_length = cmac_alert_text.append_child("CMAC_long_text_alert_message_length");
+        cmac_long_text_alert_message_length.text().set("Temporary value"); //TODO: Determine value
+
+        auto cmac_long_text_alert_message = cmac_alert_text.append_child("CMAC_long_text_alert_message");
+        cmac_long_text_alert_message.text().set("Temporary value"); //TODO: Determine value
+    }
 
     //Creating the node structure and node content for the CMAC_Digital_Signature block.
     //All node variable names match the corresponding CMAC structure as closely as possible.
@@ -224,16 +239,6 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     auto x509_certificate = x509_data.append_child("X509Certificate");
 
     //Setting values for all CMAC document nodes.
-    if (cap_message.child("language")) {
-        cmac_text_language.text().set(cap_message.child("language").text().get());
-    }
-
-    std::string alert_message = cap_message.child("info").child("description").text().get();
-    cmac_text_alert_message_length.text().set(alert_message.length());
-    cmac_text_alert_message.text().set(cap_message.child("info").child("description").text().get());
-
-
-
     canonicalization_method.append_attribute("Algorithm");
     canonicalization_method.attribute("Algorithm") = "http://www.w3.org/2001/10/xml-exc-c14n#";
     signature_method.append_attribute("Algorithm");
