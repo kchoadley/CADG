@@ -27,16 +27,22 @@ namespace cadg_soap {
             // Should generate soap context that can read input and create alert. Not sure how
             struct soap ctx = *soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
             auto body = message.extract_string().get();
-            logger__.Log(LogLevel::DEBUG, "SOAP Received: " + body, "SoapController", "HandlePost");
+            logger__.Log(LogLevel::DEBUG, "Message Received: " + body, "SoapController", "HandlePost");
             std::stringstream str_stream;
-            str_stream.str(body);  // passes message body to into the string stream
-            ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input stream
+            std::stringstream soap_out;
+            str_stream.str(body);  // passes message to into the string stream
+            ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input
+            ctx.os = &soap_out;  // sets the outstream of the soap ctx context
             // should read the soap context and output the details to the alertMessage object
             soap_read__ns2__alert(&ctx, &alertMessage);
+            //soap_POST_recv__ns2__alert(&ctx, &alertMessage);
+            soap_response(&ctx, SOAP_OK);
+            ctx.is = NULL;
+            auto soap_resp = soap_out.str();
             logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
-            message.reply(status_codes::OK, "Got it");
+            message.reply(status_codes::OK, soap_resp);
         } catch (std::exception& e) {
-            message.reply(SOAP_FAULT);
+            message.reply(status_codes::BadRequest);
         }
     }
 
