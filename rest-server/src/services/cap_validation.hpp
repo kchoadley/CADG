@@ -28,6 +28,41 @@ namespace cap_validation {
             date_str = date_str.substr(0, date_str.size() - 2) + ":" + date_str.substr(date_str.size() - 2);
         return date_str;
     }
+    static void string_to_vector(std::string s, std::string delimiter, std::vector<std::string> &elems) {
+        size_t pos = 0;
+        while ((pos = s.find(delimiter)) != std::string::npos) {
+            //std::cout << "string_to_vector: '" << s.substr(0, pos) << "'" << std::endl;
+            if (s.substr(0, pos) != "" )
+                elems.push_back(s.substr(0, pos));
+            s.erase(0, pos + delimiter.length());
+        }
+        if (s != "") {
+            //std::cout << "string_to_vector: '" << s << "'" << std::endl;
+            elems.push_back(s);
+        }
+    }
+    static void parse_double_quoted_then_spaces(std::string s, std::vector<std::string> &elems) {
+        std::string delimiter = "\"";
+        size_t pos = 0;
+        int start_pos = 0;
+        bool in_quote = false;
+        while ((pos = s.find(delimiter, start_pos)) != std::string::npos) {
+            if (!in_quote) {
+                string_to_vector(s.substr(0, pos), " ", elems);
+                s.erase(0, pos);
+                start_pos = delimiter.length();
+            } else {
+                if (s.substr(start_pos, pos - delimiter.length()) != "") {
+                    //std::cout << "quoted: '" << s.substr(start_pos, pos - delimiter.length()) << "'" << std::endl;
+                    elems.push_back(s.substr(start_pos, pos - delimiter.length()));
+                }
+                s.erase(0, pos + delimiter.length());
+                start_pos = 0;
+            }
+            in_quote = !in_quote;
+        }
+        string_to_vector(s, " ", elems);
+    }
     static bool validate_addresses_format(std::string addresses) {
         return true;
     }
@@ -98,6 +133,14 @@ namespace cap_validation {
                 return false;
             }
             // Validate format of all fields.
+            if (alert.incidents && *alert.incidents != "") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Incidents string: " + *alert.incidents, "cap_validation", "validate_soap_alert");
+                std::vector<std::string> elems;
+                parse_double_quoted_then_spaces(*alert.incidents, elems);
+                for (auto elem = elems.begin(); elem != elems.end(); ++elem) {
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Incidents: " + *elem, "cap_validation", "validate_soap_alert");
+                }
+            }
             return true;
         } catch (...) {
             return false;
