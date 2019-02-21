@@ -20,12 +20,28 @@ const initialState = {  /// Defaults to the guest user.
   currUser: 0,
   admins: {
     0: {
-      username: 'guest',
-      name: 'Guest',
+      id: 0,
+      first_name: 'Guest',
+      last_name: '',
+      username: 'Guest',
+      email: 'none@none.com',
+      phone: '(555)555-5555',
+      address: '123 Main St.',
+      country: 'USA',
+      state_region: 'NY',
+      zip: '00000'
     },
     1: {
-      username: 'vsagrawal',
-      name: 'Vaniya'
+      id: 1,
+      first_name: 'Vaniya',
+      last_name: 'Agrawal',
+      username: 'vaniya123',
+      email: 'vaniya@oswasabi.com',
+      phone: '(555)555-5555',
+      address: '123 Main St.',
+      country: 'USA',
+      state_region: 'NY',
+      zip: '00000'
     }
   }
 }

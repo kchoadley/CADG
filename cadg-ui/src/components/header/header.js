@@ -6,11 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
 import logo from '../../images/logo.svg';
 
 export default class Header extends Component {
@@ -28,7 +25,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed='true' expand="md">
+        <Navbar color="dark" dark fixed='true' expand="lg">
           <NavbarBrand href="/">
             <b>OS-WASABI</b> <img src={logo} alt='logo' height='42' width='42'/> CADG
           </NavbarBrand>
