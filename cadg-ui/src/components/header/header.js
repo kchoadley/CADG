@@ -25,7 +25,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed='true' expand="lg">
+        <Navbar color="dark" dark fixed='top' expand="lg">
           <NavbarBrand href="/">
             <b>OS-WASABI</b> <img src={logo} alt='logo' height='42' width='42'/> CADG
           </NavbarBrand>

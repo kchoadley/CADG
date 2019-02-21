@@ -7,7 +7,7 @@ import {
 import Header from './components/header/header';
 import Home from './components/main/home';
 import Alerts from './components/main/alerts'
-import Originators from './components/main/originators';
+import Originators from './components/main/aogs/aogs';
 import Disseminators from './components/main/disseminators';
 import Admins from './components/main/admins/admins'
 
