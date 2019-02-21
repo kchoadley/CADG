@@ -9,7 +9,7 @@ import Home from './components/main/home';
 import Alerts from './components/main/alerts'
 import Originators from './components/main/originators';
 import Disseminators from './components/main/disseminators';
-import Admins from './components/main/admins'
+import Admins from './components/main/admins/admins'
 
 class App extends Component {
   render() {
