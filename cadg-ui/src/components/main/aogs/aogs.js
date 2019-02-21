@@ -45,7 +45,7 @@ class AOGs extends Component {
     return (
       <div>
         <br/><br/><br/><br/>
-        <Container >
+        <Container fluid>
           <Row>
             <Col>
               <h1>Alert Originator Groups</h1>
