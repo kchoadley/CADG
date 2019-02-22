@@ -29,84 +29,84 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
 
     //Creating the CMAC document and declaring its root node.
     pugi::xml_document cmac_doc;
-    auto declaration_node = cmac_doc.append_child(pugi::node_declaration);
+    pugi::xml_node declaration_node = cmac_doc.append_child(pugi::node_declaration);
     declaration_node.append_attribute("version") = "1.0";
-    auto root_node = cmac_doc.append_child("CMAC_Alert_Attributes");
+    pugi::xml_node root_node = cmac_doc.append_child("CMAC_Alert_Attributes");
     root_node.append_attribute("xmlns") = "\"cmac:2.0\""; //TODO: Check value. Potentially temporary.
 
     //Creating the node structure and node content for the CMAC_Alert_Attributes block.
     //All node variable names match the corresponding CMAC structure as closely as possible.
-    auto cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
+    pugi::xml_node cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
     cmac_protocol_version.text().set("2.0"); //TODO: Determine how to get the protocol version based on either CAP message or other source.
 
-    auto cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
+    pugi::xml_node cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
     cmac_sending_gateway_id.text().set("Temporary value"); //TODO: Determine how to get gateway IP or URI.
 
-    auto cmac_message_number = root_node.append_child("CMAC_message_number");
+    pugi::xml_node cmac_message_number = root_node.append_child("CMAC_message_number");
     cmac_message_number.text().set(cap_message.child("identifier").text().get()); //TODO: Determining how to identify CMSP-initiated value, when applicable.
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_referenced_message_number = root_node.append_child("CMAC_referenced_message_number");
+        pugi::xml_node cmac_referenced_message_number = root_node.append_child("CMAC_referenced_message_number");
         cmac_referenced_message_number.text().set("Temporary value");
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_referenced_message_cap_identifier = root_node.append_child("CMAC_referenced_message_cap_identifier");
+        pugi::xml_node cmac_referenced_message_cap_identifier = root_node.append_child("CMAC_referenced_message_cap_identifier");
         cmac_referenced_message_cap_identifier.text().set("Temporary value");
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_special_handling = root_node.append_child("CMAC_special_handling");
+        pugi::xml_node cmac_special_handling = root_node.append_child("CMAC_special_handling");
         cmac_special_handling.text().set(cap_message.child("scope").text().get()); //TODO: Ensure correctness.
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_sender = root_node.append_child("CMAC_sender");
+        pugi::xml_node cmac_sender = root_node.append_child("CMAC_sender");
         cmac_sender.text().set(cap_message.child("sender").text().get());
     }
 
-    auto cmac_sent_date_time = root_node.append_child("CMAC_sent_date_time");
+    pugi::xml_node cmac_sent_date_time = root_node.append_child("CMAC_sent_date_time");
     cmac_sent_date_time.text().set(date_time_str.c_str());
 
-    auto cmac_status = root_node.append_child("CMAC_status");
+    pugi::xml_node cmac_status = root_node.append_child("CMAC_status");
     cmac_status.text().set(cap_message.child("status").text().get());
 
-    auto cmac_message_type = root_node.append_child("CMAC_message_type");
+    pugi::xml_node cmac_message_type = root_node.append_child("CMAC_message_type");
     cmac_message_type.text().set(cap_message.child("msgType").text().get());
 
     //TODO: Complete when CMAC object is available.
     //NOTE: Multiple occurrences possible
     if (true) {
-        auto cmac_response_code = root_node.append_child("CMAC_response_code");
+        pugi::xml_node cmac_response_code = root_node.append_child("CMAC_response_code");
         cmac_response_code.text().set("Temporary value");
     }
 
     //TODO: Complete when CMAC object is available.
     //NOTE: Multiple occurrences possible
     if (true) {
-        auto cmac_note = root_node.append_child("CMAC_note");
+        pugi::xml_node cmac_note = root_node.append_child("CMAC_note");
         cmac_note.text().set(cap_message.child("note").text().get());
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
+        pugi::xml_node cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
         cmac_cap_alert_uri.text().set("Temporary value"); //TODO: Determine how to obtain from the gateway.
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_cap_identifier = root_node.append_child("CMAC_cap_identifier");
+        pugi::xml_node cmac_cap_identifier = root_node.append_child("CMAC_cap_identifier");
         cmac_cap_identifier.text().set(cap_message.child("identifier").text().get());
     }
 
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_cap_sent_date_time = root_node.append_child("CMAC_cap_sent_date_time");
+        pugi::xml_node cmac_cap_sent_date_time = root_node.append_child("CMAC_cap_sent_date_time");
         cmac_cap_sent_date_time.text().set(cap_message.child("sent").text().get());
     }
 
@@ -114,31 +114,31 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     //All node variable names match the corresponding CMAC structure as closely as possible.
     //TODO: Complete when CMAC object is available.
     if (true) {
-        auto cmac_alert_info = root_node.append_child("CMAC_alert_info");
-        auto cmac_category = cmac_alert_info.append_child("CMAC_category");
+        pugi::xml_node cmac_alert_info = root_node.append_child("CMAC_alert_info");
+        pugi::xml_node cmac_category = cmac_alert_info.append_child("CMAC_category");
         cmac_category.text().set(cap_message.child("info").child("category").text().get());
 
         //TODO: Complete when CMAC object is available.
         if (true) {
-            auto cmac_response_type = cmac_alert_info.append_child("CMAC_response_type");
+            pugi::xml_node cmac_response_type = cmac_alert_info.append_child("CMAC_response_type");
             cmac_response_type.text().set(cap_message.child("info").child("responseType").text().get());
         }
 
-        auto cmac_severity = cmac_alert_info.append_child("CMAC_severity");
+        pugi::xml_node cmac_severity = cmac_alert_info.append_child("CMAC_severity");
         cmac_severity.text().set(cap_message.child("info").child("severity").text().get());
 
-        auto cmac_urgency = cmac_alert_info.append_child("CMAC_urgency");
+        pugi::xml_node cmac_urgency = cmac_alert_info.append_child("CMAC_urgency");
         cmac_urgency.text().set(cap_message.child("info").child("urgency").text().get());
 
-        auto cmac_certainty = cmac_alert_info.append_child("CMAC_certainty");
+        pugi::xml_node cmac_certainty = cmac_alert_info.append_child("CMAC_certainty");
         cmac_certainty.text().set(cap_message.child("info").child("certainty").text().get());
 
-        auto cmac_expires_date_time = cmac_alert_info.append_child("CMAC_expires_date_time");
+        pugi::xml_node cmac_expires_date_time = cmac_alert_info.append_child("CMAC_expires_date_time");
         cmac_expires_date_time.text().set(cap_message.child("info").child("expires").text().get());
 
         //TODO: Complete when CMAC object is available.
         if (true) {
-            auto cmac_sender_name = cmac_alert_info.append_child("CMAC_sender_name");
+            pugi::xml_node cmac_sender_name = cmac_alert_info.append_child("CMAC_sender_name");
             cmac_sender_name.text().set(cap_message.child("info").child("senderName").text().get());
         }
     }
@@ -147,25 +147,25 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     for (int i = 0; i < 9001; i++) {
         //Creating the node structure and node content for the CMAC_Alert_Area block.
         //All node variable names match the corresponding CMAC structure as closely as possible.
-        auto cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
-        auto cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
+        pugi::xml_node cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
+        pugi::xml_node cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
         cmac_area_description.text().set(cap_message.child("info").child("area").child("areaDesc").text().get());
 
         //TODO: Complete when CMAC object is available.
         for (int j = 0; j < 9001; j++) {
-            auto cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
+            pugi::xml_node cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
             cmac_polygon.text().set(cap_message.child("info").child("area").child("polygon").text().get());
         }
 
         //TODO: Complete when CMAC object is available.
         for (int j = 0; j < 9001; j++) {
-            auto cmac_circle = cmac_alert_area.append_child("CMAC_circle");
+            pugi::xml_node cmac_circle = cmac_alert_area.append_child("CMAC_circle");
             cmac_circle.text().set(cap_message.child("info").child("area").child("circle").text().get());
         }
 
         //TODO: Complete when CMAC object is available.
         for (int j = 0; j < 9001; j++) {
-            auto cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
+            pugi::xml_node cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
             cmac_cmas_geocode.text().set("Temporary value"); //TODO: Determine value
         }
 
@@ -173,9 +173,9 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
         for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
             std::string node_name = geocode.name();
             if(node_name.compare("geocode") == 0) {
-                auto cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
-                auto value_name = cmac_cap_geocode.append_child("valueName");
-                auto value = cmac_cap_geocode.append_child("value");
+                pugi::xml_node cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
+                pugi::xml_node value_name = cmac_cap_geocode.append_child("valueName");
+                pugi::xml_node value = cmac_cap_geocode.append_child("value");
 
                 value_name.text().set(geocode.child("valueName").text().get());
                 value.text().set(geocode.child("value").text().get());
@@ -184,7 +184,7 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
 
         //TODO: Complete when CMAC object is available.
         for (int j = 0; j < 9001; j++) {
-            auto cmac_gnis = cmac_alert_area.append_child("CMAC_gnis");
+            pugi::xml_node cmac_gnis = cmac_alert_area.append_child("CMAC_gnis");
             cmac_gnis.text().set("Temporary value"); //TODO: Determine value
         }
     }
@@ -193,68 +193,27 @@ void CMAC::convert(std::string soap_filename, std::string cmac_filename) {
     for (int i = 0; i < 9001; i++) {
         //Creating the node structure and node content for the CMAC_Alert_Text block.
         //All node variable names match the corresponding CMAC structure as closely as possible.
-        auto cmac_alert_text = cmac_alert_info.append_child("CMAC_Alert_Text");
-        auto cmac_text_language = cmac_alert_text.append_child("CMAC_text_language");
+        pugi::xml_node cmac_alert_text = cmac_alert_info.append_child("CMAC_Alert_Text");
+        pugi::xml_node cmac_text_language = cmac_alert_text.append_child("CMAC_text_language");
         cmac_text_language.text().set(cap_message.child("language").text().get());
 
-        auto cmac_short_text_alert_message_length = cmac_alert_text.append_child("CMAC_short_text_alert_message_length");
+        pugi::xml_node cmac_short_text_alert_message_length = cmac_alert_text.append_child("CMAC_short_text_alert_message_length");
         cmac_short_text_alert_message_length.text().set("Temporary value"); //TODO: Determine value
 
-        auto cmac_short_text_alert_message = cmac_alert_text.append_child("CMAC_short_text_alert_message");
+        pugi::xml_node cmac_short_text_alert_message = cmac_alert_text.append_child("CMAC_short_text_alert_message");
         cmac_short_text_alert_message.text().set("Temporary value"); //TODO: Determine value
 
-        auto cmac_long_text_alert_message_length = cmac_alert_text.append_child("CMAC_long_text_alert_message_length");
+        pugi::xml_node cmac_long_text_alert_message_length = cmac_alert_text.append_child("CMAC_long_text_alert_message_length");
         cmac_long_text_alert_message_length.text().set("Temporary value"); //TODO: Determine value
 
-        auto cmac_long_text_alert_message = cmac_alert_text.append_child("CMAC_long_text_alert_message");
+        pugi::xml_node cmac_long_text_alert_message = cmac_alert_text.append_child("CMAC_long_text_alert_message");
         cmac_long_text_alert_message.text().set("Temporary value"); //TODO: Determine value
     }
 
     //Creating the node structure and node content for the CMAC_Digital_Signature block.
     //All node variable names match the corresponding CMAC structure as closely as possible.
-    auto cmac_digital_signature = root_node.append_child("CMAC_Digital_Signature");
-
-    auto signature = cmac_digital_signature.append_child("Signature");
-
-    auto signed_info = signature.append_child("SignedInfo");
-    auto canonicalization_method = signed_info.append_child("CanonicalizationMethod");
-    auto signature_method = signed_info.append_child("SignatureMethod");
-
-    auto reference = signed_info.append_child("Reference");
-
-    auto transforms = reference.append_child("Transforms");
-
-    auto transform = transforms.append_child("Transform");
-
-    auto digest_method = reference.append_child("DigestMethod");
-    auto digest_value = reference.append_child("DigestValue");
-
-    auto signature_value = signature.append_child("SignatureValue");
-
-    auto key_info = signature.append_child("KeyInfo");
-
-    auto x509_data = key_info.append_child("X509Data");
-
-    auto x509_subject_name = x509_data.append_child("X509SubjectName");
-    auto x509_certificate = x509_data.append_child("X509Certificate");
-
-    //Setting values for all CMAC document nodes.
-    canonicalization_method.append_attribute("Algorithm");
-    canonicalization_method.attribute("Algorithm") = "http://www.w3.org/2001/10/xml-exc-c14n#";
-    signature_method.append_attribute("Algorithm");
-    signature_method.attribute("Algorithm") = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
-    reference.append_attribute("URI");
-    transform.append_attribute("Algorithm");
-    transform.attribute("Algorithm") = "http://www.w3.org/2000/09/xmldsig#enveloped-signature";
-    digest_method.append_attribute("Algorithm");
-    digest_method.attribute("Algorithm") = "http://www.w3.org/2001/04/xmlenc#sha256";
-
-    //Assigning temporary values for currently unknown information.
-    digest_value.text().set("Temporary value");
-    signature_value.text().set("Temporary value");
-    x509_subject_name.text().set("Temporary value");
-    x509_certificate.text().set("Temporary value");
-
+    pugi::xml_node cmac_digital_signature = root_node.append_child("CMAC_Digital_Signature");
+    cmac_digital_signature.text().set("Temporary value"); //TODO: Determine value
 
     //Saving CMAC document.
     bool saved = cmac_doc.save_file(cmac_filename.c_str());
