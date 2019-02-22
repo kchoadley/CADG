@@ -19,6 +19,7 @@
 #include <regex.h>
 
 namespace cap_validation {
+
     static std::string time_t_to_xml_dt_string(const time_t &time) {
         struct tm* time_info = localtime(&time);
         char date_buffer [27];
@@ -28,20 +29,21 @@ namespace cap_validation {
             date_str = date_str.substr(0, date_str.size() - 2) + ":" + date_str.substr(date_str.size() - 2);
         return date_str;
     }
+
     static void string_to_vector(std::string s, std::string delimiter, std::vector<std::string> &elems) {
         size_t pos = 0;
         while ((pos = s.find(delimiter)) != std::string::npos) {
-            //std::cout << "string_to_vector: '" << s.substr(0, pos) << "'" << std::endl;
             if (s.substr(0, pos) != "" )
                 elems.push_back(s.substr(0, pos));
             s.erase(0, pos + delimiter.length());
         }
         if (s != "") {
-            //std::cout << "string_to_vector: '" << s << "'" << std::endl;
             elems.push_back(s);
         }
     }
-    static void parse_double_quoted_then_spaces(std::string s, std::vector<std::string> &elems) {
+
+    static std::vector<std::string> parse_double_quoted_then_spaces(std::string s) {
+        std::vector<std::string> elems;
         std::string delimiter = "\"";
         size_t pos = 0;
         int start_pos = 0;
@@ -53,7 +55,6 @@ namespace cap_validation {
                 start_pos = delimiter.length();
             } else {
                 if (s.substr(start_pos, pos - delimiter.length()) != "") {
-                    //std::cout << "quoted: '" << s.substr(start_pos, pos - delimiter.length()) << "'" << std::endl;
                     elems.push_back(s.substr(start_pos, pos - delimiter.length()));
                 }
                 s.erase(0, pos + delimiter.length());
@@ -62,14 +63,30 @@ namespace cap_validation {
             in_quote = !in_quote;
         }
         string_to_vector(s, " ", elems);
+        return elems;
     }
-    static bool validate_addresses_format(std::string addresses) {
+
+    static bool validate_addresses(std::string addresses) {
+        // TODO(All): Are these addresses URLs?
         return true;
     }
+
+    static bool validate_references(std::string references) {
+        std::vector<std::string> refs = parse_double_quoted_then_spaces(references);
+        for (auto ref = refs.begin(); ref != refs.end(); ++ref) {
+            std::vector<std::string> ref_ids;
+            string_to_vector(*ref, ",", ref_ids);
+            if(ref_ids.size() != 3)
+                return false;
+        }
+        return true;
+    }
+
     static bool validate_soap_alert(const _ns2__alert &alert) {
         try {
             auto &logger(cadg_rest::Logger::Instance());
             logger.Log(cadg_rest::LogLevel::DEBUG, "Validating required CAP fields...", "cap_validation", "validate_soap_alert");
+
             // Validate required fields.
             logger.Log(cadg_rest::LogLevel::DEBUG, "Identifier: " + alert.identifier, "cap_validation", "validate_soap_alert");
             if (alert.identifier == "") {
@@ -119,12 +136,13 @@ namespace cap_validation {
             } else if (alert.scope == _ns2__alert_scope__Restricted) {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "No restriction provided with restricted scope.",
                            "cap_validation", "validate_soap_alert");
+                // TODO(All): Decide if this required if scope is restricted.
                 return false;
             }
 
             if (alert.addresses && *alert.addresses != "") {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "Addresses: " + *alert.addresses, "cap_validation", "validate_soap_alert");
-                if (!validate_addresses_format(*alert.addresses)) {
+                if (!validate_addresses(*alert.addresses)) {
                     logger.Log(cadg_rest::LogLevel::DEBUG, "Invalid format for addresses.", "cap_validation", "validate_soap_alert");
                     return false;
                 }
@@ -132,13 +150,12 @@ namespace cap_validation {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "No addresses provided with private scope.", "cap_validation", "validate_soap_alert");
                 return false;
             }
-            // Validate format of all fields.
-            if (alert.incidents && *alert.incidents != "") {
-                logger.Log(cadg_rest::LogLevel::DEBUG, "Incidents string: " + *alert.incidents, "cap_validation", "validate_soap_alert");
-                std::vector<std::string> elems;
-                parse_double_quoted_then_spaces(*alert.incidents, elems);
-                for (auto elem = elems.begin(); elem != elems.end(); ++elem) {
-                    logger.Log(cadg_rest::LogLevel::DEBUG, "Incidents: " + *elem, "cap_validation", "validate_soap_alert");
+            // Validate format of optional fields.
+            if (alert.references && *alert.references != "") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "References string: " + *alert.references, "cap_validation", "validate_soap_alert");
+                if (!validate_references(*alert.references)){
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Invalid reference format.", "cap_validation", "validate_soap_alert");
+                    return false;
                 }
             }
             return true;
