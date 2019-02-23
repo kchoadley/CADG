@@ -38,7 +38,7 @@ class DisseminatorDao : public DisseminatorDaoInterface {
     bool Requery();
     std::optional<std::vector<Disseminator>> GetDisseminators() override;
     std::optional<std::vector<Disseminator>> GetDisseminatorsByName(const std::string& name) override;
-    std::optional<Disseminator> GetDisseminatorByID(int id) override;
+    std::optional<std::vector<Disseminator>> GetDisseminatorByID(int id) override;
     std::optional<bool> RemoveDisseminator(int id) override;
     std::optional<bool> AddDisseminator(Disseminator disseminator) override;
     std::optional<bool> UpdateDisseminator(Disseminator disseminator) override;

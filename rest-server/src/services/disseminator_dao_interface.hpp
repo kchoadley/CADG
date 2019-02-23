@@ -43,7 +43,7 @@ class DisseminatorDaoInterface {
      * @param id The id of the disseminator to return.
      * @return Vector containing the found disseminator, or empty if there is no matching disseminator.
      */
-    virtual std::optional<Disseminator> GetDisseminatorByID(int id) = 0;
+    virtual std::optional<std::vector<Disseminator>> GetDisseminatorByID(int id) = 0;
     /**
      * RemoveDisseminator removes the disseminator in the data store by id.
      * 

@@ -64,7 +64,8 @@ bool DisseminatorDao::Requery() {
         }
         disseminators__ = temp_disseminators;
         return true;
-    } catch (...) {
+    } catch (std::exception&  e) {
+        logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "Requery");
         return false;
     }
 }
@@ -92,12 +93,13 @@ std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorsByName
     }
     return matching_disseminators;
 }
-std::optional<Disseminator> DisseminatorDao::GetDisseminatorByID(int id) {
+std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorByID(int id) {
     DisseminatorDao::Requery();
     std::vector<Disseminator> matching_disseminators;
     for (auto& disseminator : disseminators__) {
         if (disseminator.id == id) {
-            return disseminator;
+            matching_disseminators.push_back(disseminator);
+            return matching_disseminators;
         }
     }
     return std::nullopt;
@@ -113,7 +115,8 @@ std::optional<bool> DisseminatorDao::RemoveDisseminator(int id) {
         statement.bind(0, &id);
         execute(statement);
         return true;
-    } catch (...) {
+    } catch (std::exception&  e) {
+        logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "RemoveDisseminator");
         return std::nullopt;
     }
 }
@@ -121,7 +124,10 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
     try {
         nanodbc::connection connection(conn_str__);
         nanodbc::statement statement(connection);
-        prepare(statement, NANODBC_TEXT("insert into disseminator (disseminator_name, disseminator_type, message_format, ip, port, backup_port, status) values(?,?,?,?,?,?,?);"));
+        prepare(statement, NANODBC_TEXT(
+            std::string("insert into ") + db_disseminators_table__ +
+            std::string("disseminator_name, disseminator_type, message_format, ip, port, backup_port, status)") +
+            std::string(" values(?,?,?,?,?,?,?);")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
         nanodbc::string const type = NANODBC_TEXT(disseminator.type);
@@ -193,7 +199,8 @@ std::optional<bool> DisseminatorDao::UpdateDisseminator(Disseminator disseminato
         }
         return true;
     } catch (std::exception&  e) {
-        return false;
+        logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "UpdateDisseminators");
+        return std::nullopt;
     }
 }
 }  // namespace cadg_rest

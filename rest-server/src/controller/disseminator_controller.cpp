@@ -33,6 +33,7 @@ void DisseminatorController::HandleGet(http_request message) {
         auto response = json::value::object();
         auto queries = Queries(message.relative_uri().query());
         auto relative_path = message.relative_uri().to_string();
+        std::optional<std::vector<Disseminator>> disseminators_optional;
         logger__.Log(LogLevel::INFO, relative_path);
 
         if (relative_path.length() > 1) {  // There is a relative path
@@ -40,32 +41,27 @@ void DisseminatorController::HandleGet(http_request message) {
                 std::vector<std::string> path_segments = PathSegments(relative_path);
                 if (path_segments[0].find_first_not_of("0123456789") == std::string::npos) {  // It is a disseminator ID
                     int id = std::stoi(path_segments[0]);
-                    if (auto disseminator_response = dao__.GetDisseminatorByID(id)) {
-                        auto disseminator = disseminator_response.value();
-                        logger__.Log(LogLevel::DEBUG, "Name of found disseminator: " + disseminator.name);
-                        if (disseminator.id > 0) {
-                            response["disseminator"] = disseminator.to_json();
-                            message.reply(status_codes::OK, response);
-                        } else {
-                            message.reply(status_codes::NotFound);
-                        }
-                    }
+                    disseminators_optional = dao__.GetDisseminatorByID(id);
                 } else {  // first path section must be a id to be valid
                     message.reply(status_codes::BadRequest, json::value::string("Bad Request"));
                 }
             } else {  // Query string present
-                message.reply(status_codes::NotImplemented,
-                        json::value::string("Queries on Disseminators not implemented yet."));
+                if (queries.count("name") > 0) {
+                    disseminators_optional = dao__.GetDisseminatorsByName(queries["name"]);
+                }
             }
-        } else if (auto disseminator_optional = dao__.GetDisseminators()) {
+        } else {
+            disseminators_optional = dao__.GetDisseminators();
+        }
+        if (disseminators_optional.has_value()) {
             response["disseminators"] = json::value::object();
-            auto disseminators = disseminator_optional.value();
-            for (auto& disseminator : disseminators) {
+            auto disseminators = disseminators_optional.value();
+            for (auto disseminator : disseminators) {
                 response["disseminators"][std::to_string(disseminator.id)] = disseminator.to_json();
             }
             message.reply(status_codes::OK, response);
         } else {
-            message.reply(status_codes::BadRequest, json::value::string("Bad Request"));
+            message.reply(status_codes::InternalError, json::value::string("Internal Error"));
         }
     } catch (std::exception&  e) {
         logger__.Log(LogLevel::WARN, e.what(), "DisseminatorController", "HandleGet");
@@ -77,7 +73,6 @@ void DisseminatorController::HandlePut(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
     // TODO(Kris): Implement
     message.reply(status_codes::NotImplemented, json::value::string("Put Disseminators Not Implemented."));
-    
 }
 void DisseminatorController::HandlePost(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
