@@ -126,7 +126,7 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT(
             std::string("insert into ") + db_disseminators_table__ +
-            std::string("disseminator_name, disseminator_type, message_format, ip, port, backup_port, status)") +
+            std::string(" disseminator_name, disseminator_type, message_format, ip, port, backup_port, status)") +
             std::string(" values(?,?,?,?,?,?,?);")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
