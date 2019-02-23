@@ -76,10 +76,47 @@ namespace cap_validation {
         for (auto ref = refs.begin(); ref != refs.end(); ++ref) {
             std::vector<std::string> ref_ids;
             string_to_vector(*ref, ",", ref_ids);
+            // TODO(All): Validate individual elements: (sender,identifier,sent)
             if(ref_ids.size() != 3)
                 return false;
         }
         return true;
+    }
+
+    static bool validate_soap_alert_info(const _ns2__alert_info alert_info) {
+        try {
+            auto &logger(cadg_rest::Logger::Instance());
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating required CAP info fields...", "cap_validation", "validate_soap_alert_info");
+
+            // Validate required fields.
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating info categories.", "cap_validation", "validate_soap_alert_info");
+            for (auto category = alert_info.category.begin(); category != alert_info.category.end(); ++category) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info category: " + std::to_string(*category), "cap_validation", "validate_soap_alert_info");
+                if (*category < 0) {
+                    return false;
+                }
+            }
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Info event: " + alert_info.event, "cap_validation", "validate_soap_alert_info");
+            if (alert_info.event == "") {
+                return false;
+            }
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Info urgency: " + std::to_string(alert_info.urgency), "cap_validation", "validate_soap_alert_info");
+            if (alert_info.urgency < 0) {
+                return false;
+            }
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Info severity: " + std::to_string(alert_info.severity), "cap_validation", "validate_soap_alert_info");
+            if (alert_info.severity < 0) {
+                return false;
+            }
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Info certainty: " + std::to_string(alert_info.certainty), "cap_validation", "validate_soap_alert_info");
+            // TODO(All): Modify generated gSoap object to recognize "Very Likely" as "Likely".
+            if (alert_info.certainty < 0) {
+                return false;
+            }
+            return true;
+        } catch (...) {
+            return false;
+        }
     }
 
     static bool validate_soap_alert(const _ns2__alert &alert) {
@@ -139,7 +176,6 @@ namespace cap_validation {
                 // TODO(All): Decide if this required if scope is restricted.
                 return false;
             }
-
             if (alert.addresses && *alert.addresses != "") {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "Addresses: " + *alert.addresses, "cap_validation", "validate_soap_alert");
                 if (!validate_addresses(*alert.addresses)) {
@@ -155,6 +191,16 @@ namespace cap_validation {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "References string: " + *alert.references, "cap_validation", "validate_soap_alert");
                 if (!validate_references(*alert.references)){
                     logger.Log(cadg_rest::LogLevel::DEBUG, "Invalid reference format.", "cap_validation", "validate_soap_alert");
+                    return false;
+                }
+            }
+            // Validate alert info.
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating alert info.", "cap_validation", "validate_soap_alert");
+            std::vector<_ns2__alert_info> alert_infos = alert.info;
+            if (alert_infos.size() < 1)
+                return false;
+            for (auto alert_info = alert_infos.begin(); alert_info != alert_infos.end(); ++alert_info) {
+                if (!validate_soap_alert_info(*alert_info)) {
                     return false;
                 }
             }
