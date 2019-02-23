@@ -287,7 +287,7 @@ inline void soap_default__ns2__alert_info_certainty(struct soap *soap, enum _ns2
 #ifdef SOAP_DEFAULT__ns2__alert_info_certainty
 	*a = SOAP_DEFAULT__ns2__alert_info_certainty;
 #else
-	*a = (enum _ns2__alert_info_certainty)0;
+	*a = (enum _ns2__alert_info_certainty)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_info_certainty(struct soap*, const char*, int, const enum _ns2__alert_info_certainty *, const char*);
@@ -366,7 +366,7 @@ inline void soap_default__ns2__alert_info_severity(struct soap *soap, enum _ns2_
 #ifdef SOAP_DEFAULT__ns2__alert_info_severity
 	*a = SOAP_DEFAULT__ns2__alert_info_severity;
 #else
-	*a = (enum _ns2__alert_info_severity)0;
+	*a = (enum _ns2__alert_info_severity)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_info_severity(struct soap*, const char*, int, const enum _ns2__alert_info_severity *, const char*);
@@ -445,7 +445,7 @@ inline void soap_default__ns2__alert_info_urgency(struct soap *soap, enum _ns2__
 #ifdef SOAP_DEFAULT__ns2__alert_info_urgency
 	*a = SOAP_DEFAULT__ns2__alert_info_urgency;
 #else
-	*a = (enum _ns2__alert_info_urgency)0;
+	*a = (enum _ns2__alert_info_urgency)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_info_urgency(struct soap*, const char*, int, const enum _ns2__alert_info_urgency *, const char*);
@@ -524,7 +524,7 @@ inline void soap_default__ns2__alert_info_responseType(struct soap *soap, enum _
 #ifdef SOAP_DEFAULT__ns2__alert_info_responseType
 	*a = SOAP_DEFAULT__ns2__alert_info_responseType;
 #else
-	*a = (enum _ns2__alert_info_responseType)0;
+	*a = (enum _ns2__alert_info_responseType)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_info_responseType(struct soap*, const char*, int, const enum _ns2__alert_info_responseType *, const char*);
@@ -603,7 +603,7 @@ inline void soap_default__ns2__alert_info_category(struct soap *soap, enum _ns2_
 #ifdef SOAP_DEFAULT__ns2__alert_info_category
 	*a = SOAP_DEFAULT__ns2__alert_info_category;
 #else
-	*a = (enum _ns2__alert_info_category)0;
+	*a = (enum _ns2__alert_info_category)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_info_category(struct soap*, const char*, int, const enum _ns2__alert_info_category *, const char*);
@@ -682,7 +682,7 @@ inline void soap_default__ns2__alert_scope(struct soap *soap, enum _ns2__alert_s
 #ifdef SOAP_DEFAULT__ns2__alert_scope
 	*a = SOAP_DEFAULT__ns2__alert_scope;
 #else
-	*a = (enum _ns2__alert_scope)0;
+	*a = (enum _ns2__alert_scope)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_scope(struct soap*, const char*, int, const enum _ns2__alert_scope *, const char*);
@@ -761,7 +761,7 @@ inline void soap_default__ns2__alert_msgType(struct soap *soap, enum _ns2__alert
 #ifdef SOAP_DEFAULT__ns2__alert_msgType
 	*a = SOAP_DEFAULT__ns2__alert_msgType;
 #else
-	*a = (enum _ns2__alert_msgType)0;
+	*a = (enum _ns2__alert_msgType)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_msgType(struct soap*, const char*, int, const enum _ns2__alert_msgType *, const char*);
@@ -840,7 +840,7 @@ inline void soap_default__ns2__alert_status(struct soap *soap, enum _ns2__alert_
 #ifdef SOAP_DEFAULT__ns2__alert_status
 	*a = SOAP_DEFAULT__ns2__alert_status;
 #else
-	*a = (enum _ns2__alert_status)0;
+	*a = (enum _ns2__alert_status)-1; // Modified generated code, 0 to -1.
 #endif
 }
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns2__alert_status(struct soap*, const char*, int, const enum _ns2__alert_status *, const char*);

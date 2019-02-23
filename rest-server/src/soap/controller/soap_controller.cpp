@@ -33,7 +33,7 @@ namespace cadg_soap {
             ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input stream
             // should read the soap context and output the details to the alertMessage object
             soap_read__ns2__alert(&ctx, &alertMessage);
-            logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
+            logger__.Log(LogLevel::DEBUG, "Alert: " + std::to_string(alertMessage.status), "SoapController", "HandlePost");
             message.reply(status_codes::OK, "Got it");
         } catch (std::exception& e) {
             message.reply(SOAP_FAULT);
