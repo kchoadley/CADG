@@ -20,6 +20,18 @@
 
 namespace cap_validation {
 
+    // TODO(All): Create a DAO for this and maintain in DB.
+    // SAME event codes per FCC Part 11.31 paragraph (e)
+    static const std::array<std::string, 56> SAME_EVENT_CODES = {"EAN", "NIC", "NPT", "RMT", "RWT"
+                , "ADR", "AVW", "AVA", "BZW", "BLU", "CAE", "CDW", "CEM", "CFW", "CFA"
+                , "DSW", "EQW", "EVI", "EWW", "FRW", "FFW", "FFA", "FFS", "FLW", "FLA"
+                , "FLS", "HMW", "HWW", "HWA", "HUW", "HUA", "HLS", "LEW", "LAE", "NMN"
+                , "TOE", "NUW", "DMO", "RHW", "SVR", "SVA", "SVS", "SPW", "SMW", "SPS"
+                , "SSA", "SSW", "TOR", "TOA", "TRW", "TRA", "TSW", "TSA", "VOW", "WSW", "WSA"};
+
+    // SAME org codes per FCC Part 11.31 paragraph (d)
+    static const std::array<std::string, 4> SAME_ORG_CODES = {"EAS", "CIV", "WXR", "RMT"};
+
     static std::string time_t_to_xml_dt_string(const time_t &time) {
         struct tm* time_info = localtime(&time);
         char date_buffer [27];
@@ -86,10 +98,13 @@ namespace cap_validation {
     static bool validate_soap_alert_info(const _ns2__alert_info alert_info) {
         try {
             auto &logger(cadg_rest::Logger::Instance());
-            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating required CAP info fields...", "cap_validation", "validate_soap_alert_info");
 
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating required CAP info fields...", "cap_validation", "validate_soap_alert_info");
             // Validate required fields.
-            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating info categories.", "cap_validation", "validate_soap_alert_info");
+            if (alert_info.category.size() < 1) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info category missing.", "cap_validation", "validate_soap_alert_info");
+                return false;
+            }
             for (auto category = alert_info.category.begin(); category != alert_info.category.end(); ++category) {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "Info category: " + std::to_string(*category), "cap_validation", "validate_soap_alert_info");
                 if (*category < 0) {
@@ -109,9 +124,82 @@ namespace cap_validation {
                 return false;
             }
             logger.Log(cadg_rest::LogLevel::DEBUG, "Info certainty: " + std::to_string(alert_info.certainty), "cap_validation", "validate_soap_alert_info");
-            // TODO(All): Modify generated gSoap object to recognize "Very Likely" as "Likely".
             if (alert_info.certainty < 0) {
+                // TODO(All): Modify generated gSoap object to recognize "Very Likely" as "Likely".
                 return false;
+            }
+            if (alert_info.expires && *alert_info.expires > 0) {
+                // TODO(All): Alert.expires should change from a pointer to a required element if we update gSoap with IPAWS profile schema.
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info expires: " + *alert_info.expires, "cap_validation", "validate_soap_alert_info");
+            } else {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info expires missing.", "cap_validation", "validate_soap_alert_info");
+                return false;
+            }
+            if (alert_info.eventCode.size() < 1) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode missing.", "cap_validation",
+                           "validate_soap_alert_info");
+                return false;
+            }
+            // TODO(All): Decide if SAME validation belongs here. Pertains to both eventCode and parameter.
+            // The below requirement for eventCode with a valueName SAME is dependant upon intended dissemination type.
+            int same_event_code_count = 0;
+            for (auto event_code = alert_info.eventCode.begin(); event_code != alert_info.eventCode.end(); ++event_code) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode valueName: " + (*event_code).valueName, "cap_validation", "validate_soap_alert_info");
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode value: " + (*event_code).value, "cap_validation", "validate_soap_alert_info");
+                if ((*event_code).valueName == "SAME") {
+                    same_event_code_count++;
+                    if (same_event_code_count > 1) {
+                        logger.Log(cadg_rest::LogLevel::DEBUG, "Multiple SAME codes provided.", "cap_validation", "validate_soap_alert_info");
+                        return false;
+                    }
+                    bool same_code_found = false;
+                    for (auto same_code = SAME_EVENT_CODES.begin(); same_code != SAME_EVENT_CODES.end(); ++same_code) {
+                        if (*same_code == (*event_code).value) {
+                            same_code_found = true;
+                            break;
+                        }
+                    }
+                    if (!same_code_found) {
+                        logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode: valid SAME event not provided.", "cap_validation", "validate_soap_alert_info");
+                        return false;
+                    }
+                }
+            }
+
+            int same_parameter_count = 0;
+            for (auto parameter = alert_info.parameter.begin(); parameter != alert_info.parameter.end(); ++parameter) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter valueName: " + (*parameter).valueName, "cap_validation", "validate_soap_alert_info");
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter value: " + (*parameter).value, "cap_validation", "validate_soap_alert_info");
+                if ((*parameter).valueName == "EAS-ORG") {
+                    same_parameter_count++;
+                    if (same_parameter_count > 1) {
+                        logger.Log(cadg_rest::LogLevel::DEBUG, "Multiple SAME org codes provided.", "cap_validation", "validate_soap_alert_info");
+                        return false;
+                    }
+                    bool same_org_code_found = false;
+                    for (auto same_code = SAME_ORG_CODES.begin(); same_code != SAME_ORG_CODES.end(); ++same_code) {
+                        if (*same_code == (*parameter).value) {
+                            same_org_code_found = true;
+                            break;
+                        }
+                    }
+                    if (!same_org_code_found) {
+                        logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter: valid SAME org code not provided.", "cap_validation", "validate_soap_alert_info");
+                        return false;
+                    }
+                }
+            }
+
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating optional CAP info fields...", "cap_validation", "validate_soap_alert_info");
+            // Validate optional fields.
+            if (alert_info.language) {
+                // TODO(All): Implement a language table per [RFC 3066] and validate this element.
+            }
+            for (auto response_type = alert_info.responseType.begin(); response_type != alert_info.responseType.end(); ++response_type) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info responseType: " + std::to_string(*response_type), "cap_validation", "validate_soap_alert_info");
+                if (*response_type < 0) {
+                    return false;
+                }
             }
             return true;
         } catch (...) {
@@ -154,7 +242,7 @@ namespace cap_validation {
             }
             logger.Log(cadg_rest::LogLevel::DEBUG, "Code vector size: " + std::to_string(alert.code.size()), "cap_validation", "validate_soap_alert");
             if (alert.code.size() == 0) {
-                // TODO(All): Is this really required? It is required per the IPAWS profile but omited in examples.
+                // TODO(All): Is this really required? It is required per the IPAWS profile but omitted in examples.
                 return false;
             }
             bool ipaws_profile_code_found = false;
@@ -186,7 +274,7 @@ namespace cap_validation {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "No addresses provided with private scope.", "cap_validation", "validate_soap_alert");
                 return false;
             }
-            // Validate format of optional fields.
+            // Validate  optional fields.
             if (alert.references && *alert.references != "") {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "References string: " + *alert.references, "cap_validation", "validate_soap_alert");
                 if (!validate_references(*alert.references)){
