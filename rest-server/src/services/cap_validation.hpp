@@ -16,13 +16,13 @@
 #include "log_level.hpp"
 #include "../gSoapFiles/CAP/soapH.h"
 #include <time.h>
-#include <regex.h>
+#include <regex>
 
 namespace cap_validation {
 
     // TODO(All): Create a DAO for this and maintain in DB.
     // SAME event codes per FCC Part 11.31 paragraph (e)
-    static const std::array<std::string, 56> SAME_EVENT_CODES = {"EAN", "NIC", "NPT", "RMT", "RWT"
+    static const std::array<std::string, 56> SAME_EVENT_CODES {"EAN", "NIC", "NPT", "RMT", "RWT"
                 , "ADR", "AVW", "AVA", "BZW", "BLU", "CAE", "CDW", "CEM", "CFW", "CFA"
                 , "DSW", "EQW", "EVI", "EWW", "FRW", "FFW", "FFA", "FFS", "FLW", "FLA"
                 , "FLS", "HMW", "HWW", "HWA", "HUW", "HUA", "HLS", "LEW", "LAE", "NMN"
@@ -30,7 +30,7 @@ namespace cap_validation {
                 , "SSA", "SSW", "TOR", "TOA", "TRW", "TRA", "TSW", "TSA", "VOW", "WSW", "WSA"};
 
     // SAME org codes per FCC Part 11.31 paragraph (d)
-    static const std::array<std::string, 4> SAME_ORG_CODES = {"EAS", "CIV", "WXR", "RMT"};
+    static const std::array<std::string, 4> SAME_ORG_CODES {"EAS", "CIV", "WXR", "RMT"};
 
     static std::string time_t_to_xml_dt_string(const time_t &time) {
         struct tm* time_info = localtime(&time);
@@ -42,7 +42,7 @@ namespace cap_validation {
         return date_str;
     }
 
-    static void string_to_vector(std::string s, std::string delimiter, std::vector<std::string> &elems) {
+    static void string_to_vector(std::string s, const std::string &delimiter, std::vector<std::string> &elems) {
         size_t pos = 0;
         while ((pos = s.find(delimiter)) != std::string::npos) {
             if (s.substr(0, pos) != "" )
@@ -95,6 +95,16 @@ namespace cap_validation {
         return true;
     }
 
+    static bool validate_circle_string(const std::string &circle_string) {
+        std::regex pattern {"-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?\\s\\d+(\\.\\d+)?"};
+        return std::regex_match(circle_string, pattern);
+    }
+
+    static bool validate_coordinate_pair_string(const std::string &coordinate_pair) {
+        std::regex pattern {"-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?"};
+        return std::regex_match(coordinate_pair, pattern);
+    }
+
     static bool validate_soap_alert_info_resource(const _ns2__alert_info_resource resource) {
         try {
             auto &logger(cadg_rest::Logger::Instance());
@@ -120,6 +130,56 @@ namespace cap_validation {
             if (resource.derefUri) {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "Info resource dereferenced URI: " + *resource.derefUri, "cap_validation", "validate_soap_alert_info_resource");
                 // TODO(All): Validate URI format.
+            }
+            return true;
+        } catch (...) {
+            return false;
+        }
+    }
+
+    static bool validate_soap_alert_info_area(const _ns2__alert_info_area area) {
+        try {
+            auto &logger(cadg_rest::Logger::Instance());
+
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Validating required CAP info area fields...", "cap_validation", "validate_soap_alert_info_area");
+            // Validate required fields.
+            logger.Log(cadg_rest::LogLevel::DEBUG, "Info area areaDesc: " + area.areaDesc, "cap_validation", "validate_soap_alert_info_area");
+            if (area.areaDesc == "" ) {
+                return false;
+            }
+            for (auto circle = area.circle.begin(); circle != area.circle.end(); ++circle) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area circle: " + *circle, "cap_validation", "validate_soap_alert_info_area");
+            if (!validate_circle_string(*circle)) {
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Info area circle elements.", "cap_validation", "validate_soap_alert_info_area");
+                    return false;
+                }
+            }
+            for (auto polygon = area.polygon.begin(); polygon != area.polygon.end(); ++polygon) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area polygon: " + *polygon, "cap_validation", "validate_soap_alert_info_area");
+                std::vector<std::string> coordinate_pairs;
+                string_to_vector(*polygon, " ", coordinate_pairs);
+                if (coordinate_pairs.size() < 4) {
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Info area polygon: not enough coordinate pairs.", "cap_validation", "validate_soap_alert_info_area");
+                    return false;
+                }
+                for (auto coordinate_pair = coordinate_pairs.begin(); coordinate_pair != coordinate_pairs.end(); ++coordinate_pair) {
+                    if (!validate_coordinate_pair_string(*coordinate_pair)) {
+                        logger.Log(cadg_rest::LogLevel::DEBUG, "Info area polygon: Invalid coordinate pair.", "cap_validation", "validate_soap_alert_info_area");
+                        return false;
+                    }
+                }
+                if (coordinate_pairs[0] != coordinate_pairs[coordinate_pairs.size() - 1]) {
+                    logger.Log(cadg_rest::LogLevel::DEBUG, "Info area polygon: Start and end coordinates do not match.", "cap_validation", "validate_soap_alert_info_area");
+                    return false;
+                }
+            }
+            for (auto geocode = area.geocode.begin(); geocode != area.geocode.end(); ++geocode) {
+                // TODO(All): Validate geocodes.
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area geocode valueName: " + geocode->valueName, "cap_validation", "validate_soap_alert_info_area");
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area geocode value: " + geocode->value, "cap_validation", "validate_soap_alert_info_area");
+            }
+            if (area.ceiling && !area.altitude) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area ceiling used without altitude.", "cap_validation", "validate_soap_alert_info_resource");
             }
             return true;
         } catch (...) {
@@ -178,9 +238,9 @@ namespace cap_validation {
             // We may want to allow these to pass validation, but then perform this check when sending outgoing messages.
             int same_event_code_count = 0;
             for (auto event_code = info.eventCode.begin(); event_code != info.eventCode.end(); ++event_code) {
-                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode valueName: " + (*event_code).valueName, "cap_validation", "validate_soap_alert_info");
-                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode value: " + (*event_code).value, "cap_validation", "validate_soap_alert_info");
-                if ((*event_code).valueName == "SAME") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode valueName: " + event_code->valueName, "cap_validation", "validate_soap_alert_info");
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info eventCode value: " + event_code->value, "cap_validation", "validate_soap_alert_info");
+                if (event_code->valueName == "SAME") {
                     same_event_code_count++;
                     if (same_event_code_count > 1) {
                         logger.Log(cadg_rest::LogLevel::DEBUG, "Multiple SAME codes provided.", "cap_validation", "validate_soap_alert_info");
@@ -202,9 +262,9 @@ namespace cap_validation {
 
             int same_parameter_count = 0;
             for (auto parameter = info.parameter.begin(); parameter != info.parameter.end(); ++parameter) {
-                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter valueName: " + (*parameter).valueName, "cap_validation", "validate_soap_alert_info");
-                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter value: " + (*parameter).value, "cap_validation", "validate_soap_alert_info");
-                if ((*parameter).valueName == "EAS-ORG") {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter valueName: " + parameter->valueName, "cap_validation", "validate_soap_alert_info");
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info parameter value: " + parameter->value, "cap_validation", "validate_soap_alert_info");
+                if (parameter->valueName == "EAS-ORG") {
                     same_parameter_count++;
                     if (same_parameter_count > 1) {
                         logger.Log(cadg_rest::LogLevel::DEBUG, "Multiple SAME org codes provided.", "cap_validation", "validate_soap_alert_info");
@@ -212,7 +272,7 @@ namespace cap_validation {
                     }
                     bool same_org_code_found = false;
                     for (auto same_code = SAME_ORG_CODES.begin(); same_code != SAME_ORG_CODES.end(); ++same_code) {
-                        if (*same_code == (*parameter).value) {
+                        if (*same_code == parameter->value) {
                             same_org_code_found = true;
                             break;
                         }
@@ -238,6 +298,15 @@ namespace cap_validation {
 
             for (auto resource = info.resource.begin(); resource != info.resource.end(); ++resource) {
                 if (!validate_soap_alert_info_resource(*resource)) {
+                    return false;
+                }
+            }
+            if (info.area.size() < 1) {
+                logger.Log(cadg_rest::LogLevel::DEBUG, "Info area missing.", "cap_validation", "validate_soap_alert_info");
+                return false;
+            }
+            for (auto area = info.area.begin(); area != info.area.end(); ++area) {
+                if (!validate_soap_alert_info_area(*area)) {
                     return false;
                 }
             }
@@ -315,7 +384,7 @@ namespace cap_validation {
                 return false;
             }
             // Validate  optional fields.
-            if (alert.references && *alert.references != "") {
+            if (alert.references && alert.references->empty()) {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "References string: " + *alert.references, "cap_validation", "validate_soap_alert");
                 if (!validate_references(*alert.references)){
                     logger.Log(cadg_rest::LogLevel::DEBUG, "Invalid reference format.", "cap_validation", "validate_soap_alert");
