@@ -180,6 +180,7 @@ namespace cap_validation {
             }
             if (area.ceiling && !area.altitude) {
                 logger.Log(cadg_rest::LogLevel::DEBUG, "Info area ceiling used without altitude.", "cap_validation", "validate_soap_alert_info_resource");
+                return false;
             }
             return true;
         } catch (...) {
