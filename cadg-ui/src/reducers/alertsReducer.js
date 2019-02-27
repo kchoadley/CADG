@@ -1,38 +1,27 @@
-/// Reduces actions dispatched for the admin store.
+/// Reduces actions dispatched for the alert store.
 /**
  * Reduces the actions dispatched with the intention of modifying
- * admin data within the store.
+ * alert data within the store.
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
- * @file adminReducer.js
+ * @file alertsReducer.js
  * @date February 2019
  * @authors Vaniya Agrawal
  */
-import {  /// User action types.
-  GET_ADMINS,
-  CREATE_ADMIN,
-  UPDATE_ADMIN,
-  REMOVE_ADMIN } from "../actions/types";
+import {  /// Alert action types.
+  GET_ALERTS,
+  SEND_ALERT,
+  UPDATE_ALERT,
+  CANCEL_ALERT } from "../actions/types";
 
-
-const initialState = {  /// Defaults to the guest user.
-  currUser: 0,
-  admins: {
-    0: {
-      username: 'guest',
-      name: 'Guest',
-    },
-    1: {
-      username: 'vsagrawal',
-      name: 'Vaniya'
-    }
-  }
+const initialState = {  /// Initialized with no active alerts.
+  activeAlerts: {},
 }
 
-/// Main reducer for user actions.
+/// Home reducer for alert actions.
 /**
- * Uses a switch statement to modify the admin store. Switch statement is used
+ * Uses a switch statement to modify the alert store. Switch statement is used
  * to determine which action has been dispatched and to modify the store accordingly.
  *
  * IMPORTANT!! The store is IMMUTABLE. ALL cases must return a COPY of the store,
@@ -45,19 +34,19 @@ const initialState = {  /// Defaults to the guest user.
  */
 export default (state = initialState, action) => {
   switch(action.type) {
-    case GET_ADMINS:
+    case GET_ALERTS:
       return {
         ...state
       };
-    case CREATE_ADMIN:
+    case SEND_ALERT:
       return {
         ...state,
       }
-    case UPDATE_ADMIN:
+    case UPDATE_ALERT:
       return {
         ...state,
       };
-    case REMOVE_ADMIN:
+    case CANCEL_ALERT:
       return {
         ...state,
       };

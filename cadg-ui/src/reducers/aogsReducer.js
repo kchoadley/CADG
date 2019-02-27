@@ -1,27 +1,34 @@
-/// Reduces actions dispatched for the alert store.
+/// Reduces actions dispatched for the aog store.
 /**
  * Reduces the actions dispatched with the intention of modifying
- * alert data within the store.
+ * aog data within the store.
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
- * @file alertReducer.js
+ * @file alertsReducer.js
  * @date February 2019
  * @authors Vaniya Agrawal
  */
 import {  /// Alert action types.
-  GET_ALERTS,
-  SEND_ALERT,
-  UPDATE_ALERT,
-  CANCEL_ALERT } from "../actions/types";
+  GET_AOGS,
+  CREATE_AOG,
+  UPDATE_AOG,
+  REMOVE_AOG } from "../actions/types";
 
 const initialState = {  /// Initialized with no active alerts.
-  activeAlerts: {},
+  aogs: {
+    0: {
+      originator_id: 0,
+      originator_name: 'FDNY',
+      status: 'ACTIVE',
+      agency: 'New York City'
+    },
+  }
 }
 
-/// Main reducer for alert actions.
+/// Main reducer for aog actions.
 /**
- * Uses a switch statement to modify the alert store. Switch statement is used
+ * Uses a switch statement to modify the aog store. Switch statement is used
  * to determine which action has been dispatched and to modify the store accordingly.
  *
  * IMPORTANT!! The store is IMMUTABLE. ALL cases must return a COPY of the store,
@@ -34,19 +41,19 @@ const initialState = {  /// Initialized with no active alerts.
  */
 export default (state = initialState, action) => {
   switch(action.type) {
-    case GET_ALERTS:
+    case GET_AOGS:
       return {
         ...state
       };
-    case SEND_ALERT:
+    case CREATE_AOG:
       return {
         ...state,
       }
-    case UPDATE_ALERT:
+    case UPDATE_AOG:
       return {
         ...state,
       };
-    case CANCEL_ALERT:
+    case REMOVE_AOG:
       return {
         ...state,
       };
