@@ -1,27 +1,27 @@
-/// Reduces actions dispatched for the aog store.
+/// Reduces actions dispatched for the cmsp store.
 /**
  * Reduces the actions dispatched with the intention of modifying
- * aog data within the store.
+ * cmsp data within the store.
  *
  * Copyright 2018   Vaniya Agrawal, Ross Arcemont, Kristofer Hoadley,
  *                  Shawn Hulce, Michael McCulley
- * @file alertReducer.js
+ * @file alertsReducer.js
  * @date February 2019
  * @authors Vaniya Agrawal
  */
 import {  /// Alert action types.
-  GET_AOGS,
-  CREATE_AOG,
-  UPDATE_AOG,
-  REMOVE_AOG } from "../actions/types";
+  GET_CMSPS,
+  CREATE_CMSP,
+  UPDATE_CMSP,
+  REMOVE_CMSP } from "../actions/types";
 
 const initialState = {  /// Initialized with no active alerts.
   active: {},
 }
 
-/// Main reducer for aog actions.
+/// Main reducer for cmsp actions.
 /**
- * Uses a switch statement to modify the aog store. Switch statement is used
+ * Uses a switch statement to modify the cmsp store. Switch statement is used
  * to determine which action has been dispatched and to modify the store accordingly.
  *
  * IMPORTANT!! The store is IMMUTABLE. ALL cases must return a COPY of the store,
@@ -34,19 +34,19 @@ const initialState = {  /// Initialized with no active alerts.
  */
 export default (state = initialState, action) => {
   switch(action.type) {
-    case GET_AOGS:
+    case GET_CMSPS:
       return {
         ...state
       };
-    case CREATE_AOG:
+    case CREATE_CMSP:
       return {
         ...state,
       }
-    case UPDATE_AOG:
+    case UPDATE_CMSP:
       return {
         ...state,
       };
-    case REMOVE_AOG:
+    case REMOVE_CMSP:
       return {
         ...state,
       };
