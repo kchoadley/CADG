@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns3="http://gov.fema.ipaws.services/caprequest"
+    xmlns:ns4="http://gov.fema.ipaws.services/capresponse"
+    xmlns:ns5="urn:oasis:names:tc:emergency:cap:1.2"
+    xmlns:ns2="http://gov.fema.ipaws.services/IPAWS_CAPService/">
+ <SOAP-ENV:Header>
+ </SOAP-ENV:Header>
+ <SOAP-ENV:Body>
+  <ns2:messageResponseTypeDef>
+   <ns5:alert>
+    <ns5:identifier xsi:type="xsd:string"></ns5:identifier>
+    <ns5:sender xsi:type="xsd:string"></ns5:sender>
+    <ns5:sent xsi:type="xsd:dateTime">2019-02-28T01:21:03Z</ns5:sent>
+    <ns5:status xsi:type="ns5:alert-status">Actual</ns5:status>
+    <ns5:msgType xsi:type="ns5:alert-msgType">Alert</ns5:msgType>
+    <ns5:source xsi:type="xsd:string"></ns5:source>
+    <ns5:scope xsi:type="ns5:alert-scope">Public</ns5:scope>
+    <ns5:restriction xsi:type="xsd:string"></ns5:restriction>
+    <ns5:addresses xsi:type="xsd:string"></ns5:addresses>
+    <ns5:code xsi:type="xsd:string"></ns5:code>
+    <ns5:note xsi:type="xsd:string"></ns5:note>
+    <ns5:references xsi:type="xsd:string"></ns5:references>
+    <ns5:incidents xsi:type="xsd:string"></ns5:incidents>
+    <ns5:info>
+     <ns5:language xsi:type="xsd:language"></ns5:language>
+     <ns5:category xsi:type="ns5:alert-info-category">Geo</ns5:category>
+     <ns5:event xsi:type="xsd:string"></ns5:event>
+     <ns5:responseType xsi:type="ns5:alert-info-responseType">Shelter</ns5:responseType>
+     <ns5:urgency xsi:type="ns5:alert-info-urgency">Immediate</ns5:urgency>
+     <ns5:severity xsi:type="ns5:alert-info-severity">Extreme</ns5:severity>
+     <ns5:certainty xsi:type="ns5:alert-info-certainty">Observed</ns5:certainty>
+     <ns5:audience xsi:type="xsd:string"></ns5:audience>
+     <ns5:eventCode>
+      <ns5:valueName xsi:type="xsd:string"></ns5:valueName>
+      <ns5:value xsi:type="xsd:string"></ns5:value>
+     </ns5:eventCode>
+     <ns5:effective xsi:type="xsd:dateTime">2019-02-28T01:21:03Z</ns5:effective>
+     <ns5:onset xsi:type="xsd:dateTime">2019-02-28T01:21:03Z</ns5:onset>
+     <ns5:expires xsi:type="xsd:dateTime">2019-02-28T01:21:03Z</ns5:expires>
+     <ns5:senderName xsi:type="xsd:string"></ns5:senderName>
+     <ns5:headline xsi:type="xsd:string"></ns5:headline>
+     <ns5:description xsi:type="xsd:string"></ns5:description>
+     <ns5:instruction xsi:type="xsd:string"></ns5:instruction>
+     <ns5:web xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns5:web>
+     <ns5:contact xsi:type="xsd:string"></ns5:contact>
+     <ns5:parameter>
+      <ns5:valueName xsi:type="xsd:string"></ns5:valueName>
+      <ns5:value xsi:type="xsd:string"></ns5:value>
+     </ns5:parameter>
+     <ns5:resource>
+      <ns5:resourceDesc xsi:type="xsd:string"></ns5:resourceDesc>
+      <ns5:mimeType xsi:type="xsd:string"></ns5:mimeType>
+      <ns5:size xsi:type="xsd:integer">0</ns5:size>
+      <ns5:uri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns5:uri>
+      <ns5:derefUri xsi:type="xsd:string"></ns5:derefUri>
+      <ns5:digest xsi:type="xsd:string"></ns5:digest>
+     </ns5:resource>
+     <ns5:area>
+      <ns5:areaDesc xsi:type="xsd:string"></ns5:areaDesc>
+      <ns5:polygon xsi:type="xsd:string"></ns5:polygon>
+      <ns5:circle xsi:type="xsd:string"></ns5:circle>
+      <ns5:geocode>
+       <ns5:valueName xsi:type="xsd:string"></ns5:valueName>
+       <ns5:value xsi:type="xsd:string"></ns5:value>
+      </ns5:geocode>
+      <ns5:altitude xsi:type="xsd:decimal">0.0</ns5:altitude>
+      <ns5:ceiling xsi:type="xsd:decimal">0.0</ns5:ceiling>
+     </ns5:area>
+    </ns5:info>
+
+   </ns5:alert>
+  </ns2:messageResponseTypeDef>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
