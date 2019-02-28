@@ -66,7 +66,8 @@ add_executable(${PROJECT_NAME}
                                 ./src/services/aog_dao.cpp
                                 ./src/services/logger.cpp
                                 ./src/soap/controller/soap_controller.cpp
-                                ./src/util/network_utils.cpp)
+                                ./src/util/network_utils.cpp
+                                ./src/services/cap_validation.cpp)
 
 # header locations
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
