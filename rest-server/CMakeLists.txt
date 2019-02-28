@@ -58,8 +58,8 @@ add_executable(${PROJECT_NAME}
                                 ./src/controller/admin_controller.cpp
                                 ./src/controller/aog_controller.cpp
                                 ./src/controller/alert_controller.cpp
-                                ./src/gSoapFiles/CAP/soapC.cpp
-                                ./src/gSoapFiles/CAP/stdsoap2.cpp
+                                ./src/gSoapFiles/IPAWS/soapC.cpp
+                                ./src/gSoapFiles/IPAWS/stdsoap2.cpp
                                 ./src/nanodbc/nanodbc.cpp
                                 ./src/services/admin_dao.cpp
                                 ./src/services/alert_dao.cpp
@@ -72,12 +72,12 @@ add_executable(${PROJECT_NAME}
 set(CONTROLLER_INCLUDE_DIR "./src/controller")
 set(MODEL_INCLUDE_DIR "./src/model")
 set(SERVICES_INCLUDE_DIR "./src/services")
-set(GSOAP_INCLUDE_DIR "./src/gSoapFiles/C")
+set(GSOAP_INCLUDE_IPAWS "./src/gSoapFiles/IPAWS")
 set(SOAP_INCLUDE_DIR "./src/soap/controller")
 set(UTILITIES_INCLUDE_DIR "./src/util")
 set(NANODBC_INCLUDE_DIR "./src/nanodbc")
 set(HEADER_PATHS ${CONTROLLER_INCLUDE_DIR} ${MODEL_INCLUDE_DIR} ${NANODBC_INCLUDE_DIR} ${SERVICES_INCLUDE_DIR} ${UTILITIES_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR}
-        ${ODBC_INCLUDE_DIR} ${GSOAP_INCLUDE_DIR} ${SOAP_INCLUDE_DIR})
+        ${ODBC_INCLUDE_DIR} ${GSOAP_INCLUDE_IPAWS} ${SOAP_INCLUDE_DIR})
 
 # library paths
 set(BOOST_LIBRARY "-lboost_system")

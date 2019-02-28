@@ -8,8 +8,10 @@
 #include <string>
 #include "soap_controller.hpp"
 #include "log_level.hpp"
-#include "../../gSoapFiles/CAP/soapH.h"
-#include "../../gSoapFiles/CAP/ns2.nsmap"
+#include "../../gSoapFiles/IPAWS/soapStub.h"
+#include "../../gSoapFiles/IPAWS/CAPSoapHttp.nsmap"
+#include "../../services/log_level.hpp"
+
 using cadg_rest::LogLevel;
 
 namespace cadg_soap {
@@ -23,10 +25,15 @@ namespace cadg_soap {
     void SoapController::HandlePost(http_request message) {
         logger__.LogNetworkActivity(message, endpoint(), 1);
         try {
-            _ns2__alert alertMessage;
             // Should generate soap context that can read input and create alert. Not sure how
-            struct soap ctx = *soap_new1(SOAP_C_UTFSTRING | SOAP_XML_IGNORENS | SOAP_XML_TREE);
+            //struct soap ctx = *soap_new1(SOAP_C_UTFSTRING | SOAP_XML_IGNORENS | SOAP_XML_TREE);
             //struct soap ctx = *soap_new2(SOAP_XML_STRICT, SOAP_XML_INDENT);
+            struct soap ctx = *soap_new1(SOAP_XML_STRICT);
+            _ns5__alert alertMessage;
+            _ns2__postCAPRequestTypeDef incomingRequest;
+            incomingRequest.ns5__alert = &alertMessage;
+            //incomingRequest.ns5__alert = &alertMessage;
+
             auto body = message.extract_string().get();
             //soap_envelope_begin_in()
             logger__.Log(LogLevel::DEBUG, "Message Received: " + body, "SoapController", "HandlePost");
@@ -35,20 +42,15 @@ namespace cadg_soap {
             str_stream.str(body);  // passes message to into the string stream
             ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input
             ctx.os = &soap_out;  // sets the outstream of the soap ctx context
-            if (soap_accept(&ctx)) {
-                logger__.Log(LogLevel::DEBUG, "Read Envelope", "SoapController", "HandlePost");
-            } else {
-                logger__.Log(LogLevel::DEBUG, "Didn't Read Envelope", "SoapController", "HandlePost");
-            }
             // should read the soap context and output the details to the alertMessage object
-            if (soap_read__ns2__alert(&ctx, &alertMessage)) {
+            if (soap_read__ns2__postCAPRequestTypeDef(&ctx, &incomingRequest)) {
                 soap_response(&ctx, SOAP_OK);
             } else {
                 soap_response(&ctx, SOAP_PROHIBITED);
             }
             ctx.is = NULL;
             auto soap_resp = soap_out.str();
-            logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
+            logger__.Log(LogLevel::DEBUG, incomingRequest.ns5__alert->sender, "SoapController", "HandlePost");
             message.reply(status_codes::OK, soap_resp);
         } catch (std::exception& e) {
             message.reply(status_codes::BadRequest);

@@ -6,7 +6,7 @@
 #ifndef SOAP_CONTROLLER_HPP
 #define SOAP_CONTROLLER_HPP
 #include <controller.hpp>
-#include "../../gSoapFiles/CAP/soapH.h"
+#include "../../gSoapFiles/IPAWS/soapH.h"
 #include <logger.hpp>
 #include <logger_interface.hpp>
 using cadg_rest::LoggerInterface;
