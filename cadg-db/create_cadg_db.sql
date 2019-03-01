@@ -2,19 +2,20 @@
 -- Sat Jan 19 11:11:47 2019
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
+-- Modified by hand after generation.
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema admin_db
+-- Schema admin
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `admin_db` ;
+DROP SCHEMA IF EXISTS `admin` ;
 -- -----------------------------------------------------
--- Schema admin_db
+-- Schema admin
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `admin_db` ;
+CREATE SCHEMA IF NOT EXISTS `admin` ;
 -- -----------------------------------------------------
 -- Schema cadg
 -- -----------------------------------------------------
@@ -24,14 +25,14 @@ DROP SCHEMA IF EXISTS `cadg` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `cadg` ;
 
-USE `admin_db` ;
+USE `admin` ;
 
 -- -----------------------------------------------------
--- Table `admin_db`.`admin`
+-- Table `admin`.`admin`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `admin_db`.`admin` ;
+DROP TABLE IF EXISTS `admin`.`admin` ;
 
-CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
+CREATE TABLE IF NOT EXISTS `admin`.`admin` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -48,22 +49,8 @@ CREATE TABLE IF NOT EXISTS `admin_db`.`admin` (
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB
 COMMENT = '				';
-
--- -----------------------------------------------------
--- Table `cadg`.`disseminator`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `cadg`.`disseminator` ;
-
-CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
-  `disseminator_id` INT NOT NULL,
-  `disseminator_name` VARCHAR(45) NULL,
-  `disseminator_type` ENUM('CMSP') NULL,
-  `message_format` ENUM('CMAC') NULL,
-  `ip` VARCHAR(45) NULL,
-  `port` INT NULL,
-  `status` ENUM('ACTIVE', 'DISABLED') NULL,
-  PRIMARY KEY (`disseminator_id`))
-ENGINE = InnoDB;
+                                  
+USE `cadg` ;
 
 -- -----------------------------------------------------
 -- Table `cadg`.`alert`
@@ -89,14 +76,26 @@ CREATE TABLE IF NOT EXISTS `cadg`.`alert` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `alert_originator_idx` ON `cadg`.`alert` (`originator_id` ASC) VISIBLE;
+-- -----------------------------------------------------
+-- Table `cadg`.`disseminator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cadg`.`disseminator` ;
+
+CREATE TABLE IF NOT EXISTS `cadg`.`disseminator` (
+  `disseminator_id` INT NOT NULL,
+  `disseminator_name` VARCHAR(45) NULL,
+  `disseminator_type` ENUM('CMSP') NULL,
+  `message_format` ENUM('CMAC') NULL,
+  `ip` VARCHAR(45) NULL,
+  `port` INT NULL,
+  `status` ENUM('ACTIVE', 'DISABLED') NULL,
+  PRIMARY KEY (`disseminator_id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `cadg`.`originator`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `cadg`.`originator` ;
-                                  
-USE `cadg` ;
                                   
 CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
   `originator_id` INT NOT NULL AUTO_INCREMENT,
@@ -105,6 +104,8 @@ CREATE TABLE IF NOT EXISTS `cadg`.`originator` (
   `agency` VARCHAR(45) NULL,
   PRIMARY KEY (`originator_id`))
 ENGINE = InnoDB;
+
+CREATE INDEX `alert_originator_idx` ON `cadg`.`alert` (`originator_id` ASC) VISIBLE;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
