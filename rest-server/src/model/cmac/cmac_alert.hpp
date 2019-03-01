@@ -24,7 +24,7 @@ namespace cmac {
         std::optional<std::string> cmac_cap_alert_uri;
         std::optional<std::string> cmac_cap_identifier;
         std::optional<std::string> cmac_cap_sent_date_time;
-        std::optional<std::vector<CMAC_alert_info>> cmac_alert_info;
+        std::optional<cmac::CMAC_alert_info> cmac_alert_info;
         std::optional<std::string> cmac_digital_signature;
     };
 }
