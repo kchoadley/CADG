@@ -13,13 +13,14 @@
 #include <ctime>
 #include "cmac_converter.hpp"
 #include "../pugixml-1.9/src/pugixml.hpp"
+#include "../pugixml-1.9/src/pugixml.cpp"
 #include "../../rest-server/src/model/cmac/cmac_alert.hpp"
 
 void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_content, std::string cmac_filename) {
     // Obtaining the current date-time for later use.
     std::time_t time = std::time(0);
     std::tm* current_date_time = std::localtime(&time);
-    //TODO: Ensure correctness
+    // TODO(Ross): Ensure correctness
     std::string date_time_str = std::to_string((current_date_time->tm_year + 1900)) +
                                 '-' + std::to_string((current_date_time->tm_mon + 1)) +
                                 '-' + std::to_string(current_date_time->tm_mday) +
@@ -37,18 +38,18 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
     pugi::xml_node declaration_node = cmac_doc.append_child(pugi::node_declaration);
     declaration_node.append_attribute("version") = "1.0";
     pugi::xml_node root_node = cmac_doc.append_child("CMAC_Alert_Attributes");
-    root_node.append_attribute("xmlns") = "\"cmac:2.0\""; //TODO: Check value. Potentially temporary.
+    root_node.append_attribute("xmlns") = "\"cmac:2.0\""; // TODO(Ross): Check value. Potentially temporary.
 
-    //Creating the node structure and node content for the CMAC_Alert_Attributes block.
-    //All node variable names match the corresponding CMAC structure as closely as possible.
+    // Creating the node structure and node content for the CMAC_Alert_Attributes block.
+    // All node variable names match the corresponding CMAC structure as closely as possible.
     pugi::xml_node cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
-    cmac_protocol_version.text().set(alert_content.cmac_protocol_version.value().c_str()); //TODO: Determine how to get the protocol version based on either CAP message or other source.
+    cmac_protocol_version.text().set(alert_content.cmac_protocol_version.value().c_str()); // TODO(Ross): Determine how to get the protocol version based on either CAP message or other source.
 
     pugi::xml_node cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
-    cmac_sending_gateway_id.text().set(alert_content.cmac_sending_gateway_id.value().c_str()); //TODO: Determine how to get gateway IP or URI.
+    cmac_sending_gateway_id.text().set(alert_content.cmac_sending_gateway_id.value().c_str()); // TODO(Ross): Determine how to get gateway IP or URI.
 
     pugi::xml_node cmac_message_number = root_node.append_child("CMAC_message_number");
-    cmac_message_number.text().set(alert_content.cmac_message_number.value().c_str()); //TODO: Determining how to identify CMSP-initiated value, when applicable.
+    cmac_message_number.text().set(alert_content.cmac_message_number.value().c_str()); // TODO(Ross): Determining how to identify CMSP-initiated value, when applicable.
 
     if (alert_content.cmac_referenced_message_number) {
         pugi::xml_node cmac_referenced_message_number = root_node.append_child("CMAC_referenced_message_number");
@@ -62,7 +63,7 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
 
     if (alert_content.cmac_special_handling) {
         pugi::xml_node cmac_special_handling = root_node.append_child("CMAC_special_handling");
-        cmac_special_handling.text().set(alert_content.cmac_special_handling.value().c_str()); //TODO: Ensure correctness.
+        cmac_special_handling.text().set(alert_content.cmac_special_handling.value().c_str()); // TODO(Ross): Ensure correctness.
     }
 
     if (alert_content.cmac_sender) {
@@ -91,7 +92,7 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
 
     if (alert_content.cmac_cap_alert_uri) {
         pugi::xml_node cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
-        cmac_cap_alert_uri.text().set(alert_content.cmac_cap_alert_uri.value().c_str()); //TODO: Determine how to obtain from the gateway.
+        cmac_cap_alert_uri.text().set(alert_content.cmac_cap_alert_uri.value().c_str()); // TODO(Ross): Determine how to obtain from the gateway.
     }
 
     if (alert_content.cmac_cap_identifier) {
@@ -104,8 +105,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
         cmac_cap_sent_date_time.text().set(alert_content.cmac_cap_sent_date_time.value().c_str());
     }
 
-    //Creating the node structure and node content for the CMAC_alert_info block.
-    //All node variable names match the corresponding CMAC structure as closely as possible.
+    // Creating the node structure and node content for the CMAC_alert_info block.
+    // All node variable names match the corresponding CMAC structure as closely as possible.
     if (alert_content.cmac_alert_info) {
         pugi::xml_node cmac_alert_info = root_node.append_child("CMAC_alert_info");
         pugi::xml_node cmac_category = cmac_alert_info.append_child("CMAC_category");
@@ -134,8 +135,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
         }
 
         for (int j = 0; j < alert_content.cmac_alert_info.value().cmac_alert_area.value().size(); j++) {
-            //Creating the node structure and node content for the CMAC_Alert_Area block.
-            //All node variable names match the corresponding CMAC structure as closely as possible.
+            // Creating the node structure and node content for the CMAC_Alert_Area block.
+            // All node variable names match the corresponding CMAC structure as closely as possible.
             pugi::xml_node cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
             pugi::xml_node cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
             cmac_area_description.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_area_description.value().c_str());
@@ -155,8 +156,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
                 cmac_cmas_geocode.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().at(k).c_str());
             }
 
-            //TODO: Complete when CMAC object's geocode data is corrected
-            //Creating geocode nodes and filling with content
+            // TODO(Ross): Complete when CMAC object's geocode data is corrected
+            // Creating geocode nodes and filling with content
 //            for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
 //                std::string node_name = geocode.name();
 //                if(node_name.compare("geocode") == 0) {
@@ -176,8 +177,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
         }
 
         for (int j = 0; j < alert_content.cmac_alert_info.value().cmac_alert_text.value().size(); j++) {
-            //Creating the node structure and node content for the CMAC_Alert_Text block.
-            //All node variable names match the corresponding CMAC structure as closely as possible.
+            // Creating the node structure and node content for the CMAC_Alert_Text block.
+            // All node variable names match the corresponding CMAC structure as closely as possible.
             pugi::xml_node cmac_alert_text = cmac_alert_info.append_child("CMAC_Alert_Text");
             pugi::xml_node cmac_text_language = cmac_alert_text.append_child("CMAC_text_language");
             cmac_text_language.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_text_language.value().c_str());
@@ -196,10 +197,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
         }
     }
 
-
-
-    //Creating the node structure and node content for the CMAC_Digital_Signature block.
-    //All node variable names match the corresponding CMAC structure as closely as possible.
+    // Creating the node structure and node content for the CMAC_Digital_Signature block.
+    // All node variable names match the corresponding CMAC structure as closely as possible.
     pugi::xml_node cmac_digital_signature = root_node.append_child("CMAC_Digital_Signature");
     cmac_digital_signature.text().set(alert_content.cmac_digital_signature.value().c_str());
 
@@ -207,14 +206,15 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
     bool saved = cmac_doc.save_file(cmac_filename.c_str());
 }
 
-// int main() {
-//    cmac::CMAC_alert test_alert;
-//    test_alert.cmac_protocol_version = "2.0";
-//    test_alert.cmac_sending_gateway_id = "localhost";
-//    test_alert.cmac_message_number = "9001";
-//    test_alert.cmac_sent_date_time = "02-27-2019-11:59am";
-//    test_alert.cmac_status = "actual";
-//    test_alert.cmac_message_type = "alert";
-//
-//    CMAC::convert(test_alert, "test.xml");
-// }
+ int main() {
+    cmac::CMAC_alert test_alert;
+    test_alert.cmac_protocol_version = "2.0";
+    test_alert.cmac_sending_gateway_id = "localhost";
+    test_alert.cmac_message_number = "9001";
+    test_alert.cmac_sent_date_time = "02-27-2019-11:59am";
+    test_alert.cmac_status = "actual";
+    test_alert.cmac_message_type = "alert";
+    test_alert.cmac_digital_signature = "Ross Arcemont";
+
+    CMAC::convert(test_alert, "test.xml");
+ }
