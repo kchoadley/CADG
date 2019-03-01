@@ -63,8 +63,7 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
         pugi::xml_node cmac_referenced_message_cap_identifier = root_node.append_child(
                 "CMAC_referenced_message_cap_identifier");
         cmac_referenced_message_cap_identifier.text().set(
-                alert_content.cmac_referenced_message_cap_identifier.value().c_str()
-                );
+                alert_content.cmac_referenced_message_cap_identifier.value().c_str());
     }
 
     if (alert_content.cmac_special_handling) {
@@ -171,8 +170,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
             k++) {
                 pugi::xml_node cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
                 cmac_cmas_geocode.text().set(
-            alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().at(k).c_str()
-                );
+                        alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j)
+                        .cmac_cmas_geocode.value().at(k).c_str());
             }
 
             // TODO(Ross): Complete when CMAC object's geocode data is corrected
@@ -209,27 +208,26 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
 
             pugi::xml_node cmac_short_text_alert_message_length = cmac_alert_text.append_child(
                     "CMAC_short_text_alert_message_length");
-            cmac_short_text_alert_message_length.text().set(
-alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message_length.value().c_str()
-            );
+            cmac_short_text_alert_message_length.text().set(alert_content.cmac_alert_info.value()
+            .cmac_alert_text.value().at(j).cmac_short_text_alert_message_length.value().c_str());
 
             pugi::xml_node cmac_short_text_alert_message = cmac_alert_text.append_child(
                     "CMAC_short_text_alert_message");
             cmac_short_text_alert_message.text().set(
-    alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message.value().c_str()
-            );
+                    alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j)
+                    .cmac_short_text_alert_message.value().c_str());
 
             pugi::xml_node cmac_long_text_alert_message_length = cmac_alert_text.append_child(
                     "CMAC_long_text_alert_message_length");
             cmac_long_text_alert_message_length.text().set(
-alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str()
-            );
+                    alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j)
+                    .cmac_long_text_alert_message_length.value().c_str());
 
             pugi::xml_node cmac_long_text_alert_message = cmac_alert_text.append_child(
                     "CMAC_long_text_alert_message");
             cmac_long_text_alert_message.text().set(
-alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str()
-            );
+                    alert_content.cmac_alert_info.value()
+                    .cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str());
         }
     }
 
@@ -242,7 +240,7 @@ alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_te
     bool saved = cmac_doc.save_file(cmac_filename.c_str());
 }
 
- int main() {
+int main() {
     cmac::CMAC_alert test_alert;
     test_alert.cmac_protocol_version = "2.0";
     test_alert.cmac_sending_gateway_id = "localhost";
@@ -253,4 +251,4 @@ alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_te
     test_alert.cmac_digital_signature = "Ross Arcemont";
 
     CMAC::convert(test_alert, "test.xml");
- }
+}
