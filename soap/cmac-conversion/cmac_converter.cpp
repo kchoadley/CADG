@@ -38,18 +38,21 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
     pugi::xml_node declaration_node = cmac_doc.append_child(pugi::node_declaration);
     declaration_node.append_attribute("version") = "1.0";
     pugi::xml_node root_node = cmac_doc.append_child("CMAC_Alert_Attributes");
-    root_node.append_attribute("xmlns") = "\"cmac:2.0\""; // TODO(Ross): Check value. Potentially temporary.
+    root_node.append_attribute("xmlns") = "\"cmac:2.0\"";  // TODO(Ross): Check value. Potentially temporary.
 
     // Creating the node structure and node content for the CMAC_Alert_Attributes block.
     // All node variable names match the corresponding CMAC structure as closely as possible.
     pugi::xml_node cmac_protocol_version = root_node.append_child("CMAC_protocol_version");
-    cmac_protocol_version.text().set(alert_content.cmac_protocol_version.value().c_str()); // TODO(Ross): Determine how to get the protocol version based on either CAP message or other source.
+    // TODO(Ross): Determine how to get the protocol version based on either CAP message or other source.
+    cmac_protocol_version.text().set(alert_content.cmac_protocol_version.value().c_str());
 
     pugi::xml_node cmac_sending_gateway_id = root_node.append_child("CMAC_sending_gateway_id");
-    cmac_sending_gateway_id.text().set(alert_content.cmac_sending_gateway_id.value().c_str()); // TODO(Ross): Determine how to get gateway IP or URI.
+    // TODO(Ross): Determine how to get gateway IP or URI.
+    cmac_sending_gateway_id.text().set(alert_content.cmac_sending_gateway_id.value().c_str());
 
     pugi::xml_node cmac_message_number = root_node.append_child("CMAC_message_number");
-    cmac_message_number.text().set(alert_content.cmac_message_number.value().c_str()); // TODO(Ross): Determining how to identify CMSP-initiated value, when applicable.
+    // TODO(Ross): Determining how to identify CMSP-initiated value, when applicable.
+    cmac_message_number.text().set(alert_content.cmac_message_number.value().c_str());
 
     if (alert_content.cmac_referenced_message_number) {
         pugi::xml_node cmac_referenced_message_number = root_node.append_child("CMAC_referenced_message_number");
@@ -57,13 +60,17 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
     }
 
     if (alert_content.cmac_referenced_message_cap_identifier) {
-        pugi::xml_node cmac_referenced_message_cap_identifier = root_node.append_child("CMAC_referenced_message_cap_identifier");
-        cmac_referenced_message_cap_identifier.text().set(alert_content.cmac_referenced_message_cap_identifier.value().c_str());
+        pugi::xml_node cmac_referenced_message_cap_identifier = root_node.append_child(
+                "CMAC_referenced_message_cap_identifier");
+        cmac_referenced_message_cap_identifier.text().set(
+                alert_content.cmac_referenced_message_cap_identifier.value().c_str()
+                );
     }
 
     if (alert_content.cmac_special_handling) {
         pugi::xml_node cmac_special_handling = root_node.append_child("CMAC_special_handling");
-        cmac_special_handling.text().set(alert_content.cmac_special_handling.value().c_str()); // TODO(Ross): Ensure correctness.
+        // TODO(Ross): Ensure correctness.
+        cmac_special_handling.text().set(alert_content.cmac_special_handling.value().c_str());
     }
 
     if (alert_content.cmac_sender) {
@@ -92,7 +99,8 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
 
     if (alert_content.cmac_cap_alert_uri) {
         pugi::xml_node cmac_cap_alert_uri = root_node.append_child("CMAC_cap_alert_uri");
-        cmac_cap_alert_uri.text().set(alert_content.cmac_cap_alert_uri.value().c_str()); // TODO(Ross): Determine how to obtain from the gateway.
+        // TODO(Ross): Determine how to obtain from the gateway.
+        cmac_cap_alert_uri.text().set(alert_content.cmac_cap_alert_uri.value().c_str());
     }
 
     if (alert_content.cmac_cap_identifier) {
@@ -139,26 +147,38 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
             // All node variable names match the corresponding CMAC structure as closely as possible.
             pugi::xml_node cmac_alert_area = cmac_alert_info.append_child("CMAC_Alert_Area");
             pugi::xml_node cmac_area_description = cmac_alert_area.append_child("CMAC_area_description");
-            cmac_area_description.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_area_description.value().c_str());
+            cmac_area_description.text().set(
+            alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_area_description.value().c_str());
 
-            for (int k = 0; k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_polygon.value().size(); k++) {
+            for (int k = 0;
+            k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_polygon.value().size();
+            k++) {
                 pugi::xml_node cmac_polygon = cmac_alert_area.append_child("CMAC_polygon");
-                cmac_polygon.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_polygon.value().at(k).c_str());
+                cmac_polygon.text().set(
+                alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_polygon.value().at(k).c_str());
             }
 
-            for (int k = 0; k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_circle.value().size(); k++) {
+            for (int k = 0;
+            k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_circle.value().size();
+            k++) {
                 pugi::xml_node cmac_circle = cmac_alert_area.append_child("CMAC_circle");
-                cmac_circle.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_circle.value().at(k).c_str());
+                cmac_circle.text().set(
+                alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_circle.value().at(k).c_str());
             }
 
-            for (int k = 0; k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().size(); k++) {
+            for (int k = 0;
+            k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().size();
+            k++) {
                 pugi::xml_node cmac_cmas_geocode = cmac_alert_area.append_child("CMAC_cmas_geocode");
-                cmac_cmas_geocode.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().at(k).c_str());
+                cmac_cmas_geocode.text().set(
+            alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_cmas_geocode.value().at(k).c_str()
+                );
             }
 
             // TODO(Ross): Complete when CMAC object's geocode data is corrected
             // Creating geocode nodes and filling with content
-//            for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child(); geocode ; geocode = geocode.next_sibling()) {
+//            for (pugi::xml_node geocode = cap_message.child("info").child("area").first_child();
+//            geocode ; geocode = geocode.next_sibling()) {
 //                std::string node_name = geocode.name();
 //                if(node_name.compare("geocode") == 0) {
 //                    pugi::xml_node cmac_cap_geocode = cmac_alert_area.append_child("CMAC_cap_geocode");
@@ -170,9 +190,12 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
 //                }
 //            }
 
-            for (int k = 0; k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_gnis.value().size(); k++) {
+            for (int k = 0;
+            k < alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_gnis.value().size();
+            k++) {
                 pugi::xml_node cmac_gnis = cmac_alert_area.append_child("CMAC_gnis");
-                cmac_gnis.text().set(alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_gnis.value().at(k).c_str());
+                cmac_gnis.text().set(
+                alert_content.cmac_alert_info.value().cmac_alert_area.value().at(j).cmac_gnis.value().at(k).c_str());
             }
         }
 
@@ -181,19 +204,32 @@ void CMAC::convert(CADG_REST_SERVER_CMAC_ALERT_HPP::cmac::CMAC_alert alert_conte
             // All node variable names match the corresponding CMAC structure as closely as possible.
             pugi::xml_node cmac_alert_text = cmac_alert_info.append_child("CMAC_Alert_Text");
             pugi::xml_node cmac_text_language = cmac_alert_text.append_child("CMAC_text_language");
-            cmac_text_language.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_text_language.value().c_str());
+            cmac_text_language.text().set(
+            alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_text_language.value().c_str());
 
-            pugi::xml_node cmac_short_text_alert_message_length = cmac_alert_text.append_child("CMAC_short_text_alert_message_length");
-            cmac_short_text_alert_message_length.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message_length.value().c_str());
+            pugi::xml_node cmac_short_text_alert_message_length = cmac_alert_text.append_child(
+                    "CMAC_short_text_alert_message_length");
+            cmac_short_text_alert_message_length.text().set(
+alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message_length.value().c_str()
+            );
 
-            pugi::xml_node cmac_short_text_alert_message = cmac_alert_text.append_child("CMAC_short_text_alert_message");
-            cmac_short_text_alert_message.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message.value().c_str());
+            pugi::xml_node cmac_short_text_alert_message = cmac_alert_text.append_child(
+                    "CMAC_short_text_alert_message");
+            cmac_short_text_alert_message.text().set(
+    alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_short_text_alert_message.value().c_str()
+            );
 
-            pugi::xml_node cmac_long_text_alert_message_length = cmac_alert_text.append_child("CMAC_long_text_alert_message_length");
-            cmac_long_text_alert_message_length.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str());
+            pugi::xml_node cmac_long_text_alert_message_length = cmac_alert_text.append_child(
+                    "CMAC_long_text_alert_message_length");
+            cmac_long_text_alert_message_length.text().set(
+alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str()
+            );
 
-            pugi::xml_node cmac_long_text_alert_message = cmac_alert_text.append_child("CMAC_long_text_alert_message");
-            cmac_long_text_alert_message.text().set(alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str());
+            pugi::xml_node cmac_long_text_alert_message = cmac_alert_text.append_child(
+                    "CMAC_long_text_alert_message");
+            cmac_long_text_alert_message.text().set(
+alert_content.cmac_alert_info.value().cmac_alert_text.value().at(j).cmac_long_text_alert_message_length.value().c_str()
+            );
         }
     }
 
