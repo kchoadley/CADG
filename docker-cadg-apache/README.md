@@ -1,19 +1,20 @@
-# CADG Apache Docker Image
+# CADG Apache
+Utilizes version 2.4 of the Apache httpd server Docker image. There are two components the Apache serves, the REST API and the React user interface. This Apache container is designed to run as the first point of contact for the docker-compose, encapsulating the other components.
 
-This utilizes version 2.4 of the Apache httpd server. The configuration file is extremely basic at present and will need to be built. As such, this has been tagged as prototype for the time being.
+There are two components that must be in their respective sub-directories when building the Apache image.<br>
+The built React web app in `./html_files` and<br>
+the SSL certificate in `./ssl_cert`.
+
+If you are building the entire application with docker-compose, you only need to provide the SSL certificate. The React app is built by the docker-compose.
+
+## Docker
+The Apache Docker is meant to be used in the docker-compose, but it can be run separately for testing, say for ensuring the React web app serves correctly from within the Apache without docker-composing up the whole application.
 
 To build locally
+```bash
+docker build -t cadg-apache .
 ```
-docker build -t cadg-apache:tag .
+To run the container
+```bash
+docker run -d -p 8080:80 cadg-apache
 ```
-Note: Replace tag with your desired nomenclature. Also note that you can pull the current prototype image from the docker hub with:
-```
-docker pull os-wasabi/cadg-apache:prototype
-```
-
-Run Directions:
-To run this container you will need to provide it port information as well as a name. As below:
-```
-docker run -d --name container-name -p 8080:80 cadg-apache:prototype
-```
-Note: If you built the image locally and named it something different substitute that in the previous command.

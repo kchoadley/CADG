@@ -1,3 +1,5 @@
+# Directory for the built React web app. NPM build will copy the React app here. It is then copied from here into the Apache Docker container.
+
 # Ignore everything in this directory
 *
 # Except this file

@@ -1,0 +1,6 @@
+# Directory for the SSL certificate. You must provide the SSL certificate. It is then copied from here into the Apache Docker container.
+
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

@@ -31,7 +31,7 @@ It is not designed for running the React app locally, but with some modification
 
 To run inside the Apache docker container:
 1. Run `npm run build`
-2. If you are **not** running Ubuntu, or in WSL (Windows Subsytem for Linux), you will need to copy the build files from `/build` to `../docker-cadg-apache/html_files/`
+2. If you are **not** running Ubuntu, or in WSL (Windows Subsystem for Linux), you will need to copy the build files from `/build` to `../docker-cadg-apache/html_files/`
 3. See instructions to build and run the apache docker.
 
 ## Dependencies
