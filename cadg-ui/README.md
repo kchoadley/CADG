@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CADG-UI
+A React app frontend for interacting with the CADG system. It supports, or will support, several functions:
+* View current alerts
+* View/edit Alert Originators
+* View/edit Alert Disseminators
+* View/edit CADG Users
 
-## Available Scripts
-
+## NPM Scripts
 In the project directory, you can run:
 
+### `npm install`
+You should run this first to install dependencies.
+
 ### `npm start`
-
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.<br>
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
-
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+A postbuild script in the [package.json](package.json) copies the build files to the `../docker-cadg-apache/html_files/` directory for deployment from the Apache server in a docker container.<br>
+It only works on Linux (only tested on Ubuntu), else it fails the first check and won't continue (but won't fail the build either).<br>
+The post build script will clean the `../docker-cadg-apache/html_files/` before copying over files.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Docker
+A docker container is used as a build container during the CADG docker-compose to ensure the most recent version of the CADG-UI is deployed. <br>
+It is not designed for running the React app locally, but with some modification would work for such a use case. The better recommended way to test locally is to use the Apache docker container to run it locally.
 
-### `npm run eject`
+To run inside the Apache docker container:
+1. Run `npm run build`
+2. If you are **not** running Ubuntu, or in WSL (Windows Subsytem for Linux), you will need to copy the build files from `/build` to `../docker-cadg-apache/html_files/`
+3. See instructions to build and run the apache docker.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Dependencies
+Below is a list of major libraries and tools we used in the CADG-UI React app.
+* babel
+* react-bootstrap
+* react-redux
+* react-router-dom
+* redux-thunk
