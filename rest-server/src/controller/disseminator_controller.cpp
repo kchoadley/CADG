@@ -77,8 +77,7 @@ void DisseminatorController::HandlePut(http_request message) {
 void DisseminatorController::HandlePost(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
     try {
-        const json::value body_json = message.extract_json().get();
-        json::value disseminator_json = body_json.at("disseminator");
+        const json::value disseminator_json = message.extract_json().get();
         if (auto disseminator_optional = Disseminator::from_json(disseminator_json)) {
             Disseminator disseminator = disseminator_optional.value();
             if (auto success_optional = dao__.AddDisseminator(disseminator)) {
