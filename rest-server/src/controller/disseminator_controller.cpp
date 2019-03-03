@@ -71,8 +71,33 @@ void DisseminatorController::HandleGet(http_request message) {
 }
 void DisseminatorController::HandlePut(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
-    // TODO(Kris): Implement
-    message.reply(status_codes::NotImplemented, json::value::string("Put Disseminators Not Implemented."));
+    auto relative_path = message.relative_uri().to_string();
+    std::vector<std::string> path_segments = PathSegments(relative_path);
+    const json::value disseminator_json = message.extract_json().get();
+    if (path_segments.size() > 0 &&
+            path_segments[0].find_first_not_of("0123456789") == std::string::npos) {
+        if (auto disseminator_optional = Disseminator::from_json(disseminator_json)) {
+            int id = std::stoi(path_segments[0]);
+            Disseminator disseminator = disseminator_optional.value();
+            disseminator.id = id;
+            if (auto success_optional = dao__.UpdateDisseminator(disseminator)) {
+                auto success = success_optional.value();
+                if (success) {
+                    message.reply(status_codes::NoContent);
+                } else {
+                    logger__.Log(LogLevel::ERR, "DisseminatorController",
+                            "HandlePut", "Put disseminator returned false.");
+                    message.reply(status_codes::InternalError, json::value::string("Internal Error"));
+                }
+            } else {
+                message.reply(status_codes::InternalError, json::value::string("Internal Error"));
+            }
+        } else {
+            message.reply(status_codes::BadRequest, json::value::string("Bad Request"));
+        }
+    } else {
+        message.reply(status_codes::BadRequest, json::value::string("Bad Request"));
+    }
 }
 void DisseminatorController::HandlePost(http_request message) {
     logger__.LogNetworkActivity(message, endpoint(), 1);
@@ -106,7 +131,7 @@ void DisseminatorController::HandleDelete(http_request message) {
                 message.reply(status_codes::NoContent);
             } else {
                 logger__.Log(LogLevel::ERR, "DisseminatorController",
-                        "HandleDelete", "Delete disseminator came back false.");
+                        "HandleDelete", "Delete disseminator returned false.");
                 message.reply(status_codes::InternalError, json::value::string("Internal Error"));
             }
         } else {
