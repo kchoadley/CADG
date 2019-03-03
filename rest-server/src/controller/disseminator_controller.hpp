@@ -28,43 +28,44 @@ class DisseminatorController: public Controller {
      * HandleGet will return a disseminator or collection of disseminators determined
      * by the parameters in the url path.
      * 
-     * '/v1/cadg/api/disseminators/'
-     *    GET at root path returns all disseminators.
+     * GET at root path returns all disseminators.<br>
+     * `/v1/cadg/api/disseminators/`<br>
+     * Success -> 200: 'OK'<br>
+     * Failure -> 400: 'Bad Request'
      * 
-     * '/v1/cadg/api/disseminators/{id}'
-     *    GET with disseminator id (integer) in the path returns
-     *    an disseminator with that id, or no disseminator if there isn't one.
+     * GET with disseminator id (integer) in the path returns
+     * an disseminator with that id, or no disseminator if there isn't one.<br>
+     * `/v1/cadg/api/disseminators/{id}`
      * 
-     * '/v1/cadg/api/disseminators/{id}/password'
-     * ```{
-     *    "username":"{username}",
-     *    "password":"{password}"
-     * }```
-     *    GET on an id/password will validate a user's password.
-     *    The username and password should be passed into the body as a json object.
-     *    Success -> 204: 'No Content'
-     *    Failure -> 400: 'Bad Request'
-     * 
-     * '/v1/cadg/api/disseminators?username={username}'
-     *    GET with a query for username returns disseminator with that username.
+     * GET with a query for username returns disseminators with that partially
+     * or fully match that name.<br>
+     * `/v1/cadg/api/disseminators?name={name}`<br>
+     * Success -> 200: 'OK'<br>
+     * Failure -> 400: 'Bad Request'
      * 
      * @param message The http request to be parsed.
      */
     void HandleGet(http_request message) override;
     /// Updates a current disseminator's data.
     /**
-     * HandlePut will update a disseminator's data if one exists.
-     * The disseminator id should be at the end of the url path.
+     * NOTE: Not Implemented<br>
+     * HandlePut will update a disseminator's data if one exists.<br>
+     * The disseminator id should be at the end of the url path.<br>
      * The disseminator's new data should be in the body as json.
      * 
-     * 
-     * '/v1/cadg/api/disseminators/{id}/password'
-     * ```{
-     *    "password":"{password}"
-     * }```
-     *    PUT on an id/password will update user's password.
-     *    The password should be passed into the body as a json object.
-     *    Success -> 204: 'No Content'
+     * `/v1/cadg/api/disseminators/{id}`<br>
+     * ```
+        {
+          "name": "AT&T",
+          "type": "CMSP",
+          "format": "CMAC",
+          "ip": "127.0.0.1",
+          "port": 443,
+          "backup_port": 4443,
+          "status": "ACTIVE"
+        }
+     * ```
+     *    Success -> 204: 'No Content'<br>
      *    Failure -> 400: 'Bad Request'
      * 
      * @param message The http request message to be parsed.
@@ -75,13 +76,31 @@ class DisseminatorController: public Controller {
      * HandlePost will add a new disseminator or collection of disseminators to this endpoint.
      * The body should include json of the disseminators to be posted.
      * 
+     * `/v1/cadg/api/disseminators/`<br>
+     * ```
+        {
+          "name": "AT&T",
+          "type": "CMSP",
+          "format": "CMAC",
+          "ip": "127.0.0.1",
+          "port": 443,
+          "backup_port": 4443,
+          "status": "ACTIVE"
+        }
+     * ```
+     *    Success -> 204: 'No Content'<br>
+     *    Failure -> 400: 'Bad Request'
+     * 
      * @param message The http request message to be parsed.
      */
     void HandlePost(http_request message) override;
     /// Removes an existing disseminator.
     /**
-     * HandleDelete will delete a disseminator's data if one exists.
+     * NOTE: Not Implemented<br>
+     * HandleDelete will delete a disseminator's data if one exists.<br>
      * The disseminator id should be at the end of the url path.
+     * 
+     * `/v1/cadg/api/disseminators/{id}`
      * 
      * @param message The http request message to be parsed.
      */
