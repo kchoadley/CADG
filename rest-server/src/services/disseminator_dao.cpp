@@ -70,39 +70,42 @@ bool DisseminatorDao::Requery() {
     }
 }
 std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminators() {
-    DisseminatorDao::Requery();
-    return disseminators__;
-}
-/**
- * Gets disseminator by partial string match of name, ignores case.
- * 
- * TODO: Does not handle a space ' ' in the url correctly. 
- *       Will need to convert '%20' to space ' '.
- * 
- */
-std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorsByName(const std::string& name) {
-    DisseminatorDao::Requery();
-    std::vector<Disseminator> matching_disseminators;
-    for (auto& disseminator : disseminators__) {
-        if (std::search(disseminator.name.begin(), disseminator.name.end(),
-                    name.begin(), name.end(),
-                    [](char ch1, char ch2) { return std::toupper(ch1) == std::toupper(ch2);
-                    }) != disseminator.name.end()) {
-            matching_disseminators.push_back(disseminator);
-        }
+    if (DisseminatorDao::Requery()) {
+        return disseminators__;
+    } else {
+        return std::nullopt;
     }
-    return matching_disseminators;
+}
+std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorsByName(const std::string& name) {
+    // TODO(Any): Does not handle a space ' ' in the url correctly. Will need to convert '%20' to space ' '.
+    if (DisseminatorDao::Requery()) {
+        std::vector<Disseminator> matching_disseminators;
+        for (auto& disseminator : disseminators__) {
+            if (std::search(disseminator.name.begin(), disseminator.name.end(),
+                        name.begin(), name.end(),
+                        [](char ch1, char ch2) { return std::toupper(ch1) == std::toupper(ch2);
+                        }) != disseminator.name.end()) {
+                matching_disseminators.push_back(disseminator);
+            }
+        }
+        return matching_disseminators;
+    } else {
+        return std::nullopt;
+    }
 }
 std::optional<std::vector<Disseminator>> DisseminatorDao::GetDisseminatorByID(int id) {
-    DisseminatorDao::Requery();
-    std::vector<Disseminator> matching_disseminators;
-    for (auto& disseminator : disseminators__) {
-        if (disseminator.id == id) {
-            matching_disseminators.push_back(disseminator);
-            return matching_disseminators;
+    if (DisseminatorDao::Requery()) {
+        std::vector<Disseminator> matching_disseminators;
+        for (auto& disseminator : disseminators__) {
+            if (disseminator.id == id) {
+                matching_disseminators.push_back(disseminator);
+                return matching_disseminators;
+            }
         }
+        return matching_disseminators;
+    } else {
+        return std::nullopt;
     }
-    return std::nullopt;
 }
 std::optional<bool> DisseminatorDao::RemoveDisseminator(int id) {
     try {
@@ -114,6 +117,7 @@ std::optional<bool> DisseminatorDao::RemoveDisseminator(int id) {
                 std::string("WHERE disseminator_id =?;")));
         statement.bind(0, &id);
         execute(statement);
+        // check db to see if entry still exists?
         return true;
     } catch (std::exception&  e) {
         logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "RemoveDisseminator");
@@ -126,7 +130,7 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
         nanodbc::statement statement(connection);
         prepare(statement, NANODBC_TEXT(
             std::string("insert into ") + db_disseminators_table__ +
-            std::string(" disseminator_name, disseminator_type, message_format, ip, port, backup_port, status)") +
+            std::string(" (disseminator_name, disseminator_type, message_format, ip, port, backup_port, status)") +
             std::string(" values(?,?,?,?,?,?,?);")));
         nanodbc::string const name = NANODBC_TEXT(disseminator.name);
         statement.bind(0, name.c_str());
@@ -158,7 +162,7 @@ std::optional<bool> DisseminatorDao::AddDisseminator(Disseminator disseminator) 
             return false;
         }
     } catch (std::exception&  e) {
-        logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "GetDisseminators");
+        logger__.Log(LogLevel::ERR, e.what(), "DisseminatorDao", "AddDisseminators");
         return std::nullopt;
     }
 }
