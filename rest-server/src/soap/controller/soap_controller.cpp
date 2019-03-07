@@ -31,6 +31,8 @@ namespace cadg_soap {
             struct soap ctx = *soap_new();
             _ns5__alert alertMessage;
             _ns2__postCAPRequestTypeDef incomingRequest;
+            _ns2__CAPHeaderTypeDef capHeaders;
+            __ns2__postCAP postCap;
             //incomingRequest.ns5__alert = &alertMessage;
             auto body = message.extract_string().get();
             //soap_envelope_begin_in()
@@ -41,14 +43,15 @@ namespace cadg_soap {
             ctx.is = &str_stream;  // sets the instream of the soap ctx  object to the string input
             ctx.os = &soap_out;  // sets the outstream of the soap ctx context
             // should read the soap context and output the details to the alertMessage object
-            if (soap_POST_recv__ns5__alert(&ctx, &alertMessage)) {
+            soap_recv(&ctx);
+            if (soap_POST_recv__ns2__postCAPRequestTypeDef(&ctx, &incomingRequest)) {
                     soap_response(&ctx, SOAP_OK);
             } else {
                 soap_response(&ctx, SOAP_PROHIBITED);
             }
             ctx.is = NULL;
             auto soap_resp = soap_out.str();
-            logger__.Log(LogLevel::DEBUG, alertMessage.sender, "SoapController", "HandlePost");
+            logger__.Log(LogLevel::DEBUG, "", "SoapController", "HandlePost");
             message.reply(status_codes::OK, soap_resp);
         } catch (std::exception& e) {
             message.reply(status_codes::BadRequest);
