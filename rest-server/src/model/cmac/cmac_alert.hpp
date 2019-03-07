@@ -9,8 +9,11 @@
 
 namespace cmac {
     struct CMAC_alert {
+        // TODO(Ross): Determine how to get the protocol version based on either CAP message or other source.
         std::optional<std::string> cmac_protocol_version;
+        // TODO(Ross): Determine how to get gateway IP or URI.
         std::optional<std::string> cmac_sending_gateway_id;
+        // TODO(Ross): Determine how to identify CMSP-initiated value, when applicable.
         std::optional<std::string> cmac_message_number;
         std::optional<std::string> cmac_referenced_message_number;
         std::optional<std::string> cmac_referenced_message_cap_identifier;
@@ -21,6 +24,7 @@ namespace cmac {
         std::optional<std::string> cmac_message_type;
         std::optional<std::vector<std::string>> cmac_response_code;
         std::optional<std::vector<std::string>> cmac_note;
+        // TODO(Ross): Determine how to obtain from the gateway.
         std::optional<std::string> cmac_cap_alert_uri;
         std::optional<std::string> cmac_cap_identifier;
         std::optional<std::string> cmac_cap_sent_date_time;
