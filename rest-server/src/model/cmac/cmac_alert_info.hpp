@@ -17,8 +17,8 @@ namespace cmac {
         std::optional<std::string> cmac_certainty;
         std::optional<std::string> cmac_expires_date_time;
         std::optional<std::string> cmac_sender_name;
-        std::optional<std::vector<CMAC_alert_area>> cmac_alert_area;
-        std::optional<std::vector<CMAC_alert_text>> cmac_alert_text;
+        std::optional<std::vector<cmac::CMAC_alert_area>> cmac_alert_area;
+        std::optional<std::vector<cmac::CMAC_alert_text>> cmac_alert_text;
     };
 }
 

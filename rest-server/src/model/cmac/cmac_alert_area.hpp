@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 #include <optional>
 
 #ifndef CADG_REST_SERVER_CMAC_ALERT_AREA_HPP
@@ -12,7 +13,8 @@ namespace cmac {
         std::optional<std::vector<std::string>> cmac_polygon;
         std::optional<std::vector<std::string>> cmac_circle;
         std::optional<std::vector<std::string>> cmac_cmas_geocode;
-        std::optional<std::vector<std::string>> cmac_cap_geocode; //TODO: Make geocode struct?
+        // First string value in the pair contains the CAP geocode valueName, second contains value
+        std::optional<std::vector<std::pair<std::string, std::string>>> cmac_cap_geocode;
         std::optional<std::vector<std::string>> cmac_gnis;
     };
 }
