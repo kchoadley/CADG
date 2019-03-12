@@ -31,7 +31,7 @@ services:
         cadg-soap:
                 build: ../soap-server/
                 networks:
-                        -cadgnet
+                        - cadgnet
         cadg-db:
                 build: ../cadg-db
                 networks:

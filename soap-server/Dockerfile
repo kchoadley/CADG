@@ -14,4 +14,4 @@ WORKDIR "/usr/src/cadg-soap-server/build"
 RUN cmake -G "Unix Makefiles" ..
 RUN make
 
-CMD ["./cadg-soap-server"]
+CMD ["./soap_server"]
