@@ -93,6 +93,6 @@ Logger::Logger() {
     p_logger__.reset(new spdlog::logger("multi_sink", {log_console_sink, log_file_sink}));
     p_logger__->set_level(spdlog::level::trace);  // trace level will log everything
     p_logger__->flush_on(spdlog::level::trace);  // trace level will flush to file on every log message
-    
+
 }
 }  // namespace cadg_soap
