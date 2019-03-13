@@ -7,13 +7,14 @@ find_package(spdlog CONFIG REQUIRED)
 
 add_executable(soap_server
         src/soap_server.cpp
-        src/gSOAP Files/soapC.cpp
-        src/gSOAP Files/CAPSoapHttp.nsmap
-        src/gSOAP Files/stdsoap2.cpp
+        src/gSOAPFiles/soapC.cpp
+        src/gSOAPFiles/CAPSoapHttp.nsmap
+        src/gSOAPFiles/soapCAPSoapHttpService.cpp
+        src/gSOAPFiles/stdsoap2.cpp
         src/services/logger.cpp)
 
 set(SERVICE_HEADERS "src/services")
-set(SOAP_HEADERS "src/gSOAP Files")
+set(SOAP_HEADERS "src/gSOAPFiles")
 
 set(HEADER_PATHS ${SERVICE_HEADERS} ${SOAP_HEADERS})
 
