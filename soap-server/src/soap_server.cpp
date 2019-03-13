@@ -46,6 +46,8 @@ int CAPSoapHttpService::getRequest(ns2__requestParameterList *ns1__getRequestTyp
 
 int CAPSoapHttpService::postCAP(_ns1__postCAPRequestTypeDef *ns1__postCAPRequestTypeDef,
                                 _ns1__postCAPResponseTypeDef &ns1__postCAPResponseTypeDef) {
+    LoggerInterface& logger(Logger::Instance());
+    logger.Log(LogLevel::INFO, ns1__postCAPRequestTypeDef->ns4__alert->sender, "CAPSoapHttpService", "postCAP");
     return SOAP_OK;
 }
 
