@@ -44,11 +44,16 @@ int CAPSoapHttpService::getRequest(ns2__requestParameterList *ns1__getRequestTyp
     return SOAP_OK;
 }
 
-int CAPSoapHttpService::postCAP(_ns1__postCAPRequestTypeDef *ns1__postCAPRequestTypeDef,
-                                _ns1__postCAPResponseTypeDef &ns1__postCAPResponseTypeDef) {
+int CAPSoapHttpService::postCAP(_ns1__postCAPRequestTypeDef *request,
+                                _ns1__postCAPResponseTypeDef &response) {
+    auto responseCode = SOAP_OK;
+    auto alert = request->ns4__alert;
     LoggerInterface& logger(Logger::Instance());
-    logger.Log(LogLevel::INFO, ns1__postCAPRequestTypeDef->ns4__alert->sender, "CAPSoapHttpService", "postCAP");
-    return SOAP_OK;
+    logger.Log(LogLevel::INFO, alert->sender, "CAPSoapHttpService", "postCAP");
+    if (alert->sender == "") {
+        responseCode = SOAP_TAG_MISMATCH;
+    }
+    return responseCode;
 }
 
 int CAPSoapHttpService::getMessage(ns2__requestParameterList *ns1__getMessageTypeDef,
